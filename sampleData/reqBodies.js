@@ -1,6 +1,6 @@
-const apiReqNames = require('../constants/apiReqNames');
+const { POST_CREATE_USER } = require('../constants/apiReqNames');
 
-module.exports[apiReqNames.POST_CREATE_USER] = {
+module.exports[POST_CREATE_USER] = {
   logins: [
     {
       email: 'test@synapsefi.com',

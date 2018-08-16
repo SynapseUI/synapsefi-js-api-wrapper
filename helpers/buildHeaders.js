@@ -1,12 +1,10 @@
+const axios = require('axios');
+
 const getHeader_X_SP_GAGEWAY = ({ client_id, client_secret }) => {
   if (client_id && client_secret) return `${client_id}|${client_secret}`;
   if (client_id && !client_secret) return client_id;
   if (!client_id && client_secret) return `|${client_secret}getHeader_X_SP_USER_IP`;
   return 'xxxx|xxxx';
-};
-
-const getHeader_X_SP_USER_IP = ({ ip_address }) => {
-  return ip_address;
 };
 
 const getHeader_X_SP_USER = ({ oauth_key, fingerprint }) => {
@@ -16,17 +14,12 @@ const getHeader_X_SP_USER = ({ oauth_key, fingerprint }) => {
   return 'xxxx|xxxx';
 };
 
-module.exports.buildHeaders = ({
-  client_id,
-  client_secret,
-  ip_address,
-  oauth_key,
-  fingerprint,
-}) => {
+module.exports = ({ client_id, client_secret, oauth_key, fingerprint }) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
       'X-SP-GATEWAY': 'xxxx|xxxx',
+      'X-SP-USER-IP': '127.0.0.1',
     },
   };
 
@@ -34,13 +27,18 @@ module.exports.buildHeaders = ({
     config.headers['X-SP-GATEWAY'] = getHeader_X_SP_GAGEWAY({ client_id, client_secret });
   }
 
-  if (ip_address) {
-    config.headers['X-SP-USER-IP'] = getHeader_X_SP_USER_IP({ ip_address });
-  }
-
   if (oauth_key || fingerprint) {
     config.headers['X-SP-USER'] = getHeader_X_SP_USER({ oauth_key, fingerprint });
   }
+  return axios
+    .get('https://api.ipify.org?format=json')
+    .then(({ data }) => {
+      config.headers['X-SP-USER-IP'] = data.ip;
 
-  return config;
+      return config;
+    })
+    .catch(err => {
+      console.log('err: ', '127.0.0.1 has been set for public ip address');
+      return config;
+    });
 };
