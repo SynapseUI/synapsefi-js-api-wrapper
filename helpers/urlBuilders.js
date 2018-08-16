@@ -1,6 +1,13 @@
 const _ = require('lodash');
 
-module.exports.addQueryParams = ({ originalUrl, query, page, per_page, show_refresh_tokens }) => {
+module.exports.addQueryParams = ({
+  originalUrl,
+  query,
+  page,
+  per_page,
+  show_refresh_tokens,
+  full_dehydrate,
+}) => {
   const arr = [];
 
   if (query !== undefined) {
@@ -17,6 +24,10 @@ module.exports.addQueryParams = ({ originalUrl, query, page, per_page, show_refr
 
   if (show_refresh_tokens !== undefined) {
     arr.push(`show_refresh_tokens=${show_refresh_tokens}`);
+  }
+
+  if (full_dehydrate !== undefined) {
+    arr.push(`full_dehydrate=${full_dehydrate}`);
   }
 
   if (arr.length === 0) return originalUrl;

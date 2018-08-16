@@ -2,6 +2,7 @@ const getHeader_X_SP_GAGEWAY = ({ client_id, client_secret }) => {
   if (client_id && client_secret) return `${client_id}|${client_secret}`;
   if (client_id && !client_secret) return client_id;
   if (!client_id && client_secret) return `|${client_secret}getHeader_X_SP_USER_IP`;
+  return 'xxxx|xxxx';
 };
 
 const getHeader_X_SP_USER_IP = ({ ip_address }) => {
@@ -12,6 +13,7 @@ const getHeader_X_SP_USER = ({ oauth_key, fingerprint }) => {
   if (oauth_key && fingerprint) return `${oauth_key}|${fingerprint}`;
   if (oauth_key && !fingerprint) return oauth_key;
   if (!oauth_key && fingerprint) return `|${fingerprint}`;
+  return 'xxxx|xxxx';
 };
 
 module.exports.buildHeaders = ({

@@ -1,10 +1,11 @@
 const axios = require('axios');
-const apiReqNames = require('../constants/apiReqNames');
+
+const { GET_USERS, POST_CREATE_USER, GET_USER } = require('../constants/apiReqNames');
 const staticEndpoints = require('../constants/staticEndpoints');
 const { buildHeaders } = require('../helpers/helperFuncsForApis');
-const { addQueryParams } = require('../helpers/urlBuilders');
+const { addQueryParams, replacePathParams } = require('../helpers/urlBuilders');
 
-module.exports[apiReqNames.GET_USERS] = ({
+module.exports[GET_USERS] = ({
   host,
   client_id,
   client_secret,
@@ -17,7 +18,7 @@ module.exports[apiReqNames.GET_USERS] = ({
 }) => {
   return axios.get(
     addQueryParams({
-      originalUrl: `${host}${staticEndpoints[apiReqNames.GET_USERS]}`,
+      originalUrl: `${host}${staticEndpoints[GET_USERS]}`,
       query,
       page,
       per_page,
@@ -32,7 +33,7 @@ module.exports[apiReqNames.GET_USERS] = ({
   );
 };
 
-module.exports[apiReqNames.POST_CREATE_USER] = ({
+module.exports[POST_CREATE_USER] = ({
   reqBody,
   host,
   client_id,
@@ -55,7 +56,7 @@ module.exports[apiReqNames.POST_CREATE_USER] = ({
   if (errMessages.length > 0) throw errMessages.join(', ');
 
   return axios.post(
-    `${host}${staticEndpoints[apiReqNames.POST_CREATE_USER]}`,
+    `${host}${staticEndpoints[POST_CREATE_USER]}`,
     reqBody,
     buildHeaders({
       client_id,
@@ -66,33 +67,26 @@ module.exports[apiReqNames.POST_CREATE_USER] = ({
   );
 };
 
-//   // [apiReqNames.POST_CREATE_USER]: () => {},
-//   // [apiReqNames.GET_USER]: () => {},
-//   [apiReqNames.PATCH_ADD_DOCUMENTS]: ({
-//     oauth_key,
-//     req_body,
-//     user_id,
-//     client_id,
-//     client_secret,
-//     ip_address,
-//     fingerprint,
-//   }) => {
-//     const headers = construct_headers({
-//       client_id,
-//       client_secret,
-//       ip_address,
-//       fingerprint,
-//       oauth_key,
-//     });
+module.exports[GET_USER] = ({
+  host,
+  client_id,
+  client_secret,
+  ip_address,
+  fingerprint,
+  user_id,
+}) => {
+  const queryAddedUrl = addQueryParams({
+    originalUrl: `${host}${staticEndpoints[GET_USER]}`,
+    full_dehydrate: 'yes',
+  });
 
-//     console.log('headers: ', headers);
-//     return axios.patch(
-//       replacePathParams({ originalUrl: apiStaticRoutes[apiReqNames.PATCH_ADD_DOCUMENTS], user_id }),
-//       req_body,
-//       headers
-//     );
-//   },
-//   // [apiReqNames.PATCH_UPDATE_EXISTING_DOCUMENT]: () => {},
-//   // [apiReqNames.PATCH_DELETE_EXISTING_DOCUMENT]: () => {},
-//   // [apiReqNames.PATCH_UPDATE_USER]: () => {},
-// };
+  return axios.get(
+    replacePathParams({ originalUrl: queryAddedUrl, user_id }),
+    buildHeaders({
+      client_id,
+      client_secret,
+      ip_address,
+      fingerprint,
+    })
+  );
+};
