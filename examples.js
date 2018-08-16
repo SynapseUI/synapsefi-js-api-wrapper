@@ -3,6 +3,7 @@ const {
   POST_CREATE_USER,
   GET_USER,
   PATCH_ADD_DOCUMENTS,
+  PATCH_UPDATE_EXISTING_DOCUMENT
 } = require('./constants/apiReqNames');
 const sampleApiRequests = require('./sampleApiReqs/sampleApiRequests');
 const reqBodies = require('./sampleData/reqBodies');
@@ -21,10 +22,22 @@ const partsOfReqBody = require('./sampleData/partsOfReqBody');
 //   console.log('data: ', data);
 // });
 
+// const userId = '5b17070501db700049a19bdc';
+// const documentObj = partsOfReqBody[PATCH_ADD_DOCUMENTS];
+// sampleApiRequests.users
+//   [PATCH_ADD_DOCUMENTS](userId, documentObj)
+//   .then(({ data }) => {
+//     console.log('data: ', data);
+//   })
+//   .catch(err => {
+//     // console.log('err: ', err);
+//     console.log('err!!!');
+//   });
+
 const userId = '5b17070501db700049a19bdc';
-const documentObj = partsOfReqBody[PATCH_ADD_DOCUMENTS];
+const documentObj = partsOfReqBody[PATCH_UPDATE_EXISTING_DOCUMENT];
 sampleApiRequests.users
-  [PATCH_ADD_DOCUMENTS](userId, documentObj)
+[PATCH_UPDATE_EXISTING_DOCUMENT](userId, documentObj)
   .then(({ data }) => {
     console.log('data: ', data);
   })

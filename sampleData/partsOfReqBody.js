@@ -1,4 +1,4 @@
-const { PATCH_ADD_DOCUMENTS } = require('../constants/apiReqNames');
+const { PATCH_ADD_DOCUMENTS, PATCH_UPDATE_EXISTING_DOCUMENT } = require('../constants/apiReqNames');
 
 module.exports[PATCH_ADD_DOCUMENTS] = {
   email: 'test@test.com',
@@ -34,4 +34,9 @@ module.exports[PATCH_ADD_DOCUMENTS] = {
       document_type: 'FACEBOOK',
     },
   ],
+};
+
+module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = {
+  id: '2f032ff68890a8cc96da735a4f31308b86b343afc4f2df40abbed38447b03d7f',
+  email: 'sean-change@synapsefi.com',
 };

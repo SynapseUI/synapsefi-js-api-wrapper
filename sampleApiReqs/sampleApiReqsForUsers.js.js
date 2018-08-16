@@ -3,6 +3,7 @@ const {
   POST_CREATE_USER,
   GET_USER,
   PATCH_ADD_DOCUMENTS,
+  PATCH_UPDATE_EXISTING_DOCUMENT
 } = require('../constants/apiReqNames');
 const apiRequests = require('../apiReqs/apiRequests');
 
@@ -44,6 +45,18 @@ module.exports[GET_USER] = userId => {
 
 module.exports[PATCH_ADD_DOCUMENTS] = (userId, documentObj) => {
   return apiRequests.users[PATCH_ADD_DOCUMENTS]({
+    user_id: userId,
+    documentObj,
+    host,
+    oauth_key,
+    client_id,
+    client_secret,
+    fingerprint,
+  });
+};
+
+module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = (userId, documentObj) => {
+  return apiRequests.users[PATCH_UPDATE_EXISTING_DOCUMENT]({
     user_id: userId,
     documentObj,
     host,

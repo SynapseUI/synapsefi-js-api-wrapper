@@ -5,6 +5,7 @@ const {
   POST_CREATE_USER,
   GET_USER,
   PATCH_ADD_DOCUMENTS,
+  PATCH_UPDATE_EXISTING_DOCUMENT,
 } = require('../constants/apiReqNames');
 const staticEndpoints = require('../constants/staticEndpoints');
 const buildHeaders = require('../helpers/buildHeaders');
@@ -63,10 +64,9 @@ module.exports[GET_USER] = ({ host, client_id, client_secret, fingerprint, user_
   });
 };
 
-module.exports[PATCH_ADD_DOCUMENTS] = ({
+module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
   user_id,
   documentObj,
-
   host,
   oauth_key,
   client_id,
@@ -74,7 +74,32 @@ module.exports[PATCH_ADD_DOCUMENTS] = ({
   fingerprint,
 }) => {
   const queryAddedUrl = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[PATCH_ADD_DOCUMENTS]}`,
+    originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_EXISTING_DOCUMENT]}`,
+  });
+
+  const reqBody = { documents: [documentObj] };
+
+  return buildHeaders({
+    client_id,
+    client_secret,
+    oauth_key,
+    fingerprint,
+  }).then(config => {
+    return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
+  });
+};
+
+module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
+  user_id,
+  documentObj,
+  host,
+  oauth_key,
+  client_id,
+  client_secret,
+  fingerprint,
+}) => {
+  const queryAddedUrl = addQueryParams({
+    originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_EXISTING_DOCUMENT]}`,
   });
 
   const reqBody = { documents: [documentObj] };
