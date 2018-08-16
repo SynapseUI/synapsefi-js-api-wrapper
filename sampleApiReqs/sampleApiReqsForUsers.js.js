@@ -1,5 +1,5 @@
 const apiReqNames = require('../constants/apiReqNames');
-const apiRequests = require('../apiRequests');
+const apiRequests = require('../apiReqs/apiRequests');
 
 const host = 'https://uat-api.synapsefi.com';
 const user_id = '5b17070501db700049a19bdc';
