@@ -1,14 +1,26 @@
-const apiKeys = require('./apiKeys');
+const apiReqNames = require('./apiReqNames');
 
 const HOST = 'https://uat-api.synapsefi.com';
+const VERSION = 'v3.1';
 
-export default {
-  // User
-  [apiKeys.GET_USERS]: '/v3.1/users',
-  [apiKeys.POST_CREATE_USER]: '/v3.1/users',
-  [apiKeys.GET_USER]: '/v3.1/users/:user_id',
-  [apiKeys.PATCH_ADD_DOCUMENTS]: '/v3.1/users/:user_id',
-  [apiKeys.PATCH_UPDATE_EXISTING_DOCUMENT]: '/v3.1/users/:user_id',
-  [apiKeys.PATCH_DELETE_EXISTING_DOCUMENT]: '/v3.1/users/:user_id',
-  [apiKeys.PATCH_UPDATE_USER]: '/v3.1/users/:user_id',
+module.exports = {
+  //
+  // USERS ------------------------------------------------------------------
+  [apiReqNames.GET_USERS]: `/${VERSION}/users`,
+  [apiReqNames.POST_CREATE_USER]: `/${VERSION}/users`,
+  [apiReqNames.GET_USER]: `/${VERSION}/users/:user_id`,
+  [apiReqNames.PATCH_ADD_DOCUMENTS]: `/${VERSION}/users/:user_id`,
+  [apiReqNames.PATCH_UPDATE_EXISTING_DOCUMENT]: `/${VERSION}/users/:user_id`,
+  [apiReqNames.PATCH_DELETE_EXISTING_DOCUMENT]: `/${VERSION}/users/:user_id`,
+  [apiReqNames.PATCH_UPDATE_USER]: `/${VERSION}/users/:user_id`,
+  // ------------------------------------------------------------------------
+  //
+  // NODES  ////////////////////////////////////////////////////////////////////////
+  //
+  // ///////////////////////////////////////////////////////////////////////////////
+  //
+  // TRANSACTION  ------------------------------------------------------------------
+  //
+  // -------------------------------------------------------------------------------
+  //
 };

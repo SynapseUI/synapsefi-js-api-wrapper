@@ -1,6 +1,6 @@
-import _ from 'lodash';
+const _ = require('lodash');
 
-export const addQueryParams = ({ originalUrl, query, page, per_page, show_refresh_tokens }) => {
+module.exports.addQueryParams = ({ originalUrl, query, page, per_page, show_refresh_tokens }) => {
   const arr = [];
 
   if (query !== undefined) {
@@ -24,7 +24,7 @@ export const addQueryParams = ({ originalUrl, query, page, per_page, show_refres
   return originalUrl + '?' + arr.join(';');
 };
 
-export const replacePathParams = ({ originalUrl, user_id, node_id, transaction_id }) => {
+module.exports.replacePathParams = ({ originalUrl, user_id, node_id, transaction_id }) => {
   let copiedUrl = originalUrl;
 
   if (user_id !== undefined) {
