@@ -4,7 +4,8 @@ const {
   GET_USER,
   PATCH_ADD_DOCUMENTS,
   PATCH_UPDATE_EXISTING_DOCUMENT,
-  PATCH_DELETE_EXISTING_DOCUMENT,
+  PATCH_DELETE_EXSITING_MAIN_DOC,
+  PATCH_DELETE_EXSITING_SUB_DOCS,
   PATCH_UPDATE_USER,
 } = require('../constants/apiReqNames');
 const apiRequests = require('../apiReqs/apiRequests');
@@ -69,10 +70,31 @@ module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = (userId, documentObj) => {
   });
 };
 
-module.exports[PATCH_DELETE_EXISTING_DOCUMENT] = (userId, documentId) => {
-  return apiRequests.users[PATCH_DELETE_EXISTING_DOCUMENT]({
+module.exports[PATCH_DELETE_EXSITING_MAIN_DOC] = (userId, documentId) => {
+  return apiRequests.users[PATCH_DELETE_EXSITING_MAIN_DOC]({
     user_id: userId,
     document_id: documentId,
+    host,
+    oauth_key,
+    client_id,
+    client_secret,
+    fingerprint,
+  });
+};
+
+module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
+  user_id,
+  main_document_id,
+  physical_docs,
+  virtual_docs,
+  social_docs,
+}) => {
+  return apiRequests.users[PATCH_DELETE_EXSITING_SUB_DOCS]({
+    user_id,
+    main_document_id,
+    physical_docs,
+    virtual_docs,
+    social_docs,
     host,
     oauth_key,
     client_id,

@@ -4,7 +4,8 @@ const {
   GET_USER,
   PATCH_ADD_DOCUMENTS,
   PATCH_UPDATE_EXISTING_DOCUMENT,
-  PATCH_DELETE_EXISTING_DOCUMENT,
+  PATCH_DELETE_EXSITING_MAIN_DOC,
+  PATCH_DELETE_EXSITING_SUB_DOCS,
   PATCH_UPDATE_USER,
 } = require('./constants/apiReqNames');
 const sampleApiRequests = require('./sampleApiReqs/sampleApiRequests');
@@ -59,7 +60,7 @@ const userId = '5b17070501db700049a19bdc';
 //   });
 
 // sampleApiRequests.users
-//   [PATCH_DELETE_EXISTING_DOCUMENT](
+//   [PATCH_DELETE_EXSITING_MAIN_DOC](
 //     userId,
 //     '00704fea2ea93de4792fd61992679072c84d4f11807fba181e8dd252bb9fe8e4' // documentId
 //   )
@@ -71,10 +72,14 @@ const userId = '5b17070501db700049a19bdc';
 //     console.log('err!!!');
 //   });
 
-const updateObj = partsOfReqBody[PATCH_UPDATE_EXISTING_DOCUMENT];
-
 sampleApiRequests.users
-  [PATCH_UPDATE_USER](userId, updateObj)
+  [PATCH_DELETE_EXSITING_SUB_DOCS]({
+    user_id,
+    main_document_id: '00704fea2ea93de4792fd61992679072c84d4f11807fba181e8dd252bb9fe8e4', // documentId
+    physical_docs,
+    virtual_docs,
+    social_docs,
+  })
   .then(({ data }) => {
     console.log('data: ', data);
   })
@@ -82,3 +87,15 @@ sampleApiRequests.users
     // console.log('err: ', err);
     console.log('err!!!');
   });
+
+// const updateObj = partsOfReqBody[PATCH_UPDATE_EXISTING_DOCUMENT];
+
+// sampleApiRequests.users
+//   [PATCH_UPDATE_USER](userId, updateObj)
+//   .then(({ data }) => {
+//     console.log('data: ', data);
+//   })
+//   .catch(err => {
+//     // console.log('err: ', err);
+//     console.log('err!!!');
+//   });

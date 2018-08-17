@@ -6,12 +6,15 @@ const {
   GET_USER,
   PATCH_ADD_DOCUMENTS,
   PATCH_UPDATE_EXISTING_DOCUMENT,
-  PATCH_DELETE_EXISTING_DOCUMENT,
+  PATCH_DELETE_EXSITING_MAIN_DOC,
+  PATCH_DELETE_EXSITING_SUB_DOCS,
   PATCH_UPDATE_USER,
 } = require('../constants/apiReqNames');
+
 const staticEndpoints = require('../constants/staticEndpoints');
 const buildHeaders = require('../helpers/buildHeaders');
 const { addQueryParams, replacePathParams } = require('../helpers/urlBuilders');
+const addPermissionScopeDelete = require('../helpers/addPermissionScopeDelete');
 
 module.exports[GET_USERS] = ({
   host,
@@ -141,7 +144,7 @@ module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
   });
 };
 
-module.exports[PATCH_DELETE_EXISTING_DOCUMENT] = ({
+module.exports[PATCH_DELETE_EXSITING_MAIN_DOC] = ({
   user_id,
   document_id,
   host,
@@ -151,7 +154,7 @@ module.exports[PATCH_DELETE_EXISTING_DOCUMENT] = ({
   fingerprint,
 }) => {
   const queryAddedUrl = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[PATCH_DELETE_EXISTING_DOCUMENT]}`,
+    originalUrl: `${host}${staticEndpoints[PATCH_DELETE_EXSITING_MAIN_DOC]}`,
   });
 
   const reqBody = {
@@ -159,6 +162,55 @@ module.exports[PATCH_DELETE_EXISTING_DOCUMENT] = ({
       {
         id: document_id,
         permission_scope: 'DELETE_DOCUMENT',
+      },
+    ],
+  };
+
+  return buildHeaders({
+    client_id,
+    client_secret,
+    oauth_key,
+    fingerprint,
+  }).then(config => {
+    return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
+  });
+};
+
+module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
+  user_id,
+  main_document_id,
+  physical_docs,
+  virtual_docs,
+  social_docs,
+  host,
+  oauth_key,
+  client_id,
+  client_secret,
+  fingerprint,
+}) => {
+  const queryAddedUrl = addQueryParams({
+    originalUrl: `${host}${staticEndpoints[PATCH_DELETE_EXSITING_SUB_DOCS]}`,
+  });
+
+  const subDocs = {};
+
+  if (physical_docs !== undefined) {
+    subDocs.physical_docs = addPermissionScopeDelete(physical_docs);
+  }
+
+  if (virtual_docs !== undefined) {
+    subDocs.virtual_docs = addPermissionScopeDelete(virtual_docs);
+  }
+
+  if (social_docs !== undefined) {
+    subDocs.social_docs = addPermissionScopeDelete(social_docs);
+  }
+
+  const reqBody = {
+    documents: [
+      {
+        id: main_document_id,
+        ...subDocs,
       },
     ],
   };
