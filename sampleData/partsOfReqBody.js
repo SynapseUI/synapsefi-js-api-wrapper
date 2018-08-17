@@ -1,7 +1,7 @@
 const { PATCH_ADD_DOCUMENTS, PATCH_UPDATE_EXISTING_DOCUMENT } = require('../constants/apiReqNames');
 
 module.exports[PATCH_ADD_DOCUMENTS] = {
-  email: 'test@test.com',
+  email: 'atest@test.com',
   phone_number: '901.111.1111',
   ip: '::1',
   name: 'Test User',
@@ -37,6 +37,6 @@ module.exports[PATCH_ADD_DOCUMENTS] = {
 };
 
 module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = {
-  id: '2f032ff68890a8cc96da735a4f31308b86b343afc4f2df40abbed38447b03d7f',
-  email: 'sean-change@synapsefi.com',
+  id: '13b1fa97d147a33bad0d8d5d32c15e28c42804dd16486249f0931e245e30e835',
+  name: '123',
 };
