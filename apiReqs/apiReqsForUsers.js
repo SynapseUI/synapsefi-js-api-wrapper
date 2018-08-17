@@ -7,6 +7,7 @@ const {
   PATCH_ADD_DOCUMENTS,
   PATCH_UPDATE_EXISTING_DOCUMENT,
   PATCH_DELETE_EXISTING_DOCUMENT,
+  PATCH_UPDATE_USER,
 } = require('../constants/apiReqNames');
 const staticEndpoints = require('../constants/staticEndpoints');
 const buildHeaders = require('../helpers/buildHeaders');
@@ -161,6 +162,31 @@ module.exports[PATCH_DELETE_EXISTING_DOCUMENT] = ({
       },
     ],
   };
+
+  return buildHeaders({
+    client_id,
+    client_secret,
+    oauth_key,
+    fingerprint,
+  }).then(config => {
+    return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
+  });
+};
+
+module.exports[PATCH_UPDATE_USER] = ({
+  user_id,
+  updateObj,
+  host,
+  oauth_key,
+  client_id,
+  client_secret,
+  fingerprint,
+}) => {
+  const queryAddedUrl = addQueryParams({
+    originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_USER]}`,
+  });
+
+  const reqBody = { update: updateObj };
 
   return buildHeaders({
     client_id,
