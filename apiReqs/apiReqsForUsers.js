@@ -14,7 +14,7 @@ const {
 const staticEndpoints = require('../constants/staticEndpoints');
 const buildHeaders = require('../helpers/buildHeaders');
 const { addQueryParams, replacePathParams } = require('../helpers/urlBuilders');
-const addPermissionScopeDelete = require('../helpers/addPermissionScopeDelete');
+const addPermissionScopeDeleteDocument = require('../helpers/addPermissionScopeDeleteDocument');
 
 module.exports[GET_USERS] = ({
   host,
@@ -195,15 +195,15 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
   const subDocs = {};
 
   if (physical_docs !== undefined) {
-    subDocs.physical_docs = addPermissionScopeDelete(physical_docs);
+    subDocs.physical_docs = addPermissionScopeDeleteDocument(physical_docs);
   }
 
   if (virtual_docs !== undefined) {
-    subDocs.virtual_docs = addPermissionScopeDelete(virtual_docs);
+    subDocs.virtual_docs = addPermissionScopeDeleteDocument(virtual_docs);
   }
 
   if (social_docs !== undefined) {
-    subDocs.social_docs = addPermissionScopeDelete(social_docs);
+    subDocs.social_docs = addPermissionScopeDeleteDocument(social_docs);
   }
 
   const reqBody = {
