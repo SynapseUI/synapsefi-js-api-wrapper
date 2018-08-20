@@ -1,7 +1,7 @@
 const { PATCH_ADD_DOCUMENTS, PATCH_UPDATE_EXISTING_DOCUMENT } = require('../constants/apiReqNames');
 
 module.exports[PATCH_ADD_DOCUMENTS] = {
-  email: 'atest@test.com',
+  email: 'dummyEmail@gamil.com',
   phone_number: '901.111.1111',
   ip: '::1',
   name: 'Test User',

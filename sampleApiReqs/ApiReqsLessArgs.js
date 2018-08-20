@@ -4,7 +4,7 @@ const {
   GET_USER,
   PATCH_ADD_DOCUMENTS,
   PATCH_UPDATE_EXISTING_DOCUMENT,
-  PATCH_DELETE_EXSITING_MAIN_DOC,
+  PATCH_DELETE_EXSITING_BASE_DOC,
   PATCH_DELETE_EXSITING_SUB_DOCS,
   PATCH_UPDATE_USER,
 } = require('../constants/apiReqNames');
@@ -39,84 +39,78 @@ class ApiReqsLessArgs {
     });
   }
 
-  // module.exports[GET_USER] = userId => {
-  //   return apiRequests.users[GET_USER]({
-  //     user_id: userId,
-  //     host,
-  //     client_id,
-  //     client_secret,
-  //     fingerprint,
-  //   });
-  // };
+  GET_USER() {
+    return apiRequests.users[GET_USER]({
+      user_id: this.user_id,
+      host: this.host,
+      client_id: this.client_id,
+      client_secret: this.client_secret,
+      fingerprint: this.fingerprint,
+    });
+  }
 
-  // module.exports[PATCH_ADD_DOCUMENTS] = (userId, documentObj) => {
-  //   return apiRequests.users[PATCH_ADD_DOCUMENTS]({
-  //     user_id: userId,
-  //     documentObj,
-  //     host,
-  //     oauth_key,
-  //     client_id,
-  //     client_secret,
-  //     fingerprint,
-  //   });
-  // };
+  PATCH_ADD_DOCUMENTS(documentObj) {
+    return apiRequests.users[PATCH_ADD_DOCUMENTS]({
+      documentObj,
+      user_id: this.user_id,
+      host: this.host,
+      oauth_key: this.oauth_key,
+      client_id: this.client_id,
+      client_secret: this.client_secret,
+      fingerprint: this.fingerprint,
+    });
+  }
 
-  // module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = (userId, documentObj) => {
-  //   return apiRequests.users[PATCH_UPDATE_EXISTING_DOCUMENT]({
-  //     user_id: userId,
-  //     documentObj,
-  //     host,
-  //     oauth_key,
-  //     client_id,
-  //     client_secret,
-  //     fingerprint,
-  //   });
-  // };
+  PATCH_UPDATE_EXISTING_DOCUMENT(documentObj) {
+    return apiRequests.users[PATCH_UPDATE_EXISTING_DOCUMENT]({
+      documentObj,
+      user_id: this.user_id,
+      host: this.host,
+      oauth_key: this.oauth_key,
+      client_id: this.client_id,
+      client_secret: this.client_secret,
+      fingerprint: this.fingerprint,
+    });
+  }
 
-  // module.exports[PATCH_DELETE_EXSITING_MAIN_DOC] = (userId, documentId) => {
-  //   return apiRequests.users[PATCH_DELETE_EXSITING_MAIN_DOC]({
-  //     user_id: userId,
-  //     document_id: documentId,
-  //     host,
-  //     oauth_key,
-  //     client_id,
-  //     client_secret,
-  //     fingerprint,
-  //   });
-  // };
+  PATCH_DELETE_EXSITING_BASE_DOC(documentId) {
+    return apiRequests.users[PATCH_DELETE_EXSITING_BASE_DOC]({
+      document_id: documentId,
+      user_id: this.user_id,
+      host: this.host,
+      oauth_key: this.oauth_key,
+      client_id: this.client_id,
+      client_secret: this.client_secret,
+      fingerprint: this.fingerprint,
+    });
+  }
 
-  // module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
-  //   user_id,
-  //   main_document_id,
-  //   physical_docs,
-  //   virtual_docs,
-  //   social_docs,
-  // }) => {
-  //   return apiRequests.users[PATCH_DELETE_EXSITING_SUB_DOCS]({
-  //     user_id,
-  //     main_document_id,
-  //     physical_docs,
-  //     virtual_docs,
-  //     social_docs,
-  //     host,
-  //     oauth_key,
-  //     client_id,
-  //     client_secret,
-  //     fingerprint,
-  //   });
-  // };
+  PATCH_DELETE_EXSITING_SUB_DOCS({ base_document_id, physical_docs, virtual_docs, social_docs }) {
+    return apiRequests.users[PATCH_DELETE_EXSITING_SUB_DOCS]({
+      base_document_id,
+      physical_docs,
+      virtual_docs,
+      social_docs,
+      user_id: this.user_id,
+      host: this.host,
+      oauth_key: this.oauth_key,
+      client_id: this.client_id,
+      client_secret: this.client_secret,
+      fingerprint: this.fingerprint,
+    });
+  }
 
-  // module.exports[PATCH_UPDATE_USER] = (userId, updateObj) => {
-  //   return apiRequests.users[PATCH_UPDATE_USER]({
-  //     user_id: userId,
-  //     updateObj,
-  //     host,
-  //     oauth_key,
-  //     client_id,
-  //     client_secret,
-  //     fingerprint,
-  //   });
-  // };
+  PATCH_UPDATE_USER(updateObj) {
+    return apiRequests.users[PATCH_UPDATE_USER]({
+      updateObj,
+      user_id: this.user_id,
+      host: this.host,
+      oauth_key: this.oauth_key,
+      client_id: this.client_id,
+      client_secret: this.client_secret,
+      fingerprint: this.fingerprint,
+    });
+  }
 }
 
 module.exports = ApiReqsLessArgs;

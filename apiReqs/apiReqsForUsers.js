@@ -6,7 +6,7 @@ const {
   GET_USER,
   PATCH_ADD_DOCUMENTS,
   PATCH_UPDATE_EXISTING_DOCUMENT,
-  PATCH_DELETE_EXSITING_MAIN_DOC,
+  PATCH_DELETE_EXSITING_BASE_DOC,
   PATCH_DELETE_EXSITING_SUB_DOCS,
   PATCH_UPDATE_USER,
 } = require('../constants/apiReqNames');
@@ -80,6 +80,7 @@ module.exports[PATCH_ADD_DOCUMENTS] = ({
 }) => {
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_ADD_DOCUMENTS]}`,
+    full_dehydrate: 'yes',
   });
 
   const reqBody = { documents: [documentObj] };
@@ -144,7 +145,7 @@ module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
   });
 };
 
-module.exports[PATCH_DELETE_EXSITING_MAIN_DOC] = ({
+module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
   user_id,
   document_id,
   host,
@@ -154,7 +155,7 @@ module.exports[PATCH_DELETE_EXSITING_MAIN_DOC] = ({
   fingerprint,
 }) => {
   const queryAddedUrl = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[PATCH_DELETE_EXSITING_MAIN_DOC]}`,
+    originalUrl: `${host}${staticEndpoints[PATCH_DELETE_EXSITING_BASE_DOC]}`,
   });
 
   const reqBody = {
@@ -178,7 +179,7 @@ module.exports[PATCH_DELETE_EXSITING_MAIN_DOC] = ({
 
 module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
   user_id,
-  main_document_id,
+  base_document_id,
   physical_docs,
   virtual_docs,
   social_docs,
@@ -209,7 +210,7 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
   const reqBody = {
     documents: [
       {
-        id: main_document_id,
+        id: base_document_id,
         ...subDocs,
       },
     ],
