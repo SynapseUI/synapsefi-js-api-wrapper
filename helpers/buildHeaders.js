@@ -18,6 +18,7 @@ module.exports = ({ client_id, client_secret, oauth_key, fingerprint }) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
       'X-SP-GATEWAY': 'xxxx|xxxx',
       'X-SP-USER-IP': '127.0.0.1',
     },
