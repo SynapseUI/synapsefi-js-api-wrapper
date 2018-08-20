@@ -41,15 +41,15 @@ module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = {
   name: '123',
 };
 
-module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = {
-  login: {
-    email: 'test2@synapsefi.com',
-  },
-  // remove_login: {
-  //   email: 'test@synapsefi.com',
-  // },
-  // phone_number: '901-111-2222',
-  phone_number: '123-111-2222',
-  // remove_phone_number: '901.111.1111',
-  permission: 'MAKE-IT-GO-AWAY',
-};
+// module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = {
+//   login: {
+//     email: 'test2@synapsefi.com',
+//   },
+//   // remove_login: {
+//   //   email: 'test@synapsefi.com',
+//   // },
+//   // phone_number: '901-111-2222',
+//   phone_number: '123-111-2222',
+//   // remove_phone_number: '901.111.1111',
+//   permission: 'MAKE-IT-GO-AWAY',
+// };

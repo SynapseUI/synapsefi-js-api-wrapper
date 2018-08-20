@@ -96,8 +96,8 @@ module.exports[PATCH_ADD_DOCUMENTS] = ({
 };
 
 module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
-  user_id,
   documentObj,
+  user_id,
   host,
   oauth_key,
   client_id,
@@ -120,30 +120,6 @@ module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
   });
 };
 
-module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
-  user_id,
-  documentObj,
-  host,
-  oauth_key,
-  client_id,
-  client_secret,
-  fingerprint,
-}) => {
-  const queryAddedUrl = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_EXISTING_DOCUMENT]}`,
-  });
-
-  const reqBody = { documents: [documentObj] };
-
-  return buildHeaders({
-    client_id,
-    client_secret,
-    oauth_key,
-    fingerprint,
-  }).then(config => {
-    return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
-  });
-};
 
 module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
   user_id,
