@@ -120,7 +120,6 @@ module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
   });
 };
 
-
 module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
   user_id,
   document_id,
