@@ -1,6 +1,9 @@
 module.exports = {
   //
   // USERS ------------------------------------------------------------------
+  GET_USERS_DOCUMENT_TYPES: 'GET_USERS_DOCUMENT_TYPES',
+  GET_USERS_ENTITY_TYPES: 'GET_USERS_ENTITY_TYPES',
+  GET_USERS_ENTITY_SCOPES: 'GET_USERS_ENTITY_SCOPES',
   GET_USERS: 'GET_USERS',
   POST_CREATE_USER: 'POST_CREATE_USER',
   GET_USER: 'GET_USER',

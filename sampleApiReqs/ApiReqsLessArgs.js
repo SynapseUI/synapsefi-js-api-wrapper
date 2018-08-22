@@ -1,4 +1,7 @@
 const {
+  GET_USERS_DOCUMENT_TYPES,
+  GET_USERS_ENTITY_TYPES,
+  GET_USERS_ENTITY_SCOPES,
   GET_USERS,
   POST_CREATE_USER,
   GET_USER,
@@ -19,6 +22,18 @@ class ApiReqsLessArgs {
     this.oauth_key = oauth_key;
     this.fingerprint = fingerprint;
     this.user_id = user_id;
+  }
+
+  GET_USERS_DOCUMENT_TYPES() {
+    return apiRequests.users[GET_USERS_DOCUMENT_TYPES]({ host: this.host });
+  }
+
+  GET_USERS_ENTITY_TYPES() {
+    return apiRequests.users[GET_USERS_ENTITY_TYPES]({ host: this.host });
+  }
+
+  GET_USERS_ENTITY_SCOPES() {
+    return apiRequests.users[GET_USERS_ENTITY_SCOPES]({ host: this.host });
   }
 
   GET_USERS() {

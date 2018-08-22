@@ -1,6 +1,9 @@
 const axios = require('axios');
 
 const {
+  GET_USERS_DOCUMENT_TYPES,
+  GET_USERS_ENTITY_TYPES,
+  GET_USERS_ENTITY_SCOPES,
   GET_USERS,
   POST_CREATE_USER,
   GET_USER,
@@ -16,6 +19,18 @@ const staticEndpoints = require('../constants/staticEndpoints');
 const buildHeaders = require('../helpers/buildHeaders');
 const { addQueryParams, replacePathParams } = require('../helpers/urlBuilders');
 const addPermissionScopeDeleteDocument = require('../helpers/addPermissionScopeDeleteDocument');
+
+module.exports[GET_USERS_DOCUMENT_TYPES] = ({ host }) => {
+  return axios.get(`${host}${staticEndpoints[GET_USERS_DOCUMENT_TYPES]}`);
+};
+
+module.exports[GET_USERS_ENTITY_TYPES] = ({ host }) => {
+  return axios.get(`${host}${staticEndpoints[GET_USERS_ENTITY_TYPES]}`);
+};
+
+module.exports[GET_USERS_ENTITY_SCOPES] = ({ host }) => {
+  return axios.get(`${host}${staticEndpoints[GET_USERS_ENTITY_SCOPES]}`);
+};
 
 module.exports[GET_USERS] = ({
   host,
