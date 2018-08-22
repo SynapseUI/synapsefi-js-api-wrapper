@@ -7,6 +7,7 @@ const {
   PATCH_DELETE_EXSITING_BASE_DOC,
   PATCH_DELETE_EXSITING_SUB_DOCS,
   PATCH_UPDATE_USER,
+  PATCH_DELETE_USER,
 } = require('../constants/apiReqNames');
 const apiRequests = require('../apiReqs/apiRequests');
 
@@ -104,6 +105,17 @@ class ApiReqsLessArgs {
     return apiRequests.users[PATCH_UPDATE_USER]({
       updateObj,
       user_id: this.user_id,
+      host: this.host,
+      oauth_key: this.oauth_key,
+      client_id: this.client_id,
+      client_secret: this.client_secret,
+      fingerprint: this.fingerprint,
+    });
+  }
+
+  PATCH_DELETE_USER(end_user_id) {
+    return apiRequests.users[PATCH_DELETE_USER]({
+      user_id: end_user_id,
       host: this.host,
       oauth_key: this.oauth_key,
       client_id: this.client_id,

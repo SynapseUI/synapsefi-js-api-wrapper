@@ -14,6 +14,7 @@ module.exports = {
   [apiReqNames.PATCH_DELETE_EXSITING_BASE_DOC]: `/${VERSION}/users/:user_id`,
   [apiReqNames.PATCH_DELETE_EXSITING_SUB_DOCS]: `/${VERSION}/users/:user_id`,
   [apiReqNames.PATCH_UPDATE_USER]: `/${VERSION}/users/:user_id`,
+  [apiReqNames.PATCH_DELETE_USER]: `/${VERSION}/users/:user_id`,
   // ------------------------------------------------------------------------
   //
   // NODES  ////////////////////////////////////////////////////////////////////////

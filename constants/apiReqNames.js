@@ -9,6 +9,7 @@ module.exports = {
   PATCH_DELETE_EXSITING_BASE_DOC: 'PATCH_DELETE_EXSITING_BASE_DOC',
   PATCH_DELETE_EXSITING_SUB_DOCS: 'PATCH_DELETE_EXSITING_SUB_DOCS',
   PATCH_UPDATE_USER: 'PATCH_UPDATE_USER',
+  PATCH_DELETE_USER: 'PATCH_DELETE_USER',
   // ------------------------------------------------------------------------
   //
   // NODES  ////////////////////////////////////////////////////////////////////////

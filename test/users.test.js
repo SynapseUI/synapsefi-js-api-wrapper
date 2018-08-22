@@ -1,7 +1,4 @@
-const faker = require('faker');
 const { expect } = require('chai');
-
-const partsOfReqBody = require('../sampleData/partsOfReqBody');
 
 const apiReqWithLessArgs = require('./apiReqsWithLessArgs');
 
@@ -34,18 +31,3 @@ xit('gets selected user data', async () => {
   expect(typeof refresh_token).to.equal('string');
 });
 
-xit('doc len increse by one when uniq email was used for base doc creation', async () => {
-  const respFromGetUser = await apiReqWithLessArgs.GET_USER();
-  const originalDocsLen = respFromGetUser.data.documents.length;
-
-  const randomEmail = faker.internet.email();
-
-  const respFromPatchAddDocuments = await apiReqWithLessArgs.PATCH_ADD_DOCUMENTS({
-    ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
-    email: randomEmail,
-  });
-
-  const docsLen = respFromPatchAddDocuments.data.documents.length;
-
-  expect(docsLen).to.equal(originalDocsLen + 1);
-});
