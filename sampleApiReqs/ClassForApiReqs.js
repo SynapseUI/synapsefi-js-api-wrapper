@@ -11,10 +11,13 @@ const {
   PATCH_DELETE_EXSITING_SUB_DOCS,
   PATCH_UPDATE_USER,
   PATCH_DELETE_USER,
+  // ---------------------------------
+  POST_OAUTH_USER,
+  // ---------------------------------
 } = require('../constants/apiReqNames');
 const apiRequests = require('../apiReqs/apiRequests');
 
-class ApiReqsLessArgs {
+class ClassForApiReqs {
   constructor({ host, client_id, client_secret, oauth_key, fingerprint, user_id }) {
     this.host = host;
     this.client_id = client_id;
@@ -138,6 +141,20 @@ class ApiReqsLessArgs {
       fingerprint: this.fingerprint,
     });
   }
+  // -------------------------------------------
+
+  POST_OAUTH_USER({ user_id, refresh_token }) {
+    return apiRequests.oauth[POST_OAUTH_USER]({
+      user_id,
+      refresh_token,
+      host: this.host,
+      client_id: this.client_id,
+      client_secret: this.client_secret,
+      fingerprint: this.fingerprint,
+    });
+  }
+
+  // -------------------------------------------
 }
 
-module.exports = ApiReqsLessArgs;
+module.exports = ClassForApiReqs;

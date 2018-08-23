@@ -1,6 +1,6 @@
-const ApiReqsLessArgs = require('../sampleApiReqs/ApiReqsLessArgs');
+const ClassForApiReqs = require('../sampleApiReqs/ClassForApiReqs');
 
-const apiReqsLessArgs = new ApiReqsLessArgs({
+const apiReqsLessArgs = new ClassForApiReqs({
   host: 'https://uat-api.synapsefi.com',
   client_id: 'client_id_QCtyDlz7TMfeB8PxjYkagi2FL5WJ6qOKE1uAHvc3',
   client_secret: 'client_secret_vj1OLWpHEDBcZxXaKqt0mVYd2J6egyhPkAQ9fnUT',
