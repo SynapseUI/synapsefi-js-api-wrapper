@@ -13,7 +13,7 @@ const endUserApiReqs = new ClassForApiReqs({
   refresh_token: 'dummyRefreshToken',
 });
 
-const getUserCount = async () => {
+const getUsersCount = async () => {
   const { data: { users_count } } = await platformApiReqs.GET_USERS();
   return users_count;
 };
@@ -31,7 +31,7 @@ it('gets selected user data', async () => {
   expect(typeof refresh_token).to.equal('string');
 });
 
-describe('create user -> update user -> get user oauth_key -> wait -> delete user', () => {
+describe('create user -> change user permission to MAKE-IT-GO-AWAY', () => {
   beforeEach(async () => {
     const reqBody = {
       logins: [
@@ -44,25 +44,24 @@ describe('create user -> update user -> get user oauth_key -> wait -> delete use
     };
 
     const { data: { refresh_token, _id } } = await platformApiReqs.POST_CREATE_USER(reqBody);
-    console.log('_id: ', _id);
-    console.log('refresh_token: ', refresh_token);
 
     endUserApiReqs.user_id = _id;
     endUserApiReqs.refresh_token = refresh_token;
 
     const { data: { oauth_key } } = await endUserApiReqs.POST_OAUTH_USER();
-    console.log('oauth_key: ', oauth_key);
 
     endUserApiReqs.oauth_key = oauth_key;
   });
 
-  it.only('dummy test', async () => {
-    const beforeCount = await getUserCount();
-    console.log('beforeCount: ', beforeCount);
+  it.only('expect users count to decrease by 1 after patch hide req', async () => {
+    const beforeCount = await getUsersCount();
 
-    await endUserApiReqs.PATCH_HIDE_USER();
+    // const { data } = await endUserApiReqs.PATCH_USER_PERMISSION('LOCKED');
+    const { data: { permission } } = await endUserApiReqs.PATCH_USER_PERMISSION('MAKE-IT-GO-AWAY');
 
-    const afterCount = await getUserCount();
-    console.log('afterCount: ', afterCount);
+    const afterCount = await getUsersCount();
+
+    expect(afterCount).to.equal(beforeCount - 1);
+    expect(permission).to.equal('MAKE-IT-GO-AWAY');
   });
 });

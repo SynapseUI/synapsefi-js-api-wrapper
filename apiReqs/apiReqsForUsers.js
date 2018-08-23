@@ -12,8 +12,7 @@ const {
   PATCH_DELETE_EXSITING_BASE_DOC,
   PATCH_DELETE_EXSITING_SUB_DOCS,
   PATCH_UPDATE_USER,
-  PATCH_HIDE_USER,
-  PATCH_LOCK_USER,
+  PATCH_USER_PERMISSION,
 } = require('../constants/apiReqNames');
 
 const staticEndpoints = require('../constants/staticEndpoints');
@@ -243,7 +242,8 @@ module.exports[PATCH_UPDATE_USER] = ({
   });
 };
 
-module.exports[PATCH_HIDE_USER] = ({
+module.exports[PATCH_USER_PERMISSION] = ({
+  permission,
   user_id,
   host,
   oauth_key,
@@ -252,34 +252,10 @@ module.exports[PATCH_HIDE_USER] = ({
   fingerprint,
 }) => {
   const queryAddedUrl = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[PATCH_HIDE_USER]}`,
+    originalUrl: `${host}${staticEndpoints[PATCH_USER_PERMISSION]}`,
   });
 
-  const reqBody = { permission: 'MAKE-IT-GO-AWAY' };
-
-  return buildHeaders({
-    client_id,
-    client_secret,
-    oauth_key,
-    fingerprint,
-  }).then(config => {
-    return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
-  });
-};
-
-module.exports[PATCH_LOCK_USER] = ({
-  user_id,
-  host,
-  oauth_key,
-  client_id,
-  client_secret,
-  fingerprint,
-}) => {
-  const queryAddedUrl = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[PATCH_LOCK_USER]}`,
-  });
-
-  const reqBody = { permission: 'MAKE-IT-GO-AWAY' };
+  const reqBody = { permission };
 
   return buildHeaders({
     client_id,

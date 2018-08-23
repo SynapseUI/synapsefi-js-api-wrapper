@@ -12,8 +12,7 @@ module.exports = {
   PATCH_DELETE_EXSITING_BASE_DOC: 'PATCH_DELETE_EXSITING_BASE_DOC',
   PATCH_DELETE_EXSITING_SUB_DOCS: 'PATCH_DELETE_EXSITING_SUB_DOCS',
   PATCH_UPDATE_USER: 'PATCH_UPDATE_USER',
-  PATCH_HIDE_USER: 'PATCH_HIDE_USER',
-  PATCH_LOCK_USER: 'PATCH_LOCK_USER',
+  PATCH_USER_PERMISSION: 'PATCH_USER_PERMISSION',
   // ------------------------------------------------------------------------
   //
   // OAUTH  -----------------------------------------------------------------

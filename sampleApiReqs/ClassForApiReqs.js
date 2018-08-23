@@ -10,8 +10,7 @@ const {
   PATCH_DELETE_EXSITING_BASE_DOC,
   PATCH_DELETE_EXSITING_SUB_DOCS,
   PATCH_UPDATE_USER,
-  PATCH_HIDE_USER,
-  PATCH_LOCK_USER,
+  PATCH_USER_PERMISSION,
   // ---------------------------------
   POST_OAUTH_USER,
   // ---------------------------------
@@ -133,8 +132,9 @@ class ClassForApiReqs {
     });
   }
 
-  PATCH_HIDE_USER() {
-    return apiRequests.users[PATCH_HIDE_USER]({
+  PATCH_USER_PERMISSION(permissionStr) {
+    return apiRequests.users[PATCH_USER_PERMISSION]({
+      permission: permissionStr,
       user_id: this.user_id,
       host: this.host,
       oauth_key: this.oauth_key,
@@ -144,16 +144,6 @@ class ClassForApiReqs {
     });
   }
 
-  PATCH_LOCK_USER() {
-    return apiRequests.users[PATCH_LOCK_USER]({
-      user_id: this.user_id,
-      host: this.host,
-      oauth_key: this.oauth_key,
-      client_id: this.client_id,
-      client_secret: this.client_secret,
-      fingerprint: this.fingerprint,
-    });
-  }
   // -------------------------------------------
 
   POST_OAUTH_USER() {
