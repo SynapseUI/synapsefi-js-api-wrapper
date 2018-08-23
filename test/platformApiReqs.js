@@ -7,6 +7,7 @@ const apiReqsLessArgs = new ClassForApiReqs({
   oauth_key: 'oauth_AQO0t1nlM4EmeBYVaCR09gxUhL6id7csfupjX5vo',
   fingerprint: '31ee56fb53272d20d1a24381a1825e3d',
   user_id: '5b17070501db700049a19bdc',
+  refresh_token: 'refresh_fEZ1gBrlYekhRvD97QzPVaIbo5OUu3FwA80GciT2',
 });
 
 module.exports = apiReqsLessArgs;

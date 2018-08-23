@@ -1,6 +1,6 @@
 // const { expect } = require('chai');
 // const partsOfReqBody = require('../sampleData/partsOfReqBody');
-// const apiReqWithLessArgs = require('./apiReqsWithLessArgs');
+// const apiReqWithLessArgs = require('./platformApiReqs');
 // const docsHaveStatusReviewing = require('../helpers/docsHaveStatusReviewing');
 
 // const countCurrnetDocsLen = async () => {

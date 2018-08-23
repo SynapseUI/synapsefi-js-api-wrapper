@@ -10,7 +10,8 @@ const {
   PATCH_DELETE_EXSITING_BASE_DOC,
   PATCH_DELETE_EXSITING_SUB_DOCS,
   PATCH_UPDATE_USER,
-  PATCH_DELETE_USER,
+  PATCH_HIDE_USER,
+  PATCH_LOCK_USER,
   // ---------------------------------
   POST_OAUTH_USER,
   // ---------------------------------
@@ -18,13 +19,14 @@ const {
 const apiRequests = require('../apiReqs/apiRequests');
 
 class ClassForApiReqs {
-  constructor({ host, client_id, client_secret, oauth_key, fingerprint, user_id }) {
+  constructor({ host, client_id, client_secret, oauth_key, fingerprint, user_id, refresh_token }) {
     this.host = host;
     this.client_id = client_id;
     this.client_secret = client_secret;
     this.oauth_key = oauth_key;
     this.fingerprint = fingerprint;
     this.user_id = user_id;
+    this.refresh_token = refresh_token;
   }
 
   GET_USERS_DOCUMENT_TYPES() {
@@ -131,9 +133,20 @@ class ClassForApiReqs {
     });
   }
 
-  PATCH_DELETE_USER(end_user_id) {
-    return apiRequests.users[PATCH_DELETE_USER]({
-      user_id: end_user_id,
+  PATCH_HIDE_USER() {
+    return apiRequests.users[PATCH_HIDE_USER]({
+      user_id: this.user_id,
+      host: this.host,
+      oauth_key: this.oauth_key,
+      client_id: this.client_id,
+      client_secret: this.client_secret,
+      fingerprint: this.fingerprint,
+    });
+  }
+
+  PATCH_LOCK_USER() {
+    return apiRequests.users[PATCH_LOCK_USER]({
+      user_id: this.user_id,
       host: this.host,
       oauth_key: this.oauth_key,
       client_id: this.client_id,
@@ -143,10 +156,10 @@ class ClassForApiReqs {
   }
   // -------------------------------------------
 
-  POST_OAUTH_USER({ user_id, refresh_token }) {
+  POST_OAUTH_USER() {
     return apiRequests.oauth[POST_OAUTH_USER]({
-      user_id,
-      refresh_token,
+      user_id: this.user_id,
+      refresh_token: this.refresh_token,
       host: this.host,
       client_id: this.client_id,
       client_secret: this.client_secret,

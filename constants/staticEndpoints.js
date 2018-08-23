@@ -24,7 +24,8 @@ module.exports = {
   [apiReqNames.PATCH_DELETE_EXSITING_BASE_DOC]: fullEndpointForUserId,
   [apiReqNames.PATCH_DELETE_EXSITING_SUB_DOCS]: fullEndpointForUserId,
   [apiReqNames.PATCH_UPDATE_USER]: fullEndpointForUserId,
-  [apiReqNames.PATCH_DELETE_USER]: fullEndpointForUserId,
+  [apiReqNames.PATCH_HIDE_USER]: fullEndpointForUserId,
+  [apiReqNames.PATCH_LOCK_USER]: fullEndpointForUserId,
   // ------------------------------------------------------------------------
   //
   // OAUTH  -----------------------------------------------------------------
