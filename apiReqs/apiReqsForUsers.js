@@ -41,48 +41,67 @@ module.exports[GET_USERS] = ({
   page,
   per_page,
   show_refresh_tokens,
+  ip_address,
 }) => {
-  return buildHeaders({
-    client_id,
-    client_secret,
-    fingerprint,
-  }).then(config => {
-    return axios.get(
-      addQueryParams({
-        originalUrl: `${host}${staticEndpoints[GET_USERS]}`,
-        query,
-        page,
-        per_page,
-        show_refresh_tokens,
-      }),
-      config
-    );
-  });
+  return axios.get(
+    addQueryParams({
+      originalUrl: `${host}${staticEndpoints[GET_USERS]}`,
+      query,
+      page,
+      per_page,
+      show_refresh_tokens,
+    }),
+    buildHeaders({
+      client_id,
+      client_secret,
+      fingerprint,
+      ip_address,
+    })
+  );
 };
 
-module.exports[POST_CREATE_USER] = ({ reqBody, host, client_id, client_secret, fingerprint }) => {
-  return buildHeaders({
-    client_id,
-    client_secret,
-    fingerprint,
-  }).then(config => {
-    return axios.post(`${host}${staticEndpoints[POST_CREATE_USER]}`, reqBody, config);
-  });
+module.exports[POST_CREATE_USER] = ({
+  reqBody,
+  host,
+  client_id,
+  client_secret,
+  fingerprint,
+  ip_address,
+}) => {
+  return axios.post(
+    `${host}${staticEndpoints[POST_CREATE_USER]}`,
+    reqBody,
+    buildHeaders({
+      client_id,
+      client_secret,
+      fingerprint,
+      ip_address,
+    })
+  );
 };
 
-module.exports[GET_USER] = ({ host, client_id, client_secret, fingerprint, user_id }) => {
+module.exports[GET_USER] = ({
+  host,
+  client_id,
+  client_secret,
+  fingerprint,
+  user_id,
+  ip_address,
+}) => {
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[GET_USER]}`,
     full_dehydrate: 'yes',
   });
 
-  return buildHeaders({
-    client_id,
-    client_secret,
-    fingerprint,
-  }).then(config => {
-    return axios.get(replacePathParams({ originalUrl: queryAddedUrl, user_id }), config);
-  });
+  return axios.get(
+    replacePathParams({ originalUrl: queryAddedUrl, user_id }),
+    buildHeaders({
+      client_id,
+      client_secret,
+      fingerprint,
+      ip_address,
+    })
+  );
 };
 
 module.exports[PATCH_ADD_DOCUMENTS] = ({
@@ -93,6 +112,7 @@ module.exports[PATCH_ADD_DOCUMENTS] = ({
   client_id,
   client_secret,
   fingerprint,
+  ip_address,
 }) => {
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_ADD_DOCUMENTS]}`,
@@ -101,14 +121,17 @@ module.exports[PATCH_ADD_DOCUMENTS] = ({
 
   const reqBody = { documents: [documentObj] };
 
-  return buildHeaders({
-    client_id,
-    client_secret,
-    oauth_key,
-    fingerprint,
-  }).then(config => {
-    return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
-  });
+  return axios.patch(
+    replacePathParams({ originalUrl: queryAddedUrl, user_id }),
+    reqBody,
+    buildHeaders({
+      client_id,
+      client_secret,
+      oauth_key,
+      fingerprint,
+      ip_address,
+    })
+  );
 };
 
 module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
@@ -119,6 +142,7 @@ module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
   client_id,
   client_secret,
   fingerprint,
+  ip_address,
 }) => {
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_EXISTING_DOCUMENT]}`,
@@ -131,6 +155,7 @@ module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
     client_secret,
     oauth_key,
     fingerprint,
+    ip_address,
   }).then(config => {
     return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
   });
@@ -144,6 +169,7 @@ module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
   client_id,
   client_secret,
   fingerprint,
+  ip_address,
 }) => {
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_DELETE_EXSITING_BASE_DOC]}`,
@@ -158,14 +184,17 @@ module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
     ],
   };
 
-  return buildHeaders({
-    client_id,
-    client_secret,
-    oauth_key,
-    fingerprint,
-  }).then(config => {
-    return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
-  });
+  return axios.patch(
+    replacePathParams({ originalUrl: queryAddedUrl, user_id }),
+    reqBody,
+    buildHeaders({
+      client_id,
+      client_secret,
+      oauth_key,
+      fingerprint,
+      ip_address,
+    })
+  );
 };
 
 module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
@@ -179,6 +208,7 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
   client_id,
   client_secret,
   fingerprint,
+  ip_address,
 }) => {
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_DELETE_EXSITING_SUB_DOCS]}`,
@@ -207,14 +237,17 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
     ],
   };
 
-  return buildHeaders({
-    client_id,
-    client_secret,
-    oauth_key,
-    fingerprint,
-  }).then(config => {
-    return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
-  });
+  return axios.patch(
+    replacePathParams({ originalUrl: queryAddedUrl, user_id }),
+    reqBody,
+    buildHeaders({
+      client_id,
+      client_secret,
+      oauth_key,
+      fingerprint,
+      ip_address,
+    })
+  );
 };
 
 module.exports[PATCH_UPDATE_USER] = ({
@@ -225,6 +258,7 @@ module.exports[PATCH_UPDATE_USER] = ({
   client_id,
   client_secret,
   fingerprint,
+  ip_address,
 }) => {
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_USER]}`,
@@ -232,14 +266,17 @@ module.exports[PATCH_UPDATE_USER] = ({
 
   const reqBody = { update: updateObj };
 
-  return buildHeaders({
-    client_id,
-    client_secret,
-    oauth_key,
-    fingerprint,
-  }).then(config => {
-    return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
-  });
+  return axios.patch(
+    replacePathParams({ originalUrl: queryAddedUrl, user_id }),
+    reqBody,
+    buildHeaders({
+      client_id,
+      client_secret,
+      oauth_key,
+      fingerprint,
+      ip_address,
+    })
+  );
 };
 
 module.exports[PATCH_USER_PERMISSION] = ({
@@ -250,6 +287,7 @@ module.exports[PATCH_USER_PERMISSION] = ({
   client_id,
   client_secret,
   fingerprint,
+  ip_address,
 }) => {
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_USER_PERMISSION]}`,
@@ -257,12 +295,15 @@ module.exports[PATCH_USER_PERMISSION] = ({
 
   const reqBody = { permission };
 
-  return buildHeaders({
-    client_id,
-    client_secret,
-    oauth_key,
-    fingerprint,
-  }).then(config => {
-    return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
-  });
+  return axios.patch(
+    replacePathParams({ originalUrl: queryAddedUrl, user_id }),
+    reqBody,
+    buildHeaders({
+      client_id,
+      client_secret,
+      oauth_key,
+      fingerprint,
+      ip_address,
+    })
+  );
 };

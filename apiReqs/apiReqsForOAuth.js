@@ -14,18 +14,16 @@ module.exports[POST_OAUTH_USER] = ({
   client_secret,
   fingerprint,
 }) => {
-  return buildHeaders({
-    client_id,
-    client_secret,
-    fingerprint,
-  }).then(config => {
-    return axios.post(
-      replacePathParams({
-        originalUrl: `${host}${staticEndpoints[POST_OAUTH_USER]}`,
-        user_id,
-      }),
-      { refresh_token },
-      config
-    );
-  });
+  return axios.post(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[POST_OAUTH_USER]}`,
+      user_id,
+    }),
+    { refresh_token },
+    buildHeaders({
+      client_id,
+      client_secret,
+      fingerprint,
+    })
+  );
 };

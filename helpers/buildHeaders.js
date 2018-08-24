@@ -14,13 +14,13 @@ const getHeader_X_SP_USER = ({ oauth_key, fingerprint }) => {
   return 'xxxx|xxxx';
 };
 
-module.exports = ({ client_id, client_secret, oauth_key, fingerprint }) => {
+module.exports = ({ client_id, client_secret, oauth_key, fingerprint, ip_address }) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'X-SP-GATEWAY': 'xxxx|xxxx',
-      'X-SP-USER-IP': '127.0.0.1',
+      'X-SP-USER-IP': ip_address || '127.0.0.1',
     },
   };
 
@@ -31,15 +31,6 @@ module.exports = ({ client_id, client_secret, oauth_key, fingerprint }) => {
   if (oauth_key || fingerprint) {
     config.headers['X-SP-USER'] = getHeader_X_SP_USER({ oauth_key, fingerprint });
   }
-  return axios
-    .get('https://api.ipify.org?format=json')
-    .then(({ data }) => {
-      config.headers['X-SP-USER-IP'] = data.ip;
 
-      return config;
-    })
-    .catch(err => {
-      console.log('err: ', '127.0.0.1 has been set for public ip address');
-      return config;
-    });
+  return config;
 };
