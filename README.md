@@ -1,29 +1,18 @@
+# Synapsefi js-api-wrapper
 
-# Synapse js-api-wrapper TESTS
+## USERS
+- GET_USERS_DOCUMENT_TYPES
+- GET_USERS_ENTITY_TYPES
+- GET_USERS_ENTITY_SCOPES
+- GET_USERS
+- POST_CREATE_USER
+- GET_USER
+- PATCH_ADD_DOCUMENTS
+- PATCH_UPDATE_EXISTING_DOCUMENT
+- PATCH_DELETE_EXSITING_BASE_DOC
+- PATCH_DELETE_EXSITING_SUB_DOCS
+- PATCH_UPDATE_USER
+- PATCH_USER_PERMISSION
 
----
-
-## Fetch Data
-
-### Get document type
-- physical_docs -> GOVT_ID, SSN_CARD, ...
-- social_docs -> FACEBOOK, LINKEDIN, ...
-- virtual_docs -> SSN , PASSPORT, ...
-
-### Fetch entity types
-- BUSINESS scopes -> LLC, TRUST, ...
-- PERSONAL scopes -> M, F, TRUST, ...
-
-### Fetch entity scopes
-- Not Known, Airport
-
----
-
-
-
-
-
-
-
-
-
+## NODES
+- POST_CREATE_NODE

@@ -18,14 +18,13 @@ const getUsersCount = async () => {
   return users_count;
 };
 
-it("gets clients's users data", async () => {
+it("get all platform's users", async () => {
   const { data: { users_count } } = await platformApiReqs.GET_USERS();
-  console.log('users_count: ', users_count);
 
   expect(typeof users_count).to.equal('number');
 });
 
-it('gets selected user data', async () => {
+it('get one user data with user_id', async () => {
   const { data: { refresh_token } } = await platformApiReqs.GET_USER();
 
   expect(typeof refresh_token).to.equal('string');

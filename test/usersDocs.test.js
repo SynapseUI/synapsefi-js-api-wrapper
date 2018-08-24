@@ -64,7 +64,7 @@
 
 // afterEach(async () => {
 //   console.log('----------------------------------------------');
-//   console.log('count donw 5 sec then count number of docs');
+//   console.log('count down sec then count number of docs');
 //   console.log('----------------------------------------------');
 
 //   let timeCount = 5;
@@ -81,7 +81,6 @@
 //     }, 5000);
 //   });
 // });
-
 
 // xit('doc len increse by one when uniq email was used for base doc creation', async () => {
 //   const respFromGetUser = await apiReqWithLessArgs.GET_USER();
