@@ -53,7 +53,7 @@ describe('create user -> change user permission to MAKE-IT-GO-AWAY', () => {
     endUserApiReqs.oauth_key = oauth_key;
   });
 
-  it.only('expect users count to decrease by 1 after patch hide req', async () => {
+  it('expect users count to decrease by 1 after patch user permission to make it go away', async () => {
     const beforeCount = await getUsersCount();
 
     // const { data } = await endUserApiReqs.PATCH_USER_PERMISSION('LOCKED');

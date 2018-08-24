@@ -27,30 +27,6 @@ describe('Fetch data form /users endpoint', () => {
     ]);
   });
 
-  it('fetches doc types (physical, social, virtual)', async () => {
-    const {
-      data: { physical_docs, social_docs, virtual_docs },
-    } = await platformApiReqs.GET_USERS_DOCUMENT_TYPES();
-
-    expect(physical_docs.map(({ type }) => type)).to.include.members([
-      'GOVT_ID',
-      'SSN_CARD',
-      'EIN_DOC',
-    ]);
-
-    expect(social_docs.map(({ type }) => type)).to.include.members([
-      'FACEBOOK',
-      'LINKEDIN',
-      'EMAIL_2FA',
-    ]);
-
-    expect(virtual_docs.map(({ type }) => type)).to.include.members([
-      'SSN',
-      'PASSPORT',
-      'DRIVERS_LICENSE',
-    ]);
-  });
-
   it('fetches entity types', async () => {
     const { data: { BUSINESS, PERSONAL } } = await platformApiReqs.GET_USERS_ENTITY_TYPES();
 
