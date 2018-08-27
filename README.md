@@ -16,3 +16,11 @@
 
 ## NODES
 - POST_CREATE_NODE
+
+
+
+
+
+---
+- Seems like default max number of deposit node = 10
+- error can be found in `error.response.data.error.en`

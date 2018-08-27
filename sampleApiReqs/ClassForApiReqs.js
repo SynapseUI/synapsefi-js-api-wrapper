@@ -12,8 +12,22 @@ const {
   PATCH_UPDATE_USER,
   PATCH_USER_PERMISSION,
   // ---------------------------------
+  //
+  //
+  // OAUTH  --------------------------
   POST_OAUTH_USER,
   // ---------------------------------
+  //
+  //
+  // NODES  --------------------------
+  POST_CREATE_NODE,
+  // ---------------------------------
+  //
+  //
+  // TRANSACTION  --------------------
+  //
+  // ---------------------------------
+  //
 } = require('../constants/apiReqNames');
 const apiRequests = require('../apiReqs/apiRequests');
 
@@ -144,7 +158,7 @@ class ClassForApiReqs {
     });
   }
 
-  // -------------------------------------------
+  // ------------------------------------------------------------------------
 
   POST_OAUTH_USER() {
     return apiRequests.oauth[POST_OAUTH_USER]({
@@ -157,7 +171,30 @@ class ClassForApiReqs {
     });
   }
 
-  // -------------------------------------------
+  // ------------------------------------------------------------------------
+  //
+  //
+  //
+  // NODES  -----------------------------------------------------------------
+  POST_CREATE_NODE(reqBody, ip_address) {
+    console.log('reqBody: ', reqBody);
+    return apiRequests.nodes[POST_CREATE_NODE]({
+      reqBody,
+      ip_address,
+      oauth_key: this.oauth_key,
+      host: this.host,
+      fingerprint: this.fingerprint,
+      user_id: this.user_id,
+    });
+  }
+  // ------------------------------------------------------------------------
+  //
+  //
+  //
+  // TRANSACTION  ------------------------------------------------------------------
+  //
+  // -------------------------------------------------------------------------------
+  //
 }
 
 module.exports = ClassForApiReqs;

@@ -1,4 +1,5 @@
 module.exports = {
   users: require('./apiReqsForUsers'),
-  oauth: require('./apiReqsForOAuth')
+  oauth: require('./apiReqsForOAuth'),
+  nodes: require('./apiREqsForNodes'),
 };
