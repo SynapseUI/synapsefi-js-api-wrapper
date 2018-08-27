@@ -21,7 +21,8 @@ module.exports = {
   //
   // NODES  -----------------------------------------------------------------
   GET_ALL_USER_NODES: 'GET_ALL_USER_NODES',
-  POST_CREATE_NODE: 'POST_CREATE_NODE'
+  POST_CREATE_NODE: 'POST_CREATE_NODE',
+  DELETE_NODE: 'DELETE_NODE',
   // ------------------------------------------------------------------------
   //
   // TRANSACTION  ------------------------------------------------------------------

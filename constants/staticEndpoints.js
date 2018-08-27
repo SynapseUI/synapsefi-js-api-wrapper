@@ -34,6 +34,7 @@ module.exports = {
   // NODES  ////////////////////////////////////////////////////////////////////////
   [apiReqNames.GET_ALL_USER_NODES]: `/${VERSION}/users/:user_id/nodes`,
   [apiReqNames.POST_CREATE_NODE]: `/${VERSION}/users/:user_id/nodes`,
+  [apiReqNames.DELETE_NODE]: `/${VERSION}/users/:user_id/nodes/:node_id`,
   // ///////////////////////////////////////////////////////////////////////////////
   //
   // TRANSACTION  ------------------------------------------------------------------

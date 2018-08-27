@@ -20,12 +20,10 @@
 ## USERS
 
 - get all platform's users
-expect response to have key `users_count`
-`users_count` should be number
+expect response to have key `users_count` which should be `number`
 
 - get one user data with user_id
-expect response to have key `refresh_token`
-`refresh_token` should be string
+expect response to have key `refresh_token` which should be `string`
 
 - create user -> delete user (change user permission to `MAKE-IT-GO-AWAY`)
 expect users count to decrease by 1 after deleting user
@@ -36,6 +34,11 @@ expect users count to decrease by 1 after deleting user
 
 ## NODES
 
+- get all nodes from one user
+reponse to have key `node_count` which should be `number`
+
+- create deposit node -> delete just created deposit node
+node count should increase by 1 then decrease by 1
 
 
 

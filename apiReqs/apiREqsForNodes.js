@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const { POST_CREATE_NODE, GET_ALL_USER_NODES } = require('../constants/apiReqNames');
+const { POST_CREATE_NODE, GET_ALL_USER_NODES, DELETE_NODE } = require('../constants/apiReqNames');
 
 const staticEndpoints = require('../constants/staticEndpoints');
 const buildHeaders = require('../helpers/buildHeaders');
@@ -49,6 +49,28 @@ module.exports[GET_ALL_USER_NODES] = ({
     replacePathParams({
       originalUrl: queryAddedUrl,
       user_id,
+    }),
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};
+
+module.exports[DELETE_NODE] = ({
+  host,
+  fingerprint,
+  user_id,
+  node_id,
+  ip_address,
+  oauth_key,
+}) => {
+  return axios.delete(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[DELETE_NODE]}`,
+      user_id,
+      node_id,
     }),
     buildHeaders({
       fingerprint,

@@ -22,6 +22,7 @@ const {
   // NODES  --------------------------
   POST_CREATE_NODE,
   GET_ALL_USER_NODES,
+  DELETE_NODE,
   // ---------------------------------
   //
   //
@@ -178,7 +179,6 @@ class ClassForApiReqs {
   //
   // NODES  -----------------------------------------------------------------
   POST_CREATE_NODE(reqBody, ip_address) {
-    console.log('reqBody: ', reqBody);
     return apiRequests.nodes[POST_CREATE_NODE]({
       reqBody,
       ip_address,
@@ -205,6 +205,17 @@ class ClassForApiReqs {
       page: queryParamsObj ? queryParamsObj.page : undefined,
       per_page: queryParamsObj ? queryParamsObj.per_page : undefined,
       type: queryParamsObj ? queryParamsObj.type : undefined,
+    });
+  }
+
+  DELETE_NODE(node_id, ip_address) {
+    return apiRequests.nodes[DELETE_NODE]({
+      node_id,
+      ip_address,
+      oauth_key: this.oauth_key,
+      host: this.host,
+      fingerprint: this.fingerprint,
+      user_id: this.user_id,
     });
   }
   // ------------------------------------------------------------------------

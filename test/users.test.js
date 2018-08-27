@@ -18,16 +18,18 @@ const getUsersCount = async () => {
   return users_count;
 };
 
-it("get all platform's users", async () => {
-  const { data: { users_count } } = await platformApiReqs.GET_USERS();
+describe('simple user test', () => {
+  it("get all platform's users", async () => {
+    const { data: { users_count } } = await platformApiReqs.GET_USERS();
 
-  expect(typeof users_count).to.equal('number');
-});
+    expect(typeof users_count).to.equal('number');
+  });
 
-it('get one user data with user_id', async () => {
-  const { data: { refresh_token } } = await platformApiReqs.GET_USER();
+  it('get one user data with user_id', async () => {
+    const { data: { refresh_token } } = await platformApiReqs.GET_USER();
 
-  expect(typeof refresh_token).to.equal('string');
+    expect(typeof refresh_token).to.equal('string');
+  });
 });
 
 describe('create user -> change user permission to MAKE-IT-GO-AWAY', () => {
