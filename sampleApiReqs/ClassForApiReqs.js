@@ -21,6 +21,7 @@ const {
   //
   // NODES  --------------------------
   POST_CREATE_NODE,
+  GET_ALL_USER_NODES,
   // ---------------------------------
   //
   //
@@ -185,6 +186,25 @@ class ClassForApiReqs {
       host: this.host,
       fingerprint: this.fingerprint,
       user_id: this.user_id,
+    });
+  }
+
+  GET_ALL_USER_NODES(queryParamsObj, ip_address) {
+    // queryParamsObj =
+    // {
+    //   page:
+    //   per_page:
+    //   type:
+    // }
+    return apiRequests.nodes[GET_ALL_USER_NODES]({
+      ip_address,
+      oauth_key: this.oauth_key,
+      host: this.host,
+      fingerprint: this.fingerprint,
+      user_id: this.user_id,
+      page: queryParamsObj ? queryParamsObj.page : undefined,
+      per_page: queryParamsObj ? queryParamsObj.per_page : undefined,
+      type: queryParamsObj ? queryParamsObj.type : undefined,
     });
   }
   // ------------------------------------------------------------------------

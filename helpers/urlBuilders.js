@@ -7,6 +7,7 @@ module.exports.addQueryParams = ({
   per_page,
   show_refresh_tokens,
   full_dehydrate,
+  type,
 }) => {
   const arr = [];
 
@@ -28,6 +29,10 @@ module.exports.addQueryParams = ({
 
   if (full_dehydrate !== undefined) {
     arr.push(`full_dehydrate=${full_dehydrate}`);
+  }
+
+  if (type !== undefined) {
+    arr.push(`type=${full_dehydrate}`);
   }
 
   if (arr.length === 0) return originalUrl;

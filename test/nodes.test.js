@@ -1,10 +1,11 @@
+const { expect } = require('chai');
 const { POST_CREATE_NODE } = require('../constants/apiReqNames');
 
 const reqBodyForCreateNode = require('../sampleData/reqBodyForCreateNode');
 
 const platformApiReqs = require('./platformApiReqs');
 
-it.only('create deposit accounts', async () => {
+xit('create deposit accounts', async () => {
   try {
     const { data } = await platformApiReqs.POST_CREATE_NODE(reqBodyForCreateNode.DEPOSIT_ACCOUNT);
     console.log('data: ', data);
@@ -18,4 +19,9 @@ it.only('create deposit accounts', async () => {
 
   // const { data } = await platformApiReqs.POST_CREATE_NODE(reqBodyForCreateNode.DEPOSIT_ACCOUNT);
   // console.log('data: ', data);
+});
+
+it.only('get all user nodes (resp has `node_count` as key n value is `number`)', async () => {
+  const { data: { node_count } } = await platformApiReqs.GET_ALL_USER_NODES();
+  expect(typeof node_count).to.equal('number');
 });
