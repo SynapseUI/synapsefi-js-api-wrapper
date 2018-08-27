@@ -58,14 +58,7 @@ module.exports[GET_ALL_USER_NODES] = ({
   );
 };
 
-module.exports[DELETE_NODE] = ({
-  host,
-  fingerprint,
-  user_id,
-  node_id,
-  ip_address,
-  oauth_key,
-}) => {
+module.exports[DELETE_NODE] = ({ host, fingerprint, user_id, node_id, ip_address, oauth_key }) => {
   return axios.delete(
     replacePathParams({
       originalUrl: `${host}${staticEndpoints[DELETE_NODE]}`,

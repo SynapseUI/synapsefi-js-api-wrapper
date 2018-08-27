@@ -8,6 +8,27 @@ const getNodeCount = async () => {
   return node_count;
 };
 
+describe('get all nodes related', () => {
+  it.only('get all user nodes', async () => {
+    const { data } = await platformApiReqs.GET_ALL_USER_NODES();
+
+    expect(typeof data.node_count).to.equal('number');
+  });
+
+  it.only('get all user nodes with type `DEPOSIT-US`', async () => {
+    const { data: { nodes } } = await platformApiReqs.GET_ALL_USER_NODES({ type: 'DEPOSIT-US' });
+    let allDepositAccount = true;
+
+    nodes.forEach(node => {
+      if (node.type !== 'DEPOSIT-US') {
+        allDepositAccount = false;
+      }
+    });
+
+    expect(allDepositAccount).to.equal(true);
+  });
+});
+
 describe('node related', () => {
   xit('create deposit accounts', async () => {
     try {
@@ -16,11 +37,6 @@ describe('node related', () => {
     } catch (error) {
       console.log('error.response.data.error.en: ', error.response.data.error.en);
     }
-  });
-
-  it('get all user nodes', async () => {
-    const { data } = await platformApiReqs.GET_ALL_USER_NODES();
-    expect(typeof data.node_count).to.equal('number');
   });
 
   it('create deposit node -> delete just created deposit node', async () => {

@@ -32,7 +32,7 @@ module.exports.addQueryParams = ({
   }
 
   if (type !== undefined) {
-    arr.push(`type=${full_dehydrate}`);
+    arr.push(`type=${type}`);
   }
 
   if (arr.length === 0) return originalUrl;
