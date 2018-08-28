@@ -15,7 +15,7 @@ describe('get all nodes related', () => {
     expect(typeof data.node_count).to.equal('number');
   });
 
-  it.only('get all user nodes with type `DEPOSIT-US`', async () => {
+  it('get all user nodes with type `DEPOSIT-US`', async () => {
     const { data: { nodes } } = await platformApiReqs.GET_ALL_USER_NODES({ type: 'DEPOSIT-US' });
     let allDepositAccount = true;
 
@@ -26,6 +26,16 @@ describe('get all nodes related', () => {
     });
 
     expect(allDepositAccount).to.equal(true);
+  });
+
+  it.only('get all nodes per_page(limit)=`3`, page=`2`', async () => {
+    const { data } = await platformApiReqs.GET_ALL_USER_NODES({
+      per_page: 3,
+      page: 2,
+    });
+
+    expect(data.limit).to.equal(3);
+    expect(data.page).to.equal(2);
   });
 });
 

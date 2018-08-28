@@ -37,7 +37,7 @@ module.exports.addQueryParams = ({
 
   if (arr.length === 0) return originalUrl;
 
-  return originalUrl + '?' + arr.join(';');
+  return originalUrl + '?' + arr.join('&');
 };
 
 module.exports.replacePathParams = ({ originalUrl, user_id, node_id, transaction_id }) => {
