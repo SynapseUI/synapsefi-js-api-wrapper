@@ -1,99 +1,103 @@
-// const { expect } = require('chai');
-// const partsOfReqBody = require('../sampleData/partsOfReqBody');
-// const apiReqWithLessArgs = require('./platformApiReqs');
-// const docsHaveStatusReviewing = require('../helpers/docsHaveStatusReviewing');
+const { expect } = require('chai');
+const faker = require('faker');
 
-// const countCurrnetDocsLen = async () => {
-//   const { data: { documents } } = await apiReqWithLessArgs.GET_USER();
-//   console.log('current doc len:', documents.length);
-//   return documents;
-// };
+//
+const partsOfReqBody = require('../sampleData/partsOfReqBody');
+const apiReqWithLessArgs = require('./platformApiReqs');
+const docsHaveStatusReviewing = require('../helpers/docsHaveStatusReviewing');
 
-// beforeEach(async () => {
-//   await countCurrnetDocsLen();
-// });
+//
+const countCurrnetDocsLen = async () => {
+  const { data: { documents } } = await apiReqWithLessArgs.GET_USER();
+  console.log('current doc len:', documents.length);
+  return documents;
+};
 
-// describe(`
-//   create base doc before each test
-//   delete base doc after each test
-// `, () => {
-//   let docId;
+//
+const renderDocStatusUntilVarified = async () => {
+  while (true) {
+    let isReveiwing = true;
 
-//   // CREATE new doc before each test
-//   beforeEach(async () => {
-//     const { data: { documents } } = await apiReqWithLessArgs.PATCH_ADD_DOCUMENTS({
-//       ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
-//       email: 'normal4@gmail.com',
-//     });
+    await new Promise(res => {
+      setTimeout(async () => {
+        const docs = await countCurrnetDocsLen();
+        console.log('\n----------------------------------------------');
+        isReveiwing = docsHaveStatusReviewing(docs);
+        console.log('----------------------------------------------\n');
+        res();
+      }, 1000);
+    });
 
-//     const targetDocument = documents[documents.length - 1];
-//     console.log('--- CREATE DOC ---');
-//     console.log('create documents', documents.length);
-//     console.log('\n');
-//     docId = targetDocument.id;
+    if (!isReveiwing) break;
+  }
+};
 
-//     while (true) {
-//       let isReveiwing = true;
+//
+const countDownFiveSecs = async () => {
+  console.log('----------------------------------------------------------------');
+  console.log('count down 5sec -> delete -> count number of docs');
+  console.log('----------------------------------------------------------------');
 
-//       await new Promise(res => {
-//         setTimeout(async () => {
-//           const docs = await countCurrnetDocsLen();
-//           console.log('\n----------------------------------------------');
-//           isReveiwing = docsHaveStatusReviewing(docs);
-//           console.log('----------------------------------------------\n');
-//           res();
-//         }, 1000);
-//       });
+  // Need time for docs to be varified by ML ---------------------------
+  let timeCount = 5;
+  const timer = setInterval(() => {
+    console.log(`${timeCount}sec`);
+    timeCount--;
+    if (timeCount === 0) clearInterval(timer);
+  }, 1000);
 
-//       if (!isReveiwing) break;
-//     }
-//   });
+  await new Promise(res => {
+    setTimeout(async () => {
+      await countCurrnetDocsLen();
+      res();
+    }, 5000);
+  });
+  //--------------------------------------------------------------------
+};
 
-//   it('test', () => {
-//     expect(1 + 1).to.equal(2);
-//   });
+//
+describe('Create doc then wait for docs to be varified', () => {
+  let docId;
 
-//   // Delete doc after each test
-//   afterEach(async () => {
-//     const { data: { documents } } = await apiReqWithLessArgs.PATCH_DELETE_EXSITING_BASE_DOC(docId);
-//     console.log('--- DELETE DOC ---');
-//     console.log('delete documents: ', documents.length);
-//     console.log('\n');
-//   });
-// });
+  // CREATE new doc before each test
+  beforeEach(async () => {
+    await countCurrnetDocsLen();
 
-// afterEach(async () => {
-//   console.log('----------------------------------------------');
-//   console.log('count down sec then count number of docs');
-//   console.log('----------------------------------------------');
+    const { data: { documents } } = await apiReqWithLessArgs.PATCH_ADD_DOCUMENTS({
+      ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
+      email: 'normal4@gmail.com',
+    });
 
-//   let timeCount = 5;
-//   const timer = setInterval(() => {
-//     console.log(`${timeCount}sec`);
-//     timeCount--;
-//     if (timeCount === 0) clearInterval(timer);
-//   }, 1000);
+    const targetDocument = documents[documents.length - 1];
+    console.log('--- CREATE DOC ---');
+    console.log('doc len after create: ', documents.length);
+    console.log('\n');
+    docId = targetDocument.id;
 
-//   await new Promise(res => {
-//     setTimeout(async () => {
-//       await countCurrnetDocsLen();
-//       res();
-//     }, 5000);
-//   });
-// });
+    await renderDocStatusUntilVarified();
+  });
 
-// xit('doc len increse by one when uniq email was used for base doc creation', async () => {
-//   const respFromGetUser = await apiReqWithLessArgs.GET_USER();
-//   const originalDocsLen = respFromGetUser.data.documents.length;
+  it('doc len decrease by 1 after delete', async () => {
+    await countDownFiveSecs();
 
-//   const randomEmail = faker.internet.email();
+    const { data: { documents } } = await apiReqWithLessArgs.PATCH_DELETE_EXSITING_BASE_DOC(docId);
+    console.log('--- DELETE DOC ---');
+    console.log('doc len after delete: ', documents.length);
+  });
+});
 
-//   const respFromPatchAddDocuments = await apiReqWithLessArgs.PATCH_ADD_DOCUMENTS({
-//     ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
-//     email: randomEmail,
-//   });
+it('doc len increse by one when uniq email was used for base doc creation', async () => {
+  const respFromGetUser = await apiReqWithLessArgs.GET_USER();
+  const originalDocsLen = respFromGetUser.data.documents.length;
 
-//   const docsLen = respFromPatchAddDocuments.data.documents.length;
+  const randomEmail = faker.internet.email();
 
-//   expect(docsLen).to.equal(originalDocsLen + 1);
-// });
+  const respFromPatchAddDocuments = await apiReqWithLessArgs.PATCH_ADD_DOCUMENTS({
+    ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
+    email: randomEmail,
+  });
+
+  const docsLen = respFromPatchAddDocuments.data.documents.length;
+
+  expect(docsLen).to.equal(originalDocsLen + 1);
+});

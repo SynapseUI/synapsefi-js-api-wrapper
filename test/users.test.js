@@ -25,7 +25,7 @@ describe('simple get user test', () => {
     expect(typeof users_count).to.equal('number');
   });
 
-  it.only("get all platform's users with query, page, per_page", async () => {
+  it("get all platform's users with query, page, per_page", async () => {
     const { data } = await platformApiReqs.GET_USERS({ query: 'SEAN', page: 2, per_page: 3 });
     expect(data.limit).to.equal(3);
     expect(data.page).to.equal(2);
