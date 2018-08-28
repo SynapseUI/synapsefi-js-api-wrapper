@@ -86,18 +86,39 @@ describe('Create doc then wait for docs to be varified', () => {
   });
 });
 
-it('doc len increse by one when uniq email was used for base doc creation', async () => {
-  const respFromGetUser = await apiReqWithLessArgs.GET_USER();
-  const originalDocsLen = respFromGetUser.data.documents.length;
+describe('user doc realted', () => {
+  it('doc len increse by one when uniq email was used for base doc creation', async () => {
+    const respFromGetUser = await apiReqWithLessArgs.GET_USER();
+    const originalDocsLen = respFromGetUser.data.documents.length;
 
-  const randomEmail = faker.internet.email();
+    const randomEmail = faker.internet.email();
 
-  const respFromPatchAddDocuments = await apiReqWithLessArgs.PATCH_ADD_DOCUMENTS({
-    ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
-    email: randomEmail,
+    const respFromPatchAddDocuments = await apiReqWithLessArgs.PATCH_ADD_DOCUMENTS({
+      ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
+      email: randomEmail,
+    });
+
+    const docsLen = respFromPatchAddDocuments.data.documents.length;
+
+    expect(docsLen).to.equal(originalDocsLen + 1);
   });
 
-  const docsLen = respFromPatchAddDocuments.data.documents.length;
+  it('update users doc', async () => {
+    const respFromGetUser = await apiReqWithLessArgs.GET_USER();
+    const originalDocsLen = respFromGetUser.data.documents.length;
 
-  expect(docsLen).to.equal(originalDocsLen + 1);
+    const randomEmail = faker.internet.email();
+
+    const respFromPatchAddDocuments = await apiReqWithLessArgs.PATCH_ADD_DOCUMENTS({
+      ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
+      email: randomEmail,
+    });
+
+    const docsLen = respFromPatchAddDocuments.data.documents.length;
+
+    expect(docsLen).to.equal(originalDocsLen + 1);
+  });
+
+
 });
+
