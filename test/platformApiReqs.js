@@ -8,6 +8,7 @@ const apiReqsLessArgs = new ClassForApiReqs({
   fingerprint: '31ee56fb53272d20d1a24381a1825e3d',
   user_id: '5b17070501db700049a19bdc',
   refresh_token: 'refresh_fEZ1gBrlYekhRvD97QzPVaIbo5OUu3FwA80GciT2',
+  ip_address: '123.0.0.1',
 });
 
 module.exports = apiReqsLessArgs;

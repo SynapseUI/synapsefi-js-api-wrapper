@@ -34,7 +34,16 @@ const {
 const apiRequests = require('../apiReqs/apiRequests');
 
 class ClassForApiReqs {
-  constructor({ host, client_id, client_secret, oauth_key, fingerprint, user_id, refresh_token }) {
+  constructor({
+    host,
+    client_id,
+    client_secret,
+    oauth_key,
+    fingerprint,
+    user_id,
+    refresh_token,
+    ip_address,
+  }) {
     this.host = host;
     this.client_id = client_id;
     this.client_secret = client_secret;
@@ -42,6 +51,7 @@ class ClassForApiReqs {
     this.fingerprint = fingerprint;
     this.user_id = user_id;
     this.refresh_token = refresh_token;
+    this.ip_address = ip_address;
   }
 
   GET_USERS_DOCUMENT_TYPES() {
@@ -56,12 +66,17 @@ class ClassForApiReqs {
     return apiRequests.users[GET_USERS_ENTITY_SCOPES]({ host: this.host });
   }
 
-  GET_USERS() {
+  GET_USERS(queryParamsObj) {
     return apiRequests.users[GET_USERS]({
       host: this.host,
       client_id: this.client_id,
       client_secret: this.client_secret,
       fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
+      query: queryParamsObj ? queryParamsObj.query : undefined,
+      page: queryParamsObj ? queryParamsObj.page : undefined,
+      per_page: queryParamsObj ? queryParamsObj.per_page : undefined,
+      show_refresh_tokens: queryParamsObj ? queryParamsObj.show_refresh_tokens : undefined,
     });
   }
 
@@ -72,6 +87,7 @@ class ClassForApiReqs {
       client_id: this.client_id,
       client_secret: this.client_secret,
       fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
     });
   }
 
@@ -94,6 +110,7 @@ class ClassForApiReqs {
       client_id: this.client_id,
       client_secret: this.client_secret,
       fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
     });
   }
 
@@ -106,6 +123,7 @@ class ClassForApiReqs {
       client_id: this.client_id,
       client_secret: this.client_secret,
       fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
     });
   }
 
@@ -118,6 +136,7 @@ class ClassForApiReqs {
       client_id: this.client_id,
       client_secret: this.client_secret,
       fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
     });
   }
 
@@ -133,6 +152,7 @@ class ClassForApiReqs {
       client_id: this.client_id,
       client_secret: this.client_secret,
       fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
     });
   }
 
@@ -145,6 +165,7 @@ class ClassForApiReqs {
       client_id: this.client_id,
       client_secret: this.client_secret,
       fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
     });
   }
 
@@ -157,6 +178,7 @@ class ClassForApiReqs {
       client_id: this.client_id,
       client_secret: this.client_secret,
       fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
     });
   }
 
@@ -170,6 +192,7 @@ class ClassForApiReqs {
       client_id: this.client_id,
       client_secret: this.client_secret,
       fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
     });
   }
 
@@ -178,18 +201,18 @@ class ClassForApiReqs {
   //
   //
   // NODES  -----------------------------------------------------------------
-  POST_CREATE_NODE(reqBody, ip_address) {
+  POST_CREATE_NODE(reqBody) {
     return apiRequests.nodes[POST_CREATE_NODE]({
       reqBody,
-      ip_address,
       oauth_key: this.oauth_key,
       host: this.host,
-      fingerprint: this.fingerprint,
       user_id: this.user_id,
+      fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
     });
   }
 
-  GET_ALL_USER_NODES(queryParamsObj, ip_address) {
+  GET_ALL_USER_NODES(queryParamsObj) {
     // queryParamsObj =
     // {
     //   page:
@@ -197,25 +220,25 @@ class ClassForApiReqs {
     //   type:
     // }
     return apiRequests.nodes[GET_ALL_USER_NODES]({
-      ip_address,
-      oauth_key: this.oauth_key,
-      host: this.host,
-      fingerprint: this.fingerprint,
-      user_id: this.user_id,
       page: queryParamsObj ? queryParamsObj.page : undefined,
       per_page: queryParamsObj ? queryParamsObj.per_page : undefined,
       type: queryParamsObj ? queryParamsObj.type : undefined,
+      oauth_key: this.oauth_key,
+      host: this.host,
+      user_id: this.user_id,
+      fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
     });
   }
 
-  DELETE_NODE(node_id, ip_address) {
+  DELETE_NODE(node_id) {
     return apiRequests.nodes[DELETE_NODE]({
       node_id,
-      ip_address,
       oauth_key: this.oauth_key,
       host: this.host,
-      fingerprint: this.fingerprint,
       user_id: this.user_id,
+      fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
     });
   }
   // ------------------------------------------------------------------------

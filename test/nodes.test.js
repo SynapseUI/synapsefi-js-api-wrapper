@@ -9,7 +9,7 @@ const getNodeCount = async () => {
 };
 
 describe('get all nodes related', () => {
-  it.only('get all user nodes', async () => {
+  it('get all user nodes', async () => {
     const { data } = await platformApiReqs.GET_ALL_USER_NODES();
 
     expect(typeof data.node_count).to.equal('number');
@@ -28,7 +28,7 @@ describe('get all nodes related', () => {
     expect(allDepositAccount).to.equal(true);
   });
 
-  it.only('get all nodes per_page(limit)=`3`, page=`2`', async () => {
+  it('get all nodes per_page(limit)=`3`, page=`2`', async () => {
     const { data } = await platformApiReqs.GET_ALL_USER_NODES({
       per_page: 3,
       page: 2,

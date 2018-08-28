@@ -18,11 +18,17 @@ const getUsersCount = async () => {
   return users_count;
 };
 
-describe('simple user test', () => {
+describe('simple get user test', () => {
   it("get all platform's users", async () => {
     const { data: { users_count } } = await platformApiReqs.GET_USERS();
 
     expect(typeof users_count).to.equal('number');
+  });
+
+  it.only("get all platform's users with query, page, per_page", async () => {
+    const { data } = await platformApiReqs.GET_USERS({ query: 'SEAN', page: 2, per_page: 3 });
+    expect(data.limit).to.equal(3);
+    expect(data.page).to.equal(2);
   });
 
   it('get one user data with user_id', async () => {

@@ -22,6 +22,9 @@
 - get all platform's users
 expect response to have key `users_count` which should be `number`
 
+- get all platform's users with query, page, per_page
+expect response to have proper `limit`, `page`
+
 - get one user data with user_id
 expect response to have key `refresh_token` which should be `string`
 
