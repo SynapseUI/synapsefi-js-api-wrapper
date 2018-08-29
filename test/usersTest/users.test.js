@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
-const ClassForApiReqs = require('../sampleApiReqs/ClassForApiReqs');
-const platformApiReqs = require('./platformApiReqs');
+const ClassForApiReqs = require('../../sampleApiReqs/ClassForApiReqs');
+const platformApiReqs = require('../platformApiReqs');
 
 const endUserApiReqs = new ClassForApiReqs({
   host: platformApiReqs.host,
@@ -38,7 +38,7 @@ describe('simple get user test', () => {
   });
 });
 
-describe('create user -> change user permission to MAKE-IT-GO-AWAY', () => {
+describe('create user and get oauth before each test then delete that user', () => {
   beforeEach(async () => {
     const reqBody = {
       logins: [
@@ -47,11 +47,11 @@ describe('create user -> change user permission to MAKE-IT-GO-AWAY', () => {
         },
       ],
       phone_numbers: ['314.315.3242'],
-      legal_names: ['SEAN TEST'],
+      legal_names: ['Sean Test'],
     };
 
-    const { data: { refresh_token, _id } } = await platformApiReqs.POST_CREATE_USER(reqBody);
-
+    const { data: { refresh_token, _id, legal_names } } = await platformApiReqs.POST_CREATE_USER(reqBody);
+    
     endUserApiReqs.user_id = _id;
     endUserApiReqs.refresh_token = refresh_token;
 
@@ -60,15 +60,25 @@ describe('create user -> change user permission to MAKE-IT-GO-AWAY', () => {
     endUserApiReqs.oauth_key = oauth_key;
   });
 
-  it('expect users count to decrease by 1 after patch user permission to make it go away', async () => {
-    const beforeCount = await getUsersCount();
+  it.only('Add legal_name Hong Test and remove Sean Test', async () => {
+    const updateObj = {
+      phone_number: '9019411111',
+      remove_phone_number: '9019411111',
+      legal_name: 'Hong Test',
+      remove_legal_name: 'Sean Test',
+    };
 
-    // const { data } = await endUserApiReqs.PATCH_USER_PERMISSION('LOCKED');
+    const { data } = await endUserApiReqs.PATCH_UPDATE_USER(updateObj);
+    expect(data.legal_names).to.equal(data.legal_names);
+  });
+
+  afterEach(async () => {
+    const beforeCount = await getUsersCount();
+    console.log('beforeCount: ', beforeCount);
+
     const { data: { permission } } = await endUserApiReqs.PATCH_USER_PERMISSION('MAKE-IT-GO-AWAY');
 
     const afterCount = await getUsersCount();
-
-    expect(afterCount).to.equal(beforeCount - 1);
-    expect(permission).to.equal('MAKE-IT-GO-AWAY');
+    console.log('afterCount: ', afterCount);
   });
 });

@@ -18,7 +18,7 @@ const {
 const staticEndpoints = require('../constants/staticEndpoints');
 const buildHeaders = require('../helpers/buildHeaders');
 const { addQueryParams, replacePathParams } = require('../helpers/urlBuilders');
-const addPermissionScopeDeleteDocument = require('../helpers/addPermissionScopeDeleteDocument');
+const addDeleteDocument = require('../helpers/addDeleteDocument');
 
 module.exports[GET_USERS_DOCUMENT_TYPES] = ({ host }) => {
   return axios.get(`${host}${staticEndpoints[GET_USERS_DOCUMENT_TYPES]}`);
@@ -200,9 +200,9 @@ module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
 module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
   user_id,
   base_document_id,
-  physical_docs,
-  virtual_docs,
-  social_docs,
+  physicalDocIds,
+  virtualDocIds,
+  socialDocIds,
   host,
   oauth_key,
   client_id,
@@ -216,16 +216,16 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
 
   const subDocs = {};
 
-  if (physical_docs !== undefined) {
-    subDocs.physical_docs = addPermissionScopeDeleteDocument(physical_docs);
+  if (physicalDocIds !== undefined) {
+    subDocs.physical_docs = addDeleteDocument(physicalDocIds);
   }
 
-  if (virtual_docs !== undefined) {
-    subDocs.virtual_docs = addPermissionScopeDeleteDocument(virtual_docs);
+  if (virtualDocIds !== undefined) {
+    subDocs.virtual_docs = addDeleteDocument(virtualDocIds);
   }
 
-  if (social_docs !== undefined) {
-    subDocs.social_docs = addPermissionScopeDeleteDocument(social_docs);
+  if (socialDocIds !== undefined) {
+    subDocs.social_docs = addDeleteDocument(socialDocIds);
   }
 
   const reqBody = {

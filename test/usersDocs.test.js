@@ -118,7 +118,4 @@ describe('user doc realted', () => {
 
     expect(docsLen).to.equal(originalDocsLen + 1);
   });
-
-
 });
-
