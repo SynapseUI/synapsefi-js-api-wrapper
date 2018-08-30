@@ -64,8 +64,10 @@ describe('Create doc then wait for docs to be varified', () => {
     await countCurrnetDocsLen();
 
     const { data: { documents } } = await apiReqWithLessArgs.PATCH_ADD_DOCUMENTS({
-      ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
-      email: 'normal4@gmail.com',
+      reqBody: {
+        ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
+        email: 'normal4@gmail.com',
+      },
     });
 
     const targetDocument = documents[documents.length - 1];
@@ -80,7 +82,9 @@ describe('Create doc then wait for docs to be varified', () => {
   it('doc len decrease by 1 after delete', async () => {
     await countDownFiveSecs();
 
-    const { data: { documents } } = await apiReqWithLessArgs.PATCH_DELETE_EXSITING_BASE_DOC(docId);
+    const { data: { documents } } = await apiReqWithLessArgs.PATCH_DELETE_EXSITING_BASE_DOC({
+      documentId: docId,
+    });
     console.log('--- DELETE DOC ---');
     console.log('doc len after delete: ', documents.length);
   });
@@ -94,8 +98,10 @@ describe('user doc realted', () => {
     const randomEmail = faker.internet.email();
 
     const respFromPatchAddDocuments = await apiReqWithLessArgs.PATCH_ADD_DOCUMENTS({
-      ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
-      email: randomEmail,
+      documentObj: {
+        ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
+        email: randomEmail,
+      },
     });
 
     const docsLen = respFromPatchAddDocuments.data.documents.length;
@@ -110,8 +116,10 @@ describe('user doc realted', () => {
     const randomEmail = faker.internet.email();
 
     const respFromPatchAddDocuments = await apiReqWithLessArgs.PATCH_ADD_DOCUMENTS({
-      ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
-      email: randomEmail,
+      documentObj: {
+        ...partsOfReqBody.PATCH_ADD_DOCUMENTS,
+        email: randomEmail,
+      },
     });
 
     const docsLen = respFromPatchAddDocuments.data.documents.length;

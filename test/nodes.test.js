@@ -42,7 +42,9 @@ describe('get all nodes related', () => {
 describe('node related', () => {
   xit('create deposit accounts', async () => {
     try {
-      const { data } = await platformApiReqs.POST_CREATE_NODE(reqBodyForCreateNode.DEPOSIT_ACCOUNT);
+      const { data } = await platformApiReqs.POST_CREATE_NODE({
+        reqBody: reqBodyForCreateNode.DEPOSIT_ACCOUNT,
+      });
       console.log('data: ', data);
     } catch (error) {
       console.log('error.response.data.error.en: ', error.response.data.error.en);
@@ -54,16 +56,19 @@ describe('node related', () => {
 
     // Create Node
     const { data: { nodes } } = await platformApiReqs.POST_CREATE_NODE({
-      type: 'DEPOSIT-US',
-      info: {
-        nickname: 'My Checking',
+      reqBody: {
+        type: 'DEPOSIT-US',
+        info: {
+          nickname: 'My Checking',
+        },
       },
     });
+
     const afterCreationNodeCount = await getNodeCount();
     expect(afterCreationNodeCount).to.equal(initialNodeCount + 1);
 
     // Delete Node
-    await platformApiReqs.DELETE_NODE(nodes[0]._id);
+    await platformApiReqs.DELETE_NODE({ nodeId: nodes[0]._id });
     const afterDeletionNodeCount = await getNodeCount();
     expect(afterDeletionNodeCount).to.equal(afterCreationNodeCount - 1);
   });

@@ -48,6 +48,10 @@ reponse shoule have limit=`3`, page=`2`
 - create deposit node -> delete just created deposit node
 node count should increase by 1 then decrease by 1
 
+## User Integration
 
-
-
+- get user_id and refresh_token by creating user
+- get oauth from refersh token
+- create docs with min requirements
+- wait 5 sec 
+- delete social doc

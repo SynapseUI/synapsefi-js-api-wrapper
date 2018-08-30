@@ -50,8 +50,10 @@ describe('create user and get oauth before each test then delete that user', () 
       legal_names: ['Sean Test'],
     };
 
-    const { data: { refresh_token, _id, legal_names } } = await platformApiReqs.POST_CREATE_USER(reqBody);
-    
+    const { data: { refresh_token, _id, legal_names } } = await platformApiReqs.POST_CREATE_USER({
+      reqBody,
+    });
+
     endUserApiReqs.user_id = _id;
     endUserApiReqs.refresh_token = refresh_token;
 
@@ -60,7 +62,7 @@ describe('create user and get oauth before each test then delete that user', () 
     endUserApiReqs.oauth_key = oauth_key;
   });
 
-  it.only('Add legal_name Hong Test and remove Sean Test', async () => {
+  it('Add legal_name Hong Test and remove Sean Test', async () => {
     const updateObj = {
       phone_number: '9019411111',
       remove_phone_number: '9019411111',
@@ -68,7 +70,7 @@ describe('create user and get oauth before each test then delete that user', () 
       remove_legal_name: 'Sean Test',
     };
 
-    const { data } = await endUserApiReqs.PATCH_UPDATE_USER(updateObj);
+    const { data } = await endUserApiReqs.PATCH_UPDATE_USER({ updateObj });
     expect(data.legal_names).to.equal(data.legal_names);
   });
 
@@ -76,7 +78,9 @@ describe('create user and get oauth before each test then delete that user', () 
     const beforeCount = await getUsersCount();
     console.log('beforeCount: ', beforeCount);
 
-    const { data: { permission } } = await endUserApiReqs.PATCH_USER_PERMISSION('MAKE-IT-GO-AWAY');
+    const { data: { permission } } = await endUserApiReqs.PATCH_USER_PERMISSION({
+      permissionStr: 'MAKE-IT-GO-AWAY',
+    });
 
     const afterCount = await getUsersCount();
     console.log('afterCount: ', afterCount);

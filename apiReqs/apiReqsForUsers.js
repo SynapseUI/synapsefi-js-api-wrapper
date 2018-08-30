@@ -105,8 +105,9 @@ module.exports[GET_USER] = ({
 };
 
 module.exports[PATCH_ADD_DOCUMENTS] = ({
-  user_id,
+  reqBody,
   documentObj,
+  user_id,
   host,
   oauth_key,
   client_id,
@@ -114,16 +115,20 @@ module.exports[PATCH_ADD_DOCUMENTS] = ({
   fingerprint,
   ip_address,
 }) => {
+  if (reqBody !== undefined && documentObj !== undefined) {
+    console.error('should not submit both reqBody and documentObj');
+  }
+
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_ADD_DOCUMENTS]}`,
     full_dehydrate: 'yes',
   });
 
-  const reqBody = { documents: [documentObj] };
+  const reqBodyIfOtherReqBodyIsUndefined = { documents: [documentObj] };
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    reqBody,
+    reqBody || reqBodyIfOtherReqBodyIsUndefined,
     buildHeaders({
       client_id,
       client_secret,
@@ -135,6 +140,7 @@ module.exports[PATCH_ADD_DOCUMENTS] = ({
 };
 
 module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
+  reqBody,
   documentObj,
   user_id,
   host,
@@ -148,22 +154,25 @@ module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
     originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_EXISTING_DOCUMENT]}`,
   });
 
-  const reqBody = { documents: [documentObj] };
+  const reqBodyIfOtherReqBodyIsUndefined = { documents: [documentObj] };
 
-  return buildHeaders({
-    client_id,
-    client_secret,
-    oauth_key,
-    fingerprint,
-    ip_address,
-  }).then(config => {
-    return axios.patch(replacePathParams({ originalUrl: queryAddedUrl, user_id }), reqBody, config);
-  });
+  return axios.patch(
+    replacePathParams({ originalUrl: queryAddedUrl, user_id }),
+    reqBody || reqBodyIfOtherReqBodyIsUndefined,
+    buildHeaders({
+      client_id,
+      client_secret,
+      oauth_key,
+      fingerprint,
+      ip_address,
+    })
+  );
 };
 
 module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
+  reqBody,
+  documentId,
   user_id,
-  document_id,
   host,
   oauth_key,
   client_id,
@@ -175,10 +184,10 @@ module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
     originalUrl: `${host}${staticEndpoints[PATCH_DELETE_EXSITING_BASE_DOC]}`,
   });
 
-  const reqBody = {
+  const reqBodyIfOtherReqBodyIsUndefined = {
     documents: [
       {
-        id: document_id,
+        id: documentId,
         permission_scope: 'DELETE_DOCUMENT',
       },
     ],
@@ -186,7 +195,7 @@ module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    reqBody,
+    reqBody || reqBodyIfOtherReqBodyIsUndefined,
     buildHeaders({
       client_id,
       client_secret,
@@ -198,6 +207,7 @@ module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
 };
 
 module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
+  reqBody,
   user_id,
   base_document_id,
   physicalDocIds,
@@ -228,7 +238,7 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
     subDocs.social_docs = addDeleteDocument(socialDocIds);
   }
 
-  const reqBody = {
+  const reqBodyIfOtherReqBodyIsUndefined = {
     documents: [
       {
         id: base_document_id,
@@ -239,7 +249,7 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    reqBody,
+    reqBody || reqBodyIfOtherReqBodyIsUndefined,
     buildHeaders({
       client_id,
       client_secret,
@@ -251,8 +261,9 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
 };
 
 module.exports[PATCH_UPDATE_USER] = ({
-  user_id,
+  reqBody,
   updateObj,
+  user_id,
   host,
   oauth_key,
   client_id,
@@ -264,11 +275,11 @@ module.exports[PATCH_UPDATE_USER] = ({
     originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_USER]}`,
   });
 
-  const reqBody = { update: updateObj };
+  const reqBodyIfOtherReqBodyIsUndefined = { update: updateObj };
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    reqBody,
+    reqBody || reqBodyIfOtherReqBodyIsUndefined,
     buildHeaders({
       client_id,
       client_secret,
@@ -280,7 +291,8 @@ module.exports[PATCH_UPDATE_USER] = ({
 };
 
 module.exports[PATCH_USER_PERMISSION] = ({
-  permission,
+  reqBody,
+  permissionStr,
   user_id,
   host,
   oauth_key,
@@ -293,11 +305,11 @@ module.exports[PATCH_USER_PERMISSION] = ({
     originalUrl: `${host}${staticEndpoints[PATCH_USER_PERMISSION]}`,
   });
 
-  const reqBody = { permission };
+  const reqBodyIfOtherReqBodyIsUndefined = { permission: permissionStr };
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    reqBody,
+    reqBody || reqBodyIfOtherReqBodyIsUndefined,
     buildHeaders({
       client_id,
       client_secret,

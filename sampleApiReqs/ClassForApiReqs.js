@@ -80,7 +80,7 @@ class ClassForApiReqs {
     });
   }
 
-  POST_CREATE_USER(reqBody) {
+  POST_CREATE_USER({ reqBody }) {
     return apiRequests.users[POST_CREATE_USER]({
       reqBody,
       host: this.host,
@@ -101,8 +101,9 @@ class ClassForApiReqs {
     });
   }
 
-  PATCH_ADD_DOCUMENTS(documentObj) {
+  PATCH_ADD_DOCUMENTS({ reqBody, documentObj }) {
     return apiRequests.users[PATCH_ADD_DOCUMENTS]({
+      reqBody,
       documentObj,
       user_id: this.user_id,
       host: this.host,
@@ -114,8 +115,9 @@ class ClassForApiReqs {
     });
   }
 
-  PATCH_UPDATE_EXISTING_DOCUMENT(documentObj) {
+  PATCH_UPDATE_EXISTING_DOCUMENT({ reqBody, documentObj }) {
     return apiRequests.users[PATCH_UPDATE_EXISTING_DOCUMENT]({
+      reqBody,
       documentObj,
       user_id: this.user_id,
       host: this.host,
@@ -127,9 +129,10 @@ class ClassForApiReqs {
     });
   }
 
-  PATCH_DELETE_EXSITING_BASE_DOC(documentId) {
+  PATCH_DELETE_EXSITING_BASE_DOC({ reqBody, documentId }) {
     return apiRequests.users[PATCH_DELETE_EXSITING_BASE_DOC]({
-      document_id: documentId,
+      reqBody,
+      documentId,
       user_id: this.user_id,
       host: this.host,
       oauth_key: this.oauth_key,
@@ -140,8 +143,15 @@ class ClassForApiReqs {
     });
   }
 
-  PATCH_DELETE_EXSITING_SUB_DOCS({ base_document_id, physical_docs, virtual_docs, social_docs }) {
+  PATCH_DELETE_EXSITING_SUB_DOCS({
+    reqBody,
+    base_document_id,
+    physical_docs,
+    virtual_docs,
+    social_docs,
+  }) {
     return apiRequests.users[PATCH_DELETE_EXSITING_SUB_DOCS]({
+      reqBody,
       base_document_id,
       physical_docs,
       virtual_docs,
@@ -156,8 +166,9 @@ class ClassForApiReqs {
     });
   }
 
-  PATCH_UPDATE_USER(updateObj) {
+  PATCH_UPDATE_USER({ reqBody, updateObj }) {
     return apiRequests.users[PATCH_UPDATE_USER]({
+      reqBody,
       updateObj,
       user_id: this.user_id,
       host: this.host,
@@ -169,9 +180,10 @@ class ClassForApiReqs {
     });
   }
 
-  PATCH_USER_PERMISSION(permissionStr) {
+  PATCH_USER_PERMISSION({ reqBody, permissionStr }) {
     return apiRequests.users[PATCH_USER_PERMISSION]({
-      permission: permissionStr,
+      reqBody,
+      permissionStr,
       user_id: this.user_id,
       host: this.host,
       oauth_key: this.oauth_key,
@@ -201,7 +213,7 @@ class ClassForApiReqs {
   //
   //
   // NODES  -----------------------------------------------------------------
-  POST_CREATE_NODE(reqBody) {
+  POST_CREATE_NODE({ reqBody }) {
     return apiRequests.nodes[POST_CREATE_NODE]({
       reqBody,
       oauth_key: this.oauth_key,
@@ -231,9 +243,10 @@ class ClassForApiReqs {
     });
   }
 
-  DELETE_NODE(node_id) {
+  DELETE_NODE({ reqBody, nodeId }) {
     return apiRequests.nodes[DELETE_NODE]({
-      node_id,
+      reqBody,
+      nodeId,
       oauth_key: this.oauth_key,
       host: this.host,
       user_id: this.user_id,
