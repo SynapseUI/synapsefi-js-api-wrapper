@@ -79,7 +79,7 @@ describe('Create doc then wait for docs to be varified', () => {
     await renderDocStatusUntilVarified();
   });
 
-  it('doc len decrease by 1 after delete', async () => {
+  xit('doc len decrease by 1 after delete', async () => {
     await countDownFiveSecs();
 
     const { data: { documents } } = await apiReqWithLessArgs.PATCH_DELETE_EXSITING_BASE_DOC({
@@ -91,7 +91,7 @@ describe('Create doc then wait for docs to be varified', () => {
 });
 
 describe('user doc realted', () => {
-  it('doc len increse by one when uniq email was used for base doc creation', async () => {
+  xit('doc len increse by one when uniq email was used for base doc creation', async () => {
     const respFromGetUser = await apiReqWithLessArgs.GET_USER();
     const originalDocsLen = respFromGetUser.data.documents.length;
 
@@ -109,7 +109,7 @@ describe('user doc realted', () => {
     expect(docsLen).to.equal(originalDocsLen + 1);
   });
 
-  it('update users doc', async () => {
+  xit('update users doc', async () => {
     const respFromGetUser = await apiReqWithLessArgs.GET_USER();
     const originalDocsLen = respFromGetUser.data.documents.length;
 

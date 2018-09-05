@@ -38,7 +38,7 @@ describe('simple get user test', () => {
   });
 });
 
-describe('create user and get oauth before each test then delete that user', () => {
+describe('create user -> get oauth before each test -> delete that user', () => {
   beforeEach(async () => {
     const reqBody = {
       logins: [

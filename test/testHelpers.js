@@ -24,16 +24,8 @@ module.exports.getUserIdAndRefreshTokenByCreatingUser = async () => {
     legal_names: ['Sean Test'],
   };
 
-  const { data: { _id, refresh_token } } = await platformApiReqs.POST_CREATE_USER(reqBody);
+  const { data: { _id, refresh_token } } = await platformApiReqs.POST_CREATE_USER({ reqBody });
   return { user_id: _id, refresh_token };
-};
-
-module.exports.getOauthFromRefreshToken = async (user_id, refresh_token) => {
-  endUserApiReqs.user_id = user_id;
-  endUserApiReqs.refresh_token = refresh_token;
-
-  const { data: { oauth_key } } = await endUserApiReqs.POST_OAUTH_USER();
-  return { oauth_key };
 };
 
 module.exports.getOauthFromRefreshToken = async (user_id, refresh_token) => {
