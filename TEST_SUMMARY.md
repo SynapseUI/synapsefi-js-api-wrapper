@@ -55,3 +55,20 @@ node count should increase by 1 then decrease by 1
 - create docs with min requirements
 - wait 5 sec 
 - delete social doc
+
+
+
+{
+  "documents": [
+    {
+      "id": "dummy_main_doc_id",
+      "social_docs": [
+        {
+          "document_type": "DELETE_DOCUMENT",
+          "document_value": `ANY VALUE CAN GO HERE EVEN AN EMPTY STRING`,
+          "id": "dummy_social_doc_id"
+        }
+      ]
+    }
+  ]
+}

@@ -210,9 +210,9 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
   reqBody,
   user_id,
   base_document_id,
-  physicalDocIdsAndValues,
-  socialDocIdsAndValues,
-  virtualDocIdsAndValues,
+  physicalDocIds,
+  socialDocIds,
+  virtualDocIds,
   host,
   oauth_key,
   client_id,
@@ -226,17 +226,17 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
 
   const subDocs = {};
 
-  if (physicalDocIdsAndValues !== undefined) {
-    subDocs.physical_docs = addDeleteDocument(physicalDocIdsAndValues);
+  if (physicalDocIds !== undefined) {
+    subDocs.physical_docs = addDeleteDocument(physicalDocIds);
   }
 
-  console.log('socialDocIdsAndValues: ', socialDocIdsAndValues);
-  if (socialDocIdsAndValues !== undefined) {
-    subDocs.social_docs = addDeleteDocument(socialDocIdsAndValues);
+  console.log('socialDocIds: ', socialDocIds);
+  if (socialDocIds !== undefined) {
+    subDocs.social_docs = addDeleteDocument(socialDocIds);
   }
 
-  if (virtualDocIdsAndValues !== undefined) {
-    subDocs.virtual_docs = addDeleteDocument(virtualDocIdsAndValues);
+  if (virtualDocIds !== undefined) {
+    subDocs.virtual_docs = addDeleteDocument(virtualDocIds);
   }
 
   const reqBodyIfOtherReqBodyIsUndefined = {
