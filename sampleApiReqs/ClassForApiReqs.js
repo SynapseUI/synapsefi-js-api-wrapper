@@ -146,16 +146,16 @@ class ClassForApiReqs {
   PATCH_DELETE_EXSITING_SUB_DOCS({
     reqBody,
     base_document_id,
-    physical_docs,
-    virtual_docs,
-    social_docs,
+    physicalDocIdsAndValues,
+    socialDocIdsAndValues,
+    virtualDocIdsAndValues,
   }) {
     return apiRequests.users[PATCH_DELETE_EXSITING_SUB_DOCS]({
       reqBody,
       base_document_id,
-      physical_docs,
-      virtual_docs,
-      social_docs,
+      physicalDocIdsAndValues,
+      socialDocIdsAndValues,
+      virtualDocIdsAndValues,
       user_id: this.user_id,
       host: this.host,
       oauth_key: this.oauth_key,

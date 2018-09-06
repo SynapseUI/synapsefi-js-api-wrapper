@@ -210,9 +210,9 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
   reqBody,
   user_id,
   base_document_id,
-  physicalDocIds,
-  virtualDocIds,
-  socialDocIds,
+  physicalDocIdsAndValues,
+  socialDocIdsAndValues,
+  virtualDocIdsAndValues,
   host,
   oauth_key,
   client_id,
@@ -226,16 +226,17 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
 
   const subDocs = {};
 
-  if (physicalDocIds !== undefined) {
-    subDocs.physical_docs = addDeleteDocument(physicalDocIds);
+  if (physicalDocIdsAndValues !== undefined) {
+    subDocs.physical_docs = addDeleteDocument(physicalDocIdsAndValues);
   }
 
-  if (virtualDocIds !== undefined) {
-    subDocs.virtual_docs = addDeleteDocument(virtualDocIds);
+  console.log('socialDocIdsAndValues: ', socialDocIdsAndValues);
+  if (socialDocIdsAndValues !== undefined) {
+    subDocs.social_docs = addDeleteDocument(socialDocIdsAndValues);
   }
 
-  if (socialDocIds !== undefined) {
-    subDocs.social_docs = addDeleteDocument(socialDocIds);
+  if (virtualDocIdsAndValues !== undefined) {
+    subDocs.virtual_docs = addDeleteDocument(virtualDocIdsAndValues);
   }
 
   const reqBodyIfOtherReqBodyIsUndefined = {
@@ -246,6 +247,19 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
       },
     ],
   };
+
+  // console.log('===================');
+  // console.log('reqBodyIfOtherReqBodyIsUndefined: ', reqBodyIfOtherReqBodyIsUndefined);
+
+  // console.log(
+  //   'reqBodyIfOtherReqBodyIsUndefined.documents: ',
+  //   reqBodyIfOtherReqBodyIsUndefined.documents
+  // );
+  // console.log(
+  //   'reqBodyIfOtherReqBodyIsUndefined.documents.social_docs: ',
+  //   reqBodyIfOtherReqBodyIsUndefined.documents[0].social_docs
+  // );
+  console.log(JSON.stringify(reqBodyIfOtherReqBodyIsUndefined));
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),

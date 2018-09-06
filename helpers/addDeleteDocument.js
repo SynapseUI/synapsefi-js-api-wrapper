@@ -1,8 +1,9 @@
-module.exports = subDocIds => {
-  return subDocIds.map(id => {
+module.exports = docIdsAndValues => {
+  return docIdsAndValues.map(({ id, document_value }) => {
     return {
       id,
-      permission_scope: 'DELETE_DOCUMENT',
+      document_value,
+      document_type: 'DELETE_DOCUMENT',
     };
   });
 };

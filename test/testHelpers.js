@@ -12,6 +12,8 @@ const endUserApiReqs = new ClassForApiReqs({
   refresh_token: 'dummyRefreshToken',
 });
 
+module.exports.endUserApiReqs = endUserApiReqs;
+
 //
 module.exports.getUserIdAndRefreshTokenByCreatingUser = async () => {
   const reqBody = {
@@ -24,8 +26,8 @@ module.exports.getUserIdAndRefreshTokenByCreatingUser = async () => {
     legal_names: ['Sean Test'],
   };
 
-  const { data: { _id, refresh_token } } = await platformApiReqs.POST_CREATE_USER({ reqBody });
-  return { user_id: _id, refresh_token };
+  const { data } = await platformApiReqs.POST_CREATE_USER({ reqBody });
+  return { user_id: data._id, refresh_token: data.refresh_token };
 };
 
 module.exports.getOauthFromRefreshToken = async (user_id, refresh_token) => {
@@ -36,9 +38,10 @@ module.exports.getOauthFromRefreshToken = async (user_id, refresh_token) => {
   return { oauth_key };
 };
 
-module.exports.createDocWithMinRequirements = async (user_id, refresh_token) => {
+module.exports.createDocWithMinRequirements = async (user_id, refresh_token, oauth_key) => {
   endUserApiReqs.user_id = user_id;
   endUserApiReqs.refresh_token = refresh_token;
+  endUserApiReqs.oauth_key = oauth_key;
 
   const documentObj = {
     email: 'test@test.com',
@@ -56,8 +59,14 @@ module.exports.createDocWithMinRequirements = async (user_id, refresh_token) => 
     address_subdivision: 'CA',
     address_postal_code: '94114',
     address_country_code: 'US',
+    social_docs: [
+      {
+        document_value: 'https://www.facebook.com/valid',
+        document_type: 'FACEBOOK',
+      },
+    ],
   };
 
-  const { data: { oauth_key } } = await endUserApiReqs.PATCH_ADD_DOCUMENTS(documentObj);
-  return { oauth_key };
+  const { data } = await endUserApiReqs.PATCH_ADD_DOCUMENTS({ documentObj });
+  return { data };
 };
