@@ -3,8 +3,6 @@ const { expect } = require('chai');
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
 const ApiFactory = require('../../sampleApiReqs/ApiFactory');
 
-const testHelperFuncs = require('../testHelper/testHelperFuncs');
-
 const reqBody = {
   logins: [{ email: 'email.com' }],
   phone_numbers: ['123.123.1233'],
