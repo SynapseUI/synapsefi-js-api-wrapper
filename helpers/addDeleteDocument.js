@@ -1,5 +1,5 @@
 module.exports = subDocIds => {
-  return subDocIds.map(({ id }) => {
+  return subDocIds.map(id => {
     return {
       id,
       document_value: '',

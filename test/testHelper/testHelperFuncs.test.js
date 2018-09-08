@@ -1,5 +1,4 @@
 const { expect } = require('chai');
-const ApiFactory = require('../../sampleApiReqs/ApiFactory');
 
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
 
@@ -7,15 +6,13 @@ const testHelperFuncs = require('./testHelperFuncs');
 
 describe('test helper functions', () => {
   // create user
-  it.only('create user then delete user', async () => {
+  it('create user then delete user', async () => {
     try {
       const { endUserApiCannon } = await testHelperFuncs.createUser();
       const resBeforeDelete = await platformUserApiCannon.GET_USERS();
       const userCountBeforeDelete = resBeforeDelete.data.users_count;
 
-      await endUserApiCannon.PATCH_USER_PERMISSION({
-        permissionStr: 'MAKE-IT-GO-AWAY',
-      });
+      await testHelperFuncs.deleteMySelf(endUserApiCannon);
 
       const resAfterDelete = await platformUserApiCannon.GET_USERS();
       const userCountAfterDelete = resAfterDelete.data.users_count;

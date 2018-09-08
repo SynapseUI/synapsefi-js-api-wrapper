@@ -10,14 +10,10 @@ const getOauth = async ({ endUserApiCannon }) => {
 module.exports.getOauth = getOauth;
 
 //
-module.exports.createUser = async (
-  obj = {
-    email: 'test@synapsepay.com',
-    phone_numbers: ['314.315.3242'],
-    legal_names: ['Default Name'],
-  }
-) => {
-  const { email, phone_numbers, legal_names } = obj;
+module.exports.createUser = async (obj = {}) => {
+  const email = obj.email === undefined ? 'test@synapsepay.com' : obj.email;
+  const phone_numbers = obj.phone_numbers === undefined ? ['314.315.3242'] : obj.phone_numbers;
+  const legal_names = obj.legal_names === undefined ? ['Default Name'] : obj.legal_names;
 
   const reqBody = {
     logins: [{ email }],
@@ -46,6 +42,12 @@ module.exports.createUser = async (
 
   endUserApiCannon.oauth_key = oauth_key;
   return { endUserApiCannon, user_id: data._id, refresh_token: data.refresh_token };
+};
+
+module.exports.deleteMySelf = async endUserApiCannon => {
+  await endUserApiCannon.PATCH_USER_PERMISSION({
+    permissionStr: 'MAKE-IT-GO-AWAY',
+  });
 };
 
 module.exports.addDocument = async (

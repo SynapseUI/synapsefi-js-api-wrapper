@@ -66,21 +66,19 @@ class ApiFactory {
     return apiRequests.users[GET_USERS_ENTITY_SCOPES]({ host: this.host });
   }
 
-  GET_USERS(queryParamsObj = { query: undefined, page: undefined, per_page: undefined }) {
-    const { query, page, per_page } = queryParamsObj;
+  GET_USERS(queryParamsObj = {}) {
+    const { query, page, per_page, show_refresh_tokens } = queryParamsObj;
+
     return apiRequests.users[GET_USERS]({
       host: this.host,
       client_id: this.client_id,
       client_secret: this.client_secret,
       fingerprint: this.fingerprint,
       ip_address: this.ip_address,
-      // query: queryParamsObj ? queryParamsObj.query : undefined,
-      // page: queryParamsObj ? queryParamsObj.page : undefined,
-      // per_page: queryParamsObj ? queryParamsObj.per_page : undefined,
       query,
       page,
       per_page,
-      show_refresh_tokens: queryParamsObj ? queryParamsObj.show_refresh_tokens : undefined,
+      show_refresh_tokens,
     });
   }
 

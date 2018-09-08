@@ -2,8 +2,8 @@
   - base -> has key users_count
 
   - search name
-    - create user name with "Search Name"
-    - create user name with "Dont Search"
+    - create user name with "Search Yes"
+    - create user name with "Search No"
     - search ny name
     - `expect found users to have name "Search Name"`
     - delete both users
