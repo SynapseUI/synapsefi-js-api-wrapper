@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
-const ApiFactory = require('../../ApiFactoryRelated/ApiFactory');
+const ApiFactory = require('../../src/ApiFactoryRelated/ApiFactory');
 
 const reqBody = {
   logins: [{ email: 'email.com' }],

@@ -1,7 +1,6 @@
 const { expect } = require('chai');
 
-const addDeleteDocument = require('../../helpers/addDeleteDocument');
-
+const addDeleteDocument = require('../../src/helpers/addDeleteDocument');
 it('addDeleteDocument', () => {
   const subDocIds = ['1', '2', '3'];
 

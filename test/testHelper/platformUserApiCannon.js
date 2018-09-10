@@ -1,4 +1,4 @@
-const ApiFactory = require('../../ApiFactoryRelated/ApiFactory');
+const ApiFactory = require('../../src/ApiFactoryRelated/ApiFactory');
 
 const platformUserApiCannon = new ApiFactory({
   host: 'https://uat-api.synapsefi.com',
