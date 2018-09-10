@@ -120,8 +120,16 @@ const reqBody = {
   legal_names: ['John Doe'],
 };
 
-platformUserApiCannon.POST_CREATE_USER({
-  reqBody,
+platformUserApiCannon.POST_CREATE_USER({ reqBody }).then(({ data }) => {
+  console.log('data: ', data);
+});
+```
+
+---
+### Get User
+```js
+platformUserApiCannon.GET_USER().then(({ data }) => {
+  console.log('data: ', data);
 });
 ```
 

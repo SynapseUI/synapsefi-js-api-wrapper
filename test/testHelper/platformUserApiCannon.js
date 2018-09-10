@@ -6,8 +6,8 @@ const platformUserApiCannon = new ApiFactory({
   client_secret: 'client_secret_qVtj0WIeaSYdhuwsZTz53P0EADQXxKN71v6H4mbf',
   oauth_key: 'oauth_7cSblJWGhm10DF0BXisg3wdMExaetAyzK9Q8j5pL',
   fingerprint: 'cc5127b4f73f02f78bf7ff785819f899',
-  user_id: '5b17070501db700049a19bdc',
-  refresh_token: 'refresh_8tDqQVlYT6239WMnL4CwbuE0dJXvrBeGpRgycKs1',
+  user_id: '5b92cc307ce6f953dccbcc79',
+  refresh_token: 'refresh_8UgLhzOFJdx24o0V9XGl06uKD1pPRjQkE5rbmCHM',
   ip_address: '123.0.0.1',
 });
 

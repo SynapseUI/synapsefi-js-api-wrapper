@@ -45,9 +45,11 @@ module.exports.createUser = async (obj = {}) => {
 };
 
 module.exports.deleteMySelf = async endUserApiCannon => {
-  await endUserApiCannon.PATCH_USER_PERMISSION({
+  const resp = await endUserApiCannon.PATCH_USER_PERMISSION({
     permissionStr: 'MAKE-IT-GO-AWAY',
   });
+
+  return resp;
 };
 
 module.exports.addDocument = async (
