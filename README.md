@@ -1,7 +1,16 @@
 # synapsefi-js-api-wrapper (ApiFactory)
 
+## Installation
+```sh
+npm installation synapsefi-ui axios lodash
+```
+
+## Motivation
+`synapsefi-js-api-wrapper` was built to simplify api requrest to synapsefi's core public apis.
+
+
 ## Table of Contents
-- [Installation](#install)
+- [Installation](#installation)
 - [Motivation](#motivation)
 - [Setup](#setup)
 
@@ -12,13 +21,15 @@
     - specific page and per page (page, per_page)
     - conbining query, page, and per_page
 
-## Install
-```sh
-npm install synapsefi-ui axios lodash
-```
+  - [POST_CREATE_USER](#create-user)
+  - [GET_USER](#get-user)
+  - [PATCH_ADD_DOCUMENTS](#add-document)
+  - [PATCH_UPDATE_EXISTING_DOCUMENT](#update-exsiting-document)
+  - [PATCH_DELETE_EXSITING_BASE_DOC](#delete-base-doc)
+  - [PATCH_DELETE_EXSITING_SUB_DOCS](#delete-sub-docs)
+  - [PATCH_UPDATE_USER](#update-user)
+  - [PATCH_USER_PERMISSION](#update-user-permission)
 
-## Motivation
-`synapsefi-js-api-wrapper` was built to simplify api requrest to synapsefi's core public apis.
 
 ## Setup
 ApiFactory generates instance of apiCannon.
@@ -97,3 +108,38 @@ platformUserApiCannon
     console.log('data: ', data);
   });
 ```
+
+---
+
+### Create User
+###### (POST_CREATE_USER)
+```js
+const reqBody = {
+  logins: [{ email: 'email@gmial.com' }],
+  phone_numbers: ['123.123.1233'],
+  legal_names: ['John Doe'],
+};
+
+platformUserApiCannon.POST_CREATE_USER({
+  reqBody,
+});
+```
+
+---
+### Add Document
+
+---
+### Update Exsiting Document
+
+---
+### Delete Base Doc
+
+---
+### Delete Sub Docs
+
+---
+### Update User
+
+---
+### Update User Permission
+
