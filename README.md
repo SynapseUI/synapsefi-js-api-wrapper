@@ -1,10 +1,6 @@
 # synapsefi-js-api-wrapper (ApiFactory)
 
-
-
 ## Table of Contents
-
-
 - [Installation](#install)
 - [Motivation](#motivation)
 - [Setup](#setup)
