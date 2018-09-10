@@ -1,11 +1,28 @@
-# Synapsefi js-api-wrapper
+# synapsefi-js-api-wrapper
 
-## USERS
+## Install
+```sh
+npm install synapsefi-ui axios lodash
+```
+
+## Summary
+User have node and transaction.
+So all api calls will be fired from instance of ApiFactory which has information of one user.
+
+For example
+```js
+
+```
+
+## Examples
+
+
+## Fetch Data
 - [x] GET_USERS_DOCUMENT_TYPES
 - [x] GET_USERS_ENTITY_TYPES
 - [x] GET_USERS_ENTITY_SCOPES
 
-
+## Users
 - [x] GET_ALL_CLIENT_USERS
 - [x] POST_CREATE_USER
 - [x] GET_USER
@@ -19,7 +36,7 @@
 ## Oauth
 - [x] POST_OAUTH_USER
 
-## NODES
+## Nodes
 - [x] GET_ALL_USER_NODES
 - [x] POST_CREATE_NODE
 - [x] DELETE_NODE
