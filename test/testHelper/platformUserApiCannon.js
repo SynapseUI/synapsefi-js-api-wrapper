@@ -1,6 +1,6 @@
 const ApiFactory = require('../../ApiFactoryRelated/ApiFactory');
 
-const platformUserApiCannonApiCannon = new ApiFactory({
+const platformUserApiCannon = new ApiFactory({
   host: 'https://uat-api.synapsefi.com',
   client_id: 'client_id_HxEShtR1GVi9QaIoM6JTZnBUu8sq0CeXKplW3FPL',
   client_secret: 'client_secret_qVtj0WIeaSYdhuwsZTz53P0EADQXxKN71v6H4mbf',
@@ -11,4 +11,4 @@ const platformUserApiCannonApiCannon = new ApiFactory({
   ip_address: '123.0.0.1',
 });
 
-module.exports = platformUserApiCannonApiCannon;
+module.exports = platformUserApiCannon;
