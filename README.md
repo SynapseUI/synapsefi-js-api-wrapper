@@ -1,50 +1,103 @@
-# synapsefi-js-api-wrapper
+# synapsefi-js-api-wrapper (ApiFactory)
+
+
+
+## Table of Contents
+
+
+- [Installation](#install)
+- [Motivation](#motivation)
+- [Setup](#setup)
+
+- [Users Api Request Examples](#users-api-request-examples)
+  - [GET_ALL_CLIENT_USERS](#GET_ALL_CLIENT_USERS)
+    - with no argument
+    - search by name or email (query)
+    - specific page and per page (page, per_page)
+    - conbining query, page, and per_page
 
 ## Install
 ```sh
 npm install synapsefi-ui axios lodash
 ```
 
-## Summary
-User have node and transaction.
-So all api calls will be fired from instance of ApiFactory which has information of one user.
+## Motivation
+`synapsefi-js-api-wrapper` was built to simplify api requrest to synapsefi's core public apis.
 
-For example
+## Setup
+ApiFactory generates instance of apiCannon.
+We decide to name an instance as apiCannon because all it does is firing api calls.
+User of this library can declare variable with diffrent naming convention.
+
 ```js
+import ApiFactory from 'synapsefi-js-api-wrapper';
 
+const platformUserApiCannon = new ApiFactory({
+  host: 'sandbox or production host(ex: https://uat-api.synapsefi.com)',
+  client_id: '<clinet id>',
+  client_secret: '<clinet secret>',
+  oauth_key: '<oauth_key>',
+  fingerprint: '<fingerprint>',
+  ip_address: '<user_id> of platform',
+  user_id: '<user_id> of platform',
+  refresh_token: '<user_id> of platform',
+});
+
+const endUserApiCannon = new ApiFactory({
+  host: platformUserApiCannon.host,
+  client_id: platformUserApiCannon.client_id,
+  client_secret: platformUserApiCannon.client_secret,
+  oauth_key: platformUserApiCannon.oauth_key,
+  fingerprint: platformUserApiCannon.fingerprint,
+  ip_address: platformUserApiCannon.ip_address,
+  user_id: '<user_id> of end user',
+  refresh_token: '<user_id> of end user',
+});
 ```
 
-## Examples
+## Users Api Request Examples
 
 
-## Fetch Data
-- [x] GET_USERS_DOCUMENT_TYPES
-- [x] GET_USERS_ENTITY_TYPES
-- [x] GET_USERS_ENTITY_SCOPES
+### GET_ALL_CLIENT_USERS
 
-## Users
-- [x] GET_ALL_CLIENT_USERS
-- [x] POST_CREATE_USER
-- [x] GET_USER
-- [x] PATCH_ADD_DOCUMENTS
-- [X] PATCH_UPDATE_EXISTING_DOCUMENT
-- [x] PATCH_DELETE_EXSITING_BASE_DOC
-- [X] PATCH_DELETE_EXSITING_SUB_DOCS
-- [X] PATCH_UPDATE_USER
-- [x] PATCH_USER_PERMISSION
+#### `with no argument`
+```js
+platformUserApiCannon.GET_ALL_CLIENT_USERS().then(({data}) => {
+  console.log('data: ', data);
+});
+```
+> ---
+#### `search by name or email using query`
+```js
+platformUserApiCannon.GET_ALL_CLIENT_USERS({ query: 'John Doe' }).then(({data}) => {
+  console.log('data: ', data);
+});
+```
+> ---
 
-## Oauth
-- [x] POST_OAUTH_USER
+#### `specific page and per page (page, per_page)`
+```js
+platformUserApiCannon
+  .GET_ALL_CLIENT_USERS({
+    page: 2,
+    per_page: 3,
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 
-## Nodes
-- [x] GET_ALL_USER_NODES
-- [x] POST_CREATE_NODE
-- [x] DELETE_NODE
+> ---
 
-
-
-
-
----
-- Seems like default max number of deposit node = 10
-- error can be found in `error.response.data.error.en`
+#### `conbining query, page, and per_page`
+```js
+platformUserApiCannon
+  .GET_ALL_CLIENT_USERS({
+    query: 'sean@gmail.com',
+    page: 1,
+    per_page: 2,
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
