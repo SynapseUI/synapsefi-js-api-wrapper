@@ -6,7 +6,7 @@
 - [Setup](#setup)
 
 - [Users Api Request Examples](#users-api-request-examples)
-  - [GET_ALL_CLIENT_USERS](#GET_ALL_CLIENT_USERS)
+  - [GET_ALL_CLIENT_USERS](#get-all-client-users)
     - with no argument
     - search by name or email (query)
     - specific page and per page (page, per_page)
@@ -53,8 +53,8 @@ const endUserApiCannon = new ApiFactory({
 
 ## Users Api Request Examples
 
-
-### GET_ALL_CLIENT_USERS
+### Get all client users
+###### (GET_ALL_CLIENT_USERS)
 
 #### `with no argument`
 ```js
