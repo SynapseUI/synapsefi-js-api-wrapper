@@ -4,12 +4,12 @@ const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
 
 const testHelperFuncs = require('../testHelper/testHelperFuncs');
 
-// - [x] GET_USERS
-describe('GET_USERS', () => {
+// - [x] GET_ALL_CLIENT_USERS
+describe('GET_ALL_CLIENT_USERS', () => {
   //   - base -> has key users_count
-  it('GET_USERS with no args', async () => {
+  it('GET_ALL_CLIENT_USERS with no args', async () => {
     // -------------------------------------------------------
-    const { data } = await platformUserApiCannon.GET_USERS();
+    const { data } = await platformUserApiCannon.GET_ALL_CLIENT_USERS();
     // -------------------------------------------------------
 
     expect(typeof data.users_count).to.equal('number');
@@ -30,7 +30,7 @@ describe('GET_USERS', () => {
         legal_names: ['Search No'],
       });
       // ------------------------------------------------------------------------------
-      const { data } = await platformUserApiCannon.GET_USERS({ query: 'Search Yes' });
+      const { data } = await platformUserApiCannon.GET_ALL_CLIENT_USERS({ query: 'Search Yes' });
       // ------------------------------------------------------------------------------
 
       expect(data.users[0].legal_names).to.include.members(['Search Yes']);
@@ -48,7 +48,7 @@ describe('GET_USERS', () => {
   //     - `expext limit = 3`
   it('page, per_page', async () => {
     // ------------------------------------------------------------------------------
-    const { data: { page, limit } } = await platformUserApiCannon.GET_USERS({
+    const { data: { page, limit } } = await platformUserApiCannon.GET_ALL_CLIENT_USERS({
       page: 2,
       per_page: 3,
     });
@@ -73,7 +73,7 @@ describe('GET_USERS', () => {
     });
 
     // ------------------------------------------------------------------------------
-    const { data } = await platformUserApiCannon.GET_USERS({
+    const { data } = await platformUserApiCannon.GET_ALL_CLIENT_USERS({
       query: 'real@gmail.com',
       page: 1,
       per_page: 2,

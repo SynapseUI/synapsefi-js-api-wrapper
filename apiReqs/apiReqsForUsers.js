@@ -4,7 +4,7 @@ const {
   GET_USERS_DOCUMENT_TYPES,
   GET_USERS_ENTITY_TYPES,
   GET_USERS_ENTITY_SCOPES,
-  GET_USERS,
+  GET_ALL_CLIENT_USERS,
   POST_CREATE_USER,
   GET_USER,
   PATCH_ADD_DOCUMENTS,
@@ -32,7 +32,7 @@ module.exports[GET_USERS_ENTITY_SCOPES] = ({ host }) => {
   return axios.get(`${host}${staticEndpoints[GET_USERS_ENTITY_SCOPES]}`);
 };
 
-module.exports[GET_USERS] = ({
+module.exports[GET_ALL_CLIENT_USERS] = ({
   host,
   client_id,
   client_secret,
@@ -45,7 +45,7 @@ module.exports[GET_USERS] = ({
 }) => {
   return axios.get(
     addQueryParams({
-      originalUrl: `${host}${staticEndpoints[GET_USERS]}`,
+      originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_USERS]}`,
       query,
       page,
       per_page,
@@ -247,19 +247,6 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
       },
     ],
   };
-
-  // console.log('===================');
-  // console.log('reqBodyIfOtherReqBodyIsUndefined: ', reqBodyIfOtherReqBodyIsUndefined);
-
-  // console.log(
-  //   'reqBodyIfOtherReqBodyIsUndefined.documents: ',
-  //   reqBodyIfOtherReqBodyIsUndefined.documents
-  // );
-  // console.log(
-  //   'reqBodyIfOtherReqBodyIsUndefined.documents.social_docs: ',
-  //   reqBodyIfOtherReqBodyIsUndefined.documents[0].social_docs
-  // );
-  console.log(JSON.stringify(reqBodyIfOtherReqBodyIsUndefined));
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),

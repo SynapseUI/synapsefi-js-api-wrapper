@@ -2,7 +2,7 @@ const {
   GET_USERS_DOCUMENT_TYPES,
   GET_USERS_ENTITY_TYPES,
   GET_USERS_ENTITY_SCOPES,
-  GET_USERS,
+  GET_ALL_CLIENT_USERS,
   POST_CREATE_USER,
   GET_USER,
   PATCH_ADD_DOCUMENTS,
@@ -66,10 +66,10 @@ class ApiFactory {
     return apiRequests.users[GET_USERS_ENTITY_SCOPES]({ host: this.host });
   }
 
-  GET_USERS(queryParamsObj = {}) {
+  GET_ALL_CLIENT_USERS(queryParamsObj = {}) {
     const { query, page, per_page, show_refresh_tokens } = queryParamsObj;
 
-    return apiRequests.users[GET_USERS]({
+    return apiRequests.users[GET_ALL_CLIENT_USERS]({
       host: this.host,
       client_id: this.client_id,
       client_secret: this.client_secret,

@@ -1,5 +1,5 @@
 const platformUserApiCannon = require('./platformUserApiCannon');
-const ApiFactory = require('../../sampleApiReqs/ApiFactory');
+const ApiFactory = require('../../ApiFactoryRelated/ApiFactory');
 
 //
 const getOauth = async ({ endUserApiCannon }) => {

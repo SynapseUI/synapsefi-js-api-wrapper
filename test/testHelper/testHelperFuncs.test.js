@@ -9,12 +9,12 @@ describe('test helper functions', () => {
   it('create user then delete user', async () => {
     try {
       const { endUserApiCannon } = await testHelperFuncs.createUser();
-      const resBeforeDelete = await platformUserApiCannon.GET_USERS();
+      const resBeforeDelete = await platformUserApiCannon.GET_ALL_CLIENT_USERS();
       const userCountBeforeDelete = resBeforeDelete.data.users_count;
 
       await testHelperFuncs.deleteMySelf(endUserApiCannon);
 
-      const resAfterDelete = await platformUserApiCannon.GET_USERS();
+      const resAfterDelete = await platformUserApiCannon.GET_ALL_CLIENT_USERS();
       const userCountAfterDelete = resAfterDelete.data.users_count;
 
       expect(userCountBeforeDelete - userCountAfterDelete).to.equal(1);

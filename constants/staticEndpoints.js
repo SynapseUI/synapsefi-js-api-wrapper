@@ -16,7 +16,7 @@ module.exports = {
   [apiReqNames.GET_USERS_DOCUMENT_TYPES]: `/${VERSION}/${USERS}/document-types`,
   [apiReqNames.GET_USERS_ENTITY_TYPES]: `/${VERSION}/${USERS}/entity-types`,
   [apiReqNames.GET_USERS_ENTITY_SCOPES]: `/${VERSION}/${USERS}/entity-scopes`,
-  [apiReqNames.GET_USERS]: `/${VERSION}/${USERS}`,
+  [apiReqNames.GET_ALL_CLIENT_USERS]: `/${VERSION}/${USERS}`,
   [apiReqNames.POST_CREATE_USER]: `/${VERSION}/${USERS}`,
   [apiReqNames.GET_USER]: fullEndpointForUserId,
   [apiReqNames.PATCH_ADD_DOCUMENTS]: fullEndpointForUserId + '?full_dehydrate=yes',

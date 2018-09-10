@@ -1,4 +1,4 @@
-- [x] GET_USERS
+- [x] GET_ALL_CLIENT_USERS
   - base -> has key users_count
 
   - search name
