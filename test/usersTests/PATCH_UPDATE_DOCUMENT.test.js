@@ -28,7 +28,7 @@ const documentObj = {
   ],
 };
 
-describe('PATCH_UPDATE_EXISITING_DOCUMENT', () => {
+describe('PATCH_UPDATE_DOCUMENT', () => {
   // - update base doc
   //   - create user
   //   - add doc with email "test@gmail.com"
@@ -48,7 +48,7 @@ describe('PATCH_UPDATE_EXISITING_DOCUMENT', () => {
 
     const {
       data: { documents: afterDocuments },
-    } = await endUserApiCannon.PATCH_UPDATE_EXISTING_DOCUMENT({
+    } = await endUserApiCannon.PATCH_UPDATE_DOCUMENT({
       documentObj: {
         id: initialDocId,
         email: 'updated@gmail.com',
@@ -84,7 +84,7 @@ describe('PATCH_UPDATE_EXISITING_DOCUMENT', () => {
 
     const {
       data: { documents: afterDocuments },
-    } = await endUserApiCannon.PATCH_UPDATE_EXISTING_DOCUMENT({
+    } = await endUserApiCannon.PATCH_UPDATE_DOCUMENT({
       documentObj: {
         id: initialDocId,
         social_docs: [

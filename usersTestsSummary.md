@@ -39,7 +39,7 @@
   - delete user
 
 
-- [X] PATCH_UPDATE_EXISTING_DOCUMENT
+- [X] PATCH_UPDATE_DOCUMENT
   - update base doc
     - create user
     - add doc with email "test@gmail.com"
@@ -56,7 +56,7 @@
     - delete user
 
 
-- [x] PATCH_DELETE_EXSITING_BASE_DOC
+- [x] PATCH_DELETE_BASE_DOC
   - create user
   - add doc with email "first@gmail.com"
   - add doc with email "second@gmail.com"
@@ -64,7 +64,7 @@
   - `expect doc len to be 1`
 
 
-- [X] PATCH_DELETE_EXSITING_SUB_DOCS
+- [X] PATCH_DELETE_SUB_DOCS
   - create user
   - add doc (has facebook by default)
   - delete facebook and email (both social docs)

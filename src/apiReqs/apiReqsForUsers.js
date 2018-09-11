@@ -8,9 +8,9 @@ const {
   POST_CREATE_USER,
   GET_USER,
   PATCH_ADD_DOCUMENTS,
-  PATCH_UPDATE_EXISTING_DOCUMENT,
-  PATCH_DELETE_EXSITING_BASE_DOC,
-  PATCH_DELETE_EXSITING_SUB_DOCS,
+  PATCH_UPDATE_DOCUMENT,
+  PATCH_DELETE_BASE_DOC,
+  PATCH_DELETE_SUB_DOCS,
   PATCH_UPDATE_USER,
   PATCH_USER_PERMISSION,
 } = require('../constants/apiReqNames');
@@ -138,7 +138,7 @@ module.exports[PATCH_ADD_DOCUMENTS] = ({
   );
 };
 
-module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
+module.exports[PATCH_UPDATE_DOCUMENT] = ({
   reqBody,
   documentObj,
   user_id,
@@ -150,7 +150,7 @@ module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
   ip_address,
 }) => {
   const queryAddedUrl = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_EXISTING_DOCUMENT]}`,
+    originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_DOCUMENT]}`,
   });
 
   const reqBodyIfOtherReqBodyIsUndefined = { documents: [documentObj] };
@@ -168,7 +168,7 @@ module.exports[PATCH_UPDATE_EXISTING_DOCUMENT] = ({
   );
 };
 
-module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
+module.exports[PATCH_DELETE_BASE_DOC] = ({
   reqBody,
   documentId,
   user_id,
@@ -180,7 +180,7 @@ module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
   ip_address,
 }) => {
   const queryAddedUrl = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[PATCH_DELETE_EXSITING_BASE_DOC]}`,
+    originalUrl: `${host}${staticEndpoints[PATCH_DELETE_BASE_DOC]}`,
   });
 
   const reqBodyIfOtherReqBodyIsUndefined = {
@@ -205,7 +205,7 @@ module.exports[PATCH_DELETE_EXSITING_BASE_DOC] = ({
   );
 };
 
-module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
+module.exports[PATCH_DELETE_SUB_DOCS] = ({
   reqBody,
   user_id,
   base_document_id,
@@ -220,7 +220,7 @@ module.exports[PATCH_DELETE_EXSITING_SUB_DOCS] = ({
   ip_address,
 }) => {
   const queryAddedUrl = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[PATCH_DELETE_EXSITING_SUB_DOCS]}`,
+    originalUrl: `${host}${staticEndpoints[PATCH_DELETE_SUB_DOCS]}`,
   });
 
   const subDocs = {};

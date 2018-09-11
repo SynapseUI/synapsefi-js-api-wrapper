@@ -57,11 +57,11 @@ const endUserApiCannon = new ApiFactory({
   - [POST_CREATE_USER](#create-user)
   - [GET_USER](#get-user)
   - [PATCH_ADD_DOCUMENTS](#add-document)
-  - [PATCH_UPDATE_EXISTING_DOCUMENT](#update-exsiting-document)
+  - [PATCH_UPDATE_DOCUMENT](#update-exsiting-document)
     - update base doc
     - update sub docs
-  - [PATCH_DELETE_EXSITING_BASE_DOC](#delete-base-doc)
-  - [PATCH_DELETE_EXSITING_SUB_DOCS](#delete-sub-docs)
+  - [PATCH_DELETE_BASE_DOC](#delete-base-doc)
+  - [PATCH_DELETE_SUB_DOCS](#delete-sub-docs)
   - [PATCH_UPDATE_USER](#update-user)
   - [PATCH_USER_PERMISSION](#update-user-permission)
 
@@ -176,12 +176,12 @@ platformUserApiCannon
 ```
 ---
 ### Update Exsiting Document
-###### (PATCH_UPDATE_EXISTING_DOCUMENT)
+###### (PATCH_UPDATE_DOCUMENT)
 
 #### `update base doc`
 ```js
 platformUserApiCannon
-  .PATCH_UPDATE_EXISTING_DOCUMENT({
+  .PATCH_UPDATE_DOCUMENT({
     documentObj: {
       id: '<initialBaseDocId>',
       email: 'updated@gmail.com',
@@ -196,7 +196,7 @@ platformUserApiCannon
 #### `update sub docs`
 ```js
 platformUserApiCannon
-  .PATCH_UPDATE_EXISTING_DOCUMENT({
+  .PATCH_UPDATE_DOCUMENT({
     documentObj: {
       id: '<initialBaseDocId>',
       social_docs: [
@@ -214,10 +214,10 @@ platformUserApiCannon
 ```
 ---
 ### Delete Base Doc
-###### (PATCH_DELETE_EXSITING_BASE_DOC)
+###### (PATCH_DELETE_BASE_DOC)
 ---
 ### Delete Sub Docs
-###### (PATCH_DELETE_EXSITING_SUB_DOCS)
+###### (PATCH_DELETE_SUB_DOCS)
 ---
 ### Update User
 ###### (PATCH_UPDATE_USER)

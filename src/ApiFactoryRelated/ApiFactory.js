@@ -6,9 +6,9 @@ const {
   POST_CREATE_USER,
   GET_USER,
   PATCH_ADD_DOCUMENTS,
-  PATCH_UPDATE_EXISTING_DOCUMENT,
-  PATCH_DELETE_EXSITING_BASE_DOC,
-  PATCH_DELETE_EXSITING_SUB_DOCS,
+  PATCH_UPDATE_DOCUMENT,
+  PATCH_DELETE_BASE_DOC,
+  PATCH_DELETE_SUB_DOCS,
   PATCH_UPDATE_USER,
   PATCH_USER_PERMISSION,
   // ---------------------------------
@@ -117,8 +117,8 @@ class ApiFactory {
     });
   }
 
-  PATCH_UPDATE_EXISTING_DOCUMENT({ reqBody, documentObj }) {
-    return apiRequests.users[PATCH_UPDATE_EXISTING_DOCUMENT]({
+  PATCH_UPDATE_DOCUMENT({ reqBody, documentObj }) {
+    return apiRequests.users[PATCH_UPDATE_DOCUMENT]({
       reqBody,
       documentObj,
       user_id: this.user_id,
@@ -131,8 +131,8 @@ class ApiFactory {
     });
   }
 
-  PATCH_DELETE_EXSITING_BASE_DOC({ reqBody, documentId }) {
-    return apiRequests.users[PATCH_DELETE_EXSITING_BASE_DOC]({
+  PATCH_DELETE_BASE_DOC({ reqBody, documentId }) {
+    return apiRequests.users[PATCH_DELETE_BASE_DOC]({
       reqBody,
       documentId,
       user_id: this.user_id,
@@ -145,14 +145,14 @@ class ApiFactory {
     });
   }
 
-  PATCH_DELETE_EXSITING_SUB_DOCS({
+  PATCH_DELETE_SUB_DOCS({
     reqBody,
     base_document_id,
     physicalDocIds,
     socialDocIds,
     virtualDocIds,
   }) {
-    return apiRequests.users[PATCH_DELETE_EXSITING_SUB_DOCS]({
+    return apiRequests.users[PATCH_DELETE_SUB_DOCS]({
       reqBody,
       base_document_id,
       physicalDocIds,
