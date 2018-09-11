@@ -40,11 +40,20 @@
 
 
 - [X] PATCH_UPDATE_EXISTING_DOCUMENT
-  - create user
-  - add doc with email "test@gmail.com"
-  - update email to "update@gmail.com"
-  - `expect eamil to be "update@gmail.com"`
-  - delete user
+  - update base doc
+    - create user
+    - add doc with email "test@gmail.com"
+    - update email to "update@gmail.com"
+    - `expect eamil to be "update@gmail.com"`
+    - delete user
+
+  - update sub docs
+    - create user
+    - add doc with facebook document_value: https://www.facebook.com/beforeUpdate
+    - update facebook value to https://www.facebook.com/afterUpdate
+    - `expect main doc id to be same`
+    - `expect facebook value to be "https://www.facebook.com/afterUpdate"`
+    - delete user
 
 
 - [x] PATCH_DELETE_EXSITING_BASE_DOC

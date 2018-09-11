@@ -9,35 +9,14 @@ npm installation synapsefi-ui axios lodash
 `synapsefi-js-api-wrapper` was built to simplify api requests to synapsefi's core public apis.
 
 
-## Table of Contents
-- [Installation](#installation)
-- [Motivation](#motivation)
-- [Setup](#setup)
-
-- [Users Api Request Examples](#users-api-request-examples)
-  - [GET_ALL_CLIENT_USERS](#get-all-client-users)
-    - with no argument
-    - search by name or email (query)
-    - specific page and per page (page, per_page)
-    - conbining query, page, and per_page
-
-  - [POST_CREATE_USER](#create-user)
-  - [GET_USER](#get-user)
-  - [PATCH_ADD_DOCUMENTS](#add-document)
-  - [PATCH_UPDATE_EXISTING_DOCUMENT](#update-exsiting-document)
-  - [PATCH_DELETE_EXSITING_BASE_DOC](#delete-base-doc)
-  - [PATCH_DELETE_EXSITING_SUB_DOCS](#delete-sub-docs)
-  - [PATCH_UPDATE_USER](#update-user)
-  - [PATCH_USER_PERMISSION](#update-user-permission)
-
-
 ## Setup
 ApiFactory generates instance of apiCannon.
 We decide to name an instance as apiCannon because all it does is firing api calls.
 User of this library can declare variable with diffrent naming convention.
 
 ```js
-import ApiFactory from 'synapsefi-js-api-wrapper';
+import ApiFactory from 'synapsefi-js-api-wrapper'; // for client
+// const ApiFactory = require('synapsefi-js-api-wrapper'); // for node
 
 const platformUserApiCannon = new ApiFactory({
   host: 'sandbox or production host(ex: https://uat-api.synapsefi.com)',
@@ -61,6 +40,31 @@ const endUserApiCannon = new ApiFactory({
   refresh_token: '<user_id> of end user',
 });
 ```
+
+
+## Table of Contents
+- [Installation](#installation)
+- [Motivation](#motivation)
+- [Setup](#setup)
+
+- [Users Api Request Examples](#users-api-request-examples)
+  - [GET_ALL_CLIENT_USERS](#get-all-client-users)
+    - with no argument
+    - search by name or email (query)
+    - specific page and per page (page, per_page)
+    - conbining query, page, and per_page
+
+  - [POST_CREATE_USER](#create-user)
+  - [GET_USER](#get-user)
+  - [PATCH_ADD_DOCUMENTS](#add-document)
+  - [PATCH_UPDATE_EXISTING_DOCUMENT](#update-exsiting-document)
+    - update base doc
+    - update sub docs
+  - [PATCH_DELETE_EXSITING_BASE_DOC](#delete-base-doc)
+  - [PATCH_DELETE_EXSITING_SUB_DOCS](#delete-sub-docs)
+  - [PATCH_UPDATE_USER](#update-user)
+  - [PATCH_USER_PERMISSION](#update-user-permission)
+
 
 ## Users Api Request Examples
 
@@ -115,7 +119,7 @@ platformUserApiCannon
 ###### (POST_CREATE_USER)
 ```js
 const reqBody = {
-  logins: [{ email: 'email@gmial.com' }],
+  logins: [{ email: 'email@email.com' }],
   phone_numbers: ['123.123.1233'],
   legal_names: ['John Doe'],
 };
@@ -173,6 +177,41 @@ platformUserApiCannon
 ---
 ### Update Exsiting Document
 ###### (PATCH_UPDATE_EXISTING_DOCUMENT)
+
+#### `update base doc`
+```js
+platformUserApiCannon
+  .PATCH_UPDATE_EXISTING_DOCUMENT({
+    documentObj: {
+      id: '<initialBaseDocId>',
+      email: 'updated@gmail.com',
+    },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
+> ---
+
+#### `update sub docs`
+```js
+platformUserApiCannon
+  .PATCH_UPDATE_EXISTING_DOCUMENT({
+    documentObj: {
+      id: '<initialBaseDocId>',
+      social_docs: [
+        {
+          id: '<facebookDocId>',
+          document_value: 'https://www.facebook.com/afterUpdate',
+          document_type: 'FACEBOOK',
+        },
+      ],
+    },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 ---
 ### Delete Base Doc
 ###### (PATCH_DELETE_EXSITING_BASE_DOC)

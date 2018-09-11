@@ -22,42 +22,90 @@ const documentObj = {
   address_country_code: 'US',
   social_docs: [
     {
-      document_value: 'https://www.facebook.com/validasdf',
+      document_value: 'https://www.facebook.com/beforeUpdate',
       document_type: 'FACEBOOK',
     },
   ],
 };
 
-// - [X] PATCH_UPDATE_EXISTING_DOCUMENT
-//   - create user
-//   - add doc with email "test@gmail.com"
-//   - update email to "update@gmail.com"
-//   - `expect eamil to be "update@gmail.com"`
-//   - delete user
-it.only('PATCH_UPDATE_EXISITING_DOCUMENT', async () => {
-  const { endUserApiCannon } = await testHelperFuncs.createUser();
+describe('PATCH_UPDATE_EXISITING_DOCUMENT', () => {
+  // - update base doc
+  //   - create user
+  //   - add doc with email "test@gmail.com"
+  //   - update email to "update@gmail.com"
+  //   - `expect eamil to be "update@gmail.com"`
+  //   - delete user
+  it('update base doc', async () => {
+    const { endUserApiCannon } = await testHelperFuncs.createUser();
 
-  const { data: { documents: initialDocuments } } = await endUserApiCannon.PATCH_ADD_DOCUMENTS({
-    documentObj,
+    const { data: { documents: initialDocuments } } = await endUserApiCannon.PATCH_ADD_DOCUMENTS({
+      documentObj,
+    });
+
+    const { id: initialDocId, email: initialEmail } = initialDocuments[0];
+
+    expect(initialEmail).to.equal('test@gmail.com');
+
+    const {
+      data: { documents: afterDocuments },
+    } = await endUserApiCannon.PATCH_UPDATE_EXISTING_DOCUMENT({
+      documentObj: {
+        id: initialDocId,
+        email: 'updated@gmail.com',
+      },
+    });
+
+    const { id: afterDocId, email: afterEmail } = afterDocuments[0];
+
+    expect(afterEmail).to.equal('updated@gmail.com');
+    expect(initialDocId).to.not.equal(afterDocId);
+
+    await testHelperFuncs.deleteMySelf(endUserApiCannon);
   });
 
-  const { id: initialDocId, email: initialEmail } = initialDocuments[0];
+  // - update sub docs
+  //   - create user
+  //   - add doc with facebook document_value: https://www.facebook.com/beforeUpdate
+  //   - update facebook value to https://www.facebook.com/afterUpdate
+  //   - `expect main doc id to be same`
+  //   - `expect facebook value to be "https://www.facebook.com/afterUpdate"`
+  //   - delete user
+  it.only('update sub docs', async () => {
+    const { endUserApiCannon } = await testHelperFuncs.createUser();
 
-  expect(initialEmail).to.equal('test@gmail.com');
+    const { data: { documents: initialDocuments } } = await endUserApiCannon.PATCH_ADD_DOCUMENTS({
+      documentObj,
+    });
 
-  const {
-    data: { documents: afterDocuments },
-  } = await endUserApiCannon.PATCH_UPDATE_EXISTING_DOCUMENT({
-    documentObj: {
+    const {
       id: initialDocId,
-      email: 'updated@gmail.com',
-    },
+      social_docs: { 0: { id: facebookDocId, document_value: beforeDocValue } },
+    } = initialDocuments[0];
+
+    const {
+      data: { documents: afterDocuments },
+    } = await endUserApiCannon.PATCH_UPDATE_EXISTING_DOCUMENT({
+      documentObj: {
+        id: initialDocId,
+        social_docs: [
+          {
+            id: facebookDocId,
+            document_value: 'https://www.facebook.com/afterUpdate',
+            document_type: 'FACEBOOK',
+          },
+        ],
+      },
+    });
+
+    const {
+      id: afterDocId,
+      social_docs: { 0: { document_value: afterDocValue } },
+    } = afterDocuments[0];
+
+    expect(initialDocId).to.equal(afterDocId);
+    expect(beforeDocValue).to.equal('https://www.facebook.com/beforeUpdate');
+    expect(afterDocValue).to.equal('https://www.facebook.com/afterUpdate');
+
+    await testHelperFuncs.deleteMySelf(endUserApiCannon);
   });
-
-  const { id: afterDocId, email: afterEmail } = afterDocuments[0];
-
-  expect(afterEmail).to.equal('updated@gmail.com');
-  expect(initialDocId).to.not.equal(afterDocId);
-
-  await testHelperFuncs.deleteMySelf(endUserApiCannon);
 });
