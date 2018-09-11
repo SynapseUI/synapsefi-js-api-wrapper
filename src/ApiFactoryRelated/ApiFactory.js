@@ -5,7 +5,7 @@ const {
   GET_ALL_CLIENT_USERS,
   POST_CREATE_USER,
   GET_USER,
-  PATCH_ADD_DOCUMENTS,
+  PATCH_ADD_DOCUMENT,
   PATCH_UPDATE_DOCUMENT,
   PATCH_DELETE_BASE_DOC,
   PATCH_DELETE_SUB_DOCS,
@@ -103,8 +103,8 @@ class ApiFactory {
     });
   }
 
-  PATCH_ADD_DOCUMENTS({ reqBody, documentObj }) {
-    return apiRequests.users[PATCH_ADD_DOCUMENTS]({
+  PATCH_ADD_DOCUMENT({ reqBody, documentObj }) {
+    return apiRequests.users[PATCH_ADD_DOCUMENT]({
       reqBody,
       documentObj,
       user_id: this.user_id,

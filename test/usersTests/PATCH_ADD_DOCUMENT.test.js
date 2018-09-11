@@ -33,7 +33,7 @@ businessDocumentObj.entity_type = 'LLC';
 businessDocumentObj.name = 'Business Name';
 businessDocumentObj.email = 'business@email.com';
 
-// - [x] PATCH_ADD_DOCUMENTS
+// - [x] PATCH_ADD_DOCUMENT
 //   - create user
 //   - add one personal document
 //   - any change with legal names ?
@@ -41,20 +41,20 @@ businessDocumentObj.email = 'business@email.com';
 //   - any change wiht legal names ?
 //   - `expect doc len to 2 `
 //   - delete user
-it('PATCH_ADD_DOCUMENTS', async () => {
+it('PATCH_ADD_DOCUMENT', async () => {
   const { endUserApiCannon } = await testHelperFuncs.createUser({
     legal_names: ['Initial Name, Initial Name2'],
   });
 
   const {
     data: { legal_names: legalNameAfterPersonalDoc },
-  } = await endUserApiCannon.PATCH_ADD_DOCUMENTS({
+  } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
     documentObj: personalDocumentObj,
   });
 
   const {
     data: { legal_names: legalNameAfterBusinessDoc },
-  } = await endUserApiCannon.PATCH_ADD_DOCUMENTS({
+  } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
     documentObj: businessDocumentObj,
   });
 

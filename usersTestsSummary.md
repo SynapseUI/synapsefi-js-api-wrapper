@@ -29,13 +29,13 @@
   - create user legal_name with "Get User"
   - `expect get user to have response with legal name "Get User"`
 
-- [x] PATCH_ADD_DOCUMENTS
+- [x] PATCH_ADD_DOCUMENT
   - create user
   - add one personal document
   - any change with legal names ?
   - add one business document 
   - any change wiht legal names ?
-  - `expect doc len to 2 `
+  - `expect doc len to 2`
   - delete user
 
 

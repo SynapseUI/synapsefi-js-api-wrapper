@@ -57,9 +57,10 @@ module.exports.addDocument = async (
     email: 'test@test.com',
     name: 'Test User',
     userType: 'BUSINESS',
+    endUserApiCannon: undefined
   }
 ) => {
-  const { email, name, userType } = obj;
+  const { email, name, userType, endUserApiCannon } = obj;
 
   const documentObj = {
     email,
@@ -85,6 +86,6 @@ module.exports.addDocument = async (
     ],
   };
 
-  const { data } = await endUser.PATCH_ADD_DOCUMENTS({ documentObj });
+  const { data } = await endUserApiCannon.PATCH_ADD_DOCUMENT({ documentObj });
   return { data };
 };

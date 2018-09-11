@@ -1,6 +1,6 @@
-const { PATCH_ADD_DOCUMENTS, PATCH_UPDATE_DOCUMENT } = require('../constants/apiReqNames');
+const { PATCH_ADD_DOCUMENT, PATCH_UPDATE_DOCUMENT } = require('../constants/apiReqNames');
 
-module.exports[PATCH_ADD_DOCUMENTS] = {
+module.exports[PATCH_ADD_DOCUMENT] = {
   email: 'dummyEmail@gamil.com',
   phone_number: '901.111.1111',
   ip: '::1',

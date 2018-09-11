@@ -7,7 +7,7 @@ const {
   GET_ALL_CLIENT_USERS,
   POST_CREATE_USER,
   GET_USER,
-  PATCH_ADD_DOCUMENTS,
+  PATCH_ADD_DOCUMENT,
   PATCH_UPDATE_DOCUMENT,
   PATCH_DELETE_BASE_DOC,
   PATCH_DELETE_SUB_DOCS,
@@ -104,7 +104,7 @@ module.exports[GET_USER] = ({
   );
 };
 
-module.exports[PATCH_ADD_DOCUMENTS] = ({
+module.exports[PATCH_ADD_DOCUMENT] = ({
   reqBody,
   documentObj,
   user_id,
@@ -120,7 +120,7 @@ module.exports[PATCH_ADD_DOCUMENTS] = ({
   }
 
   const queryAddedUrl = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[PATCH_ADD_DOCUMENTS]}`,
+    originalUrl: `${host}${staticEndpoints[PATCH_ADD_DOCUMENT]}`,
   });
 
   const reqBodyIfOtherReqBodyIsUndefined = { documents: [documentObj] };

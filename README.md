@@ -56,7 +56,7 @@ const endUserApiCannon = new ApiFactory({
 
   - [POST_CREATE_USER](#create-user)
   - [GET_USER](#get-user)
-  - [PATCH_ADD_DOCUMENTS](#add-document)
+  - [PATCH_ADD_DOCUMENT](#add-document)
   - [PATCH_UPDATE_DOCUMENT](#update-exsiting-document)
     - update base doc
     - update sub docs
@@ -140,7 +140,7 @@ platformUserApiCannon.GET_USER().then(({ data }) => {
 
 ---
 ### Add Document
-###### (PATCH_ADD_DOCUMENTS)
+###### (PATCH_ADD_DOCUMENT)
 ```js
 const personalDocumentObj = {
   email: 'personal@email.com',
@@ -167,7 +167,7 @@ const personalDocumentObj = {
 };
 
 platformUserApiCannon
-  .PATCH_ADD_DOCUMENTS({
+  .PATCH_ADD_DOCUMENT({
     documentObj: personalDocumentObj,
   })
   .then(({ data }) => {

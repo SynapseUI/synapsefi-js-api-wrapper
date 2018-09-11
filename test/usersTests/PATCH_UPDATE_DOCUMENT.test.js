@@ -38,7 +38,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
   it('update base doc', async () => {
     const { endUserApiCannon } = await testHelperFuncs.createUser();
 
-    const { data: { documents: initialDocuments } } = await endUserApiCannon.PATCH_ADD_DOCUMENTS({
+    const { data: { documents: initialDocuments } } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
       documentObj,
     });
 
@@ -70,10 +70,10 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
   //   - `expect main doc id to be same`
   //   - `expect facebook value to be "https://www.facebook.com/afterUpdate"`
   //   - delete user
-  it.only('update sub docs', async () => {
+  it('update sub docs', async () => {
     const { endUserApiCannon } = await testHelperFuncs.createUser();
 
-    const { data: { documents: initialDocuments } } = await endUserApiCannon.PATCH_ADD_DOCUMENTS({
+    const { data: { documents: initialDocuments } } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
       documentObj,
     });
 
