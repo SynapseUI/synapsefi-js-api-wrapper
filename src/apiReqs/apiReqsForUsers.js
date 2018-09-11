@@ -121,7 +121,6 @@ module.exports[PATCH_ADD_DOCUMENTS] = ({
 
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_ADD_DOCUMENTS]}`,
-    full_dehydrate: 'yes',
   });
 
   const reqBodyIfOtherReqBodyIsUndefined = { documents: [documentObj] };

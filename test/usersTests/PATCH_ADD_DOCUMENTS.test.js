@@ -41,7 +41,7 @@ businessDocumentObj.email = 'business@email.com';
 //   - any change wiht legal names ?
 //   - `expect doc len to 2 `
 //   - delete user
-it.only('PATCH_ADD_DOCUMENTS', async () => {
+it('PATCH_ADD_DOCUMENTS', async () => {
   const { endUserApiCannon } = await testHelperFuncs.createUser({
     legal_names: ['Initial Name, Initial Name2'],
   });
