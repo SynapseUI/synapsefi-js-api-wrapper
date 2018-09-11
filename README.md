@@ -137,6 +137,39 @@ platformUserApiCannon.GET_USER().then(({ data }) => {
 ---
 ### Add Document
 ###### (PATCH_ADD_DOCUMENTS)
+```js
+const personalDocumentObj = {
+  email: 'personal@email.com',
+  phone_number: '1231231233',
+  ip: '127.0.0.1',
+  name: 'Personal Name',
+  alias: 'Test',
+  entity_type: 'M',
+  entity_scope: 'Arts & Entertainment',
+  day: 2,
+  month: 5,
+  year: 1989,
+  address_street: '1 Market St.',
+  address_city: 'SF',
+  address_subdivision: 'CA',
+  address_postal_code: '94114',
+  address_country_code: 'US',
+  social_docs: [
+    {
+      document_value: 'https://www.facebook.com/validasdf',
+      document_type: 'FACEBOOK',
+    },
+  ],
+};
+
+platformUserApiCannon
+  .PATCH_ADD_DOCUMENTS({
+    documentObj: personalDocumentObj,
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 ---
 ### Update Exsiting Document
 ###### (PATCH_UPDATE_EXISTING_DOCUMENT)

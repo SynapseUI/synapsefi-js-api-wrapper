@@ -6,8 +6,8 @@ const testHelperFuncs = require('../testHelper/testHelperFuncs');
 
 const personalDocumentObj = {
   email: 'personal@email.com',
-  phone_number: '901.111.1111',
-  ip: '::1',
+  phone_number: '1231231233',
+  ip: '127.0.0.1',
   name: 'Personal Name',
   alias: 'Test',
   entity_type: 'M',
