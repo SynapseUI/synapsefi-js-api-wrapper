@@ -127,6 +127,7 @@ platformUserApiCannon.POST_CREATE_USER({ reqBody }).then(({ data }) => {
 
 ---
 ### Get User
+###### (GET_USER)
 ```js
 platformUserApiCannon.GET_USER().then(({ data }) => {
   console.log('data: ', data);
@@ -135,19 +136,19 @@ platformUserApiCannon.GET_USER().then(({ data }) => {
 
 ---
 ### Add Document
-
+###### (PATCH_ADD_DOCUMENTS)
 ---
 ### Update Exsiting Document
-
+###### (PATCH_UPDATE_EXISTING_DOCUMENT)
 ---
 ### Delete Base Doc
-
+###### (PATCH_DELETE_EXSITING_BASE_DOC)
 ---
 ### Delete Sub Docs
-
+###### (PATCH_DELETE_EXSITING_SUB_DOCS)
 ---
 ### Update User
-
+###### (PATCH_UPDATE_USER)
 ---
 ### Update User Permission
-
+###### (PATCH_USER_PERMISSION)

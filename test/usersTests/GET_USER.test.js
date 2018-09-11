@@ -6,7 +6,7 @@ const testHelperFuncs = require('../testHelper/testHelperFuncs');
 // -[x] GET_USER
 //   - create user legal_name with "Get User"
 //   - `expect get user to have response with legal name "Get User"`
-it.only('GET_USER', async () => {
+it('GET_USER', async () => {
   const { endUserApiCannon } = await testHelperFuncs.createUser({ legal_names: ['Get User'] });
 
   const {
