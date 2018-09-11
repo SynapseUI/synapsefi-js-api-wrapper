@@ -70,6 +70,8 @@
   - `expect response from get user to have legal name "After Update"`
   - delete user
 
+  - ? what happen if I remove all legal names ?
+
 
 - [x] PATCH_USER_PERMISSION
   - Lock user
