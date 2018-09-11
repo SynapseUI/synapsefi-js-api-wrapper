@@ -6,7 +6,7 @@ npm installation synapsefi-ui axios lodash
 ```
 
 ## Motivation
-`synapsefi-js-api-wrapper` was built to simplify api requrest to synapsefi's core public apis.
+`synapsefi-js-api-wrapper` was built to simplify api requests to synapsefi's core public apis.
 
 
 ## Table of Contents
