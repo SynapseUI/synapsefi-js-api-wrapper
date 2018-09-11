@@ -57,16 +57,16 @@ module.exports.addDocument = async (
     email: 'test@test.com',
     name: 'Test User',
     userType: 'BUSINESS',
-    endUserApiCannon: undefined
+    endUserApiCannon: undefined,
   }
 ) => {
   const { email, name, userType, endUserApiCannon } = obj;
 
   const documentObj = {
-    email,
+    email: email === undefined ? 'test@test.com' : email,
     phone_number: '901.111.1111',
     ip: '::1',
-    name,
+    name: name === undefined ? 'Test User' : name,
     alias: 'Test',
     entity_type: userType === 'BUSINESS' ? 'LLC' : 'M',
     entity_scope: 'Arts & Entertainment',

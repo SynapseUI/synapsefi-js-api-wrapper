@@ -22,9 +22,9 @@ const platformUserApiCannon = new ApiFactory({
   host: 'sandbox or production host(ex: https://uat-api.synapsefi.com)',
   client_id: '<clinet id>',
   client_secret: '<clinet secret>',
-  oauth_key: '<oauth_key>',
   fingerprint: '<fingerprint>',
   ip_address: '<user_id> of platform',
+  oauth_key: '<oauth_key>',
   user_id: '<user_id> of platform',
   refresh_token: '<user_id> of platform',
 });
@@ -33,9 +33,9 @@ const endUserApiCannon = new ApiFactory({
   host: platformUserApiCannon.host,
   client_id: platformUserApiCannon.client_id,
   client_secret: platformUserApiCannon.client_secret,
-  oauth_key: platformUserApiCannon.oauth_key,
   fingerprint: platformUserApiCannon.fingerprint,
   ip_address: platformUserApiCannon.ip_address,
+  oauth_key: '<oauth_key> of end user',
   user_id: '<user_id> of end user',
   refresh_token: '<user_id> of end user',
 });
@@ -215,6 +215,13 @@ platformUserApiCannon
 ---
 ### Delete Base Doc
 ###### (PATCH_DELETE_BASE_DOC)
+```js
+platformUserApiCannon
+  .PATCH_DELETE_BASE_DOC({ documentId: '<document id of base doc>' })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 ---
 ### Delete Sub Docs
 ###### (PATCH_DELETE_SUB_DOCS)
