@@ -147,14 +147,14 @@ class ApiFactory {
 
   PATCH_DELETE_SUB_DOCS({
     reqBody,
-    base_document_id,
+    baseDocId,
     physicalDocIds,
     socialDocIds,
     virtualDocIds,
   }) {
     return apiRequests.users[PATCH_DELETE_SUB_DOCS]({
       reqBody,
-      base_document_id,
+      baseDocId,
       physicalDocIds,
       socialDocIds,
       virtualDocIds,

@@ -208,7 +208,7 @@ module.exports[PATCH_DELETE_BASE_DOC] = ({
 module.exports[PATCH_DELETE_SUB_DOCS] = ({
   reqBody,
   user_id,
-  base_document_id,
+  baseDocId,
   physicalDocIds,
   socialDocIds,
   virtualDocIds,
@@ -229,7 +229,6 @@ module.exports[PATCH_DELETE_SUB_DOCS] = ({
     subDocs.physical_docs = addDeleteDocument(physicalDocIds);
   }
 
-  console.log('socialDocIds: ', socialDocIds);
   if (socialDocIds !== undefined) {
     subDocs.social_docs = addDeleteDocument(socialDocIds);
   }
@@ -241,7 +240,7 @@ module.exports[PATCH_DELETE_SUB_DOCS] = ({
   const reqBodyIfOtherReqBodyIsUndefined = {
     documents: [
       {
-        id: base_document_id,
+        id: baseDocId,
         ...subDocs,
       },
     ],

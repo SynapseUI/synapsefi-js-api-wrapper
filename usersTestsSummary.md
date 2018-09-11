@@ -67,9 +67,9 @@
 - [X] PATCH_DELETE_SUB_DOCS
   - create user
   - add doc (has facebook by default)
-  - delete facebook and email (both social docs)
-  - doc should not have facebook and email
-  - `expect social doc to not have facebook and email`
+  - get all social doc ids
+  - delete all social docs
+  - `expect social docs legnth === 0`
   - delete user
 
 

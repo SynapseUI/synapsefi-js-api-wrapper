@@ -225,6 +225,21 @@ platformUserApiCannon
 ---
 ### Delete Sub Docs
 ###### (PATCH_DELETE_SUB_DOCS)
+```js
+platformUserApiCannon
+  .PATCH_DELETE_SUB_DOCS({
+    baseDocId: '<base_doc_id>',
+    socialDocIds: [
+      '<social_doc_id 1>',
+      '<social_doc_id 2>',
+      'fda60784d6375bc44eda...',
+      '28d9177b22c127d9a51d...',
+    ],
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 ---
 ### Update User
 ###### (PATCH_UPDATE_USER)
