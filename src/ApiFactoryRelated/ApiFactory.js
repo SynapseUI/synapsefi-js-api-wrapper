@@ -145,13 +145,7 @@ class ApiFactory {
     });
   }
 
-  PATCH_DELETE_SUB_DOCS({
-    reqBody,
-    baseDocId,
-    physicalDocIds,
-    socialDocIds,
-    virtualDocIds,
-  }) {
+  PATCH_DELETE_SUB_DOCS({ reqBody, baseDocId, physicalDocIds, socialDocIds, virtualDocIds }) {
     return apiRequests.users[PATCH_DELETE_SUB_DOCS]({
       reqBody,
       baseDocId,
@@ -197,19 +191,23 @@ class ApiFactory {
   }
 
   // ------------------------------------------------------------------------
-
   POST_OAUTH_USER() {
-    return apiRequests.oauth[POST_OAUTH_USER]({
-      user_id: this.user_id,
-      refresh_token: this.refresh_token,
-      host: this.host,
-      client_id: this.client_id,
-      client_secret: this.client_secret,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
-    });
+    return apiRequests.oauth
+      [POST_OAUTH_USER]({
+        user_id: this.user_id,
+        refresh_token: this.refresh_token,
+        host: this.host,
+        client_id: this.client_id,
+        client_secret: this.client_secret,
+        fingerprint: this.fingerprint,
+        ip_address: this.ip_address,
+      })
+      .then(({ data }) => {
+        this.oauth_key = data.oauth_key;
+        this.refresh_token = data.refresh_token;
+        return { data };
+      });
   }
-
   // ------------------------------------------------------------------------
   //
   //

@@ -12,7 +12,7 @@ npm installation synapsefi-ui axios lodash
 - [Installation](#installation)
 - [Motivation](#motivation)
 - [Setup](#setup)
-
+---
 - [Users Api Request Examples](#users-api-request-examples)
   - [GET_ALL_CLIENT_USERS](#get-all-client-users)
     - with no argument
@@ -34,6 +34,9 @@ npm installation synapsefi-ui axios lodash
   - [PATCH_USER_PERMISSION](#update-user-permission)
     - lock user
     - delete user
+---
+- [Oauth Key](#oauth-key)
+  - [POST_OAUTH_USER](#set-oauth-key-to-apiCannon)
 
 ## Setup
 ApiFactory generates instance of apiCannon.
@@ -52,18 +55,18 @@ const platformUserApiCannon = new ApiFactory({
   ip_address: '<user_id> of platform',
   oauth_key: '<oauth_key>',
   user_id: '<user_id> of platform',
-  refresh_token: '<user_id> of platform',
+  refresh_token: '<refresh_token> of platform',
 });
 
 const endUserApiCannon = new ApiFactory({
   host: platformUserApiCannon.host,
   client_id: platformUserApiCannon.client_id,
   client_secret: platformUserApiCannon.client_secret,
-  fingerprint: platformUserApiCannon.fingerprint,
   ip_address: platformUserApiCannon.ip_address,
-  oauth_key: '<oauth_key> of end user',
-  user_id: '<user_id> of end user',
-  refresh_token: '<user_id> of end user',
+  user_id: '<user_id> of the end user',
+  fingerprint: '<finger print when this user is created>',
+  refresh_token: '<refresh_token> of the end user',
+  oauth_key: '<oauth_key> of the end user',
 });
 ```
 
@@ -304,3 +307,22 @@ platformUserApiCannon
     console.log('data: ', data);
   });
  ```
+> > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > ---
+> > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > --- 
+ ## Oauth Key
+
+ ```js
+platformUserApiCannon.oauth_key = 'fake oauth key';
+console.log('platformUserApiCannon.oauth_key: ', platformUserApiCannon.oauth_key); // fake oauth key
+
+platformUserApiCannon.POST_OAUTH_USER().then(({ data }) => {
+  console.log('data: ', data);
+});
+
+// Calling "POST_OAUTH_USER" set new oauth_key to platformUserApiCannon.
+// platformUserApiCannon.oauth_key === data.oauth_key
+console.log('platformUserApiCannon.oauth_key: ', platformUserApiCannon.oauth_key); // data.oauth_key
+```
+
+> > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > ---
+> > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > --- 

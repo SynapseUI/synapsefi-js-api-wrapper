@@ -14,6 +14,7 @@ module.exports[POST_OAUTH_USER] = ({
   client_secret,
   fingerprint,
 }) => {
+  console.log('refresh_token: ', refresh_token);
   return axios.post(
     replacePathParams({
       originalUrl: `${host}${staticEndpoints[POST_OAUTH_USER]}`,
