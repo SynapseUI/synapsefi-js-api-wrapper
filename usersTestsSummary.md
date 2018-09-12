@@ -74,12 +74,47 @@
 
 
 - [X] PATCH_UPDATE_USER
-  - create user with legal name ["Before Update"]
-  - update legal name to ["After Update"]
-  - `expect response from get user to have legal name "After Update"`
-  - delete user
+  - add and remove legal_name
+    - create user with legal_names ["User One"]
+    - add legal_name "User Two" 
+    - add legal_name "User Three"
+    - add remove_legal_name "User Two"
+    - add remove_legal_name "User Three"
+    - `expect legal_name to increase then decrease`
+    - delete user
+    - ? what happen if I remove all legal names ?
+  
 
-  - ? what happen if I remove all legal names ?
+- [X] PATCH_UPDATE_USER
+  - update legal name, login email, password, and phone number
+    - create user with legal_names ["Before User"], email: before@email.com, phone_number: 1231231233
+    - add legal name "After User", 
+    - add login email -> update@email.com, password: test1234
+    - add phone_number -> 9879879877
+    - remove legal_name "Before User"
+    - remove phone_number "1231231233"
+    - remove email before@email.com
+    - `expect legal_name to be User Two`
+    - `expect login email: update@email.com`
+    - `expect phone number to be 9879879877`
+    - delete user
+
+  - update cip_tag, public_note
+    - create uesr
+    - update cip_tag to PLATFORM
+    - update public_note to "updated public note"
+    - `expect cip tag to be "PLATFORM"`
+    - `expect public note to be "PLATFORM"`
+    - delete user
+
+  
+  
+  
+  
+  
+
+
+  
 
 
 - [x] PATCH_USER_PERMISSION

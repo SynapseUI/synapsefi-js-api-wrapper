@@ -122,7 +122,7 @@ module.exports[PATCH_ADD_DOCUMENT] = ({
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_ADD_DOCUMENT]}`,
   });
-  
+
   const reqBodyIfOtherReqBodyIsUndefined = { documents: [documentObj] };
 
   return axios.patch(

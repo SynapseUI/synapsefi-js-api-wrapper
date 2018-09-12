@@ -243,6 +243,7 @@ platformUserApiCannon
 ---
 ### Update User
 ###### (PATCH_UPDATE_USER)
+
 ---
 ### Update User Permission
 ###### (PATCH_USER_PERMISSION)

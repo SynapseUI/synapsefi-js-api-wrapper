@@ -10,7 +10,7 @@ const testHelperFuncs = require('../testHelper/testHelperFuncs');
 //   - delete all social docs
 //   - `expect social docs legnth === 0`
 //   - delete user
-it.only('PATCH_DELETE_SUB_DOCS', async () => {
+it('PATCH_DELETE_SUB_DOCS', async () => {
   const { endUserApiCannon } = await testHelperFuncs.createUser();
   await testHelperFuncs.addDocument({ endUserApiCannon });
 
