@@ -8,6 +8,32 @@ npm installation synapsefi-ui axios lodash
 ## Motivation
 `synapsefi-js-api-wrapper` was built to simplify api requests to synapsefi's core public apis.
 
+## Table of Contents
+- [Installation](#installation)
+- [Motivation](#motivation)
+- [Setup](#setup)
+
+- [Users Api Request Examples](#users-api-request-examples)
+  - [GET_ALL_CLIENT_USERS](#get-all-client-users)
+    - with no argument
+    - search by name or email (query)
+    - specific page and per page (page, per_page)
+    - conbining query, page, and per_page
+
+  - [POST_CREATE_USER](#create-user)
+  - [GET_USER](#get-user)
+  - [PATCH_ADD_DOCUMENT](#add-document)
+  - [PATCH_UPDATE_DOCUMENT](#update-exsiting-document)
+    - update base doc
+    - update sub docs
+  - [PATCH_DELETE_BASE_DOC](#delete-base-doc)
+  - [PATCH_DELETE_SUB_DOCS](#delete-sub-docs)
+  - [PATCH_UPDATE_USER](#update-user)
+    - update legal name, login email, password, and phone number
+    - update cip_tag, public_note
+  - [PATCH_USER_PERMISSION](#update-user-permission)
+    - lock user
+    - delete user
 
 ## Setup
 ApiFactory generates instance of apiCannon.
@@ -41,33 +67,6 @@ const endUserApiCannon = new ApiFactory({
 });
 ```
 
-
-## Table of Contents
-- [Installation](#installation)
-- [Motivation](#motivation)
-- [Setup](#setup)
-
-- [Users Api Request Examples](#users-api-request-examples)
-  - [GET_ALL_CLIENT_USERS](#get-all-client-users)
-    - with no argument
-    - search by name or email (query)
-    - specific page and per page (page, per_page)
-    - conbining query, page, and per_page
-
-  - [POST_CREATE_USER](#create-user)
-  - [GET_USER](#get-user)
-  - [PATCH_ADD_DOCUMENT](#add-document)
-  - [PATCH_UPDATE_DOCUMENT](#update-exsiting-document)
-    - update base doc
-    - update sub docs
-  - [PATCH_DELETE_BASE_DOC](#delete-base-doc)
-  - [PATCH_DELETE_SUB_DOCS](#delete-sub-docs)
-  - [PATCH_UPDATE_USER](#update-user)
-    - update legal name, login email, password, and phone number
-    - update cip_tag, public_note
-  - [PATCH_USER_PERMISSION](#update-user-permission)
-    - lock user
-    - delete user
 
 
 ## Users Api Request Examples
@@ -284,3 +283,24 @@ platformUserApiCannon
 ---
 ### Update User Permission
 ###### (PATCH_USER_PERMISSION)
+#### `lock user`
+ ```js
+ endUserApiCannon
+  .PATCH_USER_PERMISSION({
+    permissionStr: 'LOCKED',
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+ ```
+ > --- 
+#### `delete user`
+```js
+ endUserApiCannon
+  .PATCH_USER_PERMISSION({
+    permissionStr: 'MAKE-IT-GO-AWAY',
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+ ```

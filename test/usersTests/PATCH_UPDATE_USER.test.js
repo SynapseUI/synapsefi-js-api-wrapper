@@ -16,7 +16,7 @@ describe('PATCH_UPDATE_USER', () => {
   //   - `expect login email: update@email.com`
   //   - `expect phone number to be 9879879877`
   //   - delete user
-  it.only('update legal name, login email, password, and phone number, public_note', async () => {
+  it('update legal name, login email, password, and phone number, public_note', async () => {
     const { endUserApiCannon } = await testHelperFuncs.createUser({
       legal_names: ['Before User'],
       phone_numbers: ['1231231233'],
@@ -56,7 +56,7 @@ describe('PATCH_UPDATE_USER', () => {
   //   - `expect cip tag to be "PLATFORM"`
   //   - `expect public note to be "PLATFORM"`
   //   - delete user
-  it.only('update cip_tag', async () => {
+  it('update cip_tag', async () => {
     const { endUserApiCannon } = await testHelperFuncs.createUser();
 
     const {
