@@ -63,7 +63,11 @@ const endUserApiCannon = new ApiFactory({
   - [PATCH_DELETE_BASE_DOC](#delete-base-doc)
   - [PATCH_DELETE_SUB_DOCS](#delete-sub-docs)
   - [PATCH_UPDATE_USER](#update-user)
+    - update legal name, login email, password, and phone number
+    - update cip_tag, public_note
   - [PATCH_USER_PERMISSION](#update-user-permission)
+    - lock user
+    - delete user
 
 
 ## Users Api Request Examples
@@ -243,7 +247,40 @@ platformUserApiCannon
 ---
 ### Update User
 ###### (PATCH_UPDATE_USER)
+#### `update legal name, login email, password, and phone number`
+```js
+platformUserApiCannon
+  .PATCH_UPDATE_USER({
+    updateObj: {
+      legal_name: 'After User',
+      login: { email: 'after@email.com' },
+      phone_number: '9879879877',
+      remove_legal_name: 'Before User',
+      remove_login: { email: 'before@email.com' },
+      remove_phone_number: '1231231233',
+    },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 
+> ---
+#### `update cip_tag`
+```js
+platformUserApiCannon
+  .PATCH_UPDATE_USER({
+    updateObj: {
+      legal_name: 'After User',
+      cip_tag: 2,
+      // public_note: 'Eask just updated public note ~~~',
+    },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
+> If you include public note then cip tag will not be updated (bug ?)
 ---
 ### Update User Permission
 ###### (PATCH_USER_PERMISSION)
