@@ -264,4 +264,5 @@ class ApiFactory {
   //
 }
 
+ApiFactory.testFunc = ApiFactory;
 module.exports = ApiFactory;

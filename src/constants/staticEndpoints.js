@@ -32,9 +32,19 @@ module.exports = {
   // ------------------------------------------------------------------------
   //
   // NODES  ////////////////////////////////////////////////////////////////////////
-  [apiReqNames.GET_ALL_USER_NODES]: `/${VERSION}/users/:user_id/nodes`,
+  [apiReqNames.GET_ALL_USER_NODE]: `/${VERSION}/users/:user_id/nodes`,
+  [apiReqNames.GET_NODE]: `/${VERSION}/users/:user_id/nodes`,
   [apiReqNames.POST_CREATE_NODE]: `/${VERSION}/users/:user_id/nodes`,
   [apiReqNames.DELETE_NODE]: `/${VERSION}/users/:user_id/nodes/:node_id`,
+  [apiReqNames.POST_ACH_WITH_LOGIN]: `/${VERSION}/users/:user_id/nodes`,
+  [apiReqNames.POST_ACH_WITH_MFA]: `/${VERSION}/users/:user_id/nodes`,
+  [apiReqNames.PATCH_UPDATE_NODE]: `/${VERSION}/users/:user_id/nodes/:node_id`,
+  [apiReqNames.PATCH_REISSUE_DEBIT_CARD]: `/${VERSION}/users/:user_id/nodes/:node_id?reissue_card=YES`,
+  [apiReqNames.PATCH_REORDER_DEBIT_CARD]: `/${VERSION}/users/:user_id/nodes/:node_id?reorder_card=YES`,
+  [apiReqNames.POST_ACH_WITH_AC_RN]: `/${VERSION}/users/:user_id/nodes`,
+  [apiReqNames.PATCH_REINITIATE_MICRO_DEPOSIT]: `/${VERSION}/users/:user_id/nodes/:node_id?resend_micro=YES`,
+  [apiReqNames.PATCH_VERIFY_MICRO_DEPOSIT]: `/${VERSION}/users/:user_id/nodes/:node_id?`,
+
   // ///////////////////////////////////////////////////////////////////////////////
   //
   // TRANSACTION  ------------------------------------------------------------------

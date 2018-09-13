@@ -35,9 +35,18 @@
 ---
 
 - POST_CREATE_NODE
-  - > create "DEPOSIT-US" node
-  - `expect node type = "DEPOSIT-US"`
-  - delete node
+```js
+platformUserApiCannon
+  .POST_CREATE_NODE({
+    reqBody: {
+      type: 'DEPOSIT-US',
+      info: {
+        nickname: 'My Checking',
+      },
+    },
+  })
+  .then({ data });
+```
 
 ---
 
@@ -99,3 +108,5 @@
 helper
 - delete node
 - create deposit node with (nickname)
+
+
