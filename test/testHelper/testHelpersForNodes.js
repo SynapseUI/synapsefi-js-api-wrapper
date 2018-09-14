@@ -16,3 +16,11 @@ module.exports.createDepositNode = async (obj = { nickname: 'Default Deposit Nod
 
   return { node_id, initialTimeline };
 };
+
+module.exports.deleteAllNodeFromPlatformUser = async () => {
+  const { data: { nodes } } = await platformUserApiCannon.GET_ALL_USER_NODES();
+  nodes.forEach(async ({ _id }) => {
+    console.log('_id: ', _id);
+    await platformUserApiCannon.DELETE_NODE({ node_id: _id });
+  });
+};

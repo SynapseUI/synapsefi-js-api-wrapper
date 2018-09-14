@@ -44,7 +44,6 @@ module.exports[GET_ALL_USER_NODES] = ({
     per_page,
     type,
   });
-  console.log('queryAddedUrl: ', queryAddedUrl);
 
   return axios.get(
     replacePathParams({
