@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
-const testHelperFuncs = require('../testHelper/testHelperFuncs');
+const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('DELETE_NODE', () => {
   // - DELETE_NODE
@@ -9,17 +9,8 @@ describe('DELETE_NODE', () => {
   //   - > delete node
   //   - `expect last note = "Node's 'is_active' toggled to False"`
   //   - delete node
-  it.only('delete node', async () => {
-    const {
-      data: { nodes: { [0]: { _id: node_id, timeline: initialTimeline } } },
-    } = await platformUserApiCannon.POST_CREATE_NODE({
-      reqBody: {
-        type: 'DEPOSIT-US',
-        info: {
-          nickname: 'My Checking',
-        },
-      },
-    });
+  it('delete node', async () => {
+    const { node_id, initialTimeline } = await testHelpersForNodes.createDepositNode();
 
     const initialNote = initialTimeline[0].note;
     expect(initialNote).to.equal('Node created.');

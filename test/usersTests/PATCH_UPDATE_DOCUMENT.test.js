@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const _ = require('lodash');
 
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
-const testHelperFuncs = require('../testHelper/testHelperFuncs');
+const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 const documentObj = {
   email: 'test@gmail.com',
@@ -36,7 +36,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
   //   - `expect eamil to be "update@gmail.com"`
   //   - delete user
   it('update base doc', async () => {
-    const { endUserApiCannon } = await testHelperFuncs.createUser();
+    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
 
     const { data: { documents: initialDocuments } } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
       documentObj,
@@ -60,7 +60,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
     expect(afterEmail).to.equal('updated@gmail.com');
     expect(initialDocId).to.not.equal(afterDocId);
 
-    await testHelperFuncs.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
   });
 
   // - update sub docs
@@ -71,7 +71,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
   //   - `expect facebook value to be "https://www.facebook.com/afterUpdate"`
   //   - delete user
   it('update sub docs', async () => {
-    const { endUserApiCannon } = await testHelperFuncs.createUser();
+    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
 
     const { data: { documents: initialDocuments } } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
       documentObj,
@@ -106,6 +106,6 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
     expect(beforeDocValue).to.equal('https://www.facebook.com/beforeUpdate');
     expect(afterDocValue).to.equal('https://www.facebook.com/afterUpdate');
 
-    await testHelperFuncs.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
   });
 });

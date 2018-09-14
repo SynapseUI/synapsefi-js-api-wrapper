@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
-const testHelperFuncs = require('../testHelper/testHelperFuncs');
+const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 // - [x] PATCH_DELETE_BASE_DOC
 //   - create user
@@ -10,14 +10,14 @@ const testHelperFuncs = require('../testHelper/testHelperFuncs');
 //   - delete first doc
 //   - `expect doc len to be 1`
 it('PATCH_DELETE_BASE_DOC', async () => {
-  const { endUserApiCannon } = await testHelperFuncs.createUser();
+  const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
 
-  const { data: { documents: { 0: { id: firstDocId } } } } = await testHelperFuncs.addDocument({
+  const { data: { documents: { 0: { id: firstDocId } } } } = await testHelperFuncsForUsers.addDocument({
     endUserApiCannon,
     email: 'first@gmail.com',
   });
 
-  await testHelperFuncs.addDocument({
+  await testHelperFuncsForUsers.addDocument({
     endUserApiCannon,
     email: 'second@gmail.com',
   });
@@ -28,7 +28,7 @@ it('PATCH_DELETE_BASE_DOC', async () => {
 
   const { data: { documents: afterDocuments } } = await endUserApiCannon.GET_USER();
 
-  await testHelperFuncs.deleteMySelf(endUserApiCannon);
+  await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
 
   expect(beforeDocuments.length - afterDocuments.length).to.equal(1);
 });

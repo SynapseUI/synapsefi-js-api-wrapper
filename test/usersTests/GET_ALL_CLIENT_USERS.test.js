@@ -2,7 +2,7 @@ const { expect } = require('chai');
 
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
 
-const testHelperFuncs = require('../testHelper/testHelperFuncs');
+const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 // - [x] GET_ALL_CLIENT_USERS
 describe('GET_ALL_CLIENT_USERS', () => {
@@ -23,10 +23,10 @@ describe('GET_ALL_CLIENT_USERS', () => {
   //     - delete both users
   it('search name', async () => {
     try {
-      const { endUserApiCannon: endUserApiCannon1 } = await testHelperFuncs.createUser({
+      const { endUserApiCannon: endUserApiCannon1 } = await testHelperFuncsForUsers.createUser({
         legal_names: ['Search Yes'],
       });
-      const { endUserApiCannon: endUserApiCannon2 } = await testHelperFuncs.createUser({
+      const { endUserApiCannon: endUserApiCannon2 } = await testHelperFuncsForUsers.createUser({
         legal_names: ['Search No'],
       });
       // ------------------------------------------------------------------------------
@@ -35,8 +35,8 @@ describe('GET_ALL_CLIENT_USERS', () => {
 
       expect(data.users[0].legal_names).to.include.members(['Search Yes']);
 
-      await testHelperFuncs.deleteMySelf(endUserApiCannon1);
-      await testHelperFuncs.deleteMySelf(endUserApiCannon2);
+      await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon1);
+      await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon2);
     } catch (error) {
       console.log('error: ', error.response.data.error.en);
     }
@@ -65,10 +65,10 @@ describe('GET_ALL_CLIENT_USERS', () => {
   //     - `expext page = 1, limit = 2, user with email: "real@gmail.com"`
   //     - delete both users
   it('query, per_page, page', async () => {
-    const { endUserApiCannon: endUserApiCannon1 } = await testHelperFuncs.createUser({
+    const { endUserApiCannon: endUserApiCannon1 } = await testHelperFuncsForUsers.createUser({
       email: 'real@gmail.com',
     });
-    const { endUserApiCannon: endUserApiCannon2 } = await testHelperFuncs.createUser({
+    const { endUserApiCannon: endUserApiCannon2 } = await testHelperFuncsForUsers.createUser({
       email: 'fake@gmail.com',
     });
 
@@ -84,7 +84,7 @@ describe('GET_ALL_CLIENT_USERS', () => {
     expect(data.limit).to.equal(2);
     expect(data.users[0].logins[0].email).to.equal('real@gmail.com');
 
-    await testHelperFuncs.deleteMySelf(endUserApiCannon1);
-    await testHelperFuncs.deleteMySelf(endUserApiCannon2);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon1);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon2);
   });
 });

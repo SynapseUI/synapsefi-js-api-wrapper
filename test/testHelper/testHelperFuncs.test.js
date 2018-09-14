@@ -2,17 +2,17 @@ const { expect } = require('chai');
 
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
 
-const testHelperFuncs = require('./testHelperFuncs');
+const testHelperFuncsForUsers = require('./testHelperFuncsForUsers');
 
 describe('test helper functions', () => {
   // create user
   it('create user then delete user', async () => {
     try {
-      const { endUserApiCannon } = await testHelperFuncs.createUser();
+      const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
       const resBeforeDelete = await platformUserApiCannon.GET_ALL_CLIENT_USERS();
       const userCountBeforeDelete = resBeforeDelete.data.users_count;
 
-      await testHelperFuncs.deleteMySelf(endUserApiCannon);
+      await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
 
       const resAfterDelete = await platformUserApiCannon.GET_ALL_CLIENT_USERS();
       const userCountAfterDelete = resAfterDelete.data.users_count;

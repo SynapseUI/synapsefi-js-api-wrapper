@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
-const testHelperFuncs = require('../testHelper/testHelperFuncs');
+const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 describe('PATCH_UPDATE_USER', () => {
   // - update legal name, login email, password, and phone number
@@ -17,7 +17,7 @@ describe('PATCH_UPDATE_USER', () => {
   //   - `expect phone number to be 9879879877`
   //   - delete user
   it('update legal name, login email, password, and phone number, public_note', async () => {
-    const { endUserApiCannon } = await testHelperFuncs.createUser({
+    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser({
       legal_names: ['Before User'],
       phone_numbers: ['1231231233'],
       email: 'before@email.com',
@@ -46,7 +46,7 @@ describe('PATCH_UPDATE_USER', () => {
     expect(logins[0].email).to.equal('after@email.com');
     expect(public_note).to.equal('Eask just updated public note ~~~');
 
-    await testHelperFuncs.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
   });
 
   // - update cip_tag
@@ -57,7 +57,7 @@ describe('PATCH_UPDATE_USER', () => {
   //   - `expect public note to be "PLATFORM"`
   //   - delete user
   it('update cip_tag', async () => {
-    const { endUserApiCannon } = await testHelperFuncs.createUser();
+    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
 
     const {
       data: {
@@ -93,6 +93,6 @@ describe('PATCH_UPDATE_USER', () => {
 
     expect(cip_tag_after).to.equal(2);
 
-    await testHelperFuncs.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
   });
 });

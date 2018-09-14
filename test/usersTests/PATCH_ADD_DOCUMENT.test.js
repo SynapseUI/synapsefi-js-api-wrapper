@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const _ = require('lodash');
 
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
-const testHelperFuncs = require('../testHelper/testHelperFuncs');
+const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 const personalDocumentObj = {
   email: 'personal@email.com',
@@ -42,7 +42,7 @@ businessDocumentObj.email = 'business@email.com';
 //   - `expect doc len to 2 `
 //   - delete user
 it('PATCH_ADD_DOCUMENT', async () => {
-  const { endUserApiCannon } = await testHelperFuncs.createUser({
+  const { endUserApiCannon } = await testHelperFuncsForUsers.createUser({
     legal_names: ['Initial Name, Initial Name2'],
   });
 
@@ -61,5 +61,5 @@ it('PATCH_ADD_DOCUMENT', async () => {
   const { data: { documents, legal_names: finalLegalNames } } = await endUserApiCannon.GET_USER();
   expect(documents.length).to.equal(2);
 
-  await testHelperFuncs.deleteMySelf(endUserApiCannon);
+  await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
 });

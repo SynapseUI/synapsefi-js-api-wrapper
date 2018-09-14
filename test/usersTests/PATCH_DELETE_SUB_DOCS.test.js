@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
-const testHelperFuncs = require('../testHelper/testHelperFuncs');
+const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 // - [X] PATCH_DELETE_SUB_DOCS
 //   - create user
@@ -11,8 +11,8 @@ const testHelperFuncs = require('../testHelper/testHelperFuncs');
 //   - `expect social docs legnth === 0`
 //   - delete user
 it('PATCH_DELETE_SUB_DOCS', async () => {
-  const { endUserApiCannon } = await testHelperFuncs.createUser();
-  await testHelperFuncs.addDocument({ endUserApiCannon });
+  const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
+  await testHelperFuncsForUsers.addDocument({ endUserApiCannon });
 
   const {
     data: { documents: { 0: { id: baseDocId, social_docs } } },
@@ -29,7 +29,7 @@ it('PATCH_DELETE_SUB_DOCS', async () => {
     data: { documents: { 0: { social_docs: socialDocsAfter } } },
   } = await endUserApiCannon.GET_USER();
 
-  await testHelperFuncs.deleteMySelf(endUserApiCannon);
+  await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
 
   expect(socialDocsAfter.length).to.equal(0);
 });

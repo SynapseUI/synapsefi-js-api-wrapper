@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
-const testHelperFuncs = require('../testHelper/testHelperFuncs');
+const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 describe('PATCH_USER_PERMISSION', () => {
   // - Lock user
@@ -10,7 +10,7 @@ describe('PATCH_USER_PERMISSION', () => {
   //   - `expect response from get user to have permission: LOCKED`
   //   - delete user
   it('lock user', async () => {
-    const { endUserApiCannon } = await testHelperFuncs.createUser();
+    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
 
     // ---------------------------------------------------------------------------------------------
     const { data: { permission } } = await endUserApiCannon.PATCH_USER_PERMISSION({
@@ -19,7 +19,7 @@ describe('PATCH_USER_PERMISSION', () => {
     // ---------------------------------------------------------------------------------------------
     expect(permission).to.equal('LOCKED');
 
-    await testHelperFuncs.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
   });
 
   // - Delete user
@@ -28,7 +28,7 @@ describe('PATCH_USER_PERMISSION', () => {
   //   - `expect response from get user to have permission: MAKE-IT-GO-AWAY`
   //   - delete user
   it('delete user', async () => {
-    const { endUserApiCannon } = await testHelperFuncs.createUser();
+    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
 
     // ------------------------------------------------------------------------
     const { data: { permission } } = await endUserApiCannon.PATCH_USER_PERMISSION({
@@ -37,6 +37,6 @@ describe('PATCH_USER_PERMISSION', () => {
     // ------------------------------------------------------------------------
     expect(permission).to.equal('MAKE-IT-GO-AWAY');
 
-    await testHelperFuncs.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
   });
 });
