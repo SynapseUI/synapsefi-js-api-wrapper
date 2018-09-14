@@ -2,7 +2,7 @@
 
 ---
 
-- GET_ALL_USER_NODE
+- GET_ALL_USER_NODES
 - GET_NODE
 - POST_CREATE_NODE
 - DELETE_NODE
@@ -17,7 +17,7 @@
 
 ---
 
-- GET_ALL_USER_NODE
+- GET_ALL_USER_NODES
   - create default node node 1
   - create default node node 2
   - > get all nodes

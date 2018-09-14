@@ -15,21 +15,20 @@ it('PATCH_DELETE_SUB_DOCS', async () => {
   await testHelperFuncsForUsers.addDocument({ endUserApiCannon });
 
   const {
-    data: { documents: { 0: { id: baseDocId, social_docs } } },
+    data: { documents: { 0: { id: baseDocId, social_docs: initialSocialDocs } } },
   } = await endUserApiCannon.GET_USER();
 
   // -----------------------------------------------------------------
-  await endUserApiCannon.PATCH_DELETE_SUB_DOCS({
+  const {
+    data: { documents: { 0: { social_docs: afterSocialDocs } } },
+  } = await endUserApiCannon.PATCH_DELETE_SUB_DOCS({
     baseDocId,
-    socialDocIds: social_docs.map(({ id }) => id),
+    socialDocIds: initialSocialDocs.map(({ id }) => id),
   });
   // -----------------------------------------------------------------
 
-  const {
-    data: { documents: { 0: { social_docs: socialDocsAfter } } },
-  } = await endUserApiCannon.GET_USER();
+  expect(initialSocialDocs.length > 0).to.equal(true);
+  expect(afterSocialDocs.length).to.equal(0);
 
   await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
-
-  expect(socialDocsAfter.length).to.equal(0);
 });

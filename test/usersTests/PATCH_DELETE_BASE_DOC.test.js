@@ -12,21 +12,21 @@ const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers')
 it('PATCH_DELETE_BASE_DOC', async () => {
   const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
 
-  const { data: { documents: { 0: { id: firstDocId } } } } = await testHelperFuncsForUsers.addDocument({
+  const {
+    data: { documents: { 0: { id: firstDocId } } },
+  } = await testHelperFuncsForUsers.addDocument({
     endUserApiCannon,
     email: 'first@gmail.com',
   });
 
-  await testHelperFuncsForUsers.addDocument({
+  const { data: { documents: beforeDocuments } } = await testHelperFuncsForUsers.addDocument({
     endUserApiCannon,
     email: 'second@gmail.com',
   });
 
-  const { data: { documents: beforeDocuments } } = await endUserApiCannon.GET_USER();
-
-  await endUserApiCannon.PATCH_DELETE_BASE_DOC({ documentId: firstDocId });
-
-  const { data: { documents: afterDocuments } } = await endUserApiCannon.GET_USER();
+  const { data: { documents: afterDocuments } } = await endUserApiCannon.PATCH_DELETE_BASE_DOC({
+    documentId: firstDocId,
+  });
 
   await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
 
