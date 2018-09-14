@@ -18,11 +18,31 @@
 ---
 
 - GET_ALL_USER_NODES
-  - create default node node 1
-  - create default node node 2
-  - > get all nodes
-  - `expect node legnth = 2`
-  - delete 2 nodes
+#### `base`
+```js
+platformUserApiCannon.GET_ALL_USER_NODES().then(({ data }) => {
+  console.log('data: ', data);
+});
+```
+
+> ---
+#### `with page and per_page`
+```js
+platformUserApiCannon.GET_ALL_USER_NODES({ page: 2, per_page: 1 }).then(({ data }) => {
+  console.log('data: ', data);
+});
+```
+
+> ---
+#### `with page, per_page, and type`
+```js
+platformUserApiCannon
+  .GET_ALL_USER_NODES({ page: 2, per_page: 1, type: 'CHECK-US' })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+});
+```
 
 ---
 

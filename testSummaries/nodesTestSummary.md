@@ -18,12 +18,26 @@
 ---
 
 - GET_ALL_USER_NODES
+  before each
   - create default node node 1
   - create default node node 2
-  - > get all nodes
-  - `expect node legnth = 2`
+  after each 
   - delete 2 nodes
+  
+  - get all nodes base
+    - > get all nodes
+    - `expect node legnth = 2`
 
+  - with page, per_page
+    - > get all nodes with page: 2, per_page: 1
+    - `expect page = 2`
+    - `expect limit = 1`
+  
+  - with page, per_page, type
+    - create 'CHECK-US' node
+    - > serach for type: 'CHECK-US'
+    - `expect node type = 'CHECK-US'`
+    
 ---
 
 - GET_NODE

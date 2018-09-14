@@ -26,13 +26,10 @@ describe('GET_ALL_USER_NODES', () => {
     await testHelpersForNodes.deleteAllNodeFromPlatformUser();
   });
 
-  // - GET_ALL_USER_NODES
-  //   - create default node node 1
-  //   - create default node node 2
+  // - get all nodes base
   //   - > get all nodes
   //   - `expect node legnth = 2`
-  //   - delete 2 nodes
-  it('get all one user nodes', async () => {
+  it('basic get all nodes', async () => {
     // await testHelpersForNodes.deleteAllNodeFromPlatformUser();
 
     // ---------------------------------------------------------------------------------------
@@ -41,25 +38,27 @@ describe('GET_ALL_USER_NODES', () => {
     expect(nodes.length).to.equal(2);
   });
 
-  // page=2
-  // per_page=1
-  it('get all one user nodes', async () => {
+  // - with page, per_page
+  // - > get all nodes with page: 2, per_page: 1
+  //   - `expect page = 2`
+  //   - `expect limit = 1`
+  it('with page and per_page', async () => {
     // ---------------------------------------------------------------------------------------
     const { data: { page, limit } } = await platformUserApiCannon.GET_ALL_USER_NODES({
       page: 2,
       per_page: 1,
     });
 
+    // ---------------------------------------------------------------------------------------
     expect(page).to.equal(2);
     expect(limit).to.equal(1);
-    // ---------------------------------------------------------------------------------------
   });
 
-  // query=CHECK-US
-  // page=2
-  // per_page=1
-  // expect check-us
-  it.only('get all one user nodes', async () => {
+  // - with page, per_page, type
+  //   - create 'CHECK-US' node
+  //   - > serach for type: 'CHECK-US'
+  //   - `expect node type = 'CHECK-US'`
+  it('with page, per_page, and type', async () => {
     const {
       data: { nodes: { 0: { _id: check_node_id } } },
     } = await platformUserApiCannon.POST_CREATE_NODE({
@@ -79,13 +78,14 @@ describe('GET_ALL_USER_NODES', () => {
       },
     });
     // ---------------------------------------------------------------------------------------
-    const { data } = await platformUserApiCannon.GET_ALL_USER_NODES({
+    const { data: { nodes: { 0: { type } } } } = await platformUserApiCannon.GET_ALL_USER_NODES({
       page: 1,
       per_page: 10,
       type: 'CHECK-US',
     });
-    console.log('data: ', data);
     // ---------------------------------------------------------------------------------------
+
+    expect(type).to.equal('CHECK-US');
 
     await platformUserApiCannon.DELETE_NODE({ node_id: check_node_id });
   });
