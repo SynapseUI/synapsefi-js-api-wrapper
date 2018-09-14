@@ -31,6 +31,6 @@ describe('DELETE_NODE', () => {
     // ---------------------------------------------------------------------------------------
 
     const lastNote = afterTimeline[afterTimeline.length - 1].note;
-    expect(lastNote).to.equal("Node's 'is_active' toggled to False. a");
+    expect(lastNote).to.equal("Node's 'is_active' toggled to False.");
   });
 });
