@@ -47,10 +47,11 @@ platformUserApiCannon
 ---
 
 - GET_NODE
-  - create node
-  - > get node
-  - `expect node type = "DEPOSIT-US"`
-  - delete node
+```js
+platformUserApiCannon.GET_NODE({ node_id: '<node_id>' }).then(({ data }) => {
+  console.log('data: ', data);
+});
+```
 
 ---
 
@@ -72,6 +73,7 @@ platformUserApiCannon
 ```
 
 ---
+
 - DELETE_NODE
 ```js
 platformUserApiCannon.DELETE_NODE({ node_id: '<node_id>' }).then(({ data }) => {

@@ -17,7 +17,7 @@
 
 ---
 
-- GET_ALL_USER_NODES
+- [X] GET_ALL_USER_NODES
   before each
   - create default node node 1
   - create default node node 2
@@ -40,7 +40,7 @@
     
 ---
 
-- GET_NODE
+- [X] GET_NODE
   - create node
   - > get node
   - `expect node type = "DEPOSIT-US"`
@@ -48,14 +48,14 @@
 
 ---
 
-- POST_CREATE_NODE
+- [X] POST_CREATE_NODE
   - > create "DEPOSIT-US" node
   - `expect node type = "DEPOSIT-US"`
   - delete node
 
 ---
 
-- DELETE_NODE
+- [X] DELETE_NODE
   - create node
   - > delete node
   - `expect last note = "Node's 'is_active' toggled to False"`

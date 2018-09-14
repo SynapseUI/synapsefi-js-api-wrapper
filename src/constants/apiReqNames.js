@@ -21,8 +21,17 @@ module.exports = {
   //
   // NODES  -----------------------------------------------------------------
   GET_ALL_USER_NODES: 'GET_ALL_USER_NODES',
+  GET_NODE: 'GET_NODE',
   POST_CREATE_NODE: 'POST_CREATE_NODE',
   DELETE_NODE: 'DELETE_NODE',
+  POST_ACH_WITH_LOGIN: 'POST_ACH_WITH_LOGIN',
+  POST_ACH_WITH_MFA: 'POST_ACH_WITH_MFA',
+  PATCH_UPDATE_NODE: 'PATCH_UPDATE_NODE',
+  PATCH_REISSUE_DEBIT_CARD: 'PATCH_REISSUE_DEBIT_CARD',
+  PATCH_REORDER_DEBIT_CARD: 'PATCH_REORDER_DEBIT_CARD',
+  POST_ACH_WITH_AC_RN: 'POST_ACH_WITH_AC_RN',
+  PATCH_REINITIATE_MICRO_DEPOSIT: 'PATCH_REINITIATE_MICRO_DEPOSIT',
+  PATCH_VERIFY_MICRO_DEPOSIT: 'PATCH_VERIFY_MICRO_DEPOSIT',
   // ------------------------------------------------------------------------
   //
   // TRANSACTION  ------------------------------------------------------------------

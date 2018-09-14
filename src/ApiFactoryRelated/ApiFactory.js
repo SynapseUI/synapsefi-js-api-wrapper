@@ -20,9 +20,18 @@ const {
   //
   //
   // NODES  --------------------------
-  POST_CREATE_NODE,
   GET_ALL_USER_NODES,
+  GET_NODE,
+  POST_CREATE_NODE,
   DELETE_NODE,
+  POST_ACH_WITH_LOGIN,
+  POST_ACH_WITH_MFA,
+  PATCH_UPDATE_NODE,
+  PATCH_REISSUE_DEBIT_CARD,
+  PATCH_REORDER_DEBIT_CARD,
+  POST_ACH_WITH_AC_RN,
+  PATCH_REINITIATE_MICRO_DEPOSIT,
+  PATCH_VERIFY_MICRO_DEPOSIT,
   // ---------------------------------
   //
   //
@@ -245,6 +254,17 @@ class ApiFactory {
 
   DELETE_NODE({ node_id }) {
     return apiRequests.nodes[DELETE_NODE]({
+      node_id,
+      oauth_key: this.oauth_key,
+      host: this.host,
+      user_id: this.user_id,
+      fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
+    });
+  }
+
+  GET_NODE({ node_id }) {
+    return apiRequests.nodes[GET_NODE]({
       node_id,
       oauth_key: this.oauth_key,
       host: this.host,
