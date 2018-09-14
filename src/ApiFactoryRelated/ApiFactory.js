@@ -243,10 +243,9 @@ class ApiFactory {
     });
   }
 
-  DELETE_NODE({ reqBody, nodeId }) {
+  DELETE_NODE({ node_id }) {
     return apiRequests.nodes[DELETE_NODE]({
-      reqBody,
-      nodeId,
+      node_id,
       oauth_key: this.oauth_key,
       host: this.host,
       user_id: this.user_id,

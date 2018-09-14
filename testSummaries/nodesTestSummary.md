@@ -43,10 +43,10 @@
 
 - DELETE_NODE
   - create node
-  - > delete node 
-  - `expect get all node length = 0`
+  - > delete node
+  - `expect last note = "Node's 'is_active' toggled to False"`
   - delete node
-
+  
 ---
 
 - POST_ACH_WITH_LOGIN and POST_ACH_WITH_MFA

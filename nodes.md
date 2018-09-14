@@ -45,17 +45,19 @@ platformUserApiCannon
       },
     },
   })
-  .then({ data });
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+
 ```
 
 ---
-
 - DELETE_NODE
-  - create node
-  - > delete node 
-  - `expect get all node length = 0`
-  - delete node
-
+```js
+platformUserApiCannon.DELETE_NODE({ node_id: '<node_id>' }).then(({ data }) => {
+  console.log('data: ', data);
+});
+```
 ---
 
 - POST_ACH_WITH_LOGIN and POST_ACH_WITH_MFA

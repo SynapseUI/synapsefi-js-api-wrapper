@@ -8,7 +8,8 @@ describe('POST_CREATE_NODE', () => {
   //   - > create "DEPOSIT-US" node
   //   - `expect node type = "DEPOSIT-US"`
   //   - delete node
-  it.only('create deposit node', async () => {
+  it('create deposit node', async () => {
+    // -----------------------------------------------------------------------------------------------
     const {
       data: { nodes: { [0]: { info: { nickname }, type } } },
     } = await platformUserApiCannon.POST_CREATE_NODE({
@@ -19,6 +20,7 @@ describe('POST_CREATE_NODE', () => {
         },
       },
     });
+    // -----------------------------------------------------------------------------------------------
 
     expect(nickname).to.equal('My Checking');
     expect(type).to.equal('DEPOSIT-US');

@@ -58,12 +58,12 @@ module.exports[GET_ALL_USER_NODES] = ({
   );
 };
 
-module.exports[DELETE_NODE] = ({ nodeId, host, fingerprint, user_id, ip_address, oauth_key }) => {
+module.exports[DELETE_NODE] = ({ node_id, host, fingerprint, user_id, ip_address, oauth_key }) => {
   return axios.delete(
     replacePathParams({
       originalUrl: `${host}${staticEndpoints[DELETE_NODE]}`,
       user_id,
-      node_id: nodeId,
+      node_id,
     }),
     buildHeaders({
       fingerprint,
