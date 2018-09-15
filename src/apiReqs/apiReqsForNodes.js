@@ -100,3 +100,49 @@ module.exports[GET_NODE] = ({ node_id, host, fingerprint, user_id, ip_address, o
     })
   );
 };
+
+module.exports[POST_ACH_WITH_LOGIN] = ({
+  bank_id,
+  bank_pw,
+  bank_name,
+  oauth_key,
+  host,
+  user_id,
+  fingerprint,
+  ip_address,
+}) => {
+  return axios.post(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[POST_ACH_WITH_LOGIN]}`,
+      user_id,
+    }),
+    {
+      type: 'ACH-US',
+      info: { bank_id, bank_pw, bank_name },
+    },
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};
+
+module.exports[POST_ACH_WITH_MFA] = ({ access_token, mfa_answer, userInfo }) => {
+  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+  return axios.post(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[POST_ACH_WITH_MFA]}`,
+      user_id,
+    }),
+    {
+      access_token,
+      mfa_answer,
+    },
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};

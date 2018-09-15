@@ -63,7 +63,13 @@
   
 ---
 
-- POST_ACH_WITH_LOGIN and POST_ACH_WITH_MFA
+- POST_ACH_WITH_LOGIN
+  - > create ACH with login
+  - `expect mfa.access_token to be string`
+
+---
+
+POST_ACH_WITH_MFA 
   - > create ACH with login
   - `expect mfa.access_token to be string`
   - > create ACH with mfa

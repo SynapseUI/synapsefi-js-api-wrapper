@@ -273,6 +273,27 @@ class ApiFactory {
       ip_address: this.ip_address,
     });
   }
+
+  POST_ACH_WITH_LOGIN({ bank_id, bank_pw, bank_name }) {
+    return apiRequests.nodes[POST_ACH_WITH_LOGIN]({
+      bank_id,
+      bank_pw,
+      bank_name,
+      oauth_key: this.oauth_key,
+      host: this.host,
+      user_id: this.user_id,
+      fingerprint: this.fingerprint,
+      ip_address: this.ip_address,
+    });
+  }
+
+  POST_ACH_WITH_MFA({ access_token, mfa_answer }) {
+    return apiRequests.nodes[POST_ACH_WITH_MFA]({
+      access_token,
+      mfa_answer,
+      userInfo: this,
+    });
+  }
   // ------------------------------------------------------------------------
   //
   //
