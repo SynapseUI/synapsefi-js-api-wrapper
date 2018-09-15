@@ -225,11 +225,7 @@ class ApiFactory {
   POST_CREATE_NODE({ reqBody }) {
     return apiRequests.nodes[POST_CREATE_NODE]({
       reqBody,
-      oauth_key: this.oauth_key,
-      host: this.host,
-      user_id: this.user_id,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 
@@ -244,33 +240,21 @@ class ApiFactory {
       page: queryParamsObj ? queryParamsObj.page : undefined,
       per_page: queryParamsObj ? queryParamsObj.per_page : undefined,
       type: queryParamsObj ? queryParamsObj.type : undefined,
-      oauth_key: this.oauth_key,
-      host: this.host,
-      user_id: this.user_id,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 
   DELETE_NODE({ node_id }) {
     return apiRequests.nodes[DELETE_NODE]({
       node_id,
-      oauth_key: this.oauth_key,
-      host: this.host,
-      user_id: this.user_id,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 
   GET_NODE({ node_id }) {
     return apiRequests.nodes[GET_NODE]({
       node_id,
-      oauth_key: this.oauth_key,
-      host: this.host,
-      user_id: this.user_id,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 
@@ -279,11 +263,7 @@ class ApiFactory {
       bank_id,
       bank_pw,
       bank_name,
-      oauth_key: this.oauth_key,
-      host: this.host,
-      user_id: this.user_id,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 
