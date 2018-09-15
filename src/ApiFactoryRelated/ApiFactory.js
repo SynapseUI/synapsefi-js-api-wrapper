@@ -79,36 +79,24 @@ class ApiFactory {
     const { query, page, per_page, show_refresh_tokens } = queryParamsObj;
 
     return apiRequests.users[GET_ALL_CLIENT_USERS]({
-      host: this.host,
-      client_id: this.client_id,
-      client_secret: this.client_secret,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
       query,
       page,
       per_page,
       show_refresh_tokens,
+      userInfo: this,
     });
   }
 
   POST_CREATE_USER({ reqBody }) {
     return apiRequests.users[POST_CREATE_USER]({
       reqBody,
-      host: this.host,
-      client_id: this.client_id,
-      client_secret: this.client_secret,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 
   GET_USER() {
     return apiRequests.users[GET_USER]({
-      user_id: this.user_id,
-      host: this.host,
-      client_id: this.client_id,
-      client_secret: this.client_secret,
-      fingerprint: this.fingerprint,
+      userInfo: this,
     });
   }
 
@@ -116,13 +104,7 @@ class ApiFactory {
     return apiRequests.users[PATCH_ADD_DOCUMENT]({
       reqBody,
       documentObj,
-      user_id: this.user_id,
-      host: this.host,
-      oauth_key: this.oauth_key,
-      client_id: this.client_id,
-      client_secret: this.client_secret,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 
@@ -130,13 +112,7 @@ class ApiFactory {
     return apiRequests.users[PATCH_UPDATE_DOCUMENT]({
       reqBody,
       documentObj,
-      user_id: this.user_id,
-      host: this.host,
-      oauth_key: this.oauth_key,
-      client_id: this.client_id,
-      client_secret: this.client_secret,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 
@@ -144,13 +120,7 @@ class ApiFactory {
     return apiRequests.users[PATCH_DELETE_BASE_DOC]({
       reqBody,
       documentId,
-      user_id: this.user_id,
-      host: this.host,
-      oauth_key: this.oauth_key,
-      client_id: this.client_id,
-      client_secret: this.client_secret,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 
@@ -161,13 +131,7 @@ class ApiFactory {
       physicalDocIds,
       socialDocIds,
       virtualDocIds,
-      user_id: this.user_id,
-      host: this.host,
-      oauth_key: this.oauth_key,
-      client_id: this.client_id,
-      client_secret: this.client_secret,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 
@@ -175,13 +139,7 @@ class ApiFactory {
     return apiRequests.users[PATCH_UPDATE_USER]({
       reqBody,
       updateObj,
-      user_id: this.user_id,
-      host: this.host,
-      oauth_key: this.oauth_key,
-      client_id: this.client_id,
-      client_secret: this.client_secret,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 
@@ -189,13 +147,7 @@ class ApiFactory {
     return apiRequests.users[PATCH_USER_PERMISSION]({
       reqBody,
       permissionStr,
-      user_id: this.user_id,
-      host: this.host,
-      oauth_key: this.oauth_key,
-      client_id: this.client_id,
-      client_secret: this.client_secret,
-      fingerprint: this.fingerprint,
-      ip_address: this.ip_address,
+      userInfo: this,
     });
   }
 

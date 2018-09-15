@@ -33,16 +33,14 @@ module.exports[GET_USERS_ENTITY_SCOPES] = ({ host }) => {
 };
 
 module.exports[GET_ALL_CLIENT_USERS] = ({
-  host,
-  client_id,
-  client_secret,
-  fingerprint,
   query,
   page,
   per_page,
   show_refresh_tokens,
-  ip_address,
+  userInfo,
 }) => {
+  const { host, client_id, client_secret, fingerprint, ip_address } = userInfo;
+
   return axios.get(
     addQueryParams({
       originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_USERS]}`,
@@ -60,14 +58,9 @@ module.exports[GET_ALL_CLIENT_USERS] = ({
   );
 };
 
-module.exports[POST_CREATE_USER] = ({
-  reqBody,
-  host,
-  client_id,
-  client_secret,
-  fingerprint,
-  ip_address,
-}) => {
+module.exports[POST_CREATE_USER] = ({ reqBody, userInfo }) => {
+  const { host, client_id, client_secret, fingerprint, ip_address } = userInfo;
+
   return axios.post(
     `${host}${staticEndpoints[POST_CREATE_USER]}`,
     reqBody,
@@ -80,14 +73,9 @@ module.exports[POST_CREATE_USER] = ({
   );
 };
 
-module.exports[GET_USER] = ({
-  host,
-  client_id,
-  client_secret,
-  fingerprint,
-  user_id,
-  ip_address,
-}) => {
+module.exports[GET_USER] = ({ userInfo }) => {
+  const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
+
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[GET_USER]}`,
     full_dehydrate: 'yes',
@@ -104,17 +92,9 @@ module.exports[GET_USER] = ({
   );
 };
 
-module.exports[PATCH_ADD_DOCUMENT] = ({
-  reqBody,
-  documentObj,
-  user_id,
-  host,
-  oauth_key,
-  client_id,
-  client_secret,
-  fingerprint,
-  ip_address,
-}) => {
+module.exports[PATCH_ADD_DOCUMENT] = ({ reqBody, documentObj, userInfo }) => {
+  const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
+
   if (reqBody !== undefined && documentObj !== undefined) {
     console.error('should not submit both reqBody and documentObj');
   }
@@ -138,17 +118,9 @@ module.exports[PATCH_ADD_DOCUMENT] = ({
   );
 };
 
-module.exports[PATCH_UPDATE_DOCUMENT] = ({
-  reqBody,
-  documentObj,
-  user_id,
-  host,
-  oauth_key,
-  client_id,
-  client_secret,
-  fingerprint,
-  ip_address,
-}) => {
+module.exports[PATCH_UPDATE_DOCUMENT] = ({ reqBody, documentObj, userInfo }) => {
+  const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
+
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_DOCUMENT]}`,
   });
@@ -168,17 +140,9 @@ module.exports[PATCH_UPDATE_DOCUMENT] = ({
   );
 };
 
-module.exports[PATCH_DELETE_BASE_DOC] = ({
-  reqBody,
-  documentId,
-  user_id,
-  host,
-  oauth_key,
-  client_id,
-  client_secret,
-  fingerprint,
-  ip_address,
-}) => {
+module.exports[PATCH_DELETE_BASE_DOC] = ({ reqBody, documentId, userInfo }) => {
+  const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
+
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_DELETE_BASE_DOC]}`,
   });
@@ -207,18 +171,14 @@ module.exports[PATCH_DELETE_BASE_DOC] = ({
 
 module.exports[PATCH_DELETE_SUB_DOCS] = ({
   reqBody,
-  user_id,
   baseDocId,
   physicalDocIds,
   socialDocIds,
   virtualDocIds,
-  host,
-  oauth_key,
-  client_id,
-  client_secret,
-  fingerprint,
-  ip_address,
+  userInfo,
 }) => {
+  const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
+
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_DELETE_SUB_DOCS]}`,
   });
@@ -259,17 +219,9 @@ module.exports[PATCH_DELETE_SUB_DOCS] = ({
   );
 };
 
-module.exports[PATCH_UPDATE_USER] = ({
-  reqBody,
-  updateObj,
-  user_id,
-  host,
-  oauth_key,
-  client_id,
-  client_secret,
-  fingerprint,
-  ip_address,
-}) => {
+module.exports[PATCH_UPDATE_USER] = ({ reqBody, updateObj, userInfo }) => {
+  const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
+
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_USER]}`,
   });
@@ -289,17 +241,9 @@ module.exports[PATCH_UPDATE_USER] = ({
   );
 };
 
-module.exports[PATCH_USER_PERMISSION] = ({
-  reqBody,
-  permissionStr,
-  user_id,
-  host,
-  oauth_key,
-  client_id,
-  client_secret,
-  fingerprint,
-  ip_address,
-}) => {
+module.exports[PATCH_USER_PERMISSION] = ({ reqBody, permissionStr, userInfo }) => {
+  const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
+
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_USER_PERMISSION]}`,
   });
