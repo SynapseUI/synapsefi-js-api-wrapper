@@ -132,3 +132,21 @@ module.exports[POST_ACH_WITH_MFA] = ({ access_token, mfa_answer, userInfo }) => 
     })
   );
 };
+
+module.exports[PATCH_UPDATE_NODE] = ({ node_id, reqBody, userInfo }) => {
+  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+
+  return axios.patch(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_NODE]}`,
+      user_id,
+      node_id,
+    }),
+    reqBody,
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};

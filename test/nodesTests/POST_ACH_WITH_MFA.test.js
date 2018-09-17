@@ -11,7 +11,7 @@ describe('POST_ACH_WITH_MFA', () => {
   //   - > create ACH with mfa
   //   - `expect every type = "ACH-US"`
   //   - delete node
-  it.only('create ach with mfa', async () => {
+  it('create ach with mfa', async () => {
     const { data: { mfa: { access_token } } } = await platformUserApiCannon.POST_ACH_WITH_LOGIN({
       bank_id: 'synapse_good',
       bank_pw: 'test1234',

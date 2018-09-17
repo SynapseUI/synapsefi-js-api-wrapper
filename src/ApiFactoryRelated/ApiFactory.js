@@ -226,6 +226,14 @@ class ApiFactory {
       userInfo: this,
     });
   }
+
+  PATCH_UPDATE_NODE({ node_id, reqBody }) {
+    return apiRequests.nodes[PATCH_UPDATE_NODE]({
+      node_id,
+      reqBody,
+      userInfo: this,
+    });
+  }
   // ------------------------------------------------------------------------
   //
   //
