@@ -150,3 +150,26 @@ module.exports[PATCH_UPDATE_NODE] = ({ node_id, reqBody, userInfo }) => {
     })
   );
 };
+
+// * PATCH_REISSUE_DEBIT_CARD
+// * PATCH_REORDER_DEBIT_CARD
+
+module.exports[POST_ACH_WITH_AC_RN] = ({ reqBody, userInfo }) => {
+  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+
+  return axios.post(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[POST_ACH_WITH_AC_RN]}`,
+      user_id,
+    }),
+    {
+      ...reqBody,
+      type: 'ACH-US',
+    },
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};

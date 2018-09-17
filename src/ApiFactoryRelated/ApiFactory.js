@@ -95,8 +95,9 @@ class ApiFactory {
   }
 
   GET_USER() {
-    return apiRequests.users[GET_USER]({
-      userInfo: this,
+    return apiRequests.users[GET_USER]({ userInfo: this }).then(({ data }) => {
+      this.refresh_token = data.refresh_token;
+      return { data };
     });
   }
 
@@ -234,6 +235,16 @@ class ApiFactory {
       userInfo: this,
     });
   }
+
+  // * PATCH_REISSUE_DEBIT_CARD
+  // * PATCH_REORDER_DEBIT_CARD
+  POST_ACH_WITH_AC_RN({ reqBody }) {
+    return apiRequests.nodes[POST_ACH_WITH_AC_RN]({
+      reqBody,
+      userInfo: this,
+    });
+  }
+
   // ------------------------------------------------------------------------
   //
   //
