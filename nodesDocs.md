@@ -82,14 +82,24 @@ platformUserApiCannon.DELETE_NODE({ node_id: '<node_id>' }).then(({ data }) => {
 ```
 ---
 
-- POST_ACH_WITH_LOGIN and POST_ACH_WITH_MFA
-  - > create ACH with login
-  - `expect mfa.access_token to be string`
-  - > create ACH with mfa
-  - `expect allowed "CREDIT-AND-DEBIT"`
-  - `expect type = "ACH-US"`
-  - delete node
-
+- `POST_ACH_WITH_LOGIN` and `POST_ACH_WITH_MFA`
+```js
+platformUserApiCannon
+  .POST_ACH_WITH_LOGIN({
+    bank_id: 'synapse_good',
+    bank_pw: 'test1234',
+    bank_name: 'fake',
+  })
+  .then(({ data: { mfa: { access_token } } }) => {
+    return platformUserApiCannon.POST_ACH_WITH_MFA({
+      access_token,
+      mfa_answer: 'test_answer',
+    });
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 ---
 
 - PATCH_UPDATE_NODE
