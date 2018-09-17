@@ -103,10 +103,18 @@ platformUserApiCannon
 ---
 
 - PATCH_UPDATE_NODE
-  - create node with nickname = "Initial Nickname"
-  - > update nickname = "Updated Nickname"
-  - `expect nickname = "Updated Nickname`
-  - delete node
+```js
+platformUserApiCannon
+  .PATCH_UPDATE_NODE({
+    node_id: '<node id>',
+    reqBody: {
+      nickname: 'Updated Nickname',
+    },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 
 ---
 

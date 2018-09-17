@@ -9,7 +9,7 @@ describe('PATCH_UPDATE_NODE', () => {
   //   - > update nickname = "Updated Nickname"
   //     - `expect nickname = "Updated Nickname`
   //     - delete node
-  it.only('update nickname of node', async () => {
+  it('update nickname of node', async () => {
     const { node_id } = await testHelpersForNodes.createDepositNode({
       nickname: 'Initial Nickname',
     });
