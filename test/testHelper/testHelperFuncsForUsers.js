@@ -15,13 +15,11 @@ module.exports.createUser = async (obj = {}) => {
   const phone_numbers = obj.phone_numbers === undefined ? ['314.315.3242'] : obj.phone_numbers;
   const legal_names = obj.legal_names === undefined ? ['Default Name'] : obj.legal_names;
 
-  const reqBody = {
+  const { data } = await platformUserApiCannon.POST_CREATE_USER({
     logins: [{ email }],
     phone_numbers,
     legal_names,
-  };
-
-  const { data } = await platformUserApiCannon.POST_CREATE_USER({ reqBody });
+  });
 
   const endUserApiCannon = new ApiFactory({
     host: platformUserApiCannon.host,

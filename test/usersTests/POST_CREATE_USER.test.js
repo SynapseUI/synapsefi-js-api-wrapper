@@ -3,12 +3,6 @@ const { expect } = require('chai');
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
 const ApiFactory = require('../../src/ApiFactoryRelated/ApiFactory');
 
-const reqBody = {
-  logins: [{ email: 'email.com' }],
-  phone_numbers: ['123.123.1233'],
-  legal_names: ['Post User'],
-};
-
 // -[x] POST_CREATE_USER
 //   - create user legal_name with "Post User"
 //   - `expect get user to have response with legal name "Post User"`
@@ -18,7 +12,9 @@ it('POST_CREATE_USER', async () => {
   const {
     data: { _id, refresh_token, legal_names },
   } = await platformUserApiCannon.POST_CREATE_USER({
-    reqBody,
+    logins: [{ email: 'email.com' }],
+    phone_numbers: ['123.123.1233'],
+    legal_names: ['Post User'],
   });
   // -----------------------------------------------------------------------------------
 

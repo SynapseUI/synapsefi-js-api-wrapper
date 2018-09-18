@@ -36,7 +36,13 @@ const {
   //
   //
   // TRANSACTION  --------------------
-  //
+  POST_CREATE_TRANSACTION,
+  GET_TRANSACTION,
+  PATCH_COMMENT_ON_STATUS,
+  DELETE_TRANSACTION,
+  GET_ALL_CLIENT_TRANSACTIONSS,
+  GET_ALL_USER_TRANSACTIONS,
+  GET_ALL_NODE_TRANSACTIONS,
   // ---------------------------------
   //
 } = require('../constants/apiReqNames');
@@ -87,8 +93,11 @@ class ApiFactory {
     });
   }
 
-  POST_CREATE_USER({ reqBody }) {
+  POST_CREATE_USER({ logins, phone_numbers, legal_names, reqBody }) {
     return apiRequests.users[POST_CREATE_USER]({
+      logins,
+      phone_numbers,
+      legal_names,
       reqBody,
       userInfo: this,
     });
@@ -265,7 +274,13 @@ class ApiFactory {
   //
   //
   // TRANSACTION  ------------------------------------------------------------------
-  //
+  POST_CREATE_TRANSACTION({ node_id, reqBody }) {
+    return apiRequests.transactions[POST_CREATE_TRANSACTION]({
+      node_id,
+      reqBody,
+      userInfo: this,
+    });
+  }
   // -------------------------------------------------------------------------------
   //
 }
