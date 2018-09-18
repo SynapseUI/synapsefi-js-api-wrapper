@@ -12,8 +12,7 @@
     "build": "babel src -d dist",
     "clean": "rm -rf dist",
     "dist": "npm run clean && npm run build",
-    "push": "npm run clean && npm run build && npm publish",
-    "prepush": "npm test"
+    "push": "npm run clean && npm run build && npm publish"
   },
   "keywords": [],
   "author": "",
