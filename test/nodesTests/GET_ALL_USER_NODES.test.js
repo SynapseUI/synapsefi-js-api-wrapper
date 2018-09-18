@@ -28,14 +28,12 @@ describe('GET_ALL_USER_NODES', () => {
 
   // - get all nodes base
   //   - > get all nodes
-  //   - `expect node legnth = 2`
-  it('basic get all nodes', async () => {
-    // await testHelpersForNodes.deleteAllNodeFromPlatformUser();
-
+  //   - `expect node_count to be a number`
+  it.only('basic get all nodes', async () => {
     // ---------------------------------------------------------------------------------------
-    const { data: { nodes } } = await platformUserApiCannon.GET_ALL_USER_NODES();
+    const { data: { node_count } } = await platformUserApiCannon.GET_ALL_USER_NODES();
     // ---------------------------------------------------------------------------------------
-    expect(nodes.length).to.equal(2);
+    expect(node_count).to.be.a('number');
   });
 
   // - with page, per_page

@@ -7,7 +7,7 @@ describe('POST_ACH_WITH_AC_RN', () => {
   // - > create ACH AC / RN -> get node_id
   //   - `expect allowed "CREDIT"`
   //   - `expect type "ACH-US"`
-  it('create ach with account and routing number', async () => {
+  xit('create ach with account and routing number', async () => {
     // ---------------------------------------------------------------------------------------------
     // await platformUserApiCannon.GET_USER();
     // await platformUserApiCannon.POST_OAUTH_USER();

@@ -8,7 +8,7 @@ describe('PATCH_VERIFY_MICRO_DEPOSIT', () => {
   // -> resend micro deposit
   // - `expect time line ot have "ACH-US"`
   // - `expect 2 notes of "Micro deposit initiated"`
-  it('verify micro deposit', async () => {
+  xit('verify micro deposit', async () => {
     await testHelpersForNodes.deleteAllNodeFromPlatformUser();
     const {
       data: { nodes: { 0: { _id: node_id, allowed: initialAllowed } } },

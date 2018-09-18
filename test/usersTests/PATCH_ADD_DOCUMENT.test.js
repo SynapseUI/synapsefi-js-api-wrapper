@@ -41,25 +41,28 @@ businessDocumentObj.email = 'business@email.com';
 //   - any change wiht legal names ?
 //   - `expect doc len to 2 `
 //   - delete user
-it('PATCH_ADD_DOCUMENT', async () => {
-  const { endUserApiCannon } = await testHelperFuncsForUsers.createUser({
-    legal_names: ['Initial Name, Initial Name2'],
+
+describe('PATCH_ADD_DOCUMENT', () => {
+  it('PATCH_ADD_DOCUMENT', async () => {
+    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser({
+      legal_names: ['Initial Name, Initial Name2'],
+    });
+
+    const {
+      data: { legal_names: legalNameAfterPersonalDoc },
+    } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
+      documentObj: personalDocumentObj,
+    });
+
+    const {
+      data: { legal_names: legalNameAfterBusinessDoc },
+    } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
+      documentObj: businessDocumentObj,
+    });
+
+    const { data: { documents, legal_names: finalLegalNames } } = await endUserApiCannon.GET_USER();
+    expect(documents.length).to.equal(2);
+
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
   });
-
-  const {
-    data: { legal_names: legalNameAfterPersonalDoc },
-  } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
-    documentObj: personalDocumentObj,
-  });
-
-  const {
-    data: { legal_names: legalNameAfterBusinessDoc },
-  } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
-    documentObj: businessDocumentObj,
-  });
-
-  const { data: { documents, legal_names: finalLegalNames } } = await endUserApiCannon.GET_USER();
-  expect(documents.length).to.equal(2);
-
-  await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
 });

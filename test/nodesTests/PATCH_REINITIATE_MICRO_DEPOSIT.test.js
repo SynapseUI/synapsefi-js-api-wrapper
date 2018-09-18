@@ -7,7 +7,7 @@ describe('PATCH_REINITIATE_MICRO_DEPOSIT', () => {
   // - > create ACH AC / RN -> get node_id
   //   - `expect allowed "CREDIT"`
   //   - `expect type "ACH-US"`
-  it.only('re initiate micro deposit', async () => {
+  xit('re initiate micro deposit', async () => {
     // ---------------------------------------------------------------------------------------------
     // await platformUserApiCannon.GET_USER();
     // await platformUserApiCannon.POST_OAUTH_USER();
