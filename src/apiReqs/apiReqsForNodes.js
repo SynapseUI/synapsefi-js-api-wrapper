@@ -177,15 +177,11 @@ module.exports[POST_ACH_WITH_AC_RN] = ({ reqBody, userInfo }) => {
 module.exports[PATCH_REINITIATE_MICRO_DEPOSIT] = ({ node_id, userInfo }) => {
   const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
 
-  console.log('???????????????????????/: ');
-
   const res = replacePathParams({
     originalUrl: `${host}${staticEndpoints[PATCH_REINITIATE_MICRO_DEPOSIT]}`,
     user_id,
     node_id,
   });
-
-  console.log('res: ', res);
 
   return axios.patch(
     replacePathParams({

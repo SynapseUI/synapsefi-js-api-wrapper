@@ -29,7 +29,7 @@ describe('GET_ALL_USER_NODES', () => {
   // - get all nodes base
   //   - > get all nodes
   //   - `expect node_count to be a number`
-  it.only('basic get all nodes', async () => {
+  it('basic get all nodes', async () => {
     // ---------------------------------------------------------------------------------------
     const { data: { node_count } } = await platformUserApiCannon.GET_ALL_USER_NODES();
     // ---------------------------------------------------------------------------------------
