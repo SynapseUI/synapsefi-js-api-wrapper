@@ -124,15 +124,16 @@ platformUserApiCannon
 ### Create User
 ###### (POST_CREATE_USER)
 ```js
-const reqBody = {
-  logins: [{ email: 'email@email.com' }],
-  phone_numbers: ['123.123.1233'],
-  legal_names: ['John Doe'],
-};
-
-platformUserApiCannon.POST_CREATE_USER({ reqBody }).then(({ data }) => {
-  console.log('data: ', data);
-});
+platformUserApiCannon
+  .POST_CREATE_USER({
+    logins: [{ email: 'email@email.com' }],
+    phone_numbers: ['123.123.1233'],
+    legal_names: ['John Doe'],
+    optionalBodyParams: {},
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
 ```
 
 ---

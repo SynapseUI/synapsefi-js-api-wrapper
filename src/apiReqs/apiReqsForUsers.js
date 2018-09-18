@@ -58,13 +58,13 @@ module.exports[GET_ALL_CLIENT_USERS] = ({
   );
 };
 
-module.exports[POST_CREATE_USER] = ({ logins, phone_numbers, legal_names, reqBody, userInfo }) => {
+module.exports[POST_CREATE_USER] = ({ logins, phone_numbers, legal_names, optionalBodyParams, userInfo }) => {
   const { host, client_id, client_secret, fingerprint, ip_address } = userInfo;
 
   return axios.post(
     `${host}${staticEndpoints[POST_CREATE_USER]}`,
     {
-      ...reqBody,
+      ...optionalBodyParams,
       logins,
       phone_numbers,
       legal_names,

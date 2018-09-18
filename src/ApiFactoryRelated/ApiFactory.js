@@ -93,12 +93,12 @@ class ApiFactory {
     });
   }
 
-  POST_CREATE_USER({ logins, phone_numbers, legal_names, reqBody }) {
+  POST_CREATE_USER({ logins, phone_numbers, legal_names, optionalBodyParams }) {
     return apiRequests.users[POST_CREATE_USER]({
       logins,
       phone_numbers,
       legal_names,
-      reqBody,
+      optionalBodyParams,
       userInfo: this,
     });
   }
