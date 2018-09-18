@@ -134,7 +134,27 @@ platformUserApiCannon
 
 ---
 
-- POST_ACH_WITH_AC_RN && PATCH_REINITIATE_MICRO_DEPOSIT && PATCH_VERIFY_MICRO_DEPOSIT
+- POST_ACH_WITH_AC_RN 
+```js
+platformUserApiCannon
+  .POST_ACH_WITH_AC_RN({
+    reqBody: {
+      info: {
+        nickname: 'Fake Account',
+        account_num: '1232225674134',
+        routing_num: '051000017',
+        type: 'PERSONAL',
+        class: 'CHECKING',
+      },
+    },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
+- PATCH_REINITIATE_MICRO_DEPOSIT 
+
+- PATCH_VERIFY_MICRO_DEPOSIT
   - > create ACH AC/RN -> get node_id
   - `expect allowed "CREDIT"`
   - `expect type "ACH-US"`

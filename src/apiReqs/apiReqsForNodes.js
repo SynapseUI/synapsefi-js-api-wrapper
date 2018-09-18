@@ -173,3 +173,49 @@ module.exports[POST_ACH_WITH_AC_RN] = ({ reqBody, userInfo }) => {
     })
   );
 };
+
+module.exports[PATCH_REINITIATE_MICRO_DEPOSIT] = ({ node_id, userInfo }) => {
+  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+
+  console.log('???????????????????????/: ');
+
+  const res = replacePathParams({
+    originalUrl: `${host}${staticEndpoints[PATCH_REINITIATE_MICRO_DEPOSIT]}`,
+    user_id,
+    node_id,
+  });
+
+  console.log('res: ', res);
+
+  return axios.patch(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[PATCH_REINITIATE_MICRO_DEPOSIT]}`,
+      user_id,
+      node_id,
+    }),
+    {},
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};
+
+module.exports[PATCH_VERIFY_MICRO_DEPOSIT] = ({ node_id, micro, userInfo }) => {
+  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+
+  return axios.patch(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[PATCH_VERIFY_MICRO_DEPOSIT]}`,
+      user_id,
+      node_id,
+    }),
+    { micro },
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};

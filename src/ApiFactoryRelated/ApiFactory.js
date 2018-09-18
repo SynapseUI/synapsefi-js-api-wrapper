@@ -245,6 +245,21 @@ class ApiFactory {
     });
   }
 
+  PATCH_REINITIATE_MICRO_DEPOSIT({ node_id }) {
+    return apiRequests.nodes[PATCH_REINITIATE_MICRO_DEPOSIT]({
+      node_id,
+      userInfo: this,
+    });
+  }
+
+  PATCH_VERIFY_MICRO_DEPOSIT({ node_id, micro }) {
+    return apiRequests.nodes[PATCH_VERIFY_MICRO_DEPOSIT]({
+      node_id,
+      micro,
+      userInfo: this,
+    });
+  }
+
   // ------------------------------------------------------------------------
   //
   //
