@@ -8,7 +8,7 @@ describe('PATCH_REINITIATE_MICRO_DEPOSIT', () => {
   // - > create ACH AC / RN -> get node_id
   //   - `expect allowed "CREDIT"`
   //   - `expect type "ACH-US"`
-  it('re initiate micro deposit', async () => {
+  it.only('re initiate micro deposit', async () => {
     await testHelpersForNodes.deleteAllNodeFromPlatformUser();
     const {
       data: { nodes: { 0: { _id: node_id } } },
