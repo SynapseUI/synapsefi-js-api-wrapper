@@ -152,23 +152,33 @@ platformUserApiCannon
     console.log('data: ', data);
   });
 ```
-- PATCH_REINITIATE_MICRO_DEPOSIT 
-
-- PATCH_VERIFY_MICRO_DEPOSIT
-  - > create ACH AC/RN -> get node_id
-  - `expect allowed "CREDIT"`
-  - `expect type "ACH-US"`
-  - > resend micro deposit
-  - `expect time line ot have "ACH-US"`
-  - `expect 2 notes of "Micro deposit initiated"`
-  - > verify micro deposit
-  - `expect 2 notes of allowed "CREDIT-AND-DEBIT"`
-  - delete node
 
 ---
 
-helper
-- delete node
-- create deposit node with (nickname)
+- PATCH_REINITIATE_MICRO_DEPOSIT 
+```js
+platformUserApiCannon
+  .PATCH_REINITIATE_MICRO_DEPOSIT({
+    node_id: '<node_id>',
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
+
+---
+
+- PATCH_VERIFY_MICRO_DEPOSIT
+```js
+platformUserApiCannon
+  .PATCH_VERIFY_MICRO_DEPOSIT({
+    node_id: '<node_id>',
+    micro: [0.1, 0.1],
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
+
 
 

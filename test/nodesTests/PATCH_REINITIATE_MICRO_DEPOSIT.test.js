@@ -28,6 +28,7 @@ describe('PATCH_REINITIATE_MICRO_DEPOSIT', () => {
     const { data: { timeline } } = await platformUserApiCannon.PATCH_REINITIATE_MICRO_DEPOSIT({
       node_id,
     });
+    // ---------------------------------------------------------------------------------------------
 
     const nodes = timeline.map(({ note }) => note);
 
@@ -37,6 +38,5 @@ describe('PATCH_REINITIATE_MICRO_DEPOSIT', () => {
     expect(nodes[2]).to.equal('Micro deposits initiated.');
 
     await platformUserApiCannon.DELETE_NODE({ node_id });
-    // ---------------------------------------------------------------------------------------------
   });
 });
