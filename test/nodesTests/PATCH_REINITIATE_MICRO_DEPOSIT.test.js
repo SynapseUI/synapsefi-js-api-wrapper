@@ -30,6 +30,7 @@ describe('PATCH_REINITIATE_MICRO_DEPOSIT', () => {
     });
     // ---------------------------------------------------------------------------------------------
 
+    console.log('timeline: ', timeline);
     const nodes = timeline.map(({ note }) => note);
 
     expect(nodes.length).to.equal(3);
