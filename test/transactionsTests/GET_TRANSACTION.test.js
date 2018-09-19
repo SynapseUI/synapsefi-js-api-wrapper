@@ -4,7 +4,7 @@ const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('GET_TRANSACTION', () => {
-  it('get transaction with from_node_id and to_node_id', async () => {
+  it.only('get transaction with from_node_id and to_node_id', async () => {
     const { node_id: from_node_id } = await testHelpersForNodes.createDepositNode({
       nickname: 'Node 1',
     });
