@@ -13,7 +13,7 @@ describe('POST_CREATE_NODE', () => {
     const {
       data: { nodes: { [0]: { _id: node_id, info: { nickname }, type } } },
     } = await platformUserApiCannon.POST_CREATE_NODE({
-      reqBody: {
+      bodyParams: {
         type: 'DEPOSIT-US',
         info: {
           nickname: 'My Checking',

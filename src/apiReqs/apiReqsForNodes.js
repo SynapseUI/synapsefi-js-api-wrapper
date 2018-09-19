@@ -19,7 +19,7 @@ const staticEndpoints = require('../constants/staticEndpoints');
 const buildHeaders = require('../helpers/buildHeaders');
 const { addQueryParams, replacePathParams } = require('../helpers/urlBuilders');
 
-module.exports[POST_CREATE_NODE] = ({ reqBody, userInfo }) => {
+module.exports[POST_CREATE_NODE] = ({ bodyParams, userInfo }) => {
   const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
 
   return axios.post(
@@ -27,7 +27,7 @@ module.exports[POST_CREATE_NODE] = ({ reqBody, userInfo }) => {
       originalUrl: `${host}${staticEndpoints[POST_CREATE_NODE]}`,
       user_id,
     }),
-    reqBody,
+    bodyParams,
     buildHeaders({
       fingerprint,
       ip_address,
@@ -133,7 +133,7 @@ module.exports[POST_ACH_WITH_MFA] = ({ access_token, mfa_answer, userInfo }) => 
   );
 };
 
-module.exports[PATCH_UPDATE_NODE] = ({ node_id, reqBody, userInfo }) => {
+module.exports[PATCH_UPDATE_NODE] = ({ node_id, bodyParams, userInfo }) => {
   const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
 
   return axios.patch(
@@ -142,7 +142,7 @@ module.exports[PATCH_UPDATE_NODE] = ({ node_id, reqBody, userInfo }) => {
       user_id,
       node_id,
     }),
-    reqBody,
+    bodyParams,
     buildHeaders({
       fingerprint,
       ip_address,
@@ -154,7 +154,7 @@ module.exports[PATCH_UPDATE_NODE] = ({ node_id, reqBody, userInfo }) => {
 // * PATCH_REISSUE_DEBIT_CARD
 // * PATCH_REORDER_DEBIT_CARD
 
-module.exports[POST_ACH_WITH_AC_RN] = ({ reqBody, userInfo }) => {
+module.exports[POST_ACH_WITH_AC_RN] = ({ bodyParams, userInfo }) => {
   const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
 
   return axios.post(
@@ -163,7 +163,7 @@ module.exports[POST_ACH_WITH_AC_RN] = ({ reqBody, userInfo }) => {
       user_id,
     }),
     {
-      ...reqBody,
+      ...bodyParams,
       type: 'ACH-US',
     },
     buildHeaders({

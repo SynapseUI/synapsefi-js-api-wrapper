@@ -97,11 +97,11 @@ module.exports[GET_USER] = ({ userInfo }) => {
   );
 };
 
-module.exports[PATCH_ADD_DOCUMENT] = ({ reqBody, documentObj, userInfo }) => {
+module.exports[PATCH_ADD_DOCUMENT] = ({ bodyParams, documentObj, userInfo }) => {
   const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
 
-  if (reqBody !== undefined && documentObj !== undefined) {
-    console.error('should not submit both reqBody and documentObj');
+  if (bodyParams !== undefined && documentObj !== undefined) {
+    console.error('should not submit both bodyParams and documentObj');
   }
 
   const queryAddedUrl = addQueryParams({
@@ -112,7 +112,7 @@ module.exports[PATCH_ADD_DOCUMENT] = ({ reqBody, documentObj, userInfo }) => {
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    reqBody || reqBodyIfOtherReqBodyIsUndefined,
+    bodyParams || reqBodyIfOtherReqBodyIsUndefined,
     buildHeaders({
       client_id,
       client_secret,
@@ -123,7 +123,7 @@ module.exports[PATCH_ADD_DOCUMENT] = ({ reqBody, documentObj, userInfo }) => {
   );
 };
 
-module.exports[PATCH_UPDATE_DOCUMENT] = ({ reqBody, documentObj, userInfo }) => {
+module.exports[PATCH_UPDATE_DOCUMENT] = ({ bodyParams, documentObj, userInfo }) => {
   const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
 
   const queryAddedUrl = addQueryParams({
@@ -134,7 +134,7 @@ module.exports[PATCH_UPDATE_DOCUMENT] = ({ reqBody, documentObj, userInfo }) => 
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    reqBody || reqBodyIfOtherReqBodyIsUndefined,
+    bodyParams || reqBodyIfOtherReqBodyIsUndefined,
     buildHeaders({
       client_id,
       client_secret,
@@ -145,7 +145,7 @@ module.exports[PATCH_UPDATE_DOCUMENT] = ({ reqBody, documentObj, userInfo }) => 
   );
 };
 
-module.exports[PATCH_DELETE_BASE_DOC] = ({ reqBody, documentId, userInfo }) => {
+module.exports[PATCH_DELETE_BASE_DOC] = ({ bodyParams, documentId, userInfo }) => {
   const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
 
   const queryAddedUrl = addQueryParams({
@@ -163,7 +163,7 @@ module.exports[PATCH_DELETE_BASE_DOC] = ({ reqBody, documentId, userInfo }) => {
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    reqBody || reqBodyIfOtherReqBodyIsUndefined,
+    bodyParams || reqBodyIfOtherReqBodyIsUndefined,
     buildHeaders({
       client_id,
       client_secret,
@@ -175,7 +175,7 @@ module.exports[PATCH_DELETE_BASE_DOC] = ({ reqBody, documentId, userInfo }) => {
 };
 
 module.exports[PATCH_DELETE_SUB_DOCS] = ({
-  reqBody,
+  bodyParams,
   baseDocId,
   physicalDocIds,
   socialDocIds,
@@ -213,7 +213,7 @@ module.exports[PATCH_DELETE_SUB_DOCS] = ({
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    reqBody || reqBodyIfOtherReqBodyIsUndefined,
+    bodyParams || reqBodyIfOtherReqBodyIsUndefined,
     buildHeaders({
       client_id,
       client_secret,
@@ -224,7 +224,7 @@ module.exports[PATCH_DELETE_SUB_DOCS] = ({
   );
 };
 
-module.exports[PATCH_UPDATE_USER] = ({ reqBody, updateObj, userInfo }) => {
+module.exports[PATCH_UPDATE_USER] = ({ bodyParams, updateObj, userInfo }) => {
   const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
 
   const queryAddedUrl = addQueryParams({
@@ -235,7 +235,7 @@ module.exports[PATCH_UPDATE_USER] = ({ reqBody, updateObj, userInfo }) => {
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    reqBody || reqBodyIfOtherReqBodyIsUndefined,
+    bodyParams || reqBodyIfOtherReqBodyIsUndefined,
     buildHeaders({
       client_id,
       client_secret,
@@ -246,7 +246,7 @@ module.exports[PATCH_UPDATE_USER] = ({ reqBody, updateObj, userInfo }) => {
   );
 };
 
-module.exports[PATCH_USER_PERMISSION] = ({ reqBody, permissionStr, userInfo }) => {
+module.exports[PATCH_USER_PERMISSION] = ({ bodyParams, permissionStr, userInfo }) => {
   const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
 
   const queryAddedUrl = addQueryParams({
@@ -257,7 +257,7 @@ module.exports[PATCH_USER_PERMISSION] = ({ reqBody, permissionStr, userInfo }) =
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    reqBody || reqBodyIfOtherReqBodyIsUndefined,
+    bodyParams || reqBodyIfOtherReqBodyIsUndefined,
     buildHeaders({
       client_id,
       client_secret,

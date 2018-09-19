@@ -17,7 +17,7 @@ describe('POST_ACH_WITH_AC_RN', () => {
     const {
       data: { nodes: { 0: { _id: node_id, allowed } } },
     } = await platformUserApiCannon.POST_ACH_WITH_AC_RN({
-      reqBody: {
+      bodyParams: {
         info: {
           nickname: 'Fake Account',
           account_num: randomatic('0', 13),

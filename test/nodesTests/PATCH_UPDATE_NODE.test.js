@@ -14,11 +14,11 @@ describe('PATCH_UPDATE_NODE', () => {
       nickname: 'Initial Nickname',
     });
 
-    const reqBody = { nickname: 'Updated Nickname' };
+    const bodyParams = { nickname: 'Updated Nickname' };
     // ---------------------------------------------------------------------------------------------
     const { data: { info: { nickname } } } = await platformUserApiCannon.PATCH_UPDATE_NODE({
       node_id,
-      reqBody,
+      bodyParams,
     });
     // ---------------------------------------------------------------------------------------------
 

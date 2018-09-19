@@ -14,7 +14,7 @@ const staticEndpoints = require('../constants/staticEndpoints');
 const buildHeaders = require('../helpers/buildHeaders');
 const { addQueryParams, replacePathParams } = require('../helpers/urlBuilders');
 
-module.exports[POST_CREATE_TRANSACTION] = ({ node_id, reqBody, userInfo }) => {
+module.exports[POST_CREATE_TRANSACTION] = ({ node_id, bodyParams, userInfo }) => {
   const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
 
   return axios.post(
@@ -23,7 +23,7 @@ module.exports[POST_CREATE_TRANSACTION] = ({ node_id, reqBody, userInfo }) => {
       user_id,
       node_id,
     }),
-    reqBody,
+    bodyParams,
     buildHeaders({
       fingerprint,
       ip_address,

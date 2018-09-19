@@ -60,7 +60,7 @@ describe('GET_ALL_USER_NODES', () => {
     const {
       data: { nodes: { 0: { _id: check_node_id } } },
     } = await platformUserApiCannon.POST_CREATE_NODE({
-      reqBody: {
+      bodyParams: {
         type: 'CHECK-US',
         info: {
           nickname: 'My Checking',

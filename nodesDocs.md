@@ -59,7 +59,7 @@ platformUserApiCannon.GET_NODE({ node_id: '<node_id>' }).then(({ data }) => {
 ```js
 platformUserApiCannon
   .POST_CREATE_NODE({
-    reqBody: {
+    bodyParams: {
       type: 'DEPOSIT-US',
       info: {
         nickname: 'My Checking',
@@ -107,7 +107,7 @@ platformUserApiCannon
 platformUserApiCannon
   .PATCH_UPDATE_NODE({
     node_id: '<node id>',
-    reqBody: {
+    bodyParams: {
       nickname: 'Updated Nickname',
     },
   })
@@ -138,7 +138,7 @@ platformUserApiCannon
 ```js
 platformUserApiCannon
   .POST_ACH_WITH_AC_RN({
-    reqBody: {
+    bodyParams: {
       info: {
         nickname: 'Fake Account',
         account_num: '1232225674134',

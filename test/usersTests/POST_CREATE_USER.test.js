@@ -38,7 +38,7 @@ describe('POST_CREATE_USER', () => {
     await endUserApiCannon.PATCH_USER_PERMISSION({ permissionStr: 'MAKE-IT-GO-AWAY' });
   });
 
-  it.only('optionalBodyParams', async () => {
+  it('optionalBodyParams', async () => {
     // -----------------------------------------------------------------------------------
     const {
       data: { _id, refresh_token, legal_names, extra },

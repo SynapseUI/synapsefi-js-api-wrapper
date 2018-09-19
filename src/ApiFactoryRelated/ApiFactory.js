@@ -110,33 +110,33 @@ class ApiFactory {
     });
   }
 
-  PATCH_ADD_DOCUMENT({ reqBody, documentObj }) {
+  PATCH_ADD_DOCUMENT({ bodyParams, documentObj }) {
     return apiRequests.users[PATCH_ADD_DOCUMENT]({
-      reqBody,
+      bodyParams,
       documentObj,
       userInfo: this,
     });
   }
 
-  PATCH_UPDATE_DOCUMENT({ reqBody, documentObj }) {
+  PATCH_UPDATE_DOCUMENT({ bodyParams, documentObj }) {
     return apiRequests.users[PATCH_UPDATE_DOCUMENT]({
-      reqBody,
+      bodyParams,
       documentObj,
       userInfo: this,
     });
   }
 
-  PATCH_DELETE_BASE_DOC({ reqBody, documentId }) {
+  PATCH_DELETE_BASE_DOC({ bodyParams, documentId }) {
     return apiRequests.users[PATCH_DELETE_BASE_DOC]({
-      reqBody,
+      bodyParams,
       documentId,
       userInfo: this,
     });
   }
 
-  PATCH_DELETE_SUB_DOCS({ reqBody, baseDocId, physicalDocIds, socialDocIds, virtualDocIds }) {
+  PATCH_DELETE_SUB_DOCS({ bodyParams, baseDocId, physicalDocIds, socialDocIds, virtualDocIds }) {
     return apiRequests.users[PATCH_DELETE_SUB_DOCS]({
-      reqBody,
+      bodyParams,
       baseDocId,
       physicalDocIds,
       socialDocIds,
@@ -145,17 +145,17 @@ class ApiFactory {
     });
   }
 
-  PATCH_UPDATE_USER({ reqBody, updateObj }) {
+  PATCH_UPDATE_USER({ bodyParams, updateObj }) {
     return apiRequests.users[PATCH_UPDATE_USER]({
-      reqBody,
+      bodyParams,
       updateObj,
       userInfo: this,
     });
   }
 
-  PATCH_USER_PERMISSION({ reqBody, permissionStr }) {
+  PATCH_USER_PERMISSION({ bodyParams, permissionStr }) {
     return apiRequests.users[PATCH_USER_PERMISSION]({
-      reqBody,
+      bodyParams,
       permissionStr,
       userInfo: this,
     });
@@ -184,9 +184,9 @@ class ApiFactory {
   //
   //
   // NODES  -----------------------------------------------------------------
-  POST_CREATE_NODE({ reqBody }) {
+  POST_CREATE_NODE({ bodyParams }) {
     return apiRequests.nodes[POST_CREATE_NODE]({
-      reqBody,
+      bodyParams,
       userInfo: this,
     });
   }
@@ -237,19 +237,19 @@ class ApiFactory {
     });
   }
 
-  PATCH_UPDATE_NODE({ node_id, reqBody }) {
+  PATCH_UPDATE_NODE({ node_id, bodyParams }) {
     return apiRequests.nodes[PATCH_UPDATE_NODE]({
       node_id,
-      reqBody,
+      bodyParams,
       userInfo: this,
     });
   }
 
   // * PATCH_REISSUE_DEBIT_CARD
   // * PATCH_REORDER_DEBIT_CARD
-  POST_ACH_WITH_AC_RN({ reqBody }) {
+  POST_ACH_WITH_AC_RN({ bodyParams }) {
     return apiRequests.nodes[POST_ACH_WITH_AC_RN]({
-      reqBody,
+      bodyParams,
       userInfo: this,
     });
   }
@@ -274,10 +274,10 @@ class ApiFactory {
   //
   //
   // TRANSACTION  ------------------------------------------------------------------
-  POST_CREATE_TRANSACTION({ node_id, reqBody }) {
+  POST_CREATE_TRANSACTION({ node_id, bodyParams }) {
     return apiRequests.transactions[POST_CREATE_TRANSACTION]({
       node_id,
-      reqBody,
+      bodyParams,
       userInfo: this,
     });
   }

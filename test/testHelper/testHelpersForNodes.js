@@ -6,15 +6,15 @@ const platformUserApiCannon = require('./platformUserApiCannon');
 module.exports.createDepositNode = async (obj = { nickname: 'Default Deposit Node' }) => {
   const { nickname } = obj;
   const {
-    data: { nodes: { 0: { _id: node_id, timeline: initialTimeline } } },
+    data: { nodes: { 0: { _id: node_id, timeline: initialTimeline, type } } },
   } = await platformUserApiCannon.POST_CREATE_NODE({
-    reqBody: {
+    bodyParams: {
       type: 'DEPOSIT-US',
       info: { nickname },
     },
   });
 
-  return { node_id, initialTimeline };
+  return { node_id, initialTimeline, type };
 };
 
 module.exports.deleteAllNodeFromPlatformUser = async () => {
