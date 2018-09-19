@@ -40,7 +40,7 @@ module.exports.addQueryParams = ({
   return originalUrl + '?' + arr.join('&');
 };
 
-module.exports.replacePathParams = ({ originalUrl, user_id, node_id, transaction_id }) => {
+module.exports.replacePathParams = ({ originalUrl, user_id, node_id, trans_id }) => {
   let copiedUrl = originalUrl;
 
   if (user_id !== undefined) {
@@ -51,8 +51,8 @@ module.exports.replacePathParams = ({ originalUrl, user_id, node_id, transaction
     copiedUrl = _.replace(copiedUrl, ':node_id', node_id);
   }
 
-  if (transaction_id !== undefined) {
-    copiedUrl = _.replace(copiedUrl, ':transaction_id', transaction_id);
+  if (trans_id !== undefined) {
+    copiedUrl = _.replace(copiedUrl, ':trans_id', trans_id);
   }
 
   return copiedUrl;
