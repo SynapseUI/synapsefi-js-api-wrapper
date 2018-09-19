@@ -59,3 +59,21 @@ module.exports[POST_CREATE_TRANSACTION] = ({
     })
   );
 };
+
+module.exports[GET_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
+  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+
+  return axios.get(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[GET_TRANSACTION]}`,
+      user_id,
+      node_id,
+      trans_id,
+    }),
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};

@@ -4,7 +4,7 @@ const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('POST_CREATE_TRANSACTION', () => {
-  it.only('create transaction', async () => {
+  it('create transaction', async () => {
     const { node_id: from_node_id } = await testHelpersForNodes.createDepositNode({
       nickname: 'Node 1',
     });

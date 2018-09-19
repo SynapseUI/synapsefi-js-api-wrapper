@@ -292,6 +292,14 @@ class ApiFactory {
       userInfo: this,
     });
   }
+
+  GET_TRANSACTION({ node_id, trans_id }) {
+    return apiRequests.transactions[GET_TRANSACTION]({
+      node_id,
+      trans_id,
+      userInfo: this,
+    });
+  }
   // -------------------------------------------------------------------------------
   //
 }
