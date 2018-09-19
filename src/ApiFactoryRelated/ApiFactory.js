@@ -40,7 +40,7 @@ const {
   GET_TRANSACTION,
   PATCH_COMMENT_ON_STATUS,
   DELETE_TRANSACTION,
-  GET_ALL_CLIENT_TRANSACTIONSS,
+  GET_ALL_CLIENT_TRANSACTIONS,
   GET_ALL_USER_TRANSACTIONS,
   GET_ALL_NODE_TRANSACTIONS,
   // ---------------------------------
@@ -314,6 +314,12 @@ class ApiFactory {
     return apiRequests.transactions[DELETE_TRANSACTION]({
       node_id,
       trans_id,
+      userInfo: this,
+    });
+  }
+
+  GET_ALL_CLIENT_TRANSACTIONS() {
+    return apiRequests.transactions[GET_ALL_CLIENT_TRANSACTIONS]({
       userInfo: this,
     });
   }

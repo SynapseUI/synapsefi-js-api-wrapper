@@ -52,7 +52,7 @@ module.exports = {
   [apiReqNames.GET_TRANSACTION]: `/${VERSION}/users/:user_id/nodes/:node_id/trans/:trans_id`,
   [apiReqNames.PATCH_COMMENT_ON_STATUS]: `/${VERSION}/users/:user_id/nodes/:node_id/trans/:trans_id`,
   [apiReqNames.DELETE_TRANSACTION]: `/${VERSION}/users/:user_id/nodes/:node_id/trans/:trans_id`,
-  [apiReqNames.GET_ALL_CLIENT_TRANSACTIONSS]: `/${VERSION}/trans`,
+  [apiReqNames.GET_ALL_CLIENT_TRANSACTIONS]: `/${VERSION}/trans`,
   [apiReqNames.GET_ALL_USER_TRANSACTIONS]: `/${VERSION}/users/:user_id/trans`,
   [apiReqNames.GET_ALL_NODE_TRANSACTIONS]: `/${VERSION}/users/:user_id/nodes/:node_id/trans`,
   // -----------------------------------------------------------------------------------------------------

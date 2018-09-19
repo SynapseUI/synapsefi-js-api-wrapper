@@ -5,7 +5,7 @@ const {
   GET_TRANSACTION,
   PATCH_COMMENT_ON_STATUS,
   DELETE_TRANSACTION,
-  GET_ALL_CLIENT_TRANSACTIONSS,
+  GET_ALL_CLIENT_TRANSACTIONS,
   GET_ALL_USER_TRANSACTIONS,
   GET_ALL_NODE_TRANSACTIONS,
 } = require('../constants/apiReqNames');
@@ -123,6 +123,23 @@ module.exports[DELETE_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
       trans_id,
     }),
     buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};
+
+module.exports[GET_ALL_CLIENT_TRANSACTIONS] = ({ userInfo }) => {
+  const { oauth_key, host, fingerprint, ip_address, client_id, client_secret } = userInfo;
+
+  return axios.get(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_TRANSACTIONS]}`,
+    }),
+    buildHeaders({
+      client_id,
+      client_secret,
       fingerprint,
       ip_address,
       oauth_key,
