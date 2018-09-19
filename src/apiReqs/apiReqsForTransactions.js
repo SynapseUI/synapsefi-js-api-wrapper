@@ -46,7 +46,6 @@ module.exports[POST_CREATE_TRANSACTION] = ({
       ...extra,
     },
   };
-  console.log('qwer: ', qwer);
 
   return axios.post(
     replacePathParams({

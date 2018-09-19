@@ -3,7 +3,6 @@ const testHelpersForNodes = require('./testHelper/testHelpersForNodes');
 
 before(async () => {
   try {
-    console.log('process.env.IP_ADDRESS: ', process.env.IP_ADDRESS);
     console.log('Set refresh_token');
     await platformUserApiCannon.GET_USER();
 
@@ -16,7 +15,6 @@ before(async () => {
 
 after(async () => {
   try {
-    console.log('If there are any node left then delete them.');
     await testHelpersForNodes.deleteAllNodeFromPlatformUser();
   } catch (error) {
     console.log('error: ', error.response.data.error.en);

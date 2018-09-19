@@ -4,7 +4,7 @@ const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('DELETE_TRANSACTION', () => {
-  it.only('delete transaction', async () => {
+  it('delete transaction', async () => {
     try {
       const { node_id: from_node_id } = await testHelpersForNodes.createDepositNode({
         nickname: 'Node 1',
