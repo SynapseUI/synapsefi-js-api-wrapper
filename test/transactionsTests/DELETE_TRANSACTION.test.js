@@ -3,8 +3,8 @@ const { expect } = require('chai');
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
-describe('PATCH_COMMENT_ON_STATUS', () => {
-  it('patch comment to timeline', async () => {
+describe('DELETE_TRANSACTION', () => {
+  it('delete transaction', async () => {
     const { node_id: from_node_id } = await testHelpersForNodes.createDepositNode({
       nickname: 'Node 1',
     });
@@ -26,26 +26,12 @@ describe('PATCH_COMMENT_ON_STATUS', () => {
     });
 
     // -----------------------------------------------------------------------------------
-    const {
-      data: { recent_status: firstRecentStatus },
-    } = await platformUserApiCannon.PATCH_COMMENT_ON_STATUS({
+    const { data: { timeline } } = await platformUserApiCannon.DELETE_TRANSACTION({
       node_id: from_node_id,
       trans_id,
-      comment: 'first comment',
     });
     // -----------------------------------------------------------------------------------
 
-    // -----------------------------------------------------------------------------------
-    const {
-      data: { recent_status: secondRecentStatus },
-    } = await platformUserApiCannon.PATCH_COMMENT_ON_STATUS({
-      node_id: from_node_id,
-      trans_id,
-      comment: 'second comment',
-    });
-    // -----------------------------------------------------------------------------------
-
-    expect(firstRecentStatus.note).to.equal('Transaction Created. first comment');
-    expect(secondRecentStatus.note).to.equal('Transaction Created. first comment second comment');
+    expect(timeline[timeline.length - 1].status).to.equal('CANCELED');
   });
 });

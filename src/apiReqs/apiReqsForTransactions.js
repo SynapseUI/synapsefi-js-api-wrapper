@@ -96,3 +96,21 @@ module.exports[PATCH_COMMENT_ON_STATUS] = ({ node_id, trans_id, comment, userInf
     })
   );
 };
+
+module.exports[DELETE_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
+  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+
+  return axios.delete(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[DELETE_TRANSACTION]}`,
+      user_id,
+      node_id,
+      trans_id,
+    }),
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};

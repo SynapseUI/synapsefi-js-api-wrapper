@@ -59,7 +59,16 @@ platformUserApiCannon
 ---
 
 - DELETE_TRANSACTION
-
+```js
+platformUserApiCannon
+  .DELETE_TRANSACTION({
+    node_id: '<from or to node_id>',
+    trans_id: '<trans_id>',
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 ---
 
 - GET_ALL_CLIENT_TRANSACTIONSS

@@ -309,6 +309,14 @@ class ApiFactory {
       userInfo: this,
     });
   }
+
+  DELETE_TRANSACTION({ node_id, trans_id }) {
+    return apiRequests.transactions[DELETE_TRANSACTION]({
+      node_id,
+      trans_id,
+      userInfo: this,
+    });
+  }
   // -------------------------------------------------------------------------------
   //
 }
