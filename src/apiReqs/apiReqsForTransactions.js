@@ -32,6 +32,22 @@ module.exports[POST_CREATE_TRANSACTION] = ({
     }
   }
 
+  const qwer = {
+    to: {
+      type: to_node_type,
+      id: to_node_id,
+    },
+    amount: {
+      amount,
+      currency,
+    },
+    extra: {
+      ip: ip_address,
+      ...extra,
+    },
+  };
+  console.log('qwer: ', qwer);
+
   return axios.post(
     replacePathParams({
       originalUrl: `${host}${staticEndpoints[POST_CREATE_TRANSACTION]}`,
@@ -49,7 +65,7 @@ module.exports[POST_CREATE_TRANSACTION] = ({
       },
       extra: {
         ip: ip_address,
-        extra: { ...extra },
+        ...extra,
       },
     },
     buildHeaders({
