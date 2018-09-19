@@ -36,6 +36,8 @@ describe('GET_TRANSACTION', () => {
     expect(dataWithFromNodeId.to.nickname).to.equal('Node 2');
     expect(dataWithFromNodeId.amount.amount).to.equal(100);
 
+    await testHelpersForNodes.deleteAllNodeFromPlatformUser();
+
     // -----------------------------------------------------------------------------------
     const { data: dataWithToNodeId } = await platformUserApiCannon.GET_TRANSACTION({
       node_id: to_node_id,
