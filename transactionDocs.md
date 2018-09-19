@@ -29,6 +29,16 @@ platformUserApiCannon
 ---
 
 - GET_TRANSACTION
+```js
+platformUserApiCannon
+  .GET_TRANSACTION({
+    node_id: '<from or to node_id>',
+    trans_id: '<trans_id>',
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 
 ---
 
