@@ -3,6 +3,7 @@ const testHelpersForNodes = require('./testHelper/testHelpersForNodes');
 
 before(async () => {
   try {
+    console.log('process.env.IP_ADDRESS: ', process.env.IP_ADDRESS);
     console.log('Set refresh_token');
     await platformUserApiCannon.GET_USER();
 
