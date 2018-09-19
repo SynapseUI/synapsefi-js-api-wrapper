@@ -3,8 +3,8 @@ const { expect } = require('chai');
 const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
-describe('GET_TRANSACTION', () => {
-  it('get transaction with from_node_id and to_node_id', async () => {
+describe('PATCH_COMMENT_ON_STATUS', () => {
+  it.only('patch comment to timeline', async () => {
     const { node_id: from_node_id } = await testHelpersForNodes.createDepositNode({
       nickname: 'Node 1',
     });
@@ -26,27 +26,26 @@ describe('GET_TRANSACTION', () => {
     });
 
     // -----------------------------------------------------------------------------------
-    const { data: dataWithFromNodeId } = await platformUserApiCannon.GET_TRANSACTION({
+    const {
+      data: { recent_status: firstRecentStatus },
+    } = await platformUserApiCannon.PATCH_COMMENT_ON_STATUS({
       node_id: from_node_id,
       trans_id,
+      comment: 'first comment',
     });
     // -----------------------------------------------------------------------------------
 
-    expect(dataWithFromNodeId.from.nickname).to.equal('Node 1');
-    expect(dataWithFromNodeId.to.nickname).to.equal('Node 2');
-    expect(dataWithFromNodeId.amount.amount).to.equal(100);
-
-    await testHelpersForNodes.deleteAllNodeFromPlatformUser();
-
     // -----------------------------------------------------------------------------------
-    const { data: dataWithToNodeId } = await platformUserApiCannon.GET_TRANSACTION({
-      node_id: to_node_id,
+    const {
+      data: { recent_status: secondRecentStatus },
+    } = await platformUserApiCannon.PATCH_COMMENT_ON_STATUS({
+      node_id: from_node_id,
       trans_id,
+      comment: 'second comment',
     });
     // -----------------------------------------------------------------------------------
 
-    expect(dataWithToNodeId.from.nickname).to.equal('Node 1');
-    expect(dataWithToNodeId.to.nickname).to.equal('Node 2');
-    expect(dataWithToNodeId.amount.amount).to.equal(100);
+    expect(firstRecentStatus.note).to.equal('Transaction Created. first comment');
+    expect(secondRecentStatus.note).to.equal('Transaction Created. first comment second comment');
   });
 });

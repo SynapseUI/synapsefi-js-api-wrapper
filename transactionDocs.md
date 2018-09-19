@@ -44,6 +44,18 @@ platformUserApiCannon
 
 - PATCH_COMMENT_ON_STATUS
 
+```js
+platformUserApiCannon
+  .PATCH_COMMENT_ON_STATUS({
+    node_id: '<from or to node_id>',
+    trans_id: '<trans_id>',
+    comment: 'first comment',
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
+
 ---
 
 - DELETE_TRANSACTION

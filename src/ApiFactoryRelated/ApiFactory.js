@@ -300,6 +300,15 @@ class ApiFactory {
       userInfo: this,
     });
   }
+
+  PATCH_COMMENT_ON_STATUS({ node_id, trans_id, comment }) {
+    return apiRequests.transactions[PATCH_COMMENT_ON_STATUS]({
+      node_id,
+      trans_id,
+      comment,
+      userInfo: this,
+    });
+  }
   // -------------------------------------------------------------------------------
   //
 }

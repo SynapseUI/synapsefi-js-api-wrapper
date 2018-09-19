@@ -77,3 +77,22 @@ module.exports[GET_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
     })
   );
 };
+
+module.exports[PATCH_COMMENT_ON_STATUS] = ({ node_id, trans_id, comment, userInfo }) => {
+  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+
+  return axios.patch(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[PATCH_COMMENT_ON_STATUS]}`,
+      user_id,
+      node_id,
+      trans_id,
+    }),
+    { comment },
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};
