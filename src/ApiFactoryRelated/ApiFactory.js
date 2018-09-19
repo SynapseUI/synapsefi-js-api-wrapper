@@ -274,10 +274,21 @@ class ApiFactory {
   //
   //
   // TRANSACTION  ------------------------------------------------------------------
-  POST_CREATE_TRANSACTION({ node_id, bodyParams }) {
+  POST_CREATE_TRANSACTION({
+    from_node_id,
+    to_node_id,
+    to_node_type,
+    amount,
+    currency,
+    optionalBodyParams,
+  }) {
     return apiRequests.transactions[POST_CREATE_TRANSACTION]({
-      node_id,
-      bodyParams,
+      from_node_id,
+      to_node_id,
+      to_node_type,
+      amount,
+      currency,
+      optionalBodyParams,
       userInfo: this,
     });
   }
