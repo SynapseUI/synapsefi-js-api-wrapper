@@ -19,7 +19,7 @@ jobs:
       - run: npm install
       - run:
           name: Run tests
-          command: NODE_ENV=${NODE_ENV} HOST=${HOST} CLIENT_ID=${CLIENT_ID} CLIENT_SECRET=${CLIENT_SECRET} FINGERPRINT=${FINGERPRINT} USER_ID=${USER_ID} npm test
+          command: NODE_ENV=${NODE_ENV} IP_ADDRESS={$IP_ADDRESS} HOST=${HOST} CLIENT_ID=${CLIENT_ID} CLIENT_SECRET=${CLIENT_SECRET} FINGERPRINT=${FINGERPRINT} USER_ID=${USER_ID} npm test
 
       - save_cache:
           paths:
