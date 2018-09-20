@@ -2,6 +2,7 @@
 
 ---
 
+- GET_ALL_CLIENT_NODES
 - GET_ALL_USER_NODES
 - GET_NODE
 - POST_CREATE_NODE
@@ -14,6 +15,29 @@
 - POST_ACH_WITH_AC_RN
 - PATCH_REINITIATE_MICRO_DEPOSIT
 - PATCH_VERIFY_MICRO_DEPOSIT
+
+---
+
+- GET_ALL_CLIENT_NODES
+#### `base`
+```js
+platformUserApiCannon.GET_ALL_CLIENT_NODES().then(({ data }) => {
+  console.log('data: ', data);
+});
+```
+
+> ---
+#### `with page and per_page`
+```js
+platformUserApiCannon
+  .GET_ALL_CLIENT_NODES({
+    page: 2,
+    per_page: 1,
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 
 ---
 

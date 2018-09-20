@@ -20,6 +20,7 @@ const {
   //
   //
   // NODES  --------------------------
+  GET_ALL_CLIENT_NODES,
   GET_ALL_USER_NODES,
   GET_NODE,
   POST_CREATE_NODE,
@@ -184,6 +185,18 @@ class ApiFactory {
   //
   //
   // NODES  -----------------------------------------------------------------
+
+  GET_ALL_CLIENT_NODES(queryParams = {}) {
+    const { query, page, per_page, type } = queryParams;
+    return apiRequests.nodes[GET_ALL_CLIENT_NODES]({
+      query,
+      page,
+      per_page,
+      type,
+      userInfo: this,
+    });
+  }
+
   POST_CREATE_NODE({ bodyParams }) {
     return apiRequests.nodes[POST_CREATE_NODE]({
       bodyParams,

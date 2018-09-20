@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 const {
+  GET_ALL_CLIENT_NODES,
   GET_ALL_USER_NODES,
   GET_NODE,
   POST_CREATE_NODE,
@@ -32,6 +33,31 @@ module.exports[POST_CREATE_NODE] = ({ bodyParams, userInfo }) => {
       fingerprint,
       ip_address,
       oauth_key,
+    })
+  );
+};
+
+module.exports[GET_ALL_CLIENT_NODES] = ({ query, page, per_page, type, userInfo }) => {
+  const { oauth_key, host, fingerprint, ip_address, client_id, client_secret } = userInfo;
+
+  const queryAddedUrl = addQueryParams({
+    originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_NODES]}`,
+    page,
+    per_page,
+    type,
+    query,
+  });
+
+  return axios.get(
+    replacePathParams({
+      originalUrl: queryAddedUrl,
+    }),
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+      client_id,
+      client_secret,
     })
   );
 };
