@@ -21,7 +21,7 @@
 - GET_ALL_CLIENT_NODES
 #### `base`
 ```js
-platformUserApiCannon.GET_ALL_CLIENT_NODES().then(({ data }) => {
+platformUserApiWrapper.GET_ALL_CLIENT_NODES().then(({ data }) => {
   console.log('data: ', data);
 });
 ```
@@ -29,7 +29,7 @@ platformUserApiCannon.GET_ALL_CLIENT_NODES().then(({ data }) => {
 > ---
 #### `with page and per_page`
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .GET_ALL_CLIENT_NODES({
     page: 2,
     per_page: 1,
@@ -44,7 +44,7 @@ platformUserApiCannon
 - GET_ALL_USER_NODES
 #### `base`
 ```js
-platformUserApiCannon.GET_ALL_USER_NODES().then(({ data }) => {
+platformUserApiWrapper.GET_ALL_USER_NODES().then(({ data }) => {
   console.log('data: ', data);
 });
 ```
@@ -52,7 +52,7 @@ platformUserApiCannon.GET_ALL_USER_NODES().then(({ data }) => {
 > ---
 #### `with page and per_page`
 ```js
-platformUserApiCannon.GET_ALL_USER_NODES({ page: 2, per_page: 1 }).then(({ data }) => {
+platformUserApiWrapper.GET_ALL_USER_NODES({ page: 2, per_page: 1 }).then(({ data }) => {
   console.log('data: ', data);
 });
 ```
@@ -60,7 +60,7 @@ platformUserApiCannon.GET_ALL_USER_NODES({ page: 2, per_page: 1 }).then(({ data 
 > ---
 #### `with page, per_page, and type`
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .GET_ALL_USER_NODES({ page: 2, per_page: 1, type: 'CHECK-US' })
   .then(({ data }) => {
     console.log('data: ', data);
@@ -72,7 +72,7 @@ platformUserApiCannon
 
 - GET_NODE
 ```js
-platformUserApiCannon.GET_NODE({ node_id: '<node_id>' }).then(({ data }) => {
+platformUserApiWrapper.GET_NODE({ node_id: '<node_id>' }).then(({ data }) => {
   console.log('data: ', data);
 });
 ```
@@ -81,7 +81,7 @@ platformUserApiCannon.GET_NODE({ node_id: '<node_id>' }).then(({ data }) => {
 
 - POST_CREATE_NODE
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .POST_CREATE_NODE({
     bodyParams: {
       type: 'DEPOSIT-US',
@@ -100,7 +100,7 @@ platformUserApiCannon
 
 - DELETE_NODE
 ```js
-platformUserApiCannon.DELETE_NODE({ node_id: '<node_id>' }).then(({ data }) => {
+platformUserApiWrapper.DELETE_NODE({ node_id: '<node_id>' }).then(({ data }) => {
   console.log('data: ', data);
 });
 ```
@@ -108,14 +108,14 @@ platformUserApiCannon.DELETE_NODE({ node_id: '<node_id>' }).then(({ data }) => {
 
 - `POST_ACH_WITH_LOGIN` and `POST_ACH_WITH_MFA`
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .POST_ACH_WITH_LOGIN({
     bank_id: 'synapse_good',
     bank_pw: 'test1234',
     bank_name: 'fake',
   })
   .then(({ data: { mfa: { access_token } } }) => {
-    return platformUserApiCannon.POST_ACH_WITH_MFA({
+    return platformUserApiWrapper.POST_ACH_WITH_MFA({
       access_token,
       mfa_answer: 'test_answer',
     });
@@ -128,7 +128,7 @@ platformUserApiCannon
 
 - PATCH_UPDATE_NODE
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .PATCH_UPDATE_NODE({
     node_id: '<node id>',
     bodyParams: {
@@ -160,7 +160,7 @@ platformUserApiCannon
 
 - POST_ACH_WITH_AC_RN 
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .POST_ACH_WITH_AC_RN({
     bodyParams: {
       info: {
@@ -181,7 +181,7 @@ platformUserApiCannon
 
 - PATCH_REINITIATE_MICRO_DEPOSIT 
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .PATCH_REINITIATE_MICRO_DEPOSIT({
     node_id: '<node_id>',
   })
@@ -194,7 +194,7 @@ platformUserApiCannon
 
 - PATCH_VERIFY_MICRO_DEPOSIT
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .PATCH_VERIFY_MICRO_DEPOSIT({
     node_id: '<node_id>',
     micro: [0.1, 0.1],

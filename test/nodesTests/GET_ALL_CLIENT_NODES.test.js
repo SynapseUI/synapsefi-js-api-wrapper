@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 const randomatic = require('randomatic');
@@ -8,14 +8,14 @@ const randomatic = require('randomatic');
 describe('GET_ALL_CLIENT_NODES', () => {
   it('base', async () => {
     // ---------------------------------------------------------------------------------------
-    const { data: { node_count } } = await platformUserApiCannon.GET_ALL_CLIENT_NODES();
+    const { data: { node_count } } = await platformUserApiWrapper.GET_ALL_CLIENT_NODES();
     // ---------------------------------------------------------------------------------------
     expect(node_count).to.be.a('number');
   });
 
   it('page and limit', async () => {
     // ---------------------------------------------------------------------------------------
-    const { data: { page, limit } } = await platformUserApiCannon.GET_ALL_CLIENT_NODES({
+    const { data: { page, limit } } = await platformUserApiWrapper.GET_ALL_CLIENT_NODES({
       page: 2,
       per_page: 1,
     });
@@ -27,7 +27,7 @@ describe('GET_ALL_CLIENT_NODES', () => {
   xit('does not support type: yet', async () => {
     const {
       data: { nodes: { 0: { _id: node_id, allowed } } },
-    } = await platformUserApiCannon.POST_ACH_WITH_AC_RN({
+    } = await platformUserApiWrapper.POST_ACH_WITH_AC_RN({
       bodyParams: {
         info: {
           nickname: 'Fake Account',
@@ -40,7 +40,7 @@ describe('GET_ALL_CLIENT_NODES', () => {
     });
 
     // ---------------------------------------------------------------------------------------
-    const { data } = await platformUserApiCannon.GET_ALL_CLIENT_NODES({
+    const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_NODES({
       type: 'ACH-US',
     });
 

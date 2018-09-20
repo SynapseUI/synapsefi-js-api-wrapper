@@ -1,13 +1,13 @@
-const platformUserApiCannon = require('./testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('./testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('./testHelper/testHelpersForNodes');
 
 before(async () => {
   try {
     console.log('Set refresh_token');
-    await platformUserApiCannon.GET_USER();
+    await platformUserApiWrapper.GET_USER();
 
     console.log('Set oauth_key');
-    await platformUserApiCannon.POST_OAUTH_USER();
+    await platformUserApiWrapper.POST_OAUTH_USER();
   } catch (error) {
     console.log('error: ', error.response.data.error.en);
   }

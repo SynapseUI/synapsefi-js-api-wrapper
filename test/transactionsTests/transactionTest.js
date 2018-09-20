@@ -7,7 +7,7 @@
 //   // - make transaction from user 1 node 1 to user 2 node 2
 //   it.only('test', async () => {
 //     // const {
-//     //   endUserApiCannon: endUserCannon1,
+//     //   endUserApiWrapper: endUserCannon1,
 //     //   user_id: user_id_1,
 //     // } = await testHelperFuncsForUsers.createUser({ email: 'user1@email.com' });
 
@@ -26,7 +26,7 @@
 //     // console.log('create node 1');
 
 //     // const {
-//     //   endUserApiCannon: endUserCannon2,
+//     //   endUserApiWrapper: endUserCannon2,
 //     //   user_id: user_id_2,
 //     // } = await testHelperFuncsForUsers.createUser({ email: 'user2@email.com' });
 
@@ -46,7 +46,7 @@
 
 //     // const {
 //     //   data: { nodes: { 0: { _id: node_id_platform } } },
-//     // } = await platformUserApiCannon.POST_CREATE_NODE({
+//     // } = await platformUserApiWrapper.POST_CREATE_NODE({
 //     //   bodyParams: {
 //     //     type: 'DEPOSIT-US',
 //     //     info: {
@@ -81,11 +81,11 @@
 //     // console.log('create transaction 2 -> platform ');
 
 //     try {
-//       const { data: fullData } = await platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS();
+//       const { data: fullData } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS();
 //       console.log('data.trasn_count: ', fullData.trans_count);
 //       console.log('fullData.page: ', fullData.page);
 
-//       const { data: filteredData } = await platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS({
+//       const { data: filteredData } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
 //         page: 2,
 //         per_page: 1,
 //       });

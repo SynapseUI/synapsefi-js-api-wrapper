@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('PATCH_UPDATE_NODE', () => {
@@ -16,7 +16,7 @@ describe('PATCH_UPDATE_NODE', () => {
 
     const bodyParams = { nickname: 'Updated Nickname' };
     // ---------------------------------------------------------------------------------------------
-    const { data: { info: { nickname } } } = await platformUserApiCannon.PATCH_UPDATE_NODE({
+    const { data: { info: { nickname } } } = await platformUserApiWrapper.PATCH_UPDATE_NODE({
       node_id,
       bodyParams,
     });
@@ -24,6 +24,6 @@ describe('PATCH_UPDATE_NODE', () => {
 
     expect(nickname).to.equal('Updated Nickname');
 
-    await platformUserApiCannon.DELETE_NODE({ node_id });
+    await platformUserApiWrapper.DELETE_NODE({ node_id });
   });
 });

@@ -11,7 +11,7 @@ const {
 
 const ApiFactory = require('../../src/ApiFactoryRelated/ApiFactory');
 
-const platformUserApiCannon = new ApiFactory({
+const platformUserApiWrapper = new ApiFactory({
   host,
   client_id,
   client_secret,
@@ -22,4 +22,4 @@ const platformUserApiCannon = new ApiFactory({
   ip_address,
 });
 
-module.exports = platformUserApiCannon;
+module.exports = platformUserApiWrapper;

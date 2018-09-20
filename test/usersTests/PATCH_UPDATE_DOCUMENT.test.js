@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const _ = require('lodash');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 const documentObj = {

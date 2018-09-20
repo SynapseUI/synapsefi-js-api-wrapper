@@ -1,9 +1,9 @@
-const platformUserApiCannon = require('./platformUserApiCannon');
+const platformUserApiWrapper = require('./platformUserApiWrapper');
 const ApiFactory = require('../../src/ApiFactoryRelated/ApiFactory');
 
 //
-const getOauth = async ({ endUserApiCannon }) => {
-  const { data: { oauth_key } } = await endUserApiCannon.POST_OAUTH_USER();
+const getOauth = async ({ endUserApiWrapper }) => {
+  const { data: { oauth_key } } = await endUserApiWrapper.POST_OAUTH_USER();
   return { oauth_key };
 };
 
@@ -15,35 +15,35 @@ module.exports.createUser = async (obj = {}) => {
   const phone_numbers = obj.phone_numbers === undefined ? ['314.315.3242'] : obj.phone_numbers;
   const legal_names = obj.legal_names === undefined ? ['Default Name'] : obj.legal_names;
 
-  const { data } = await platformUserApiCannon.POST_CREATE_USER({
+  const { data } = await platformUserApiWrapper.POST_CREATE_USER({
     logins: [{ email }],
     phone_numbers,
     legal_names,
   });
 
-  const endUserApiCannon = new ApiFactory({
-    host: platformUserApiCannon.host,
-    client_id: platformUserApiCannon.client_id,
-    client_secret: platformUserApiCannon.client_secret,
-    fingerprint: platformUserApiCannon.fingerprint,
-    ip_address: platformUserApiCannon.ip_address,
+  const endUserApiWrapper = new ApiFactory({
+    host: platformUserApiWrapper.host,
+    client_id: platformUserApiWrapper.client_id,
+    client_secret: platformUserApiWrapper.client_secret,
+    fingerprint: platformUserApiWrapper.fingerprint,
+    ip_address: platformUserApiWrapper.ip_address,
     refresh_token: data.refresh_token,
     user_id: data._id,
     oauth_key: '',
   });
 
   const { oauth_key } = await getOauth({
-    endUserApiCannon,
+    endUserApiWrapper,
     user_id: data._id,
     refresh_token: data.refresh_token,
   });
 
-  endUserApiCannon.oauth_key = oauth_key;
-  return { endUserApiCannon, user_id: data._id, refresh_token: data.refresh_token };
+  endUserApiWrapper.oauth_key = oauth_key;
+  return { endUserApiWrapper, user_id: data._id, refresh_token: data.refresh_token };
 };
 
-module.exports.deleteMySelf = async endUserApiCannon => {
-  const resp = await endUserApiCannon.PATCH_USER_PERMISSION({
+module.exports.deleteMySelf = async endUserApiWrapper => {
+  const resp = await endUserApiWrapper.PATCH_USER_PERMISSION({
     permissionStr: 'MAKE-IT-GO-AWAY',
   });
 
@@ -55,10 +55,10 @@ module.exports.addDocument = async (
     email: 'test@test.com',
     name: 'Test User',
     userType: 'BUSINESS',
-    endUserApiCannon: undefined,
+    endUserApiWrapper: undefined,
   }
 ) => {
-  const { email, name, userType, endUserApiCannon } = obj;
+  const { email, name, userType, endUserApiWrapper } = obj;
 
   const documentObj = {
     email: email === undefined ? 'test@test.com' : email,
@@ -84,6 +84,6 @@ module.exports.addDocument = async (
     ],
   };
 
-  const { data } = await endUserApiCannon.PATCH_ADD_DOCUMENT({ documentObj });
+  const { data } = await endUserApiWrapper.PATCH_ADD_DOCUMENT({ documentObj });
   return { data };
 };

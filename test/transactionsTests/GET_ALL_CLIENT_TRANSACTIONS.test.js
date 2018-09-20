@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
@@ -13,14 +13,14 @@ describe('GET_ALL_CLIENT_TRANSACTIONS', () => {
   it('base', async () => {
     const {
       data: { trans_count, page_count },
-    } = await platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS();
+    } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS();
     expect(trans_count).to.be.a('number');
   });
 
-  it.only('page and per_page', async () => {
+  it('page and per_page', async () => {
     const {
       data: { limit, page, trans_count },
-    } = await platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS({
+    } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
       page: 2,
       per_page: 1,
     });
@@ -30,13 +30,13 @@ describe('GET_ALL_CLIENT_TRANSACTIONS', () => {
   });
 
   // it.only('with filter', async () => {
-  //   const { data: { trans_count } } = await platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS();
+  //   const { data: { trans_count } } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS();
   //   console.log('trans_count: ', trans_count);
 
   //   try {
   //     const {
   //       data: { trans_count: trans_count_with_filter },
-  //     } = await platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS({
+  //     } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
   //       filter: `{“$and”:[{“$or”:[{“to.user._id”:{“$in”:[“5b92cc307ce6f953dccbcc79”]}},{“from.user._id”:{“$in”:[“5b92cc307ce6f953dccbcc79"]}}]}]}`,
   //     });
   //   } catch (error) {

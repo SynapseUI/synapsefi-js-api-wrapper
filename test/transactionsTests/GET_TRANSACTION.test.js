@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('GET_TRANSACTION', () => {
@@ -17,7 +17,7 @@ describe('GET_TRANSACTION', () => {
         nickname: 'Node 2',
       });
 
-      const { data: { _id: trans_id } } = await platformUserApiCannon.POST_CREATE_TRANSACTION({
+      const { data: { _id: trans_id } } = await platformUserApiWrapper.POST_CREATE_TRANSACTION({
         from_node_id,
         to_node_id,
         to_node_type,
@@ -27,7 +27,7 @@ describe('GET_TRANSACTION', () => {
       });
 
       // -----------------------------------------------------------------------------------
-      const { data: dataWithFromNodeId } = await platformUserApiCannon.GET_TRANSACTION({
+      const { data: dataWithFromNodeId } = await platformUserApiWrapper.GET_TRANSACTION({
         node_id: from_node_id,
         trans_id,
       });
@@ -38,7 +38,7 @@ describe('GET_TRANSACTION', () => {
       expect(dataWithFromNodeId.amount.amount).to.equal(100);
 
       // -----------------------------------------------------------------------------------
-      const { data: dataWithToNodeId } = await platformUserApiCannon.GET_TRANSACTION({
+      const { data: dataWithToNodeId } = await platformUserApiWrapper.GET_TRANSACTION({
         node_id: to_node_id,
         trans_id,
       });

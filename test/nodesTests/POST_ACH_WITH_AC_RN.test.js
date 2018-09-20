@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const randomatic = require('randomatic');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('POST_ACH_WITH_AC_RN', () => {
@@ -10,13 +10,13 @@ describe('POST_ACH_WITH_AC_RN', () => {
   //   - `expect type "ACH-US"`
   it('create ach with account and routing number', async () => {
     // ---------------------------------------------------------------------------------------------
-    // await platformUserApiCannon.GET_USER();
-    // await platformUserApiCannon.POST_OAUTH_USER();
+    // await platformUserApiWrapper.GET_USER();
+    // await platformUserApiWrapper.POST_OAUTH_USER();
 
     await testHelpersForNodes.deleteAllNodeFromPlatformUser();
     const {
       data: { nodes: { 0: { _id: node_id, allowed } } },
-    } = await platformUserApiCannon.POST_ACH_WITH_AC_RN({
+    } = await platformUserApiWrapper.POST_ACH_WITH_AC_RN({
       bodyParams: {
         info: {
           nickname: 'Fake Account',
@@ -29,6 +29,6 @@ describe('POST_ACH_WITH_AC_RN', () => {
     });
     // ---------------------------------------------------------------------------------------------
     expect(allowed).to.equal('CREDIT');
-    await platformUserApiCannon.DELETE_NODE({ node_id });
+    await platformUserApiWrapper.DELETE_NODE({ node_id });
   });
 });

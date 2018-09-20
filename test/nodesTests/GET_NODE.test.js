@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('GET_NODE', () => {
@@ -14,7 +14,7 @@ describe('GET_NODE', () => {
   });
 
   afterEach(async () => {
-    await platformUserApiCannon.DELETE_NODE({ node_id });
+    await platformUserApiWrapper.DELETE_NODE({ node_id });
     testHelpersForNodes.deleteAllNodeFromPlatformUser();
   });
 
@@ -23,7 +23,7 @@ describe('GET_NODE', () => {
   //     - `expect node type = "DEPOSIT-US"`
   //     - delete node
   it('get node', async () => {
-    const { data: { nodes: { 0: { type } } } } = await platformUserApiCannon.GET_NODE({ node_id });
+    const { data: { nodes: { 0: { type } } } } = await platformUserApiWrapper.GET_NODE({ node_id });
     expect(type).to.equal('DEPOSIT-US');
   });
 });

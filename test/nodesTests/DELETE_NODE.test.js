@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('DELETE_NODE', () => {
@@ -16,7 +16,7 @@ describe('DELETE_NODE', () => {
     expect(initialNote).to.equal('Node created.');
 
     // ---------------------------------------------------------------------------------------
-    const { data: { timeline: afterTimeline } } = await platformUserApiCannon.DELETE_NODE({
+    const { data: { timeline: afterTimeline } } = await platformUserApiWrapper.DELETE_NODE({
       node_id,
     });
     // ---------------------------------------------------------------------------------------

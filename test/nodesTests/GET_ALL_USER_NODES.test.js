@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('GET_ALL_USER_NODES', () => {
@@ -20,8 +20,8 @@ describe('GET_ALL_USER_NODES', () => {
   });
 
   afterEach(async () => {
-    await platformUserApiCannon.DELETE_NODE({ node_id: node_id_1 });
-    await platformUserApiCannon.DELETE_NODE({ node_id: node_id_2 });
+    await platformUserApiWrapper.DELETE_NODE({ node_id: node_id_1 });
+    await platformUserApiWrapper.DELETE_NODE({ node_id: node_id_2 });
 
     await testHelpersForNodes.deleteAllNodeFromPlatformUser();
   });
@@ -31,7 +31,7 @@ describe('GET_ALL_USER_NODES', () => {
   //   - `expect node_count to be a number`
   it('basic get all nodes', async () => {
     // ---------------------------------------------------------------------------------------
-    const { data: { node_count } } = await platformUserApiCannon.GET_ALL_USER_NODES();
+    const { data: { node_count } } = await platformUserApiWrapper.GET_ALL_USER_NODES();
     // ---------------------------------------------------------------------------------------
     expect(node_count).to.be.a('number');
   });
@@ -42,7 +42,7 @@ describe('GET_ALL_USER_NODES', () => {
   //   - `expect limit = 1`
   it('with page and per_page', async () => {
     // ---------------------------------------------------------------------------------------
-    const { data: { page, limit } } = await platformUserApiCannon.GET_ALL_USER_NODES({
+    const { data: { page, limit } } = await platformUserApiWrapper.GET_ALL_USER_NODES({
       page: 2,
       per_page: 1,
     });
@@ -59,7 +59,7 @@ describe('GET_ALL_USER_NODES', () => {
   it('with page, per_page, and type', async () => {
     const {
       data: { nodes: { 0: { _id: check_node_id } } },
-    } = await platformUserApiCannon.POST_CREATE_NODE({
+    } = await platformUserApiWrapper.POST_CREATE_NODE({
       bodyParams: {
         type: 'CHECK-US',
         info: {
@@ -76,7 +76,7 @@ describe('GET_ALL_USER_NODES', () => {
       },
     });
     // ---------------------------------------------------------------------------------------
-    const { data: { nodes: { 0: { type } } } } = await platformUserApiCannon.GET_ALL_USER_NODES({
+    const { data: { nodes: { 0: { type } } } } = await platformUserApiWrapper.GET_ALL_USER_NODES({
       page: 1,
       per_page: 10,
       type: 'CHECK-US',
@@ -85,6 +85,6 @@ describe('GET_ALL_USER_NODES', () => {
 
     expect(type).to.equal('CHECK-US');
 
-    await platformUserApiCannon.DELETE_NODE({ node_id: check_node_id });
+    await platformUserApiWrapper.DELETE_NODE({ node_id: check_node_id });
   });
 });

@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 describe('PATCH_UPDATE_USER', () => {

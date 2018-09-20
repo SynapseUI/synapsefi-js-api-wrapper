@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const randomatic = require('randomatic');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('PATCH_VERIFY_MICRO_DEPOSIT', () => {
@@ -12,7 +12,7 @@ describe('PATCH_VERIFY_MICRO_DEPOSIT', () => {
   it('verify micro deposit', async () => {
     const {
       data: { nodes: { 0: { _id: node_id, allowed: initialAllowed } } },
-    } = await platformUserApiCannon.POST_ACH_WITH_AC_RN({
+    } = await platformUserApiWrapper.POST_ACH_WITH_AC_RN({
       bodyParams: {
         info: {
           nickname: 'Fake Account',
@@ -25,7 +25,7 @@ describe('PATCH_VERIFY_MICRO_DEPOSIT', () => {
     });
 
     // ---------------------------------------------------------------------------------------------
-    const { data: { allowed } } = await platformUserApiCannon.PATCH_VERIFY_MICRO_DEPOSIT({
+    const { data: { allowed } } = await platformUserApiWrapper.PATCH_VERIFY_MICRO_DEPOSIT({
       node_id,
       micro: [0.1, 0.1],
     });
@@ -34,6 +34,6 @@ describe('PATCH_VERIFY_MICRO_DEPOSIT', () => {
     expect(initialAllowed).to.equal('CREDIT');
     expect(allowed).to.equal('CREDIT-AND-DEBIT');
 
-    await platformUserApiCannon.DELETE_NODE({ node_id });
+    await platformUserApiWrapper.DELETE_NODE({ node_id });
   });
 });

@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 
 const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
@@ -9,7 +9,7 @@ describe('GET_ALL_CLIENT_USERS', () => {
   //   - base -> has key users_count
   it('GET_ALL_CLIENT_USERS with no args', async () => {
     // -------------------------------------------------------
-    const { data } = await platformUserApiCannon.GET_ALL_CLIENT_USERS();
+    const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_USERS();
     // -------------------------------------------------------
 
     expect(typeof data.users_count).to.equal('number');
@@ -23,20 +23,20 @@ describe('GET_ALL_CLIENT_USERS', () => {
   //     - delete both users
   it('search name', async () => {
     try {
-      const { endUserApiCannon: endUserApiCannon1 } = await testHelperFuncsForUsers.createUser({
+      const { endUserApiWrapper: endUserApiWrapper1 } = await testHelperFuncsForUsers.createUser({
         legal_names: ['Search Yes'],
       });
-      const { endUserApiCannon: endUserApiCannon2 } = await testHelperFuncsForUsers.createUser({
+      const { endUserApiWrapper: endUserApiWrapper2 } = await testHelperFuncsForUsers.createUser({
         legal_names: ['Search No'],
       });
       // ------------------------------------------------------------------------------
-      const { data } = await platformUserApiCannon.GET_ALL_CLIENT_USERS({ query: 'Search Yes' });
+      const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_USERS({ query: 'Search Yes' });
       // ------------------------------------------------------------------------------
 
       expect(data.users[0].legal_names).to.include.members(['Search Yes']);
 
-      await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon1);
-      await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon2);
+      await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper1);
+      await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper2);
     } catch (error) {
       console.log('error: ', error.response.data.error.en);
     }
@@ -48,7 +48,7 @@ describe('GET_ALL_CLIENT_USERS', () => {
   //     - `expext limit = 3`
   it('page, per_page', async () => {
     // ------------------------------------------------------------------------------
-    const { data: { page, limit } } = await platformUserApiCannon.GET_ALL_CLIENT_USERS({
+    const { data: { page, limit } } = await platformUserApiWrapper.GET_ALL_CLIENT_USERS({
       page: 2,
       per_page: 3,
     });
@@ -65,15 +65,15 @@ describe('GET_ALL_CLIENT_USERS', () => {
   //     - `expext page = 1, limit = 2, user with email: "real@gmail.com"`
   //     - delete both users
   it('query, per_page, page', async () => {
-    const { endUserApiCannon: endUserApiCannon1 } = await testHelperFuncsForUsers.createUser({
+    const { endUserApiWrapper: endUserApiWrapper1 } = await testHelperFuncsForUsers.createUser({
       email: 'real@gmail.com',
     });
-    const { endUserApiCannon: endUserApiCannon2 } = await testHelperFuncsForUsers.createUser({
+    const { endUserApiWrapper: endUserApiWrapper2 } = await testHelperFuncsForUsers.createUser({
       email: 'fake@gmail.com',
     });
 
     // ------------------------------------------------------------------------------
-    const { data } = await platformUserApiCannon.GET_ALL_CLIENT_USERS({
+    const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_USERS({
       query: 'real@gmail.com',
       page: 1,
       per_page: 2,
@@ -84,7 +84,7 @@ describe('GET_ALL_CLIENT_USERS', () => {
     expect(data.limit).to.equal(2);
     expect(data.users[0].logins[0].email).to.equal('real@gmail.com');
 
-    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon1);
-    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon2);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper1);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper2);
   });
 });

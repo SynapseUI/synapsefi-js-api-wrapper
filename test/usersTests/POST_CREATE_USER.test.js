@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const ApiFactory = require('../../src/ApiFactoryRelated/ApiFactory');
 
 // -[x] POST_CREATE_USER
@@ -12,7 +12,7 @@ describe('POST_CREATE_USER', () => {
     // -----------------------------------------------------------------------------------
     const {
       data: { _id, refresh_token, legal_names },
-    } = await platformUserApiCannon.POST_CREATE_USER({
+    } = await platformUserApiWrapper.POST_CREATE_USER({
       logins: [{ email: 'email.com' }],
       phone_numbers: ['123.123.1233'],
       legal_names: ['Post User'],
@@ -22,11 +22,11 @@ describe('POST_CREATE_USER', () => {
     expect(legal_names[0]).to.equal('Post User');
 
     const endUserApiCannon = new ApiFactory({
-      host: platformUserApiCannon.host,
-      client_id: platformUserApiCannon.client_id,
-      client_secret: platformUserApiCannon.client_secret,
-      fingerprint: platformUserApiCannon.fingerprint,
-      ip_address: platformUserApiCannon.ip_address,
+      host: platformUserApiWrapper.host,
+      client_id: platformUserApiWrapper.client_id,
+      client_secret: platformUserApiWrapper.client_secret,
+      fingerprint: platformUserApiWrapper.fingerprint,
+      ip_address: platformUserApiWrapper.ip_address,
       refresh_token,
       user_id: _id,
       oauth_key: '',
@@ -42,7 +42,7 @@ describe('POST_CREATE_USER', () => {
     // -----------------------------------------------------------------------------------
     const {
       data: { _id, refresh_token, legal_names, extra },
-    } = await platformUserApiCannon.POST_CREATE_USER({
+    } = await platformUserApiWrapper.POST_CREATE_USER({
       logins: [{ email: 'email.com' }],
       phone_numbers: ['123.123.1233'],
       legal_names: ['Post User'],
@@ -57,11 +57,11 @@ describe('POST_CREATE_USER', () => {
     expect(extra.public_note).to.equal('yeah i am a public note');
 
     const endUserApiCannon = new ApiFactory({
-      host: platformUserApiCannon.host,
-      client_id: platformUserApiCannon.client_id,
-      client_secret: platformUserApiCannon.client_secret,
-      fingerprint: platformUserApiCannon.fingerprint,
-      ip_address: platformUserApiCannon.ip_address,
+      host: platformUserApiWrapper.host,
+      client_id: platformUserApiWrapper.client_id,
+      client_secret: platformUserApiWrapper.client_secret,
+      fingerprint: platformUserApiWrapper.fingerprint,
+      ip_address: platformUserApiWrapper.ip_address,
       refresh_token,
       user_id: _id,
       oauth_key: '',

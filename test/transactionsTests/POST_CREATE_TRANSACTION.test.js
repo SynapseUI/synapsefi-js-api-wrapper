@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('POST_CREATE_TRANSACTION', () => {
@@ -18,7 +18,7 @@ describe('POST_CREATE_TRANSACTION', () => {
 
     // -----------------------------------------------------------------------------------
     try {
-      const { data } = await platformUserApiCannon.POST_CREATE_TRANSACTION({
+      const { data } = await platformUserApiWrapper.POST_CREATE_TRANSACTION({
         from_node_id,
         to_node_id,
         to_node_type,

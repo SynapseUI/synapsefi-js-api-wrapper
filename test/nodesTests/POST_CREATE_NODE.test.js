@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 describe('POST_CREATE_NODE', () => {
@@ -12,7 +12,7 @@ describe('POST_CREATE_NODE', () => {
     // -----------------------------------------------------------------------------------------------
     const {
       data: { nodes: { [0]: { _id: node_id, info: { nickname }, type } } },
-    } = await platformUserApiCannon.POST_CREATE_NODE({
+    } = await platformUserApiWrapper.POST_CREATE_NODE({
       bodyParams: {
         type: 'DEPOSIT-US',
         info: {
@@ -25,6 +25,6 @@ describe('POST_CREATE_NODE', () => {
     expect(nickname).to.equal('My Checking');
     expect(type).to.equal('DEPOSIT-US');
 
-    platformUserApiCannon.DELETE_NODE({ node_id });
+    platformUserApiWrapper.DELETE_NODE({ node_id });
   });
 });

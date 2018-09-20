@@ -1,13 +1,13 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 describe('GET_ALL_NODE_TRANSACTIONS', () => {
   it('base and page, per_page all together', async () => {
     const {
-      endUserApiCannon: endUserCannon1,
+      endUserApiWrapper: endUserCannon1,
       user_id: user_id_1,
     } = await testHelperFuncsForUsers.createUser({ email: 'user1@email.com' });
 
@@ -26,7 +26,7 @@ describe('GET_ALL_NODE_TRANSACTIONS', () => {
     console.log('create node 1');
 
     const {
-      endUserApiCannon: endUserCannon2,
+      endUserApiWrapper: endUserCannon2,
       user_id: user_id_2,
     } = await testHelperFuncsForUsers.createUser({ email: 'user2@email.com' });
 

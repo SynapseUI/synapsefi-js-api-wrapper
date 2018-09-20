@@ -13,7 +13,7 @@
 
 - POST_CREATE_TRANSACTION
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .POST_CREATE_TRANSACTION({
     from_node_id: '<from_node_id>',
     to_node_id: '<to_node_id>',
@@ -30,7 +30,7 @@ platformUserApiCannon
 
 - GET_TRANSACTION
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .GET_TRANSACTION({
     node_id: '<from or to node_id>',
     trans_id: '<trans_id>',
@@ -45,7 +45,7 @@ platformUserApiCannon
 - PATCH_COMMENT_ON_STATUS
 
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .PATCH_COMMENT_ON_STATUS({
     node_id: '<from or to node_id>',
     trans_id: '<trans_id>',
@@ -60,7 +60,7 @@ platformUserApiCannon
 
 - DELETE_TRANSACTION
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .DELETE_TRANSACTION({
     node_id: '<from or to node_id>',
     trans_id: '<trans_id>',
@@ -74,13 +74,13 @@ platformUserApiCannon
 - GET_ALL_CLIENT_TRANSACTIONS
   - base
 ```js
-platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS().then(({ data }) => {
+platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS().then(({ data }) => {
   console.log('data: ', data);
 });
 ```
   - page, per_page
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .GET_ALL_CLIENT_TRANSACTIONS({
     page: 2,
     per_page: 1,
@@ -95,14 +95,14 @@ platformUserApiCannon
 - GET_ALL_USER_TRANSACTIONS
   - base
 ```js
-platformUserApiCannon.GET_ALL_USER_TRANSACTIONS().then(({ data }) => {
+platformUserApiWrapper.GET_ALL_USER_TRANSACTIONS().then(({ data }) => {
   console.log('data: ', data);
 });
 ```
 
   - page, per_page
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .GET_ALL_USER_TRANSACTIONS({
     page: 2,
     per_page: 1,
@@ -115,7 +115,7 @@ platformUserApiCannon
 
 - GET_ALL_NODE_TRANSACTIONS
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .GET_ALL_NODE_TRANSACTIONS({
     node_id: '<from or to node_id>',
   })
@@ -126,7 +126,7 @@ platformUserApiCannon
 
   - page, per_page
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .GET_ALL_NODE_TRANSACTIONS({
     node_id: '<from or to node_id>',
     page: 2,

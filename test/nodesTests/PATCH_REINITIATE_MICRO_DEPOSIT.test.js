@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const randomatic = require('randomatic');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('PATCH_REINITIATE_MICRO_DEPOSIT', () => {
@@ -12,7 +12,7 @@ describe('PATCH_REINITIATE_MICRO_DEPOSIT', () => {
     await testHelpersForNodes.deleteAllNodeFromPlatformUser();
     const {
       data: { nodes: { 0: { _id: node_id } } },
-    } = await platformUserApiCannon.POST_ACH_WITH_AC_RN({
+    } = await platformUserApiWrapper.POST_ACH_WITH_AC_RN({
       bodyParams: {
         info: {
           nickname: 'Fake Account',
@@ -25,7 +25,7 @@ describe('PATCH_REINITIATE_MICRO_DEPOSIT', () => {
     });
 
     // ---------------------------------------------------------------------------------------------
-    const { data: { timeline } } = await platformUserApiCannon.PATCH_REINITIATE_MICRO_DEPOSIT({
+    const { data: { timeline } } = await platformUserApiWrapper.PATCH_REINITIATE_MICRO_DEPOSIT({
       node_id,
     });
     // ---------------------------------------------------------------------------------------------
@@ -34,6 +34,6 @@ describe('PATCH_REINITIATE_MICRO_DEPOSIT', () => {
 
     expect(nodes[nodes.length - 1]).to.equal('Micro deposits initiated.');
 
-    await platformUserApiCannon.DELETE_NODE({ node_id });
+    await platformUserApiWrapper.DELETE_NODE({ node_id });
   });
 });

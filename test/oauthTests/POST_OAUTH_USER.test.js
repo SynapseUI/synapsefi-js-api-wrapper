@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 describe('POST_OAUTH_USER', () => {
@@ -8,10 +8,10 @@ describe('POST_OAUTH_USER', () => {
   //  - get and set oauth key
   //  - `expect new oauth key should not be fake oauth key`
   xit('get and set oauth key', async () => {
-    platformUserApiCannon.oauth_key = 'fake oauth key';
-    console.log('platformUserApiCannon before: ', platformUserApiCannon.oauth_key);
+    platformUserApiWrapper.oauth_key = 'fake oauth key';
+    console.log('platformUserApiWrapper before: ', platformUserApiWrapper.oauth_key);
 
-    const { data } = await platformUserApiCannon.POST_OAUTH_USER();
+    const { data } = await platformUserApiWrapper.POST_OAUTH_USER();
     console.log('data: ', data);
   });
 });

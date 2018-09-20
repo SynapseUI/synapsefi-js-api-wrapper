@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const platformUserApiCannon = require('../testHelper/platformUserApiCannon');
+const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 
 describe('PATCH_COMMENT_ON_STATUS', () => {
@@ -16,7 +16,7 @@ describe('PATCH_COMMENT_ON_STATUS', () => {
       nickname: 'Node 2',
     });
 
-    const { data: { _id: trans_id } } = await platformUserApiCannon.POST_CREATE_TRANSACTION({
+    const { data: { _id: trans_id } } = await platformUserApiWrapper.POST_CREATE_TRANSACTION({
       from_node_id,
       to_node_id,
       to_node_type,
@@ -28,7 +28,7 @@ describe('PATCH_COMMENT_ON_STATUS', () => {
     // -----------------------------------------------------------------------------------
     const {
       data: { recent_status: firstRecentStatus },
-    } = await platformUserApiCannon.PATCH_COMMENT_ON_STATUS({
+    } = await platformUserApiWrapper.PATCH_COMMENT_ON_STATUS({
       node_id: from_node_id,
       trans_id,
       comment: 'first comment',
@@ -38,7 +38,7 @@ describe('PATCH_COMMENT_ON_STATUS', () => {
     // -----------------------------------------------------------------------------------
     const {
       data: { recent_status: secondRecentStatus },
-    } = await platformUserApiCannon.PATCH_COMMENT_ON_STATUS({
+    } = await platformUserApiWrapper.PATCH_COMMENT_ON_STATUS({
       node_id: from_node_id,
       trans_id,
       comment: 'second comment',

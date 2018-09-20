@@ -47,7 +47,7 @@ User of this library can declare variable with diffrent naming convention.
 import ApiFactory from 'synapsefi-js-api-wrapper'; // for client
 // const ApiFactory = require('synapsefi-js-api-wrapper'); // for node
 
-const platformUserApiCannon = new ApiFactory({
+const platformUserApiWrapper = new ApiFactory({
   host: 'sandbox or production host(ex: https://uat-api.synapsefi.com)',
   client_id: '<clinet id>',
   client_secret: '<clinet secret>',
@@ -58,11 +58,11 @@ const platformUserApiCannon = new ApiFactory({
   refresh_token: '<refresh_token> of platform',
 });
 
-const endUserApiCannon = new ApiFactory({
-  host: platformUserApiCannon.host,
-  client_id: platformUserApiCannon.client_id,
-  client_secret: platformUserApiCannon.client_secret,
-  ip_address: platformUserApiCannon.ip_address,
+const endUserApiWrapper = new ApiFactory({
+  host: platformUserApiWrapper.host,
+  client_id: platformUserApiWrapper.client_id,
+  client_secret: platformUserApiWrapper.client_secret,
+  ip_address: platformUserApiWrapper.ip_address,
   user_id: '<user_id> of the end user',
   fingerprint: '<finger print when this user is created>',
   refresh_token: '<refresh_token> of the end user',
@@ -79,14 +79,14 @@ const endUserApiCannon = new ApiFactory({
 
 #### `with no argument`
 ```js
-platformUserApiCannon.GET_ALL_CLIENT_USERS().then(({data}) => {
+platformUserApiWrapper.GET_ALL_CLIENT_USERS().then(({data}) => {
   console.log('data: ', data);
 });
 ```
 > ---
 #### `search by name or email using query`
 ```js
-platformUserApiCannon.GET_ALL_CLIENT_USERS({ query: 'John Doe' }).then(({data}) => {
+platformUserApiWrapper.GET_ALL_CLIENT_USERS({ query: 'John Doe' }).then(({data}) => {
   console.log('data: ', data);
 });
 ```
@@ -94,7 +94,7 @@ platformUserApiCannon.GET_ALL_CLIENT_USERS({ query: 'John Doe' }).then(({data}) 
 
 #### `specific page and per page (page, per_page)`
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .GET_ALL_CLIENT_USERS({
     page: 2,
     per_page: 3,
@@ -108,7 +108,7 @@ platformUserApiCannon
 
 #### `conbining query, page, and per_page`
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .GET_ALL_CLIENT_USERS({
     query: 'sean@gmail.com',
     page: 1,
@@ -124,7 +124,7 @@ platformUserApiCannon
 ### Create User
 ###### (POST_CREATE_USER)
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .POST_CREATE_USER({
     logins: [{ email: 'email@email.com' }],
     phone_numbers: ['123.123.1233'],
@@ -140,7 +140,7 @@ platformUserApiCannon
 ### Get User
 ###### (GET_USER)
 ```js
-platformUserApiCannon.GET_USER().then(({ data }) => {
+platformUserApiWrapper.GET_USER().then(({ data }) => {
   console.log('data: ', data);
 });
 ```
@@ -173,7 +173,7 @@ const personalDocumentObj = {
   ],
 };
 
-platformUserApiCannon
+platformUserApiWrapper
   .PATCH_ADD_DOCUMENT({
     documentObj: personalDocumentObj,
   })
@@ -187,7 +187,7 @@ platformUserApiCannon
 
 #### `update base doc`
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .PATCH_UPDATE_DOCUMENT({
     documentObj: {
       id: '<initialBaseDocId>',
@@ -202,7 +202,7 @@ platformUserApiCannon
 
 #### `update sub docs`
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .PATCH_UPDATE_DOCUMENT({
     documentObj: {
       id: '<initialBaseDocId>',
@@ -223,7 +223,7 @@ platformUserApiCannon
 ### Delete Base Doc
 ###### (PATCH_DELETE_BASE_DOC)
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .PATCH_DELETE_BASE_DOC({ documentId: '<document id of base doc>' })
   .then(({ data }) => {
     console.log('data: ', data);
@@ -233,7 +233,7 @@ platformUserApiCannon
 ### Delete Sub Docs
 ###### (PATCH_DELETE_SUB_DOCS)
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .PATCH_DELETE_SUB_DOCS({
     baseDocId: '<base_doc_id>',
     socialDocIds: [
@@ -252,7 +252,7 @@ platformUserApiCannon
 ###### (PATCH_UPDATE_USER)
 #### `update legal name, login email, password, and phone number`
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .PATCH_UPDATE_USER({
     updateObj: {
       legal_name: 'After User',
@@ -271,7 +271,7 @@ platformUserApiCannon
 > ---
 #### `update cip_tag`
 ```js
-platformUserApiCannon
+platformUserApiWrapper
   .PATCH_UPDATE_USER({
     updateObj: {
       legal_name: 'After User',
@@ -289,7 +289,7 @@ platformUserApiCannon
 ###### (PATCH_USER_PERMISSION)
 #### `lock user`
  ```js
- endUserApiCannon
+ endUserApiWrapper
   .PATCH_USER_PERMISSION({
     permissionStr: 'LOCKED',
   })
@@ -300,7 +300,7 @@ platformUserApiCannon
  > --- 
 #### `delete user`
 ```js
- endUserApiCannon
+ endUserApiWrapper
   .PATCH_USER_PERMISSION({
     permissionStr: 'MAKE-IT-GO-AWAY',
   })
@@ -313,16 +313,16 @@ platformUserApiCannon
  ## Oauth Key
 
  ```js
-platformUserApiCannon.oauth_key = 'fake oauth key';
-console.log('platformUserApiCannon.oauth_key: ', platformUserApiCannon.oauth_key); // fake oauth key
+platformUserApiWrapper.oauth_key = 'fake oauth key';
+console.log('platformUserApiWrapper.oauth_key: ', platformUserApiWrapper.oauth_key); // fake oauth key
 
-platformUserApiCannon.POST_OAUTH_USER().then(({ data }) => {
+platformUserApiWrapper.POST_OAUTH_USER().then(({ data }) => {
   console.log('data: ', data);
 });
 
-// Calling "POST_OAUTH_USER" set new oauth_key to platformUserApiCannon.
-// platformUserApiCannon.oauth_key === data.oauth_key
-console.log('platformUserApiCannon.oauth_key: ', platformUserApiCannon.oauth_key); // data.oauth_key
+// Calling "POST_OAUTH_USER" set new oauth_key to platformUserApiWrapper.
+// platformUserApiWrapper.oauth_key === data.oauth_key
+console.log('platformUserApiWrapper.oauth_key: ', platformUserApiWrapper.oauth_key); // data.oauth_key
 ```
 
 > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > ---
