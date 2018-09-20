@@ -172,3 +172,27 @@ module.exports[GET_ALL_USER_TRANSACTIONS] = ({ query, page, per_page, userInfo }
     })
   );
 };
+
+module.exports[GET_ALL_NODE_TRANSACTIONS] = ({ node_id, query, page, per_page, userInfo }) => {
+  const { oauth_key, host, fingerprint, ip_address, user_id } = userInfo;
+
+  const url = addQueryParams({
+    originalUrl: `${host}${staticEndpoints[GET_ALL_NODE_TRANSACTIONS]}`,
+    query,
+    page,
+    per_page,
+  });
+
+  return axios.get(
+    replacePathParams({
+      originalUrl: url,
+      user_id,
+      node_id,
+    }),
+    buildHeaders({
+      fingerprint,
+      ip_address,
+      oauth_key,
+    })
+  );
+};

@@ -337,6 +337,17 @@ class ApiFactory {
       userInfo: this,
     });
   }
+
+  GET_ALL_NODE_TRANSACTIONS(queryParams = {}) {
+    const { node_id, query, page, per_page } = queryParams;
+    return apiRequests.transactions[GET_ALL_NODE_TRANSACTIONS]({
+      node_id,
+      query,
+      page,
+      per_page,
+      userInfo: this,
+    });
+  }
   // -------------------------------------------------------------------------------
   //
 }

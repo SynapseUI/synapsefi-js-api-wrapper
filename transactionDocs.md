@@ -114,5 +114,26 @@ platformUserApiCannon
 ---
 
 - GET_ALL_NODE_TRANSACTIONS
+```js
+platformUserApiCannon
+  .GET_ALL_NODE_TRANSACTIONS({
+    node_id: '<from or to node_id>',
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 
+  - page, per_page
+```js
+platformUserApiCannon
+  .GET_ALL_NODE_TRANSACTIONS({
+    node_id: '<from or to node_id>',
+    page: 2,
+    per_page: 1,
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 ---
