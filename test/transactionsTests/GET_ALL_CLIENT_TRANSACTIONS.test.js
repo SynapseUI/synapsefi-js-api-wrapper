@@ -10,14 +10,14 @@ describe('GET_ALL_CLIENT_TRANSACTIONS', () => {
   // - create node for platform
   // - make transaction from platform node to user 1 node
   // - make transaction from user 1 node 1 to user 2 node 2
-  it.only('base', async () => {
+  it('base', async () => {
     const {
       data: { trans_count, page_count },
     } = await platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS();
     expect(trans_count).to.be.a('number');
   });
 
-  it.only('page and per_page', async () => {
+  it('page and per_page', async () => {
     const {
       data: { limit, page, trans_count },
     } = await platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS({

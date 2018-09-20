@@ -327,9 +327,18 @@ class ApiFactory {
       userInfo: this,
     });
   }
+
+  GET_ALL_USER_TRANSACTIONS(queryParams = {}) {
+    const { query, page, per_page } = queryParams;
+    return apiRequests.transactions[GET_ALL_USER_TRANSACTIONS]({
+      query,
+      page,
+      per_page,
+      userInfo: this,
+    });
+  }
   // -------------------------------------------------------------------------------
   //
 }
 
-ApiFactory.testFunc = ApiFactory;
 module.exports = ApiFactory;

@@ -93,7 +93,24 @@ platformUserApiCannon
 ---
 
 - GET_ALL_USER_TRANSACTIONS
+  - base
+```js
+platformUserApiCannon.GET_ALL_USER_TRANSACTIONS().then(({ data }) => {
+  console.log('data: ', data);
+});
+```
 
+  - page, per_page
+```js
+platformUserApiCannon
+  .GET_ALL_USER_TRANSACTIONS({
+    page: 2,
+    per_page: 1,
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 ---
 
 - GET_ALL_NODE_TRANSACTIONS
