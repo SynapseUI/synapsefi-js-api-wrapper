@@ -130,23 +130,47 @@ module.exports[DELETE_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
   );
 };
 
-module.exports[GET_ALL_CLIENT_TRANSACTIONS] = ({ query, page, per_page, userInfo }) => {
+module.exports[GET_ALL_CLIENT_TRANSACTIONS] = ({ filter, query, page, per_page, userInfo }) => {
   const { oauth_key, host, fingerprint, ip_address, client_id, client_secret } = userInfo;
+
+  // const url = addQueryParams({
+  //   originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_TRANSACTIONS]}`,
+  //   filter,
+  //   query,
+  //   page,
+  //   per_page,
+  // });
+  // console.log('url: ', url);
+
+  // const res = {
+  //   params: { filter },
+  //   ...buildHeaders({
+  //     client_id,
+  //     client_secret,
+  //     fingerprint,
+  //     ip_address,
+  //     oauth_key,
+  //   }),
+  // };
+  // console.log('res: ', res);
 
   return axios.get(
     addQueryParams({
       originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_TRANSACTIONS]}`,
+      filter,
       query,
       page,
       per_page,
     }),
-    buildHeaders({
-      client_id,
-      client_secret,
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      ...buildHeaders({
+        client_id,
+        client_secret,
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 

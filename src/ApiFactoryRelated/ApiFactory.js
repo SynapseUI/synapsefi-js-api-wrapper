@@ -83,9 +83,10 @@ class ApiFactory {
   }
 
   GET_ALL_CLIENT_USERS(queryParams = {}) {
-    const { query, page, per_page, show_refresh_tokens } = queryParams;
+    const { filter, query, page, per_page, show_refresh_tokens } = queryParams;
 
     return apiRequests.users[GET_ALL_CLIENT_USERS]({
+      filter,
       query,
       page,
       per_page,
@@ -187,8 +188,9 @@ class ApiFactory {
   // NODES  -----------------------------------------------------------------
 
   GET_ALL_CLIENT_NODES(queryParams = {}) {
-    const { query, page, per_page, type } = queryParams;
+    const { filter, query, page, per_page, type } = queryParams;
     return apiRequests.nodes[GET_ALL_CLIENT_NODES]({
+      filter,
       query,
       page,
       per_page,
@@ -332,8 +334,9 @@ class ApiFactory {
   }
 
   GET_ALL_CLIENT_TRANSACTIONS(queryParams = {}) {
-    const { query, page, per_page } = queryParams;
+    const { filter, query, page, per_page } = queryParams;
     return apiRequests.transactions[GET_ALL_CLIENT_TRANSACTIONS]({
+      filter,
       query,
       page,
       per_page,

@@ -17,7 +17,7 @@ describe('GET_ALL_CLIENT_TRANSACTIONS', () => {
     expect(trans_count).to.be.a('number');
   });
 
-  it('page and per_page', async () => {
+  it.only('page and per_page', async () => {
     const {
       data: { limit, page, trans_count },
     } = await platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS({
@@ -28,4 +28,22 @@ describe('GET_ALL_CLIENT_TRANSACTIONS', () => {
     expect(page).to.equal(2);
     expect(limit).to.equal(1);
   });
+
+  // it.only('with filter', async () => {
+  //   const { data: { trans_count } } = await platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS();
+  //   console.log('trans_count: ', trans_count);
+
+  //   try {
+  //     const {
+  //       data: { trans_count: trans_count_with_filter },
+  //     } = await platformUserApiCannon.GET_ALL_CLIENT_TRANSACTIONS({
+  //       filter: `{“$and”:[{“$or”:[{“to.user._id”:{“$in”:[“5b92cc307ce6f953dccbcc79”]}},{“from.user._id”:{“$in”:[“5b92cc307ce6f953dccbcc79"]}}]}]}`,
+  //     });
+  //   } catch (error) {
+  //     console.log('error: ', error.response.data.error.en);
+  //     throw new Error(error);
+  //   }
+
+  //   console.log('trans_count_with_filter: ', trans_count_with_filter);
+  // });
 });

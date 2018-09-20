@@ -33,6 +33,7 @@ module.exports[GET_USERS_ENTITY_SCOPES] = ({ host }) => {
 };
 
 module.exports[GET_ALL_CLIENT_USERS] = ({
+  filter,
   query,
   page,
   per_page,
@@ -44,6 +45,7 @@ module.exports[GET_ALL_CLIENT_USERS] = ({
   return axios.get(
     addQueryParams({
       originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_USERS]}`,
+      filter,
       query,
       page,
       per_page,
@@ -58,7 +60,13 @@ module.exports[GET_ALL_CLIENT_USERS] = ({
   );
 };
 
-module.exports[POST_CREATE_USER] = ({ logins, phone_numbers, legal_names, optionalBodyParams, userInfo }) => {
+module.exports[POST_CREATE_USER] = ({
+  logins,
+  phone_numbers,
+  legal_names,
+  optionalBodyParams,
+  userInfo,
+}) => {
   const { host, client_id, client_secret, fingerprint, ip_address } = userInfo;
 
   return axios.post(

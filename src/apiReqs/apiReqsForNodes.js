@@ -37,11 +37,12 @@ module.exports[POST_CREATE_NODE] = ({ bodyParams, userInfo }) => {
   );
 };
 
-module.exports[GET_ALL_CLIENT_NODES] = ({ query, page, per_page, type, userInfo }) => {
+module.exports[GET_ALL_CLIENT_NODES] = ({ filter, query, page, per_page, type, userInfo }) => {
   const { oauth_key, host, fingerprint, ip_address, client_id, client_secret } = userInfo;
 
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_NODES]}`,
+    filter,
     page,
     per_page,
     type,
