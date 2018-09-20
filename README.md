@@ -1,4 +1,4 @@
-# synapsefi-js-api-wrapper (ApiFactory)
+# synapsefi-js-api-wrapper
 
 ## Installation
 ```sh

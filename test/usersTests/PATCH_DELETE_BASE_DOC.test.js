@@ -11,25 +11,25 @@ const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers')
 //   - `expect doc len to be 1`
 describe('PATCH_DELETE_BASE_DOC', () => {
   it('PATCH_DELETE_BASE_DOC', async () => {
-    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
+    const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
     const {
       data: { documents: { 0: { id: firstDocId } } },
     } = await testHelperFuncsForUsers.addDocument({
-      endUserApiCannon,
+      endUserApiWrapper,
       email: 'first@gmail.com',
     });
 
     const { data: { documents: beforeDocuments } } = await testHelperFuncsForUsers.addDocument({
-      endUserApiCannon,
+      endUserApiWrapper,
       email: 'second@gmail.com',
     });
 
-    const { data: { documents: afterDocuments } } = await endUserApiCannon.PATCH_DELETE_BASE_DOC({
+    const { data: { documents: afterDocuments } } = await endUserApiWrapper.PATCH_DELETE_BASE_DOC({
       documentId: firstDocId,
     });
 
-    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
 
     expect(beforeDocuments.length - afterDocuments.length).to.equal(1);
   });

@@ -36,9 +36,9 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
   //   - `expect eamil to be "update@gmail.com"`
   //   - delete user
   it('update base doc', async () => {
-    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
+    const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
-    const { data: { documents: initialDocuments } } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
+    const { data: { documents: initialDocuments } } = await endUserApiWrapper.PATCH_ADD_DOCUMENT({
       documentObj,
     });
 
@@ -48,7 +48,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
 
     const {
       data: { documents: afterDocuments },
-    } = await endUserApiCannon.PATCH_UPDATE_DOCUMENT({
+    } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENT({
       documentObj: {
         id: initialDocId,
         email: 'updated@gmail.com',
@@ -60,7 +60,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
     expect(afterEmail).to.equal('updated@gmail.com');
     expect(initialDocId).to.not.equal(afterDocId);
 
-    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
   });
 
   // - update sub docs
@@ -71,9 +71,9 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
   //   - `expect facebook value to be "https://www.facebook.com/afterUpdate"`
   //   - delete user
   it('update sub docs', async () => {
-    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
+    const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
-    const { data: { documents: initialDocuments } } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
+    const { data: { documents: initialDocuments } } = await endUserApiWrapper.PATCH_ADD_DOCUMENT({
       documentObj,
     });
 
@@ -84,7 +84,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
 
     const {
       data: { documents: afterDocuments },
-    } = await endUserApiCannon.PATCH_UPDATE_DOCUMENT({
+    } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENT({
       documentObj: {
         id: initialDocId,
         social_docs: [
@@ -106,6 +106,6 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
     expect(beforeDocValue).to.equal('https://www.facebook.com/beforeUpdate');
     expect(afterDocValue).to.equal('https://www.facebook.com/afterUpdate');
 
-    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
   });
 });

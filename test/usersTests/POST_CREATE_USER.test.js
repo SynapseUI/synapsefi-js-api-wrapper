@@ -21,7 +21,7 @@ describe('POST_CREATE_USER', () => {
 
     expect(legal_names[0]).to.equal('Post User');
 
-    const endUserApiCannon = new ApiFactory({
+    const endUserApiWrapper = new ApiFactory({
       host: platformUserApiWrapper.host,
       client_id: platformUserApiWrapper.client_id,
       client_secret: platformUserApiWrapper.client_secret,
@@ -32,10 +32,10 @@ describe('POST_CREATE_USER', () => {
       oauth_key: '',
     });
 
-    const { data: { oauth_key } } = await endUserApiCannon.POST_OAUTH_USER();
-    endUserApiCannon.oauth_key = oauth_key;
+    const { data: { oauth_key } } = await endUserApiWrapper.POST_OAUTH_USER();
+    endUserApiWrapper.oauth_key = oauth_key;
 
-    await endUserApiCannon.PATCH_USER_PERMISSION({ permissionStr: 'MAKE-IT-GO-AWAY' });
+    await endUserApiWrapper.PATCH_USER_PERMISSION({ permissionStr: 'MAKE-IT-GO-AWAY' });
   });
 
   it('optionalBodyParams', async () => {
@@ -56,7 +56,7 @@ describe('POST_CREATE_USER', () => {
 
     expect(extra.public_note).to.equal('yeah i am a public note');
 
-    const endUserApiCannon = new ApiFactory({
+    const endUserApiWrapper = new ApiFactory({
       host: platformUserApiWrapper.host,
       client_id: platformUserApiWrapper.client_id,
       client_secret: platformUserApiWrapper.client_secret,
@@ -67,9 +67,9 @@ describe('POST_CREATE_USER', () => {
       oauth_key: '',
     });
 
-    const { data: { oauth_key } } = await endUserApiCannon.POST_OAUTH_USER();
-    endUserApiCannon.oauth_key = oauth_key;
+    const { data: { oauth_key } } = await endUserApiWrapper.POST_OAUTH_USER();
+    endUserApiWrapper.oauth_key = oauth_key;
 
-    await endUserApiCannon.PATCH_USER_PERMISSION({ permissionStr: 'MAKE-IT-GO-AWAY' });
+    await endUserApiWrapper.PATCH_USER_PERMISSION({ permissionStr: 'MAKE-IT-GO-AWAY' });
   });
 });

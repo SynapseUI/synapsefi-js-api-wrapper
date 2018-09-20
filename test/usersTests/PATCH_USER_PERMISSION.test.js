@@ -10,16 +10,16 @@ describe('PATCH_USER_PERMISSION', () => {
   //   - `expect response from get user to have permission: LOCKED`
   //   - delete user
   it('lock user', async () => {
-    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
+    const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
     // ---------------------------------------------------------------------------------------------
-    const { data: { permission } } = await endUserApiCannon.PATCH_USER_PERMISSION({
+    const { data: { permission } } = await endUserApiWrapper.PATCH_USER_PERMISSION({
       permissionStr: 'LOCKED',
     });
     // ---------------------------------------------------------------------------------------------
     expect(permission).to.equal('LOCKED');
 
-    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
   });
 
   // - Delete user
@@ -28,15 +28,15 @@ describe('PATCH_USER_PERMISSION', () => {
   //   - `expect response from get user to have permission: MAKE-IT-GO-AWAY`
   //   - delete user
   it('delete user', async () => {
-    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
+    const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
     // ------------------------------------------------------------------------
-    const { data: { permission } } = await endUserApiCannon.PATCH_USER_PERMISSION({
+    const { data: { permission } } = await endUserApiWrapper.PATCH_USER_PERMISSION({
       permissionStr: 'MAKE-IT-GO-AWAY',
     });
     // ------------------------------------------------------------------------
     expect(permission).to.equal('MAKE-IT-GO-AWAY');
 
-    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
   });
 });

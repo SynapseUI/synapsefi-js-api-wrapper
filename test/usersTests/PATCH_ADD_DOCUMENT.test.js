@@ -44,25 +44,25 @@ businessDocumentObj.email = 'business@email.com';
 
 describe('PATCH_ADD_DOCUMENT', () => {
   it('PATCH_ADD_DOCUMENT', async () => {
-    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser({
+    const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser({
       legal_names: ['Initial Name, Initial Name2'],
     });
 
     const {
       data: { legal_names: legalNameAfterPersonalDoc },
-    } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
+    } = await endUserApiWrapper.PATCH_ADD_DOCUMENT({
       documentObj: personalDocumentObj,
     });
 
     const {
       data: { legal_names: legalNameAfterBusinessDoc },
-    } = await endUserApiCannon.PATCH_ADD_DOCUMENT({
+    } = await endUserApiWrapper.PATCH_ADD_DOCUMENT({
       documentObj: businessDocumentObj,
     });
 
-    const { data: { documents, legal_names: finalLegalNames } } = await endUserApiCannon.GET_USER();
+    const { data: { documents, legal_names: finalLegalNames } } = await endUserApiWrapper.GET_USER();
     expect(documents.length).to.equal(2);
 
-    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
   });
 });

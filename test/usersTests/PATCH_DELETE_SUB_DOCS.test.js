@@ -12,17 +12,17 @@ const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers')
 //   - delete user
 describe('PATCH_DELETE_SUB_DOCS', () => {
   it('PATCH_DELETE_SUB_DOCS', async () => {
-    const { endUserApiCannon } = await testHelperFuncsForUsers.createUser();
-    await testHelperFuncsForUsers.addDocument({ endUserApiCannon });
+    const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
+    await testHelperFuncsForUsers.addDocument({ endUserApiWrapper });
 
     const {
       data: { documents: { 0: { id: baseDocId, social_docs: initialSocialDocs } } },
-    } = await endUserApiCannon.GET_USER();
+    } = await endUserApiWrapper.GET_USER();
 
     // -----------------------------------------------------------------
     const {
       data: { documents: { 0: { social_docs: afterSocialDocs } } },
-    } = await endUserApiCannon.PATCH_DELETE_SUB_DOCS({
+    } = await endUserApiWrapper.PATCH_DELETE_SUB_DOCS({
       baseDocId,
       socialDocIds: initialSocialDocs.map(({ id }) => id),
     });
@@ -31,7 +31,7 @@ describe('PATCH_DELETE_SUB_DOCS', () => {
     expect(initialSocialDocs.length > 0).to.equal(true);
     expect(afterSocialDocs.length).to.equal(0);
 
-    await testHelperFuncsForUsers.deleteMySelf(endUserApiCannon);
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
   });
 
 })
