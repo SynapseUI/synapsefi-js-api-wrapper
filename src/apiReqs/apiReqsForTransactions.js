@@ -130,12 +130,15 @@ module.exports[DELETE_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
   );
 };
 
-module.exports[GET_ALL_CLIENT_TRANSACTIONS] = ({ userInfo }) => {
+module.exports[GET_ALL_CLIENT_TRANSACTIONS] = ({ query, page, per_page, userInfo }) => {
   const { oauth_key, host, fingerprint, ip_address, client_id, client_secret } = userInfo;
 
   return axios.get(
-    replacePathParams({
+    addQueryParams({
       originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_TRANSACTIONS]}`,
+      query,
+      page,
+      per_page,
     }),
     buildHeaders({
       client_id,

@@ -81,8 +81,8 @@ class ApiFactory {
     return apiRequests.users[GET_USERS_ENTITY_SCOPES]({ host: this.host });
   }
 
-  GET_ALL_CLIENT_USERS(queryParamsObj = {}) {
-    const { query, page, per_page, show_refresh_tokens } = queryParamsObj;
+  GET_ALL_CLIENT_USERS(queryParams = {}) {
+    const { query, page, per_page, show_refresh_tokens } = queryParams;
 
     return apiRequests.users[GET_ALL_CLIENT_USERS]({
       query,
@@ -191,17 +191,17 @@ class ApiFactory {
     });
   }
 
-  GET_ALL_USER_NODES(queryParamsObj) {
-    // queryParamsObj =
+  GET_ALL_USER_NODES(queryParams) {
+    // queryParams =
     // {
     //   page:
     //   per_page:
     //   type:
     // }
     return apiRequests.nodes[GET_ALL_USER_NODES]({
-      page: queryParamsObj ? queryParamsObj.page : undefined,
-      per_page: queryParamsObj ? queryParamsObj.per_page : undefined,
-      type: queryParamsObj ? queryParamsObj.type : undefined,
+      page: queryParams ? queryParams.page : undefined,
+      per_page: queryParams ? queryParams.per_page : undefined,
+      type: queryParams ? queryParams.type : undefined,
       userInfo: this,
     });
   }
@@ -318,8 +318,12 @@ class ApiFactory {
     });
   }
 
-  GET_ALL_CLIENT_TRANSACTIONS() {
+  GET_ALL_CLIENT_TRANSACTIONS(queryParams = {}) {
+    const { query, page, per_page } = queryParams;
     return apiRequests.transactions[GET_ALL_CLIENT_TRANSACTIONS]({
+      query,
+      page,
+      per_page,
       userInfo: this,
     });
   }
