@@ -1,5 +1,5 @@
 const platformUserApiWrapper = require('./platformUserApiWrapper');
-const ApiFactory = require('../../src/ApiFactoryRelated/ApiFactory');
+const ApiWrapper = require('../../src/ApiWrapperRelated/ApiWrapper');
 
 //
 const getOauth = async ({ endUserApiWrapper }) => {
@@ -21,7 +21,7 @@ module.exports.createUser = async (obj = {}) => {
     legal_names,
   });
 
-  const endUserApiWrapper = new ApiFactory({
+  const endUserApiWrapper = new ApiWrapper({
     host: platformUserApiWrapper.host,
     client_id: platformUserApiWrapper.client_id,
     client_secret: platformUserApiWrapper.client_secret,

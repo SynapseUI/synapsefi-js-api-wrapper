@@ -49,7 +49,7 @@ const {
 } = require('../constants/apiReqNames');
 const apiRequests = require('../apiReqs/apiRequests');
 
-class ApiFactory {
+class ApiWrapper {
   constructor({
     host,
     client_id,
@@ -368,4 +368,4 @@ class ApiFactory {
   //
 }
 
-module.exports = ApiFactory;
+module.exports = ApiWrapper;

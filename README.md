@@ -39,15 +39,15 @@ npm installation synapsefi-ui axios lodash
   - [POST_OAUTH_USER](#set-oauth-key-to-apiWrapper)
 
 ## Setup
-ApiFactory generates instance of apiWrapper.
+ApiWrapper generates instance of apiWrapper.
 We decide to name an instance as apiWrapper because all it does is firing api calls.
 User of this library can declare variable with diffrent naming convention.
 
 ```js
-import ApiFactory from 'synapsefi-js-api-wrapper'; // for client
-// const ApiFactory = require('synapsefi-js-api-wrapper'); // for node
+import ApiWrapper from 'synapsefi-js-api-wrapper'; // for client
+// const ApiWrapper = require('synapsefi-js-api-wrapper'); // for node
 
-const platformUserApiWrapper = new ApiFactory({
+const platformUserApiWrapper = new ApiWrapper({
   host: 'sandbox or production host(ex: https://uat-api.synapsefi.com)',
   client_id: '<clinet id>',
   client_secret: '<clinet secret>',
@@ -58,7 +58,7 @@ const platformUserApiWrapper = new ApiFactory({
   refresh_token: '<refresh_token> of platform',
 });
 
-const endUserApiWrapper = new ApiFactory({
+const endUserApiWrapper = new ApiWrapper({
   host: platformUserApiWrapper.host,
   client_id: platformUserApiWrapper.client_id,
   client_secret: platformUserApiWrapper.client_secret,

@@ -1,3 +1,3 @@
-const ApiFactory = require('./ApiFactoryRelated/ApiFactory');
+const ApiWrapper = require('./ApiWrapperRelated/ApiWrapper');
 
-module.exports = ApiFactory;
+module.exports = ApiWrapper;

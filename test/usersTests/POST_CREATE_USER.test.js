@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
 const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
-const ApiFactory = require('../../src/ApiFactoryRelated/ApiFactory');
+const ApiWrapper = require('../../src/ApiWrapperRelated/ApiWrapper');
 
 // -[x] POST_CREATE_USER
 //   - create user legal_name with "Post User"
@@ -21,7 +21,7 @@ describe('POST_CREATE_USER', () => {
 
     expect(legal_names[0]).to.equal('Post User');
 
-    const endUserApiWrapper = new ApiFactory({
+    const endUserApiWrapper = new ApiWrapper({
       host: platformUserApiWrapper.host,
       client_id: platformUserApiWrapper.client_id,
       client_secret: platformUserApiWrapper.client_secret,
@@ -56,7 +56,7 @@ describe('POST_CREATE_USER', () => {
 
     expect(extra.public_note).to.equal('yeah i am a public note');
 
-    const endUserApiWrapper = new ApiFactory({
+    const endUserApiWrapper = new ApiWrapper({
       host: platformUserApiWrapper.host,
       client_id: platformUserApiWrapper.client_id,
       client_secret: platformUserApiWrapper.client_secret,

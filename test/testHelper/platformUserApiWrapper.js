@@ -9,9 +9,9 @@ const {
   ip_address,
 } = require('../../src/config/keys');
 
-const ApiFactory = require('../../src/ApiFactoryRelated/ApiFactory');
+const ApiWrapper = require('../../src/ApiWrapperRelated/ApiWrapper');
 
-const platformUserApiWrapper = new ApiFactory({
+const platformUserApiWrapper = new ApiWrapper({
   host,
   client_id,
   client_secret,
