@@ -7,13 +7,13 @@
 //   // - make transaction from user 1 node 1 to user 2 node 2
 //   it.only('test', async () => {
 //     // const {
-//     //   endUserApiWrapper: endUserCannon1,
+//     //   endUserApiWrapper: endUserWrapper1,
 //     //   user_id: user_id_1,
 //     // } = await testHelperFuncsForUsers.createUser({ email: 'user1@email.com' });
 
 //     // console.log('create user 1');
 
-//     // const { data: { nodes: { 0: { _id: node_id_1 } } } } = await endUserCannon1.POST_CREATE_NODE({
+//     // const { data: { nodes: { 0: { _id: node_id_1 } } } } = await endUserWrapper1.POST_CREATE_NODE({
 //     //   bodyParams: {
 //     //     type: 'DEPOSIT-US',
 //     //     info: {
@@ -26,13 +26,13 @@
 //     // console.log('create node 1');
 
 //     // const {
-//     //   endUserApiWrapper: endUserCannon2,
+//     //   endUserApiWrapper: endUserWrapper2,
 //     //   user_id: user_id_2,
 //     // } = await testHelperFuncsForUsers.createUser({ email: 'user2@email.com' });
 
 //     // console.log('create user 2');
 
-//     // const { data: { nodes: { 0: { _id: node_id_2 } } } } = await endUserCannon2.POST_CREATE_NODE({
+//     // const { data: { nodes: { 0: { _id: node_id_2 } } } } = await endUserWrapper2.POST_CREATE_NODE({
 //     //   bodyParams: {
 //     //     type: 'DEPOSIT-US',
 //     //     info: {
@@ -58,7 +58,7 @@
 //     // console.log('node_id_platform: ', node_id_platform);
 //     // console.log('create node platform');
 
-//     // const { data: { _id: trans_id_1_2 } } = await endUserCannon1.POST_CREATE_TRANSACTION({
+//     // const { data: { _id: trans_id_1_2 } } = await endUserWrapper1.POST_CREATE_TRANSACTION({
 //     //   from_node_id: node_id_1,
 //     //   to_node_id: node_id_2,
 //     //   to_node_type: 'DEPOSIT-US',
@@ -69,7 +69,7 @@
 
 //     // console.log('create transaction 1 -> 2 ');
 
-//     // const { data: { _id: trans_id_2_platform } } = await endUserCannon2.POST_CREATE_TRANSACTION({
+//     // const { data: { _id: trans_id_2_platform } } = await endUserWrapper2.POST_CREATE_TRANSACTION({
 //     //   from_node_id: node_id_2,
 //     //   to_node_id: node_id_platform,
 //     //   to_node_type: 'DEPOSIT-US',

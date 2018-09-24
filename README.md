@@ -36,11 +36,11 @@ npm installation synapsefi-ui axios lodash
     - delete user
 ---
 - [Oauth Key](#oauth-key)
-  - [POST_OAUTH_USER](#set-oauth-key-to-apiCannon)
+  - [POST_OAUTH_USER](#set-oauth-key-to-apiWrapper)
 
 ## Setup
-ApiFactory generates instance of apiCannon.
-We decide to name an instance as apiCannon because all it does is firing api calls.
+ApiFactory generates instance of apiWrapper.
+We decide to name an instance as apiWrapper because all it does is firing api calls.
 User of this library can declare variable with diffrent naming convention.
 
 ```js
