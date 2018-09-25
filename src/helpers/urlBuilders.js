@@ -2,7 +2,7 @@ const _ = require('lodash');
 
 module.exports.addQueryParams = ({
   originalUrl,
-  filter,
+  mongoQuery,
   query,
   page,
   per_page,
@@ -12,8 +12,8 @@ module.exports.addQueryParams = ({
 }) => {
   const arr = [];
 
-  if (filter !== undefined) {
-    arr.push(`filter=${filter}`);
+  if (mongoQuery !== undefined) {
+    arr.push(`filter=${JSON.stringify(mongoQuery)}`);
   }
 
   if (query !== undefined) {

@@ -83,10 +83,10 @@ class ApiWrapper {
   }
 
   GET_ALL_CLIENT_USERS(queryParams = {}) {
-    const { filter, query, page, per_page, show_refresh_tokens } = queryParams;
+    const { mongoQuery, query, page, per_page, show_refresh_tokens } = queryParams;
 
     return apiRequests.users[GET_ALL_CLIENT_USERS]({
-      filter,
+      mongoQuery,
       query,
       page,
       per_page,
@@ -188,9 +188,9 @@ class ApiWrapper {
   // NODES  -----------------------------------------------------------------
 
   GET_ALL_CLIENT_NODES(queryParams = {}) {
-    const { filter, query, page, per_page, type } = queryParams;
+    const { mongoQuery, query, page, per_page, type } = queryParams;
     return apiRequests.nodes[GET_ALL_CLIENT_NODES]({
-      filter,
+      mongoQuery,
       query,
       page,
       per_page,
@@ -334,9 +334,9 @@ class ApiWrapper {
   }
 
   GET_ALL_CLIENT_TRANSACTIONS(queryParams = {}) {
-    const { filter, query, page, per_page } = queryParams;
+    const { mongoQuery, query, page, per_page } = queryParams;
     return apiRequests.transactions[GET_ALL_CLIENT_TRANSACTIONS]({
-      filter,
+      mongoQuery,
       query,
       page,
       per_page,

@@ -28,23 +28,4 @@ describe('GET_ALL_CLIENT_TRANSACTIONS', () => {
     expect(page).to.equal(2);
     expect(limit).to.equal(1);
   });
-
-  it('with filter', async () => {
-    const {
-      data: { trans_count: total_trans_count },
-    } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS();
-
-    try {
-      const {
-        data: { trans_count: trans_count_with_filter },
-      } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
-        filter: `{"$and":[{"$or":[{"to.user._id":{"$in":["5ba95ed58cf5e9008cd6dbc0"]}},{"from.user._id":{"$in":["5ba95ed58cf5e9008cd6dbc0"]}}]}]}`,
-      });
-      console.log('total_trans_count: ', total_trans_count);
-      console.log('trans_count_with_filter: ', trans_count_with_filter);
-    } catch (error) {
-      console.log('error: ', error.response.data.error.en);
-      throw new Error(error);
-    }
-  });
 });

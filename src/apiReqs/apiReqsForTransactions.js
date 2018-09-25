@@ -115,21 +115,13 @@ module.exports[DELETE_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
   );
 };
 
-module.exports[GET_ALL_CLIENT_TRANSACTIONS] = ({ filter, query, page, per_page, userInfo }) => {
+module.exports[GET_ALL_CLIENT_TRANSACTIONS] = ({ mongoQuery, query, page, per_page, userInfo }) => {
   const { oauth_key, host, fingerprint, ip_address, client_id, client_secret } = userInfo;
-
-  const url = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_TRANSACTIONS]}`,
-    filter,
-    query,
-    page,
-    per_page,
-  });
 
   return axios.get(
     addQueryParams({
       originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_TRANSACTIONS]}`,
-      filter,
+      mongoQuery,
       query,
       page,
       per_page,

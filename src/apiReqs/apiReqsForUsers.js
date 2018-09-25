@@ -33,7 +33,7 @@ module.exports[GET_USERS_ENTITY_SCOPES] = ({ host }) => {
 };
 
 module.exports[GET_ALL_CLIENT_USERS] = ({
-  filter,
+  mongoQuery,
   query,
   page,
   per_page,
@@ -45,7 +45,7 @@ module.exports[GET_ALL_CLIENT_USERS] = ({
   return axios.get(
     addQueryParams({
       originalUrl: `${host}${staticEndpoints[GET_ALL_CLIENT_USERS]}`,
-      filter,
+      mongoQuery,
       query,
       page,
       per_page,
