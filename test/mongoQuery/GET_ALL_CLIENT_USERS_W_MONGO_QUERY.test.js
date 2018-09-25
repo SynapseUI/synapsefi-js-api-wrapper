@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 
 describe('GET_ALL_CLIENT_USERS with mongoQuery', () => {
-  it.only('by user_id', async () => {
+  it('by user_id', async () => {
     try {
       const { data: { users } } = await platformUserApiWrapper.GET_ALL_CLIENT_USERS();
 

@@ -1,25 +1,40 @@
 const { expect } = require('chai');
 
 const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
-const endUserApiWrapper = require('../testHelper/endUserApiWrapper');
-
-const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
-const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
+const getUserNodeTransIds = require('../testHelper/getUserNodeTransIds');
 
 describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
   it('by user_id', async () => {
     try {
-      const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
+      const { userIds } = userNodeTransIds;
+
+      const {
+        data: { trans_count: user_1_trans_count },
+      } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
         mongoQuery: {
-          $or: [
-            { 'to.user._id': { $in: ['5ba95ed58cf5e9008cd6dbc0'] } },
-            { 'from.user._id': { $in: ['5ba95ed58cf5e9008cd6dbc0'] } },
-          ],
+          $or: [{ 'from.user._id': userIds[0] }, { 'to.user._id': userIds[0] }],
         },
       });
-      console.log('data: ', data);
-      // console.log('data: ', data.trans[0].to.user._id);
-      // console.log('data: ', data.trans[0].from.user._id);
+
+      const {
+        data: { trans_count: user_2_trans_count },
+      } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
+        mongoQuery: {
+          $or: [{ 'from.user._id': userIds[1] }, { 'to.user._id': userIds[1] }],
+        },
+      });
+
+      const {
+        data: { trans_count: user_3_trans_count },
+      } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
+        mongoQuery: {
+          $or: [{ 'from.user._id': userIds[2] }, { 'to.user._id': userIds[2] }],
+        },
+      });
+
+      expect(user_1_trans_count).to.equal(3);
+      expect(user_2_trans_count).to.equal(1);
+      expect(user_3_trans_count).to.equal(2);
     } catch (error) {
       console.log('error: ', error.response.data.error.en);
       throw new Error(error);
@@ -30,13 +45,21 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
     try {
       const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
         mongoQuery: {
-          $or: [
-            { 'to.id': { $in: ['5ba95ed34d1d6200a9737c8c'] } },
-            { 'from.id': { $in: ['5ba95ed34d1d6200a9737c8c'] } },
-          ],
+          $or: [{ 'from.id': nodeIds[2] }, { 'to.id': nodeIds[2] }],
         },
       });
-      // console.log('data: ', data);
+
+      const {
+        data: { trans_count: node_4_trans_count },
+      } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
+        mongoQuery: {
+          $or: [{ 'from.id': nodeIds[3] }, { 'to.id': nodeIds[3] }],
+        },
+      });
+
+      expect(node_2_trans_count).to.equal(1);
+      expect(node_3_trans_count).to.equal(2);
+      expect(node_4_trans_count).to.equal(2);
     } catch (error) {
       console.log('error: ', error.response.data.error.en);
       throw new Error(error);
@@ -45,9 +68,19 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
 
   it('by trans_id', async () => {
     try {
-      const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
-        mongoQuery: { _id: '5ba95ed8dbaea5007841fa4c' },
+      const {
+        data: { trans_count: valid_trans_count },
+      } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
+        mongoQuery: { _id: transIds[0] },
       });
+      const {
+        data: { trans_count: invalid_trans_count },
+      } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
+        mongoQuery: { _id: nodeIds[0] },
+      });
+
+      expect(valid_trans_count).to.equal(1);
+      expect(invalid_trans_count).to.equal(0);
     } catch (error) {
       console.log('error: ', error.response.data.error.en);
       throw new Error(error);
