@@ -1,6 +1,8 @@
 const { expect } = require('chai');
 
 const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
+const endUserApiWrapper = require('../testHelper/endUserApiWrapper');
+
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
@@ -15,9 +17,9 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
           ],
         },
       });
-      // console.log('data: ', data);
-      console.log('data: ', data.trans[0].to.user._id);
-      console.log('data: ', data.trans[0].from.user._id);
+      console.log('data: ', data);
+      // console.log('data: ', data.trans[0].to.user._id);
+      // console.log('data: ', data.trans[0].from.user._id);
     } catch (error) {
       console.log('error: ', error.response.data.error.en);
       throw new Error(error);
@@ -34,7 +36,7 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
           ],
         },
       });
-      console.log('data: ', data);
+      // console.log('data: ', data);
     } catch (error) {
       console.log('error: ', error.response.data.error.en);
       throw new Error(error);
@@ -46,9 +48,6 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
       const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
         mongoQuery: { _id: '5ba95ed8dbaea5007841fa4c' },
       });
-      console.log('data: ', data);
-      console.log('data: ', data.trans[0].from);
-      console.log('data: ', data.trans[0].to);
     } catch (error) {
       console.log('error: ', error.response.data.error.en);
       throw new Error(error);
