@@ -9,7 +9,7 @@ describe('PATCH_USER_PERMISSION', () => {
   //   - lock user
   //   - `expect response from get user to have permission: LOCKED`
   //   - delete user
-  it('lock user', async () => {
+  it.only('lock user', async () => {
     const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
     // ---------------------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ describe('PATCH_USER_PERMISSION', () => {
   //   - delete user
   //   - `expect response from get user to have permission: MAKE-IT-GO-AWAY`
   //   - delete user
-  it('delete user', async () => {
+  it.only('delete user', async () => {
     const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
     // ------------------------------------------------------------------------
