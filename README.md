@@ -291,7 +291,7 @@ platformUserApiWrapper
  ```js
  endUserApiWrapper
   .PATCH_USER_PERMISSION({
-    permissionStr: 'LOCKED',
+    permission: 'LOCKED',
   })
   .then(({ data }) => {
     console.log('data: ', data);
@@ -302,7 +302,7 @@ platformUserApiWrapper
 ```js
  endUserApiWrapper
   .PATCH_USER_PERMISSION({
-    permissionStr: 'MAKE-IT-GO-AWAY',
+    permission: 'MAKE-IT-GO-AWAY',
   })
   .then(({ data }) => {
     console.log('data: ', data);

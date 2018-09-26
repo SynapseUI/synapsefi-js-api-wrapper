@@ -155,10 +155,10 @@ class ApiWrapper {
     });
   }
 
-  PATCH_USER_PERMISSION({ bodyParams, permissionStr }) {
+  PATCH_USER_PERMISSION({ bodyParams, permission }) {
     return apiRequests.users[PATCH_USER_PERMISSION]({
       bodyParams,
-      permissionStr,
+      permission,
       userInfo: this,
     });
   }

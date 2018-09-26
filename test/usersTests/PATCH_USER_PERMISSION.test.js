@@ -14,7 +14,7 @@ describe('PATCH_USER_PERMISSION', () => {
 
     // ---------------------------------------------------------------------------------------------
     const { data: { permission } } = await endUserApiWrapper.PATCH_USER_PERMISSION({
-      permissionStr: 'LOCKED',
+      permission: 'LOCKED',
     });
     // ---------------------------------------------------------------------------------------------
     expect(permission).to.equal('LOCKED');
@@ -32,7 +32,7 @@ describe('PATCH_USER_PERMISSION', () => {
 
     // ------------------------------------------------------------------------
     const { data: { permission } } = await endUserApiWrapper.PATCH_USER_PERMISSION({
-      permissionStr: 'MAKE-IT-GO-AWAY',
+      permission: 'MAKE-IT-GO-AWAY',
     });
     // ------------------------------------------------------------------------
     expect(permission).to.equal('MAKE-IT-GO-AWAY');

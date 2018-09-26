@@ -5,7 +5,7 @@ const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
 const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
 describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
-  it.only('by user_id', async () => {
+  it('by user_id', async () => {
     try {
       const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
         mongoQuery: {
@@ -24,7 +24,7 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
     }
   });
 
-  it.only('by node_id', async () => {
+  it('by node_id', async () => {
     try {
       const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
         mongoQuery: {
@@ -41,7 +41,7 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
     }
   });
 
-  it.only('by trans_id', async () => {
+  it('by trans_id', async () => {
     try {
       const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
         mongoQuery: { _id: '5ba95ed8dbaea5007841fa4c' },

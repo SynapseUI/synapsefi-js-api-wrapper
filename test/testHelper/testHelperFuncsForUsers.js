@@ -44,7 +44,7 @@ module.exports.createUser = async (obj = {}) => {
 
 module.exports.deleteMySelf = async endUserApiWrapper => {
   const resp = await endUserApiWrapper.PATCH_USER_PERMISSION({
-    permissionStr: 'MAKE-IT-GO-AWAY',
+    permission: 'MAKE-IT-GO-AWAY',
   });
 
   return resp;

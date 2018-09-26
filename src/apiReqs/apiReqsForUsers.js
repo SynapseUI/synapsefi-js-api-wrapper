@@ -254,14 +254,14 @@ module.exports[PATCH_UPDATE_USER] = ({ bodyParams, updateObj, userInfo }) => {
   );
 };
 
-module.exports[PATCH_USER_PERMISSION] = ({ bodyParams, permissionStr, userInfo }) => {
+module.exports[PATCH_USER_PERMISSION] = ({ bodyParams, permission, userInfo }) => {
   const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
 
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_USER_PERMISSION]}`,
   });
 
-  const reqBodyIfOtherReqBodyIsUndefined = { permission: permissionStr };
+  const reqBodyIfOtherReqBodyIsUndefined = { permission: permission };
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
