@@ -2,3 +2,4 @@ node_modules
 temp.js
 dist
 keys_dev.js
+synapse-base-control.json
