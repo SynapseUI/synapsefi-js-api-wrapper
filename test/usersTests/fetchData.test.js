@@ -48,4 +48,8 @@ describe('Fetch data form /users endpoint', () => {
 
     expect(scopes).to.include.members(['Not Known', 'Airport', 'Arts & Entertainment']);
   });
+
+  it.only('fetches node types', async () => {
+    const { data } = await platformUserApiWrapper.GET_NODE_TYPES();
+  });
 });

@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 const {
+  GET_NODE_TYPES,
   GET_ALL_CLIENT_NODES,
   GET_ALL_USER_NODES,
   GET_NODE,
@@ -19,6 +20,10 @@ const {
 const staticEndpoints = require('../constants/staticEndpoints');
 const buildHeaders = require('../helpers/buildHeaders');
 const { addQueryParams, replacePathParams } = require('../helpers/urlBuilders');
+
+module.exports[GET_NODE_TYPES] = ({ host }) => {
+  return axios.get(`${host}${staticEndpoints[GET_NODE_TYPES]}`);
+};
 
 module.exports[POST_CREATE_NODE] = ({ bodyParams, userInfo }) => {
   const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;

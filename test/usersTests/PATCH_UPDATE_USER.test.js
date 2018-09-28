@@ -96,7 +96,7 @@ describe('PATCH_UPDATE_USER', () => {
     await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
   });
 
-  it.only('cannot update is_business', async () => {
+  it('cannot update is_business', async () => {
     const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
     const {

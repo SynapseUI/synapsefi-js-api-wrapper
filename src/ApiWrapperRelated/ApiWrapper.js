@@ -20,6 +20,7 @@ const {
   //
   //
   // NODES  --------------------------
+  GET_NODE_TYPES,
   GET_ALL_CLIENT_NODES,
   GET_ALL_USER_NODES,
   GET_NODE,
@@ -186,6 +187,10 @@ class ApiWrapper {
   //
   //
   // NODES  -----------------------------------------------------------------
+
+  GET_NODE_TYPES() {
+    return apiRequests.nodes[GET_NODE_TYPES]({ host: this.host });
+  }
 
   GET_ALL_CLIENT_NODES(queryParams = {}) {
     const { mongoQuery, query, page, per_page, type } = queryParams;

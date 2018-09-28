@@ -20,6 +20,7 @@ module.exports = {
   // ------------------------------------------------------------------------
   //
   // NODES  -----------------------------------------------------------------
+  GET_NODE_TYPES: 'GET_NODE_TYPES',
   GET_ALL_CLIENT_NODES: 'GET_ALL_CLIENT_NODES',
   GET_ALL_USER_NODES: 'GET_ALL_USER_NODES',
   GET_NODE: 'GET_NODE',
