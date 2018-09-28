@@ -95,4 +95,30 @@ describe('PATCH_UPDATE_USER', () => {
 
     await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
   });
+
+  it.only('cannot update is_business', async () => {
+    const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
+
+    const {
+      data: { extra: { is_business: is_business_initial } },
+    } = await endUserApiWrapper.GET_USER();
+
+    // -----------------------------------------------------------------
+    await endUserApiWrapper.PATCH_UPDATE_USER({
+      updateObj: {
+        is_business: !is_business_initial,
+        note: 'private note',
+        public_note: 'yeah',
+      },
+    });
+    // -----------------------------------------------------------------
+
+    const {
+      data: { extra: { is_business: is_business_after } },
+    } = await endUserApiWrapper.GET_USER();
+
+    expect(is_business_after).to.equal(is_business_after);
+
+    await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
+  });
 });

@@ -11,7 +11,9 @@ describe('POST_OAUTH_USER', () => {
     platformUserApiWrapper.oauth_key = 'fake oauth key';
     console.log('platformUserApiWrapper before: ', platformUserApiWrapper.oauth_key);
 
+    // ------------------------------------------------------------------
     const { data } = await platformUserApiWrapper.POST_OAUTH_USER();
     console.log('data: ', data);
+    // ------------------------------------------------------------------
   });
 });
