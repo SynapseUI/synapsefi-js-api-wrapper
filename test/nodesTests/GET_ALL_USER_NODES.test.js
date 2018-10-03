@@ -56,7 +56,7 @@ describe('GET_ALL_USER_NODES', () => {
   //   - create 'CHECK-US' node
   //   - > serach for type: 'CHECK-US'
   //   - `expect node type = 'CHECK-US'`
-  it('with page, per_page, and type', async () => {
+  it.only('with page, per_page, and type', async () => {
     const {
       data: { nodes: { 0: { _id: check_node_id } } },
     } = await platformUserApiWrapper.POST_CREATE_NODE({

@@ -21,14 +21,16 @@ describe('GET_ALL_CLIENT_USERS', () => {
   //     - search ny name
   //     - `expect found users to have name "Search Name"`
   //     - delete both users
-  it('search name', async () => {
+  it.only('search name', async () => {
     try {
       const { endUserApiWrapper: endUserApiWrapper1 } = await testHelperFuncsForUsers.createUser({
         legal_names: ['Search Yes'],
       });
+
       const { endUserApiWrapper: endUserApiWrapper2 } = await testHelperFuncsForUsers.createUser({
         legal_names: ['Search No'],
       });
+
       // ------------------------------------------------------------------------------
       const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_USERS({ query: 'Search Yes' });
       // ------------------------------------------------------------------------------
