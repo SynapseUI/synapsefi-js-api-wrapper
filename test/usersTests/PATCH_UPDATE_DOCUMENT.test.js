@@ -68,24 +68,23 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
   //   - `expect main doc id to be same`
   //   - `expect facebook value to be "https://www.facebook.com/afterUpdate"`
   //   - delete user
-  it.only('update sub docs', async () => {
+  it('update sub docs', async () => {
     const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
     const { data: { documents: initialDocuments } } = await endUserApiWrapper.PATCH_ADD_DOCUMENT({
       documentObj,
     });
 
-    const {
-      id: initialDocId,
-      social_docs: { 0: { id: facebookDocId, document_value: beforeDocValue } },
-    } = initialDocuments[0];
+    const initialDocument = initialDocuments[0];
+    const initialDocId = initialDocument.id;
+    const initialFacebookObj = _.find(initialDocument.social_docs, { document_type: 'FACEBOOK' });
 
     const { data: { documents: afterDocuments } } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENT({
       documentObj: {
         id: initialDocId,
         social_docs: [
           {
-            id: facebookDocId,
+            id: initialFacebookObj.id,
             document_value: 'https://www.facebook.com/afterUpdate',
             document_type: 'FACEBOOK',
           },
@@ -93,14 +92,11 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
       },
     });
 
-    const {
-      id: afterDocId,
-      social_docs: { 0: { document_value: afterDocValue } },
-    } = afterDocuments[0];
+    const afterFacebookObj = _.find(afterDocuments[0].social_docs, { document_type: 'FACEBOOK' });
 
-    expect(initialDocId).to.equal(afterDocId);
-    expect(beforeDocValue).to.equal('https://www.facebook.com/beforeUpdate');
-    expect(afterDocValue).to.equal('https://www.facebook.com/afterUpdate');
+    expect(initialDocId).to.equal(afterDocuments[0].id);
+    expect(initialFacebookObj.document_value).to.equal('https://www.facebook.com/beforeUpdate');
+    expect(afterFacebookObj.document_value).to.equal('https://www.facebook.com/afterUpdate');
 
     await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
   });
