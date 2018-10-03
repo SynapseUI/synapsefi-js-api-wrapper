@@ -1,39 +1,56 @@
-# Node Documentation
+# mongoQuery
 
 ---
 
 - GET_ALL_CLIENT_USERS
-  - by user_id
-  - by node_id
-  - by trans_id
+  1. by user_id
 
 - GET_ALL_CLIENT_NODES
-  - by user_id
-  - by node_id
-  - by trans_id
+  1. by user_id
+  2. by node_id
 
 - GET_ALL_CLIENT_TRANSACTIONS
-  - by user_id
-  - by node_id
-  - by trans_id
+  1. by user_id
+  2. by node_id
+  3. by trans_id
 
 ---
 
-- GET_ALL_CLIENT_NODES
-#### `base`
-```js
-platformUserApiWrapper.GET_ALL_CLIENT_NODES().then(({ data }) => {
-  console.log('data: ', data);
-});
-```
+- GET_ALL_CLIENT_USERS
 
-> ---
-#### `with page and per_page`
+1. by user_id
+```js
+platformUserApiWrapper
+  .GET_ALL_CLIENT_USERS({
+    mongoQuery: { _id: '<user_id>' },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
+---
+
+
+- GET_ALL_CLIENT_NODES
+
+1. by user_id
 ```js
 platformUserApiWrapper
   .GET_ALL_CLIENT_NODES({
-    page: 2,
-    per_page: 1,
+    mongoQuery: { user_id: '<user_id>' },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
+
+> ---
+
+2. by node_id
+```js
+platformUserApiWrapper
+  .GET_ALL_CLIENT_NODES({
+    mongoQuery: { _id: '<node_id>' },
   })
   .then(({ data }) => {
     console.log('data: ', data);
@@ -42,18 +59,42 @@ platformUserApiWrapper
 
 ---
 
-- GET_ALL_USER_NODES
-#### `base`
+- GET_ALL_CLIENT_TRANSACTIONS
+
+1. by user_id
 ```js
-platformUserApiWrapper.GET_ALL_USER_NODES().then(({ data }) => {
-  console.log('data: ', data);
-});
+platformUserApiWrapper
+  .GET_ALL_CLIENT_TRANSACTIONS({
+    mongoQuery: {
+      $or: [{ 'from.user._id': '<from user id>' }, { 'to.user._id': '<from user id>' }],
+    },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
 ```
 
 > ---
-#### `with page and per_page`
+2. by node_id
 ```js
-platformUserApiWrapper.GET_ALL_USER_NODES({ page: 2, per_page: 1 }).then(({ data }) => {
-  console.log('data: ', data);
-});
+platformUserApiWrapper
+  .GET_ALL_CLIENT_TRANSACTIONS({
+    mongoQuery: {
+      $or: [{ 'from.id': '<from node id>' }, { 'to.id': '<to node id>' }],
+    },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
+> ---
+3. by trans_id
+```js
+platformUserApiWrapper
+  .GET_ALL_CLIENT_TRANSACTIONS({
+    mongoQuery: { _id: '<trans_id>' },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
 ```
