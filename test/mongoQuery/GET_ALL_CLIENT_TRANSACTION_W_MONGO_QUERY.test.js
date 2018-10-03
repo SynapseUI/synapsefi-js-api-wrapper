@@ -15,7 +15,7 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
     transIds = userNodeTransIds.transIds;
   });
 
-  it.only('by user_id', async () => {
+  it('by user_id', async () => {
     try {
       const {
         data: { trans_count: user_1_trans_count },
@@ -50,7 +50,7 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
     }
   });
 
-  it.only('by node_id', async () => {
+  it('by node_id', async () => {
     try {
       const {
         data: { trans_count: node_2_trans_count },
@@ -85,7 +85,7 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
     }
   });
 
-  it.only('by trans_id', async () => {
+  it('by trans_id', async () => {
     try {
       const {
         data: { trans_count: valid_trans_count },
