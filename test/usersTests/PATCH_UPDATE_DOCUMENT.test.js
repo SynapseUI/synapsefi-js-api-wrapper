@@ -46,9 +46,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
 
     expect(initialEmail).to.equal('test@gmail.com');
 
-    const {
-      data: { documents: afterDocuments },
-    } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENT({
+    const { data: { documents: afterDocuments } } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENT({
       documentObj: {
         id: initialDocId,
         email: 'updated@gmail.com',
@@ -70,7 +68,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
   //   - `expect main doc id to be same`
   //   - `expect facebook value to be "https://www.facebook.com/afterUpdate"`
   //   - delete user
-  it('update sub docs', async () => {
+  it.only('update sub docs', async () => {
     const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
     const { data: { documents: initialDocuments } } = await endUserApiWrapper.PATCH_ADD_DOCUMENT({
@@ -82,9 +80,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
       social_docs: { 0: { id: facebookDocId, document_value: beforeDocValue } },
     } = initialDocuments[0];
 
-    const {
-      data: { documents: afterDocuments },
-    } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENT({
+    const { data: { documents: afterDocuments } } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENT({
       documentObj: {
         id: initialDocId,
         social_docs: [
