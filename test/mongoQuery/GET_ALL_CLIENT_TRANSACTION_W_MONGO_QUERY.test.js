@@ -4,10 +4,19 @@ const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const getUserNodeTransIds = require('../testHelper/getUserNodeTransIds');
 
 describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
-  it('by user_id', async () => {
-    try {
-      const { userIds } = userNodeTransIds;
+  let userIds;
+  let nodeIds;
+  let transIds;
 
+  before(async () => {
+    let userNodeTransIds = await getUserNodeTransIds();
+    userIds = userNodeTransIds.userIds;
+    nodeIds = userNodeTransIds.nodeIds;
+    transIds = userNodeTransIds.transIds;
+  });
+
+  it.only('by user_id', async () => {
+    try {
       const {
         data: { trans_count: user_1_trans_count },
       } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
@@ -41,9 +50,19 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
     }
   });
 
-  it('by node_id', async () => {
+  it.only('by node_id', async () => {
     try {
-      const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
+      const {
+        data: { trans_count: node_2_trans_count },
+      } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
+        mongoQuery: {
+          $or: [{ 'from.id': nodeIds[1] }, { 'to.id': nodeIds[1] }],
+        },
+      });
+
+      const {
+        data: { trans_count: node_3_trans_count },
+      } = await platformUserApiWrapper.GET_ALL_CLIENT_TRANSACTIONS({
         mongoQuery: {
           $or: [{ 'from.id': nodeIds[2] }, { 'to.id': nodeIds[2] }],
         },
@@ -66,7 +85,7 @@ describe('GET_ALL_CLIENT_TRANSACTIONS with mongoQuery', () => {
     }
   });
 
-  it('by trans_id', async () => {
+  it.only('by trans_id', async () => {
     try {
       const {
         data: { trans_count: valid_trans_count },

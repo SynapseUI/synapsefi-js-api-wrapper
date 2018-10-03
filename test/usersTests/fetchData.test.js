@@ -1,8 +1,10 @@
 const { expect } = require('chai');
 
+const apiReqNames = require('../../src/constants/apiReqNames');
+
 const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 
-describe('Fetch data form /users endpoint', () => {
+describe('Fetch data from api', () => {
   it('fetch doc types (physical, social, virtual)', async () => {
     const {
       data: { physical_docs, social_docs, virtual_docs },
@@ -49,7 +51,9 @@ describe('Fetch data form /users endpoint', () => {
     expect(scopes).to.include.members(['Not Known', 'Airport', 'Arts & Entertainment']);
   });
 
-  it.only('fetches node types', async () => {
+  it('fetches node types', async () => {
     const { data } = await platformUserApiWrapper.GET_NODE_TYPES();
+    console.log('apiReqNames.GET_NODE_TYPES: ', apiReqNames.GET_NODE_TYPES);
+    console.log('data: ', data);
   });
 });
