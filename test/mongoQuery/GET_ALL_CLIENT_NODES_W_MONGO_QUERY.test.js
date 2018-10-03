@@ -25,7 +25,7 @@ describe('GET_ALL_CLIENT_NODES with mongoQuery', () => {
     await endUserApiWrapper_2.PATCH_USER_PERMISSION({ permission: 'MAKE-IT-GO-AWAY' });
   });
 
-  it.only('by user_id', async () => {
+  it('by user_id', async () => {
     try {
       const { user_id_1, user_id_2 } = usersAndNodeIds;
 
@@ -47,7 +47,7 @@ describe('GET_ALL_CLIENT_NODES with mongoQuery', () => {
     }
   });
 
-  it.only('by node_id', async () => {
+  it('by node_id', async () => {
     try {
       const { node_id_1 } = usersAndNodeIds;
 

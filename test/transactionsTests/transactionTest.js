@@ -1,11 +1,10 @@
-
 // describe('GET_ALL_CLIENT_TRANSACTIONS', () => {
 //   // - create user 1 -> create node 1
 //   // - create user 2 -> create node 2
 //   // - create node for platform
 //   // - make transaction from platform node to user 1 node
 //   // - make transaction from user 1 node 1 to user 2 node 2
-//   it.only('test', async () => {
+//   it('test', async () => {
 //     // const {
 //     //   endUserApiWrapper: endUserWrapper1,
 //     //   user_id: user_id_1,
