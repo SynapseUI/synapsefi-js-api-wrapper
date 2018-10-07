@@ -40,7 +40,8 @@ describe('GET_ALL_CLIENT_USERS', () => {
       await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper1);
       await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper2);
     } catch (error) {
-      console.log('error: ', error.response.data.error.en);
+      console.log('error: ', error);
+      // console.log('error: ', error.response.data.error.en);
     }
   });
 
