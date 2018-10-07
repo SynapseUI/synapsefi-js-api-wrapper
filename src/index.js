@@ -1,3 +1,3 @@
-// const ApiWrapper = require('./ApiWrapperRelated/ApiWrapper');
+const ApiWrapper = require('./ApiWrapperRelated/ApiWrapper');
 
-module.exports = require('./ApiWrapperRelated/ApiWrapper');
+module.exports = ApiWrapper;
