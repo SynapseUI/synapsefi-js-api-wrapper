@@ -1,9 +1,11 @@
 {
   "name": "synapsefi-js-api-wrapper",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "description": "",
   "main": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "mocha --recursive --timeout 60000",
     "test-nodes": "mocha --recursive test/nodesTests/*.js --timeout 60000",
