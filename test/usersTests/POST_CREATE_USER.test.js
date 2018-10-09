@@ -35,7 +35,7 @@ describe('POST_CREATE_USER', () => {
     const { data: { oauth_key } } = await endUserApiWrapper.POST_OAUTH_USER();
     endUserApiWrapper.oauth_key = oauth_key;
 
-    await endUserApiWrapper.PATCH_USER_PERMISSION({ permission: 'MAKE-IT-GO-AWAY' });
+    // await endUserApiWrapper.PATCH_USER_PERMISSION({ permission: 'MAKE-IT-GO-AWAY' });
   });
 
   it('optionalBodyParams', async () => {

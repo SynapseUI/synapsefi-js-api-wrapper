@@ -21,7 +21,7 @@ describe('GET_ALL_CLIENT_USERS', () => {
   //     - search ny name
   //     - `expect found users to have name "Search Name"`
   //     - delete both users
-  it.only('search name', async () => {
+  it('search name', async () => {
     try {
       const { endUserApiWrapper: endUserApiWrapper1 } = await testHelperFuncsForUsers.createUser({
         legal_names: ['Search Yes'],

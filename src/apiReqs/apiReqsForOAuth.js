@@ -6,20 +6,17 @@ const staticEndpoints = require('../constants/staticEndpoints');
 const buildHeaders = require('../helpers/buildHeaders');
 const { replacePathParams } = require('../helpers/urlBuilders');
 
-module.exports[POST_OAUTH_USER] = ({
-  refresh_token,
-  user_id,
-  host,
-  client_id,
-  client_secret,
-  fingerprint,
-}) => {
+module.exports[POST_OAUTH_USER] = ({ bodyParams, userInfo }) => {
+  const { user_id, host, client_id, client_secret, fingerprint, refresh_token } = userInfo;
+
+  const reqBody = bodyParams !== undefined ? bodyParams : { refresh_token };
+
   return axios.post(
     replacePathParams({
       originalUrl: `${host}${staticEndpoints[POST_OAUTH_USER]}`,
       user_id,
     }),
-    { refresh_token },
+    reqBody,
     buildHeaders({
       client_id,
       client_secret,

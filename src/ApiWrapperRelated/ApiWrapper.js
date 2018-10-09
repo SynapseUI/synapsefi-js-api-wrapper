@@ -165,20 +165,20 @@ class ApiWrapper {
   }
 
   // ------------------------------------------------------------------------
-  POST_OAUTH_USER() {
+  POST_OAUTH_USER(obj = { bodyParams: undefined }) {
+    const { bodyParams } = obj;
+
     return apiRequests.oauth
       [POST_OAUTH_USER]({
-        user_id: this.user_id,
-        refresh_token: this.refresh_token,
-        host: this.host,
-        client_id: this.client_id,
-        client_secret: this.client_secret,
-        fingerprint: this.fingerprint,
-        ip_address: this.ip_address,
+        bodyParams,
+        userInfo: this,
       })
       .then(({ data }) => {
-        this.oauth_key = data.oauth_key;
-        this.refresh_token = data.refresh_token;
+        const { oauth_key, refresh_token } = data;
+
+        if (oauth_key !== undefined) this.oauth_key = oauth_key;
+        if (refresh_token !== undefined) this.refresh_token = refresh_token;
+
         return { data };
       });
   }
