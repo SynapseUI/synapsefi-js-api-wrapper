@@ -64,19 +64,15 @@ module.exports[POST_CREATE_USER] = ({
   logins,
   phone_numbers,
   legal_names,
-  optionalBodyParams,
+  bodyParams,
   userInfo,
 }) => {
   const { host, client_id, client_secret, fingerprint, ip_address } = userInfo;
+  const reqBody = bodyParams || { logins, phone_numbers, legal_names };
 
   return axios.post(
     `${host}${staticEndpoints[POST_CREATE_USER]}`,
-    {
-      ...optionalBodyParams,
-      logins,
-      phone_numbers,
-      legal_names,
-    },
+    reqBody,
     buildHeaders({
       client_id,
       client_secret,

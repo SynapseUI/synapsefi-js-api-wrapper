@@ -8,7 +8,7 @@ const ApiWrapper = require('../../src/ApiWrapperRelated/ApiWrapper');
 //   - `expect get user to have response with legal name "Post User"`
 //   - delete user
 describe('POST_CREATE_USER', () => {
-  it('create user with base info', async () => {
+  it.only('create user with base info', async () => {
     // -----------------------------------------------------------------------------------
     const {
       data: { _id, refresh_token, legal_names },
@@ -38,15 +38,15 @@ describe('POST_CREATE_USER', () => {
     // await endUserApiWrapper.PATCH_USER_PERMISSION({ permission: 'MAKE-IT-GO-AWAY' });
   });
 
-  it('optionalBodyParams', async () => {
+  it.only('with bodyParams', async () => {
     // -----------------------------------------------------------------------------------
     const {
       data: { _id, refresh_token, legal_names, extra },
     } = await platformUserApiWrapper.POST_CREATE_USER({
-      logins: [{ email: 'email.com' }],
-      phone_numbers: ['123.123.1233'],
-      legal_names: ['Post User'],
-      optionalBodyParams: {
+      bodyParams: {
+        logins: [{ email: 'email.com' }],
+        phone_numbers: ['123.123.1233'],
+        legal_names: ['Post User'],
         extra: {
           public_note: 'yeah i am a public note',
         },

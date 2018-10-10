@@ -129,7 +129,6 @@ platformUserApiWrapper
     logins: [{ email: 'email@email.com' }],
     phone_numbers: ['123.123.1233'],
     legal_names: ['John Doe'],
-    optionalBodyParams: {},
   })
   .then(({ data }) => {
     console.log('data: ', data);

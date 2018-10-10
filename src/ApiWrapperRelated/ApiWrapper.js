@@ -96,12 +96,12 @@ class ApiWrapper {
     });
   }
 
-  POST_CREATE_USER({ logins, phone_numbers, legal_names, optionalBodyParams }) {
+  POST_CREATE_USER({ logins, phone_numbers, legal_names, bodyParams }) {
     return apiRequests.users[POST_CREATE_USER]({
       logins,
       phone_numbers,
       legal_names,
-      optionalBodyParams,
+      bodyParams,
       userInfo: this,
     });
   }
