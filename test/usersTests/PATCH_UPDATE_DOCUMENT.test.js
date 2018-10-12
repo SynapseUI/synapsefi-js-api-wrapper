@@ -29,7 +29,7 @@ const documents = [
   },
 ];
 
-describe('PATCH_UPDATE_DOCUMENT', () => {
+describe('PATCH_UPDATE_DOCUMENTS', () => {
   // - update base doc
   //   - create user
   //   - add doc with email "test@gmail.com"
@@ -49,7 +49,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
 
     expect(initialEmail).to.equal('test@gmail.com');
 
-    const { data: { documents: afterDocuments } } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENT({
+    const { data: { documents: afterDocuments } } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENTS({
       documents: [
         {
           id: initialDocId,
@@ -87,7 +87,7 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
       document_type: 'FACEBOOK',
     });
 
-    const { data: { documents: afterDocuments } } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENT({
+    const { data: { documents: afterDocuments } } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENTS({
       documents: [
         {
           id: initialDocId,

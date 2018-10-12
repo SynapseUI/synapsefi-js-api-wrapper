@@ -23,7 +23,7 @@ npm installation synapsefi-ui axios lodash
   - [POST_CREATE_USER](#create-user)
   - [GET_USER](#get-user)
   - [PATCH_ADD_NEW_DOCUMENTS](#add-document)
-  - [PATCH_UPDATE_DOCUMENT](#update-exsiting-document)
+  - [PATCH_UPDATE_DOCUMENTS](#update-exsiting-document)
     - update base doc
     - update sub docs
   - [PATCH_DELETE_BASE_DOC](#delete-base-doc)
@@ -148,7 +148,7 @@ platformUserApiWrapper.GET_USER().then(({ data }) => {
 ### Add Document
 ###### (PATCH_ADD_NEW_DOCUMENTS)
 ```js
-const personalDocumentObj = {
+const personalDocuments = [{
   email: 'personal@email.com',
   phone_number: '1231231233',
   ip: '127.0.0.1',
@@ -170,11 +170,11 @@ const personalDocumentObj = {
       document_type: 'FACEBOOK',
     },
   ],
-};
+}];
 
 platformUserApiWrapper
   .PATCH_ADD_NEW_DOCUMENTS({
-    documents: personalDocumentObj,
+    documents: personalDocuments,
   })
   .then(({ data }) => {
     console.log('data: ', data);
@@ -182,17 +182,17 @@ platformUserApiWrapper
 ```
 ---
 ### Update Exsiting Document
-###### (PATCH_UPDATE_DOCUMENT)
+###### (PATCH_UPDATE_DOCUMENTS)
 
 #### `update base doc`
 ```js
 platformUserApiWrapper
-  .PATCH_UPDATE_DOCUMENT({
+  .PATCH_UPDATE_DOCUMENTS([{
     documents: {
       id: '<initialBaseDocId>',
       email: 'updated@gmail.com',
     },
-  })
+  }])
   .then(({ data }) => {
     console.log('data: ', data);
   });
@@ -202,8 +202,8 @@ platformUserApiWrapper
 #### `update sub docs`
 ```js
 platformUserApiWrapper
-  .PATCH_UPDATE_DOCUMENT({
-    documents: {
+  .PATCH_UPDATE_DOCUMENTS({
+    documents: [{
       id: '<initialBaseDocId>',
       social_docs: [
         {
@@ -213,7 +213,7 @@ platformUserApiWrapper
         },
       ],
     },
-  })
+  }])
   .then(({ data }) => {
     console.log('data: ', data);
   });

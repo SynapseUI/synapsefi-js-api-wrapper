@@ -39,7 +39,7 @@
   - delete user
 
 
-- [X] PATCH_UPDATE_DOCUMENT
+- [X] PATCH_UPDATE_DOCUMENTS
   - update base doc
     - create user
     - add doc with email "test@gmail.com"

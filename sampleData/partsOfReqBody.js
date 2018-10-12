@@ -1,4 +1,4 @@
-const { PATCH_ADD_NEW_DOCUMENTS, PATCH_UPDATE_DOCUMENT } = require('../constants/apiReqNames');
+const { PATCH_ADD_NEW_DOCUMENTS, PATCH_UPDATE_DOCUMENTS } = require('../constants/apiReqNames');
 
 module.exports[PATCH_ADD_NEW_DOCUMENTS] = {
   email: 'dummyEmail@gamil.com',
@@ -36,12 +36,12 @@ module.exports[PATCH_ADD_NEW_DOCUMENTS] = {
   ],
 };
 
-module.exports[PATCH_UPDATE_DOCUMENT] = {
+module.exports[PATCH_UPDATE_DOCUMENTS] = {
   id: '13b1fa97d147a33bad0d8d5d32c15e28c42804dd16486249f0931e245e30e835',
   name: '123',
 };
 
-// module.exports[PATCH_UPDATE_DOCUMENT] = {
+// module.exports[PATCH_UPDATE_DOCUMENTS] = {
 //   login: {
 //     email: 'test2@synapsefi.com',
 //   },
