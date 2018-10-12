@@ -197,6 +197,7 @@ platformUserApiWrapper
     console.log('data: ', data);
   });
 ```
+
 > ---
 
 #### `update sub docs`
