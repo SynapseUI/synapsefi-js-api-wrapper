@@ -60,7 +60,7 @@ module.exports.addDocument = async (
 ) => {
   const { email, name, userType, endUserApiWrapper } = obj;
 
-  const documentObj = {
+  const documents = [{
     email: email === undefined ? 'test@test.com' : email,
     phone_number: '901.111.1111',
     ip: '::1',
@@ -71,10 +71,10 @@ module.exports.addDocument = async (
     day: 2,
     month: 5,
     year: 1989,
-    address_street: '1 Market St.',
+    address_street: '101 2nd St',
     address_city: 'SF',
     address_subdivision: 'CA',
-    address_postal_code: '94114',
+    address_postal_code: '94105',
     address_country_code: 'US',
     social_docs: [
       {
@@ -82,8 +82,8 @@ module.exports.addDocument = async (
         document_type: 'FACEBOOK',
       },
     ],
-  };
+  }];
 
-  const { data } = await endUserApiWrapper.PATCH_ADD_DOCUMENT({ documentObj });
+  const { data } = await endUserApiWrapper.PATCH_ADD_NEW_DOCUMENTS({ documents });
   return { data };
 };

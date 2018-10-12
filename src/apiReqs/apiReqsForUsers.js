@@ -7,7 +7,7 @@ const {
   GET_ALL_CLIENT_USERS,
   POST_CREATE_USER,
   GET_USER,
-  PATCH_ADD_DOCUMENT,
+  PATCH_ADD_NEW_DOCUMENTS,
   PATCH_UPDATE_DOCUMENT,
   PATCH_DELETE_BASE_DOC,
   PATCH_DELETE_SUB_DOCS,
@@ -101,18 +101,18 @@ module.exports[GET_USER] = ({ userInfo }) => {
   );
 };
 
-module.exports[PATCH_ADD_DOCUMENT] = ({ bodyParams, documentObj, userInfo }) => {
+module.exports[PATCH_ADD_NEW_DOCUMENTS] = ({ bodyParams, documents, userInfo }) => {
   const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
 
-  if (bodyParams !== undefined && documentObj !== undefined) {
-    console.error('should not submit both bodyParams and documentObj');
+  if (bodyParams !== undefined && documents !== undefined) {
+    console.error('should not submit both bodyParams and documents');
   }
 
   const queryAddedUrl = addQueryParams({
-    originalUrl: `${host}${staticEndpoints[PATCH_ADD_DOCUMENT]}`,
+    originalUrl: `${host}${staticEndpoints[PATCH_ADD_NEW_DOCUMENTS]}`,
   });
 
-  const reqBodyIfOtherReqBodyIsUndefined = { documents: [documentObj] };
+  const reqBodyIfOtherReqBodyIsUndefined = { documents };
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
@@ -127,14 +127,14 @@ module.exports[PATCH_ADD_DOCUMENT] = ({ bodyParams, documentObj, userInfo }) => 
   );
 };
 
-module.exports[PATCH_UPDATE_DOCUMENT] = ({ bodyParams, documentObj, userInfo }) => {
+module.exports[PATCH_UPDATE_DOCUMENT] = ({ bodyParams, documents, userInfo }) => {
   const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
 
   const queryAddedUrl = addQueryParams({
     originalUrl: `${host}${staticEndpoints[PATCH_UPDATE_DOCUMENT]}`,
   });
 
-  const reqBodyIfOtherReqBodyIsUndefined = { documents: [documentObj] };
+  const reqBodyIfOtherReqBodyIsUndefined = { documents };
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),

@@ -29,7 +29,7 @@
   - create user legal_name with "Get User"
   - `expect get user to have response with legal name "Get User"`
 
-- [x] PATCH_ADD_DOCUMENT
+- [x] PATCH_ADD_NEW_DOCUMENTS
   - create user
   - add one personal document
   - any change with legal names ?

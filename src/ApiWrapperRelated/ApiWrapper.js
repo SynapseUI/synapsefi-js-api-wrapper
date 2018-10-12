@@ -5,7 +5,7 @@ const {
   GET_ALL_CLIENT_USERS,
   POST_CREATE_USER,
   GET_USER,
-  PATCH_ADD_DOCUMENT,
+  PATCH_ADD_NEW_DOCUMENTS,
   PATCH_UPDATE_DOCUMENT,
   PATCH_DELETE_BASE_DOC,
   PATCH_DELETE_SUB_DOCS,
@@ -113,18 +113,18 @@ class ApiWrapper {
     });
   }
 
-  PATCH_ADD_DOCUMENT({ bodyParams, documentObj }) {
-    return apiRequests.users[PATCH_ADD_DOCUMENT]({
+  PATCH_ADD_NEW_DOCUMENTS({ bodyParams, documents }) {
+    return apiRequests.users[PATCH_ADD_NEW_DOCUMENTS]({
       bodyParams,
-      documentObj,
+      documents,
       userInfo: this,
     });
   }
 
-  PATCH_UPDATE_DOCUMENT({ bodyParams, documentObj }) {
+  PATCH_UPDATE_DOCUMENT({ bodyParams, documents }) {
     return apiRequests.users[PATCH_UPDATE_DOCUMENT]({
       bodyParams,
-      documentObj,
+      documents,
       userInfo: this,
     });
   }

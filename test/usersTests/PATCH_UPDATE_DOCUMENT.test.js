@@ -1,32 +1,33 @@
 const { expect } = require('chai');
 const _ = require('lodash');
 
-const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers');
 
-const documentObj = {
-  email: 'test@gmail.com',
-  phone_number: '1231231233',
-  ip: '127.0.0.1',
-  name: 'Personal Name',
-  alias: 'Test',
-  entity_type: 'M',
-  entity_scope: 'Arts & Entertainment',
-  day: 2,
-  month: 5,
-  year: 1989,
-  address_street: '1 Market St.',
-  address_city: 'SF',
-  address_subdivision: 'CA',
-  address_postal_code: '94114',
-  address_country_code: 'US',
-  social_docs: [
-    {
-      document_value: 'https://www.facebook.com/beforeUpdate',
-      document_type: 'FACEBOOK',
-    },
-  ],
-};
+const documents = [
+  {
+    email: 'test@gmail.com',
+    phone_number: '1231231233',
+    ip: '127.0.0.1',
+    name: 'Personal Name',
+    alias: 'Test',
+    entity_type: 'M',
+    entity_scope: 'Arts & Entertainment',
+    day: 2,
+    month: 5,
+    year: 1989,
+    address_street: '101 2nd St',
+    address_city: 'SF',
+    address_subdivision: 'CA',
+    address_postal_code: '94105',
+    address_country_code: 'US',
+    social_docs: [
+      {
+        document_value: 'https://www.facebook.com/beforeUpdate',
+        document_type: 'FACEBOOK',
+      },
+    ],
+  },
+];
 
 describe('PATCH_UPDATE_DOCUMENT', () => {
   // - update base doc
@@ -35,11 +36,13 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
   //   - update email to "update@gmail.com"
   //   - `expect eamil to be "update@gmail.com"`
   //   - delete user
-  it('update base doc', async () => {
+  it.only('update base doc', async () => {
     const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
-    const { data: { documents: initialDocuments } } = await endUserApiWrapper.PATCH_ADD_DOCUMENT({
-      documentObj,
+    const {
+      data: { documents: initialDocuments },
+    } = await endUserApiWrapper.PATCH_ADD_NEW_DOCUMENTS({
+      documents,
     });
 
     const { id: initialDocId, email: initialEmail } = initialDocuments[0];
@@ -47,10 +50,12 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
     expect(initialEmail).to.equal('test@gmail.com');
 
     const { data: { documents: afterDocuments } } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENT({
-      documentObj: {
-        id: initialDocId,
-        email: 'updated@gmail.com',
-      },
+      documents: [
+        {
+          id: initialDocId,
+          email: 'updated@gmail.com',
+        },
+      ],
     });
 
     const { id: afterDocId, email: afterEmail } = afterDocuments[0];
@@ -68,28 +73,33 @@ describe('PATCH_UPDATE_DOCUMENT', () => {
   //   - `expect main doc id to be same`
   //   - `expect facebook value to be "https://www.facebook.com/afterUpdate"`
   //   - delete user
-  it('update sub docs', async () => {
+  it.only('update sub docs', async () => {
     const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
-    const { data: { documents: initialDocuments } } = await endUserApiWrapper.PATCH_ADD_DOCUMENT({
-      documentObj,
+    const {
+      data: { documents: initialDocuments },
+    } = await endUserApiWrapper.PATCH_ADD_NEW_DOCUMENTS({
+      documents,
     });
 
-    const initialDocument = initialDocuments[0];
-    const initialDocId = initialDocument.id;
-    const initialFacebookObj = _.find(initialDocument.social_docs, { document_type: 'FACEBOOK' });
+    const initialDocId = initialDocuments[0].id;
+    const initialFacebookObj = _.find(initialDocuments[0].social_docs, {
+      document_type: 'FACEBOOK',
+    });
 
     const { data: { documents: afterDocuments } } = await endUserApiWrapper.PATCH_UPDATE_DOCUMENT({
-      documentObj: {
-        id: initialDocId,
-        social_docs: [
-          {
-            id: initialFacebookObj.id,
-            document_value: 'https://www.facebook.com/afterUpdate',
-            document_type: 'FACEBOOK',
-          },
-        ],
-      },
+      documents: [
+        {
+          id: initialDocId,
+          social_docs: [
+            {
+              id: initialFacebookObj.id,
+              document_value: 'https://www.facebook.com/afterUpdate',
+              document_type: 'FACEBOOK',
+            },
+          ],
+        },
+      ],
     });
 
     const afterFacebookObj = _.find(afterDocuments[0].social_docs, { document_type: 'FACEBOOK' });

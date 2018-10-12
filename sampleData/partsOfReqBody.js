@@ -1,6 +1,6 @@
-const { PATCH_ADD_DOCUMENT, PATCH_UPDATE_DOCUMENT } = require('../constants/apiReqNames');
+const { PATCH_ADD_NEW_DOCUMENTS, PATCH_UPDATE_DOCUMENT } = require('../constants/apiReqNames');
 
-module.exports[PATCH_ADD_DOCUMENT] = {
+module.exports[PATCH_ADD_NEW_DOCUMENTS] = {
   email: 'dummyEmail@gamil.com',
   phone_number: '901.111.1111',
   ip: '::1',
@@ -11,10 +11,10 @@ module.exports[PATCH_ADD_DOCUMENT] = {
   day: 2,
   month: 5,
   year: 1989,
-  address_street: '1 Market St.',
+  address_street: '101 2nd St',
   address_city: 'SF',
   address_subdivision: 'CA',
-  address_postal_code: '94114',
+  address_postal_code: '94105',
   address_country_code: 'US',
   virtual_docs: [
     {

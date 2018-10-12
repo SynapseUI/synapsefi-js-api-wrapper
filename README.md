@@ -22,7 +22,7 @@ npm installation synapsefi-ui axios lodash
 
   - [POST_CREATE_USER](#create-user)
   - [GET_USER](#get-user)
-  - [PATCH_ADD_DOCUMENT](#add-document)
+  - [PATCH_ADD_NEW_DOCUMENTS](#add-document)
   - [PATCH_UPDATE_DOCUMENT](#update-exsiting-document)
     - update base doc
     - update sub docs
@@ -146,7 +146,7 @@ platformUserApiWrapper.GET_USER().then(({ data }) => {
 
 ---
 ### Add Document
-###### (PATCH_ADD_DOCUMENT)
+###### (PATCH_ADD_NEW_DOCUMENTS)
 ```js
 const personalDocumentObj = {
   email: 'personal@email.com',
@@ -159,10 +159,10 @@ const personalDocumentObj = {
   day: 2,
   month: 5,
   year: 1989,
-  address_street: '1 Market St.',
+  address_street: '101 2nd St',
   address_city: 'SF',
   address_subdivision: 'CA',
-  address_postal_code: '94114',
+  address_postal_code: '94105',
   address_country_code: 'US',
   social_docs: [
     {
@@ -173,8 +173,8 @@ const personalDocumentObj = {
 };
 
 platformUserApiWrapper
-  .PATCH_ADD_DOCUMENT({
-    documentObj: personalDocumentObj,
+  .PATCH_ADD_NEW_DOCUMENTS({
+    documents: personalDocumentObj,
   })
   .then(({ data }) => {
     console.log('data: ', data);
@@ -188,7 +188,7 @@ platformUserApiWrapper
 ```js
 platformUserApiWrapper
   .PATCH_UPDATE_DOCUMENT({
-    documentObj: {
+    documents: {
       id: '<initialBaseDocId>',
       email: 'updated@gmail.com',
     },
@@ -203,7 +203,7 @@ platformUserApiWrapper
 ```js
 platformUserApiWrapper
   .PATCH_UPDATE_DOCUMENT({
-    documentObj: {
+    documents: {
       id: '<initialBaseDocId>',
       social_docs: [
         {

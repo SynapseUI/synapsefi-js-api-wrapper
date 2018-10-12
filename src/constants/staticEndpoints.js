@@ -19,7 +19,7 @@ module.exports = {
   [apiReqNames.GET_ALL_CLIENT_USERS]: `/${VERSION}/${USERS}`,
   [apiReqNames.POST_CREATE_USER]: `/${VERSION}/${USERS}`,
   [apiReqNames.GET_USER]: fullEndpointForUserId,
-  [apiReqNames.PATCH_ADD_DOCUMENT]: fullEndpointForUserId + '?full_dehydrate=yes',
+  [apiReqNames.PATCH_ADD_NEW_DOCUMENTS]: fullEndpointForUserId + '?full_dehydrate=yes',
   [apiReqNames.PATCH_UPDATE_DOCUMENT]: fullEndpointForUserId + '?full_dehydrate=yes',
   [apiReqNames.PATCH_DELETE_BASE_DOC]: fullEndpointForUserId,
   [apiReqNames.PATCH_DELETE_SUB_DOCS]: fullEndpointForUserId,
