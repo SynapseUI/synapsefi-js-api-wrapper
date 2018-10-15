@@ -149,7 +149,7 @@ module.exports[PATCH_UPDATE_DOCUMENTS] = ({ bodyParams, documents, userInfo }) =
   );
 };
 
-module.exports[PATCH_DELETE_BASE_DOC] = ({ bodyParams, documentId, userInfo }) => {
+module.exports[PATCH_DELETE_BASE_DOC] = ({ bodyParams, baseDocId, userInfo }) => {
   const { user_id, host, client_id, client_secret, fingerprint, ip_address, oauth_key } = userInfo;
 
   const queryAddedUrl = addQueryParams({
@@ -159,7 +159,7 @@ module.exports[PATCH_DELETE_BASE_DOC] = ({ bodyParams, documentId, userInfo }) =
   const reqBodyIfOtherReqBodyIsUndefined = {
     documents: [
       {
-        id: documentId,
+        id: baseDocId,
         permission_scope: 'DELETE_DOCUMENT',
       },
     ],

@@ -26,7 +26,7 @@ describe('PATCH_DELETE_BASE_DOC', () => {
     });
 
     const { data: { documents: afterDocuments } } = await endUserApiWrapper.PATCH_DELETE_BASE_DOC({
-      documentId: firstDocId,
+      baseDocId: firstDocId,
     });
 
     await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);

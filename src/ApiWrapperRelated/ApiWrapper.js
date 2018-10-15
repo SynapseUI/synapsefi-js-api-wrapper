@@ -129,10 +129,10 @@ class ApiWrapper {
     });
   }
 
-  PATCH_DELETE_BASE_DOC({ bodyParams, documentId }) {
+  PATCH_DELETE_BASE_DOC({ bodyParams, baseDocId }) {
     return apiRequests.users[PATCH_DELETE_BASE_DOC]({
       bodyParams,
-      documentId,
+      baseDocId,
       userInfo: this,
     });
   }

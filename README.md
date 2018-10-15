@@ -224,7 +224,7 @@ platformUserApiWrapper
 ###### (PATCH_DELETE_BASE_DOC)
 ```js
 platformUserApiWrapper
-  .PATCH_DELETE_BASE_DOC({ documentId: '<document id of base doc>' })
+  .PATCH_DELETE_BASE_DOC({ baseDocId: '<document id of base doc>' })
   .then(({ data }) => {
     console.log('data: ', data);
   });
