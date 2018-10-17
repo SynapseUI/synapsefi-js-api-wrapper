@@ -36,7 +36,7 @@ describe('PATCH_UPDATE_DOCUMENTS', () => {
   //   - update email to "update@gmail.com"
   //   - `expect eamil to be "update@gmail.com"`
   //   - delete user
-  it.only('update base doc', async () => {
+  it('update base doc', async () => {
     const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
     const {
@@ -73,7 +73,7 @@ describe('PATCH_UPDATE_DOCUMENTS', () => {
   //   - `expect main doc id to be same`
   //   - `expect facebook value to be "https://www.facebook.com/afterUpdate"`
   //   - delete user
-  it.only('update sub docs', async () => {
+  it('update sub docs', async () => {
     const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser();
 
     const {
