@@ -34,11 +34,13 @@ module.exports[POST_CREATE_NODE] = ({ bodyParams, userInfo }) => {
       user_id,
     }),
     bodyParams,
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -58,13 +60,15 @@ module.exports[GET_ALL_CLIENT_NODES] = ({ mongoQuery, query, page, per_page, typ
     replacePathParams({
       originalUrl: queryAddedUrl,
     }),
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-      client_id,
-      client_secret,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+        client_id,
+        client_secret,
+      }),
+    }
   );
 };
 
@@ -83,11 +87,13 @@ module.exports[GET_ALL_USER_NODES] = ({ page, per_page, type, userInfo }) => {
       originalUrl: queryAddedUrl,
       user_id,
     }),
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -100,11 +106,13 @@ module.exports[DELETE_NODE] = ({ node_id, userInfo }) => {
       user_id,
       node_id,
     }),
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -117,11 +125,13 @@ module.exports[GET_NODE] = ({ node_id, userInfo }) => {
       user_id,
       node_id,
     }),
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -137,11 +147,13 @@ module.exports[POST_ACH_WITH_LOGIN] = ({ bank_id, bank_pw, bank_name, userInfo }
       type: 'ACH-US',
       info: { bank_id, bank_pw, bank_name },
     },
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -157,11 +169,13 @@ module.exports[POST_ACH_WITH_MFA] = ({ access_token, mfa_answer, userInfo }) => 
       access_token,
       mfa_answer,
     },
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -175,11 +189,13 @@ module.exports[PATCH_UPDATE_NODE] = ({ node_id, bodyParams, userInfo }) => {
       node_id,
     }),
     bodyParams,
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -198,11 +214,13 @@ module.exports[POST_ACH_WITH_AC_RN] = ({ bodyParams, userInfo }) => {
       ...bodyParams,
       type: 'ACH-US',
     },
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -222,11 +240,13 @@ module.exports[PATCH_REINITIATE_MICRO_DEPOSIT] = ({ node_id, userInfo }) => {
       node_id,
     }),
     {},
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -240,10 +260,12 @@ module.exports[PATCH_VERIFY_MICRO_DEPOSIT] = ({ node_id, micro, userInfo }) => {
       node_id,
     }),
     { micro },
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };

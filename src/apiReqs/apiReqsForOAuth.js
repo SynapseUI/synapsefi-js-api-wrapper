@@ -17,10 +17,12 @@ module.exports[POST_OAUTH_USER] = ({ bodyParams, userInfo }) => {
       user_id,
     }),
     reqBody,
-    buildHeaders({
-      client_id,
-      client_secret,
-      fingerprint,
-    })
+    {
+      headers: buildHeaders({
+        client_id,
+        client_secret,
+        fingerprint,
+      }),
+    }
   );
 };

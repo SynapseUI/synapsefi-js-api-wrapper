@@ -51,12 +51,14 @@ module.exports[GET_ALL_CLIENT_USERS] = ({
       per_page,
       show_refresh_tokens,
     }),
-    buildHeaders({
-      client_id,
-      client_secret,
-      fingerprint,
-      ip_address,
-    })
+    {
+      headers: buildHeaders({
+        client_id,
+        client_secret,
+        fingerprint,
+        ip_address,
+      }),
+    }
   );
 };
 
@@ -70,16 +72,14 @@ module.exports[POST_CREATE_USER] = ({
   const { host, client_id, client_secret, fingerprint, ip_address } = userInfo;
   const reqBody = bodyParams || { logins, phone_numbers, legal_names };
 
-  return axios.post(
-    `${host}${staticEndpoints[POST_CREATE_USER]}`,
-    reqBody,
-    buildHeaders({
+  return axios.post(`${host}${staticEndpoints[POST_CREATE_USER]}`, reqBody, {
+    headers: buildHeaders({
       client_id,
       client_secret,
       fingerprint,
       ip_address,
-    })
-  );
+    }),
+  });
 };
 
 module.exports[GET_USER] = ({ userInfo }) => {
@@ -90,15 +90,14 @@ module.exports[GET_USER] = ({ userInfo }) => {
     full_dehydrate: 'yes',
   });
 
-  return axios.get(
-    replacePathParams({ originalUrl: queryAddedUrl, user_id }),
-    buildHeaders({
+  return axios.get(replacePathParams({ originalUrl: queryAddedUrl, user_id }), {
+    headers: buildHeaders({
       client_id,
       client_secret,
       fingerprint,
       ip_address,
-    })
-  );
+    }),
+  });
 };
 
 module.exports[PATCH_ADD_NEW_DOCUMENTS] = ({ bodyParams, documents, userInfo }) => {
@@ -117,13 +116,15 @@ module.exports[PATCH_ADD_NEW_DOCUMENTS] = ({ bodyParams, documents, userInfo }) 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
     bodyParams || reqBodyIfOtherReqBodyIsUndefined,
-    buildHeaders({
-      client_id,
-      client_secret,
-      oauth_key,
-      fingerprint,
-      ip_address,
-    })
+    {
+      headers: buildHeaders({
+        client_id,
+        client_secret,
+        oauth_key,
+        fingerprint,
+        ip_address,
+      }),
+    }
   );
 };
 
@@ -139,13 +140,15 @@ module.exports[PATCH_UPDATE_DOCUMENTS] = ({ bodyParams, documents, userInfo }) =
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
     bodyParams || reqBodyIfOtherReqBodyIsUndefined,
-    buildHeaders({
-      client_id,
-      client_secret,
-      oauth_key,
-      fingerprint,
-      ip_address,
-    })
+    {
+      headers: buildHeaders({
+        client_id,
+        client_secret,
+        oauth_key,
+        fingerprint,
+        ip_address,
+      }),
+    }
   );
 };
 
@@ -168,13 +171,15 @@ module.exports[PATCH_DELETE_BASE_DOC] = ({ bodyParams, baseDocId, userInfo }) =>
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
     bodyParams || reqBodyIfOtherReqBodyIsUndefined,
-    buildHeaders({
-      client_id,
-      client_secret,
-      oauth_key,
-      fingerprint,
-      ip_address,
-    })
+    {
+      headers: buildHeaders({
+        client_id,
+        client_secret,
+        oauth_key,
+        fingerprint,
+        ip_address,
+      }),
+    }
   );
 };
 
@@ -218,13 +223,15 @@ module.exports[PATCH_DELETE_SUB_DOCS] = ({
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
     bodyParams || reqBodyIfOtherReqBodyIsUndefined,
-    buildHeaders({
-      client_id,
-      client_secret,
-      oauth_key,
-      fingerprint,
-      ip_address,
-    })
+    {
+      headers: buildHeaders({
+        client_id,
+        client_secret,
+        oauth_key,
+        fingerprint,
+        ip_address,
+      }),
+    }
   );
 };
 
@@ -240,13 +247,15 @@ module.exports[PATCH_UPDATE_USER] = ({ bodyParams, updateObj, userInfo }) => {
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
     bodyParams || reqBodyIfOtherReqBodyIsUndefined,
-    buildHeaders({
-      client_id,
-      client_secret,
-      oauth_key,
-      fingerprint,
-      ip_address,
-    })
+    {
+      headers: buildHeaders({
+        client_id,
+        client_secret,
+        oauth_key,
+        fingerprint,
+        ip_address,
+      }),
+    }
   );
 };
 
@@ -257,17 +266,19 @@ module.exports[PATCH_USER_PERMISSION] = ({ bodyParams, permission, userInfo }) =
     originalUrl: `${host}${staticEndpoints[PATCH_USER_PERMISSION]}`,
   });
 
-  const reqBodyIfOtherReqBodyIsUndefined = { permission: permission };
+  const reqBodyIfOtherReqBodyIsUndefined = { permission };
 
   return axios.patch(
     replacePathParams({ originalUrl: queryAddedUrl, user_id }),
     bodyParams || reqBodyIfOtherReqBodyIsUndefined,
-    buildHeaders({
-      client_id,
-      client_secret,
-      oauth_key,
-      fingerprint,
-      ip_address,
-    })
+    {
+      headers: buildHeaders({
+        client_id,
+        client_secret,
+        oauth_key,
+        fingerprint,
+        ip_address,
+      }),
+    }
   );
 };

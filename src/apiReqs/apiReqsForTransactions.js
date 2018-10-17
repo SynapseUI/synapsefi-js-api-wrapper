@@ -52,11 +52,13 @@ module.exports[POST_CREATE_TRANSACTION] = ({
         ...extra,
       },
     },
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -70,11 +72,13 @@ module.exports[GET_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
       node_id,
       trans_id,
     }),
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -89,11 +93,13 @@ module.exports[PATCH_COMMENT_ON_STATUS] = ({ node_id, trans_id, comment, userInf
       trans_id,
     }),
     { comment },
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -107,11 +113,13 @@ module.exports[DELETE_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
       node_id,
       trans_id,
     }),
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -127,7 +135,7 @@ module.exports[GET_ALL_CLIENT_TRANSACTIONS] = ({ mongoQuery, query, page, per_pa
       per_page,
     }),
     {
-      ...buildHeaders({
+      headers: buildHeaders({
         client_id,
         client_secret,
         fingerprint,
@@ -153,11 +161,13 @@ module.exports[GET_ALL_USER_TRANSACTIONS] = ({ query, page, per_page, userInfo }
       originalUrl: url,
       user_id,
     }),
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
 
@@ -177,10 +187,12 @@ module.exports[GET_ALL_NODE_TRANSACTIONS] = ({ node_id, query, page, per_page, u
       user_id,
       node_id,
     }),
-    buildHeaders({
-      fingerprint,
-      ip_address,
-      oauth_key,
-    })
+    {
+      headers: buildHeaders({
+        fingerprint,
+        ip_address,
+        oauth_key,
+      }),
+    }
   );
 };
