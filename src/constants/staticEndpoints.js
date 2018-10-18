@@ -21,10 +21,10 @@ module.exports = {
   [apiReqNames.GET_USER]: fullEndpointForUserId,
   [apiReqNames.PATCH_ADD_NEW_DOCUMENTS]: fullEndpointForUserId + '?full_dehydrate=yes',
   [apiReqNames.PATCH_UPDATE_DOCUMENTS]: fullEndpointForUserId + '?full_dehydrate=yes',
-  [apiReqNames.PATCH_DELETE_BASE_DOC]: fullEndpointForUserId,
-  [apiReqNames.PATCH_DELETE_SUB_DOCS]: fullEndpointForUserId,
-  [apiReqNames.PATCH_UPDATE_USER]: fullEndpointForUserId,
-  [apiReqNames.PATCH_USER_PERMISSION]: fullEndpointForUserId,
+  [apiReqNames.PATCH_DELETE_BASE_DOC]: fullEndpointForUserId + '?full_dehydrate=yes',
+  [apiReqNames.PATCH_DELETE_SUB_DOCS]: fullEndpointForUserId + '?full_dehydrate=yes',
+  [apiReqNames.PATCH_UPDATE_USER]: fullEndpointForUserId + '?full_dehydrate=yes',
+  [apiReqNames.PATCH_USER_PERMISSION]: fullEndpointForUserId + '?full_dehydrate=yes',
   // ------------------------------------------------------------------------
   //
   // OAUTH  -----------------------------------------------------------------
