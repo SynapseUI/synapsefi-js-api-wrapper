@@ -44,7 +44,7 @@ businessDocArr[0].email = 'business@email.com';
 //   - delete user
 
 describe('PATCH_ADD_NEW_DOCUMENTS', () => {
-  it.only('PATCH_ADD_NEW_DOCUMENTS', async () => {
+  it('PATCH_ADD_NEW_DOCUMENTS', async () => {
     const { endUserApiWrapper } = await testHelperFuncsForUsers.createUser({
       legal_names: ['Initial Name, Initial Name2'],
     });
