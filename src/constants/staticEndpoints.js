@@ -62,7 +62,7 @@ module.exports = {
   //
   //
   // SUBNETS  ----------------------------------------------------------------------------------------
-  [apiReqNames.GET_SUBNETS]: `/${VERSION}/users/:user_id/nodes/:node_id/trans/:trans_id`,
+  [apiReqNames.GET_SUBNETS]: `/${VERSION}/users/:user_id/nodes/:node_id/subnets`,
   // -----------------------------------------------------------------------------------------------------
   //
 };

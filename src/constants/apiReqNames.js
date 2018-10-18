@@ -46,4 +46,12 @@ module.exports = {
   GET_ALL_NODE_TRANSACTIONS: 'GET_ALL_NODE_TRANSACTIONS',
   // -------------------------------------------------------------------------------
   //
+  //
+  // SUBNETS  ------------------------------------------------------------------
+  GET_SUBNETS: 'GET_SUBNETS',
+  POST_CREATE_SUBNETS: 'POST_CREATE_SUBNETS',
+  GET_SUBNET: 'GET_SUBNET',
+  PATCH_SUBNET: 'PATCH_SUBNET',
+  // -------------------------------------------------------------------------------
+  //
 };
