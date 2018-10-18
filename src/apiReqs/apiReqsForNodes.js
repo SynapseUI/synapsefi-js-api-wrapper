@@ -179,7 +179,7 @@ module.exports[POST_ACH_WITH_MFA] = ({ access_token, mfa_answer, userInfo }) => 
   );
 };
 
-module.exports[PATCH_UPDATE_NODE] = ({ node_id, bodyParams, userInfo }) => {
+module.exports[PATCH_UPDATE_NODE] = ({ node_id, bodyParams, queryParams, userInfo }) => {
   const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
 
   return axios.patch(
@@ -195,6 +195,9 @@ module.exports[PATCH_UPDATE_NODE] = ({ node_id, bodyParams, userInfo }) => {
         ip_address,
         oauth_key,
       }),
+      params: {
+        ...queryParams,
+      },
     }
   );
 };

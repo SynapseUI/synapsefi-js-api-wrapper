@@ -257,10 +257,11 @@ class ApiWrapper {
     });
   }
 
-  PATCH_UPDATE_NODE({ node_id, bodyParams }) {
+  PATCH_UPDATE_NODE({ node_id, bodyParams, queryParams }) {
     return apiRequests.nodes[PATCH_UPDATE_NODE]({
       node_id,
       bodyParams,
+      queryParams,
       userInfo: this,
     });
   }
