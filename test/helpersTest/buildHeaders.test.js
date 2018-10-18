@@ -13,12 +13,10 @@ describe('buildHeaders', () => {
     });
 
     const targetHeaders = {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-SP-USER-IP': 'IP_ADDRESS',
-        'X-SP-GATEWAY': 'CLIENT_ID|CLIENT_SECRET',
-        'X-SP-USER': 'OAUTH_KEY|FINGERPRINT',
-      },
+      'Content-Type': 'application/json',
+      'X-SP-USER-IP': 'IP_ADDRESS',
+      'X-SP-GATEWAY': 'CLIENT_ID|CLIENT_SECRET',
+      'X-SP-USER': 'OAUTH_KEY|FINGERPRINT',
     };
 
     expect(outputHeaders).to.deep.equal(targetHeaders);
@@ -33,12 +31,10 @@ describe('buildHeaders', () => {
     });
 
     const targetHeaders = {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-SP-USER-IP': '127.0.0.1',
-        'X-SP-GATEWAY': 'CLIENT_ID|CLIENT_SECRET',
-        'X-SP-USER': 'OAUTH_KEY|FINGERPRINT',
-      },
+      'Content-Type': 'application/json',
+      'X-SP-USER-IP': '127.0.0.1',
+      'X-SP-GATEWAY': 'CLIENT_ID|CLIENT_SECRET',
+      'X-SP-USER': 'OAUTH_KEY|FINGERPRINT',
     };
 
     expect(outputHeaders).to.deep.equal(targetHeaders);
@@ -52,12 +48,10 @@ describe('buildHeaders', () => {
     });
 
     const targetHeaders = {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-SP-USER-IP': '127.0.0.1',
-        'X-SP-GATEWAY': 'CLIENT_ID|CLIENT_SECRET',
-        'X-SP-USER': '|FINGERPRINT',
-      },
+      'Content-Type': 'application/json',
+      'X-SP-USER-IP': '127.0.0.1',
+      'X-SP-GATEWAY': 'CLIENT_ID|CLIENT_SECRET',
+      'X-SP-USER': '|FINGERPRINT',
     };
 
     expect(outputHeaders).to.deep.equal(targetHeaders);
