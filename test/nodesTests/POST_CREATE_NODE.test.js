@@ -32,14 +32,13 @@ describe('POST_CREATE_NODE', () => {
     }
   });
 
-  it('Creating card then resend and ship debit card', async () => {
+  itx('Creating card then resend and ship debit card', async () => {
     // create cip 1 personal user
     // check that user's permission is verify or not
     // once user is verify then create card
     // check card is created
     // delete user
     const { endUserApiWrapper } = await testHelperFuncsForUsers.createCip1PersonalUser();
-    // console.log('endUserApiWrapper: ', endUserApiWrapper);
 
     const promise = new Promise(resolve => {
       setTimeout(async () => {
@@ -52,7 +51,7 @@ describe('POST_CREATE_NODE', () => {
           userPermission,
           baseDocId,
         });
-      }, 10000);
+      }, 40000);
     });
 
     const { userPermission, baseDocId } = await promise;
@@ -87,6 +86,21 @@ describe('POST_CREATE_NODE', () => {
         queryParams: { reset: 'YES' },
       });
       console.log('dataFromResetCard: ', dataFromResetCard);
+
+      const { data: dataFromShipCard } = await endUserApiWrapper
+        .PATCH_UPDATE_NODE({
+          node_id: cardNodeId,
+          bodyParams: {
+            fee_node_id: depositNodeId,
+            expedite: true,
+          },
+          queryParams: { ship: 'YES' },
+        })
+        .catch(error => {
+          console.log('error: ', error.response.data.error.en);
+        });
+
+      console.log('dataFromShipCard: ', dataFromShipCard);
     } else {
       console.log('user was UNVERIFIED');
     }

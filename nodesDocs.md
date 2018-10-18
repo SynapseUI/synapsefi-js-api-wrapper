@@ -140,21 +140,31 @@ platformUserApiWrapper
   });
 ```
 
----
+> ---
 
-- PATCH_REISSUE_DEBIT_CARD
-  - create card (user status cannot be `UNVERIFIED`)
-  - > reissue debit card
-  - `expect end of timel line note to be "Debit Card Reissued"`
-  - delete node
+```js
+platformUserApiWrapper
+  .PATCH_UPDATE_NODE({
+    node_id: 'node_id',
+    queryParams: { reset: 'YES' },
+  })
+  .then(({ data }) => {
+    console.log('data: ', data);
+  });
+```
 
----
+> ---
 
-- PATCH_REORDER_DEBIT_CARD
-  - create card (user status cannot be `UNVERIFIED`)
-  - > reorder debit card
-  - `expect end of timel line note to be "Debit Card Reordered"`
-  - delete node
+```js
+platformUserApiWrapper.PATCH_UPDATE_NODE({
+  node_id: '<node_id>',
+  bodyParams: {
+    fee_node_id: '<fee_node_id>',
+    expedite: true,
+  },
+  queryParams: { ship: 'YES' },
+});
+```
 
 ---
 

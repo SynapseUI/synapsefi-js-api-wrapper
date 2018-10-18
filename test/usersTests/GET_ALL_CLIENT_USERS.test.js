@@ -7,7 +7,7 @@ const testHelperFuncsForUsers = require('../testHelper/testHelperFuncsForUsers')
 // - [x] GET_ALL_CLIENT_USERS
 describe('GET_ALL_CLIENT_USERS', () => {
   //   - base -> has key users_count
-  it.only('GET_ALL_CLIENT_USERS with no args', async () => {
+  it('GET_ALL_CLIENT_USERS with no args', async () => {
     // -------------------------------------------------------
     const { data } = await platformUserApiWrapper.GET_ALL_CLIENT_USERS();
     // -------------------------------------------------------
@@ -21,7 +21,7 @@ describe('GET_ALL_CLIENT_USERS', () => {
   //     - search ny name
   //     - `expect found users to have name "Search Name"`
   //     - delete both users
-  it.only('search name', async () => {
+  it('search name', async () => {
     try {
       const { endUserApiWrapper: endUserApiWrapper1 } = await testHelperFuncsForUsers.createUser({
         legal_names: ['Search Yes'],
@@ -49,7 +49,7 @@ describe('GET_ALL_CLIENT_USERS', () => {
   //     - invoke with page: 2, per_page: 3
   //     - `expext page = 2, limit = 3`
   //     - `expext limit = 3`
-  it.only('page, per_page', async () => {
+  it('page, per_page', async () => {
     // ------------------------------------------------------------------------------
     const { data: { page, limit } } = await platformUserApiWrapper.GET_ALL_CLIENT_USERS({
       page: 2,
@@ -67,7 +67,7 @@ describe('GET_ALL_CLIENT_USERS', () => {
   //     - query will be email "real@gmail.com"
   //     - `expext page = 1, limit = 2, user with email: "real@gmail.com"`
   //     - delete both users
-  it.only('query, per_page, page', async () => {
+  it('query, per_page, page', async () => {
     const { endUserApiWrapper: endUserApiWrapper1 } = await testHelperFuncsForUsers.createUser({
       email: 'real@gmail.com',
     });
