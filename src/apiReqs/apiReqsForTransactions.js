@@ -146,7 +146,7 @@ module.exports[GET_ALL_CLIENT_TRANSACTIONS] = ({ mongoQuery, query, page, per_pa
   );
 };
 
-module.exports[GET_ALL_USER_TRANSACTIONS] = ({ query, page, per_page, userInfo }) => {
+module.exports[GET_ALL_USER_TRANSACTIONS] = ({ query, page, per_page, mongoQuery, userInfo }) => {
   const { oauth_key, host, fingerprint, ip_address, user_id } = userInfo;
 
   const url = addQueryParams({
@@ -154,6 +154,7 @@ module.exports[GET_ALL_USER_TRANSACTIONS] = ({ query, page, per_page, userInfo }
     query,
     page,
     per_page,
+    mongoQuery,
   });
 
   return axios.get(

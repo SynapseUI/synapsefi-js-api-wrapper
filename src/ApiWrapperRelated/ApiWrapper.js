@@ -359,11 +359,12 @@ class ApiWrapper {
   }
 
   GET_ALL_USER_TRANSACTIONS(queryParams = {}) {
-    const { query, page, per_page } = queryParams;
+    const { query, page, per_page, mongoQuery } = queryParams;
     return apiRequests.transactions[GET_ALL_USER_TRANSACTIONS]({
       query,
       page,
       per_page,
+      mongoQuery,
       userInfo: this,
     });
   }

@@ -3,7 +3,7 @@ const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const create2Nodes2TransForPlatform = require('../testHelper/create2Nodes2TransForPlatform');
 
 describe('Get all node transactions with mongo query', () => {
-  it('base trans count = 2, filter = 1', async () => {
+  it('base trans count of node 2 -> 1', async () => {
     const { node_id_1, trans_id_1 } = await create2Nodes2TransForPlatform();
 
     const { data: respWithoutFilter } = await platformUserApiWrapper.GET_ALL_NODE_TRANSACTIONS({
