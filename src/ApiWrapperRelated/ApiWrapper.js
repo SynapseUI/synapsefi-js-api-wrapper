@@ -369,12 +369,13 @@ class ApiWrapper {
   }
 
   GET_ALL_NODE_TRANSACTIONS(queryParams = {}) {
-    const { node_id, query, page, per_page } = queryParams;
+    const { node_id, query, page, per_page, mongoQuery } = queryParams;
     return apiRequests.transactions[GET_ALL_NODE_TRANSACTIONS]({
       node_id,
       query,
       page,
       per_page,
+      mongoQuery,
       userInfo: this,
     });
   }
