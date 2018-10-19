@@ -211,17 +211,25 @@ class ApiWrapper {
     });
   }
 
-  GET_ALL_USER_NODES(queryParams) {
+  GET_ALL_USER_NODES(queryParams = {}) {
+    const { mongoQuery, type, page, per_page } = queryParams;
     // queryParams =
     // {
     //   page:
     //   per_page:
     //   type:
     // }
+    // return apiRequests.nodes[GET_ALL_USER_NODES]({
+    //   page: queryParams ? queryParams.page : undefined,
+    //   per_page: queryParams ? queryParams.per_page : undefined,
+    //   type: queryParams ? queryParams.type : undefined,
+    //   userInfo: this,
+    // });
     return apiRequests.nodes[GET_ALL_USER_NODES]({
-      page: queryParams ? queryParams.page : undefined,
-      per_page: queryParams ? queryParams.per_page : undefined,
-      type: queryParams ? queryParams.type : undefined,
+      page,
+      per_page,
+      type,
+      mongoQuery,
       userInfo: this,
     });
   }

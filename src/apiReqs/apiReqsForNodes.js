@@ -72,7 +72,7 @@ module.exports[GET_ALL_CLIENT_NODES] = ({ mongoQuery, query, page, per_page, typ
   );
 };
 
-module.exports[GET_ALL_USER_NODES] = ({ page, per_page, type, userInfo }) => {
+module.exports[GET_ALL_USER_NODES] = ({ page, per_page, type, mongoQuery, userInfo }) => {
   const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
 
   const queryAddedUrl = addQueryParams({
@@ -80,6 +80,7 @@ module.exports[GET_ALL_USER_NODES] = ({ page, per_page, type, userInfo }) => {
     page,
     per_page,
     type,
+    mongoQuery,
   });
 
   return axios.get(

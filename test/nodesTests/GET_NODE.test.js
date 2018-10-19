@@ -22,7 +22,7 @@ describe('GET_NODE', () => {
   //   - > get node
   //     - `expect node type = "DEPOSIT-US"`
   //     - delete node
-  it.only('get node', async () => {
+  it('get node', async () => {
     const { data: { type } } = await platformUserApiWrapper.GET_NODE({ node_id });
     expect(type).to.equal('DEPOSIT-US');
   });
