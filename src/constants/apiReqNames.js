@@ -49,7 +49,7 @@ module.exports = {
   //
   // SUBNETS  ------------------------------------------------------------------
   GET_SUBNETS: 'GET_SUBNETS',
-  POST_CREATE_SUBNETS: 'POST_CREATE_SUBNETS',
+  POST_CREATE_SUBNET: 'POST_CREATE_SUBNET',
   GET_SUBNET: 'GET_SUBNET',
   PATCH_SUBNET: 'PATCH_SUBNET',
   // -------------------------------------------------------------------------------

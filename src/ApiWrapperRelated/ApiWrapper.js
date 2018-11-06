@@ -47,8 +47,15 @@ const {
   GET_ALL_NODE_TRANSACTIONS,
   // ---------------------------------
   //
+  // TRANSACTION  --------------------
+  GET_SUBNETS,
+  POST_CREATE_SUBNET,
+  GET_SUBNET,
+  PATCH_SUBNET,
+  // ---------------------------------
 } = require('../constants/apiReqNames');
 const apiRequests = require('../apiReqs/apiRequests');
+const buildHeaders = require('../helpers/buildHeaders');
 
 class ApiWrapper {
   constructor({
@@ -69,6 +76,7 @@ class ApiWrapper {
     this.user_id = user_id;
     this.refresh_token = refresh_token;
     this.ip_address = ip_address;
+    this.headers = buildHeaders({ client_id, client_secret, oauth_key, fingerprint, ip_address });
   }
 
   GET_USERS_DOCUMENT_TYPES() {
@@ -175,8 +183,19 @@ class ApiWrapper {
       })
       .then(({ data }) => {
         const { oauth_key, refresh_token } = data;
+        const { client_id, client_secret, fingerprint, ip_address } = this;
 
-        if (oauth_key !== undefined) this.oauth_key = oauth_key;
+        if (oauth_key !== undefined) {
+          this.oauth_key = oauth_key;
+          this.headers = buildHeaders({
+            client_id,
+            client_secret,
+            oauth_key,
+            fingerprint,
+            ip_address,
+          });
+        }
+
         if (refresh_token !== undefined) this.refresh_token = refresh_token;
 
         return { data };
@@ -381,6 +400,17 @@ class ApiWrapper {
     });
   }
   // -------------------------------------------------------------------------------
+  //
+  //
+
+  POST_CREATE_SUBNET({ node_id, nickname }) {
+    return apiRequests.subnets[POST_CREATE_SUBNET]({
+      node_id,
+      nickname,
+      userInfo: this,
+    });
+  }
+  //
   //
 }
 

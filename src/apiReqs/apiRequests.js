@@ -3,4 +3,5 @@ module.exports = {
   oauth: require('./apiReqsForOAuth'),
   nodes: require('./apiReqsForNodes'),
   transactions: require('./apiReqsForTransactions'),
+  subnets: require('./apiReqsForSubnets'),
 };

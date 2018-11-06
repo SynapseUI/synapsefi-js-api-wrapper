@@ -4,7 +4,7 @@ const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const create2Nodes2TransForPlatform = require('../testHelper/create2Nodes2TransForPlatform');
 
 describe('Get all user transactions with mongo query', () => {
-  it.only('base trans count that Platform user have greater than 2 -> 1', async () => {
+  it('base trans count that Platform user have greater than 2 -> 1', async () => {
     const { trans_id_1 } = await create2Nodes2TransForPlatform();
 
     const { data: respWithoutFilter } = await platformUserApiWrapper.GET_ALL_USER_TRANSACTIONS();

@@ -63,6 +63,9 @@ module.exports = {
   //
   // SUBNETS  ----------------------------------------------------------------------------------------
   [apiReqNames.GET_SUBNETS]: `/${VERSION}/users/:user_id/nodes/:node_id/subnets`,
+  [apiReqNames.POST_CREATE_SUBNET]: `/${VERSION}/users/:user_id/nodes/:node_id/subnets`,
+  [apiReqNames.GET_SUBNETS]: `/${VERSION}/users/:user_id/nodes/:node_id/subnets/:subnet_id`,
+  [apiReqNames.PATCH_SUBNET]: `/${VERSION}/users/:user_id/nodes/:node_id/subnets/:subnet_id`,
   // -----------------------------------------------------------------------------------------------------
   //
 };
