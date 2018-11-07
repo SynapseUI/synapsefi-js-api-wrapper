@@ -175,6 +175,13 @@ class ApiWrapper {
   // ------------------------------------------------------------------------
   POST_OAUTH_USER(obj = { bodyParams: undefined }) {
     const { bodyParams } = obj;
+    const { client_id, client_secret, fingerprint, ip_address } = this;
+    this.headers = buildHeaders({
+      client_id,
+      client_secret,
+      fingerprint,
+      ip_address,
+    });
 
     return apiRequests.oauth
       [POST_OAUTH_USER]({
@@ -183,7 +190,6 @@ class ApiWrapper {
       })
       .then(({ data }) => {
         const { oauth_key, refresh_token } = data;
-        const { client_id, client_secret, fingerprint, ip_address } = this;
 
         if (oauth_key !== undefined) {
           this.oauth_key = oauth_key;

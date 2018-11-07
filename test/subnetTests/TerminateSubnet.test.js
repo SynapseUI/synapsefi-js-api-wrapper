@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const testHelpersForSubnets = require('../testHelper/testHelpersForSubnets');
 
 describe('test subnet termination', () => {
-  it.only('return less subnet than created amount', async () => {
+  it('return less subnet than created amount', async () => {
     const { endUserApiWrapper } = await testHelpersForSubnets.createEndUserWithBaseDoc();
     const { node_id } = await testHelpersForSubnets.createDepositNode({ endUserApiWrapper });
 
