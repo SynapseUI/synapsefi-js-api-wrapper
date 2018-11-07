@@ -52,3 +52,18 @@ module.exports[GET_SUBNETS] = ({ node_id, userInfo }) => {
     { headers }
   );
 };
+
+module.exports[PATCH_SUBNET] = ({ node_id, subnet_id, status, userInfo }) => {
+  const { host, user_id, headers } = userInfo;
+
+  return axios.patch(
+    replacePathParams({
+      originalUrl: `${host}${staticEndpoints[PATCH_SUBNET]}`,
+      user_id,
+      node_id,
+      subnet_id,
+    }),
+    { status },
+    { headers }
+  );
+};

@@ -425,6 +425,15 @@ class ApiWrapper {
       userInfo: this,
     });
   }
+
+  PATCH_SUBNET({ node_id, subnet_id, status }) {
+    return apiRequests.subnets[PATCH_SUBNET]({
+      node_id,
+      subnet_id,
+      status,
+      userInfo: this,
+    });
+  }
   //
   //
 }

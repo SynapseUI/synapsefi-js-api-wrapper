@@ -88,6 +88,18 @@ const createSubnet = async ({ endUserApiWrapper, node_id }) => {
   return { subnet_id };
 };
 
+const terminateSubnet = async ({ endUserApiWrapper, node_id, subnet_id }) => {
+  const { data: dataFromPatchSubnet } = await endUserApiWrapper
+    .PATCH_SUBNET({
+      node_id,
+      subnet_id,
+      status: 'TERMINATED',
+    })
+    .catch(error => {
+      console.log('error: ', error.response.data.error.en);
+    });
+};
+
 const removeEndUser = async ({ endUserApiWrapper }) => {
   await endUserApiWrapper.PATCH_USER_PERMISSION({ permission: 'MAKE-IT-GO-AWAY' });
   console.log('delete end user');
@@ -97,5 +109,6 @@ module.exports = {
   createEndUserWithBaseDoc,
   createDepositNode,
   createSubnet,
+  terminateSubnet,
   removeEndUser,
 };
