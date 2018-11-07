@@ -410,6 +410,21 @@ class ApiWrapper {
       userInfo: this,
     });
   }
+
+  GET_SUBNET({ node_id, subnet_id }) {
+    return apiRequests.subnets[GET_SUBNET]({
+      node_id,
+      subnet_id,
+      userInfo: this,
+    });
+  }
+
+  GET_SUBNETS({ node_id }) {
+    return apiRequests.subnets[GET_SUBNETS]({
+      node_id,
+      userInfo: this,
+    });
+  }
   //
   //
 }
