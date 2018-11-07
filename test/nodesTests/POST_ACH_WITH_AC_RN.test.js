@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 const randomatic = require('randomatic');
+const _ = require('lodash');
 
 const platformUserApiWrapper = require('../testHelper/platformUserApiWrapper');
 const testHelpersForNodes = require('../testHelper/testHelpersForNodes');
@@ -14,9 +15,7 @@ describe('POST_ACH_WITH_AC_RN', () => {
     // await platformUserApiWrapper.POST_OAUTH_USER();
 
     await testHelpersForNodes.deleteAllNodeFromPlatformUser();
-    const {
-      data: { nodes: { 0: { _id: node_id, allowed } } },
-    } = await platformUserApiWrapper.POST_ACH_WITH_AC_RN({
+    const { data: dataFromPostAchWithAcRn } = await platformUserApiWrapper.POST_ACH_WITH_AC_RN({
       bodyParams: {
         info: {
           nickname: 'Fake Account',
@@ -27,7 +26,11 @@ describe('POST_ACH_WITH_AC_RN', () => {
         },
       },
     });
-    // ---------------------------------------------------------------------------------------------
+
+    const info = _.get(dataFromPostAchWithAcRn, 'nodes.0.info');
+    const allowed = _.get(dataFromPostAchWithAcRn, 'nodes.0.allowed');
+    const node_id = _.get(dataFromPostAchWithAcRn, 'nodes.0._id');
+    // -------------------------ß--------------------------------------------------------------------
     expect(allowed).to.equal('CREDIT');
     await platformUserApiWrapper.DELETE_NODE({ node_id });
   });
