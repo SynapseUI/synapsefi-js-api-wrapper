@@ -11,7 +11,6 @@ const {
 } = require('../constants/apiReqNames');
 
 const staticEndpoints = require('../constants/staticEndpoints');
-const buildHeaders = require('../helpers/buildHeaders');
 const { addQueryParams, replacePathParams } = require('../helpers/urlBuilders');
 
 module.exports[POST_CREATE_TRANSACTION] = ({
@@ -23,7 +22,7 @@ module.exports[POST_CREATE_TRANSACTION] = ({
   optionalBodyParams,
   userInfo,
 }) => {
-  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+  const { host, user_id, ip_address, headers } = userInfo;
 
   let extra = {};
   if (optionalBodyParams !== undefined) {
@@ -52,18 +51,12 @@ module.exports[POST_CREATE_TRANSACTION] = ({
         ...extra,
       },
     },
-    {
-      headers: buildHeaders({
-        fingerprint,
-        ip_address,
-        oauth_key,
-      }),
-    }
+    { headers }
   );
 };
 
 module.exports[GET_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
-  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+  const { host, user_id, headers } = userInfo;
 
   return axios.get(
     replacePathParams({
@@ -72,18 +65,12 @@ module.exports[GET_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
       node_id,
       trans_id,
     }),
-    {
-      headers: buildHeaders({
-        fingerprint,
-        ip_address,
-        oauth_key,
-      }),
-    }
+    { headers }
   );
 };
 
 module.exports[PATCH_COMMENT_ON_STATUS] = ({ node_id, trans_id, comment, userInfo }) => {
-  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+  const { host, user_id, headers } = userInfo;
 
   return axios.patch(
     replacePathParams({
@@ -93,18 +80,12 @@ module.exports[PATCH_COMMENT_ON_STATUS] = ({ node_id, trans_id, comment, userInf
       trans_id,
     }),
     { comment },
-    {
-      headers: buildHeaders({
-        fingerprint,
-        ip_address,
-        oauth_key,
-      }),
-    }
+    { headers }
   );
 };
 
 module.exports[DELETE_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
-  const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
+  const { host, user_id, headers } = userInfo;
 
   return axios.delete(
     replacePathParams({
@@ -113,18 +94,12 @@ module.exports[DELETE_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
       node_id,
       trans_id,
     }),
-    {
-      headers: buildHeaders({
-        fingerprint,
-        ip_address,
-        oauth_key,
-      }),
-    }
+    { headers }
   );
 };
 
 module.exports[GET_ALL_CLIENT_TRANSACTIONS] = ({ mongoQuery, query, page, per_page, userInfo }) => {
-  const { oauth_key, host, fingerprint, ip_address, client_id, client_secret } = userInfo;
+  const { host, headers } = userInfo;
 
   return axios.get(
     addQueryParams({
@@ -134,20 +109,12 @@ module.exports[GET_ALL_CLIENT_TRANSACTIONS] = ({ mongoQuery, query, page, per_pa
       page,
       per_page,
     }),
-    {
-      headers: buildHeaders({
-        client_id,
-        client_secret,
-        fingerprint,
-        ip_address,
-        oauth_key,
-      }),
-    }
+    { headers }
   );
 };
 
 module.exports[GET_ALL_USER_TRANSACTIONS] = ({ query, page, per_page, mongoQuery, userInfo }) => {
-  const { oauth_key, host, fingerprint, ip_address, user_id } = userInfo;
+  const { host, user_id, headers } = userInfo;
 
   const url = addQueryParams({
     originalUrl: `${host}${staticEndpoints[GET_ALL_USER_TRANSACTIONS]}`,
@@ -162,13 +129,7 @@ module.exports[GET_ALL_USER_TRANSACTIONS] = ({ query, page, per_page, mongoQuery
       originalUrl: url,
       user_id,
     }),
-    {
-      headers: buildHeaders({
-        fingerprint,
-        ip_address,
-        oauth_key,
-      }),
-    }
+    { headers }
   );
 };
 
@@ -180,7 +141,7 @@ module.exports[GET_ALL_NODE_TRANSACTIONS] = ({
   mongoQuery,
   userInfo,
 }) => {
-  const { oauth_key, host, fingerprint, ip_address, user_id } = userInfo;
+  const { host, user_id, headers } = userInfo;
 
   const url = addQueryParams({
     originalUrl: `${host}${staticEndpoints[GET_ALL_NODE_TRANSACTIONS]}`,
@@ -196,12 +157,6 @@ module.exports[GET_ALL_NODE_TRANSACTIONS] = ({
       user_id,
       node_id,
     }),
-    {
-      headers: buildHeaders({
-        fingerprint,
-        ip_address,
-        oauth_key,
-      }),
-    }
+    { headers }
   );
 };

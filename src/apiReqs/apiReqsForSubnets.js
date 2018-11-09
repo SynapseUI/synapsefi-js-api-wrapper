@@ -8,9 +8,7 @@ const {
 } = require('../constants/apiReqNames');
 
 const staticEndpoints = require('../constants/staticEndpoints');
-const buildHeaders = require('../helpers/buildHeaders');
-const { addQueryParams, replacePathParams } = require('../helpers/urlBuilders');
-const addDeleteDocument = require('../helpers/addDeleteDocument');
+const { replacePathParams } = require('../helpers/urlBuilders');
 
 module.exports[POST_CREATE_SUBNET] = ({ node_id, nickname, userInfo }) => {
   const { host, user_id, headers } = userInfo;

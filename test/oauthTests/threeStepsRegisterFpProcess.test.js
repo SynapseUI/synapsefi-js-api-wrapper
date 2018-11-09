@@ -4,7 +4,7 @@ const testHelpersForOauth = require('../testHelper/testHelpersForOauth');
 const testHelpersForSubnets = require('../testHelper/testHelpersForSubnets');
 
 describe('three steps to do 2fa with oauth', () => {
-  it.only('three steps to do 2fa with oauth', async () => {
+  it('three steps to do 2fa with oauth', async () => {
     const { endUserApiWrapper } = await testHelpersForOauth.createEndUserWithNoBaseDoc();
     endUserApiWrapper.fingerprint = 'static_pin';
 
