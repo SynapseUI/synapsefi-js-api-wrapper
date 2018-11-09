@@ -33,6 +33,4 @@ describe('PATCH_DELETE_SUB_DOCS', () => {
 
     await testHelperFuncsForUsers.deleteMySelf(endUserApiWrapper);
   });
-
-})
-
+});
