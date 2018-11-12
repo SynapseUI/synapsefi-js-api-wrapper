@@ -54,4 +54,7 @@ module.exports = {
   PATCH_SUBNET: 'PATCH_SUBNET',
   // -------------------------------------------------------------------------------
   //
+  // CLIENT KEYS--------------------------------------------------------------------
+  POST_CLIENT_KEYS: 'POST_CLIENT_KEYS',
+  POST_CLIENT_KEYS_APPLY: 'POST_CLIENT_KEYS_APPLY',
 };

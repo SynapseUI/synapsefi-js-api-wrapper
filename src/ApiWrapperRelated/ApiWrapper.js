@@ -47,12 +47,16 @@ const {
   GET_ALL_NODE_TRANSACTIONS,
   // ---------------------------------
   //
-  // TRANSACTION  --------------------
+  // SUBNETS  --------------------
   GET_SUBNETS,
   POST_CREATE_SUBNET,
   GET_SUBNET,
   PATCH_SUBNET,
   // ---------------------------------
+  // CLIENT KEYS-----------------------
+  POST_CLIENT_KEYS,
+  POST_CLIENT_KEYS_APPLY,
+  //
 } = require('../constants/apiReqNames');
 const apiRequests = require('../apiReqs/apiRequests');
 const buildHeaders = require('../helpers/buildHeaders');
@@ -439,6 +443,13 @@ class ApiWrapper {
       status,
       userInfo: this,
     });
+  }
+  //
+  //
+  // Client Key
+
+  POST_CLIENT_KEYS() {
+    return apiRequests.clientKeys[POST_CLIENT_KEYS]({ userInfo: this });
   }
   //
   //
