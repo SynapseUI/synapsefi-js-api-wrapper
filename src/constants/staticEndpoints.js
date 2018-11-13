@@ -68,6 +68,6 @@ module.exports = {
   [apiReqNames.PATCH_SUBNET]: `/${VERSION}/users/:user_id/nodes/:node_id/subnets/:subnet_id`,
   // -----------------------------------------------------------------------------------------------------
   //
-  [apiReqNames.POST_CLIENT_KEYS]: '/v3/user/client/keys',
-  [apiReqNames.POST_CLIENT_KEYS_APPLY]: '/v3/user/client/keys/apply',
+  [apiReqNames.POST_GET_CLIENT_SETTINGS]: '/v3/user/client/keys',
+  [apiReqNames.POST_UPDATE_CLIENT_SETTINGS]: '/v3/user/client/keys/apply',
 };

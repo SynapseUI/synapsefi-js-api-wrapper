@@ -54,8 +54,8 @@ const {
   PATCH_SUBNET,
   // ---------------------------------
   // CLIENT KEYS-----------------------
-  POST_CLIENT_KEYS,
-  POST_CLIENT_KEYS_APPLY,
+  POST_GET_CLIENT_SETTINGS,
+  POST_UPDATE_CLIENT_SETTINGS,
   //
 } = require('../constants/apiReqNames');
 const apiRequests = require('../apiReqs/apiRequests');
@@ -448,8 +448,12 @@ class ApiWrapper {
   //
   // Client Key
 
-  POST_CLIENT_KEYS() {
-    return apiRequests.clientKeys[POST_CLIENT_KEYS]({ userInfo: this });
+  POST_GET_CLIENT_SETTINGS() {
+    return apiRequests.clientKeys[POST_GET_CLIENT_SETTINGS]({ userInfo: this });
+  }
+
+  POST_UPDATE_CLIENT_SETTINGS({ bodyParams }) {
+    return apiRequests.clientKeys[POST_UPDATE_CLIENT_SETTINGS]({ bodyParams, userInfo: this });
   }
   //
   //

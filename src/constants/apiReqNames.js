@@ -55,6 +55,6 @@ module.exports = {
   // -------------------------------------------------------------------------------
   //
   // CLIENT KEYS--------------------------------------------------------------------
-  POST_CLIENT_KEYS: 'POST_CLIENT_KEYS',
-  POST_CLIENT_KEYS_APPLY: 'POST_CLIENT_KEYS_APPLY',
+  POST_GET_CLIENT_SETTINGS: 'POST_GET_CLIENT_SETTINGS',
+  POST_UPDATE_CLIENT_SETTINGS: 'POST_UPDATE_CLIENT_SETTINGS',
 };
