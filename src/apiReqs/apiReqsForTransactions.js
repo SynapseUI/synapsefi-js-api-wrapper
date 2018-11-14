@@ -19,17 +19,24 @@ module.exports[POST_CREATE_TRANSACTION] = ({
   to_node_type,
   amount,
   currency,
-  optionalBodyParams,
+  bodyParams,
   userInfo,
 }) => {
   const { host, user_id, ip_address, headers } = userInfo;
 
-  let extra = {};
-  if (optionalBodyParams !== undefined) {
-    if (optionalBodyParams.extra !== undefined) {
-      extra = optionalBodyParams.extra;
-    }
-  }
+  const reqBody = bodyParams || {
+    to: {
+      type: to_node_type,
+      id: to_node_id,
+    },
+    amount: {
+      amount,
+      currency,
+    },
+    extra: {
+      ip: ip_address,
+    },
+  };
 
   return axios.post(
     replacePathParams({
@@ -37,20 +44,7 @@ module.exports[POST_CREATE_TRANSACTION] = ({
       user_id,
       node_id: from_node_id,
     }),
-    {
-      to: {
-        type: to_node_type,
-        id: to_node_id,
-      },
-      amount: {
-        amount,
-        currency,
-      },
-      extra: {
-        ip: ip_address,
-        ...extra,
-      },
-    },
+    reqBody,
     { headers }
   );
 };
@@ -69,8 +63,16 @@ module.exports[GET_TRANSACTION] = ({ node_id, trans_id, userInfo }) => {
   );
 };
 
-module.exports[PATCH_COMMENT_ON_STATUS] = ({ node_id, trans_id, comment, userInfo }) => {
+module.exports[PATCH_COMMENT_ON_STATUS] = ({
+  node_id,
+  trans_id,
+  comment,
+  bodyParams,
+  userInfo,
+}) => {
   const { host, user_id, headers } = userInfo;
+
+  const reqBody = bodyParams || { comment };
 
   return axios.patch(
     replacePathParams({
@@ -79,7 +81,7 @@ module.exports[PATCH_COMMENT_ON_STATUS] = ({ node_id, trans_id, comment, userInf
       node_id,
       trans_id,
     }),
-    { comment },
+    reqBody,
     { headers }
   );
 };

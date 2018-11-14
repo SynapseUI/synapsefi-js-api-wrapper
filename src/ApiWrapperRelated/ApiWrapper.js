@@ -338,7 +338,7 @@ class ApiWrapper {
     to_node_type,
     amount,
     currency,
-    optionalBodyParams,
+    bodyParams,
   }) {
     return apiRequests.transactions[POST_CREATE_TRANSACTION]({
       from_node_id,
@@ -346,7 +346,7 @@ class ApiWrapper {
       to_node_type,
       amount,
       currency,
-      optionalBodyParams,
+      bodyParams,
       userInfo: this,
     });
   }
@@ -359,11 +359,12 @@ class ApiWrapper {
     });
   }
 
-  PATCH_COMMENT_ON_STATUS({ node_id, trans_id, comment }) {
+  PATCH_COMMENT_ON_STATUS({ node_id, trans_id, comment, bodyParams }) {
     return apiRequests.transactions[PATCH_COMMENT_ON_STATUS]({
       node_id,
       trans_id,
       comment,
+      bodyParams,
       userInfo: this,
     });
   }
