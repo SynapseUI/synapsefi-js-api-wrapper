@@ -222,13 +222,14 @@ class ApiWrapper {
   }
 
   GET_ALL_CLIENT_NODES(queryParams = {}) {
-    const { mongoQuery, query, page, per_page, type } = queryParams;
+    const { mongoQuery, query, page, per_page, type, params } = queryParams;
     return apiRequests.nodes[GET_ALL_CLIENT_NODES]({
       mongoQuery,
       query,
       page,
       per_page,
       type,
+      params,
       userInfo: this,
     });
   }
@@ -241,7 +242,7 @@ class ApiWrapper {
   }
 
   GET_ALL_USER_NODES(queryParams = {}) {
-    const { mongoQuery, type, page, per_page } = queryParams;
+    const { mongoQuery, type, page, per_page, params } = queryParams;
     // queryParams =
     // {
     //   page:
@@ -259,6 +260,7 @@ class ApiWrapper {
       per_page,
       type,
       mongoQuery,
+      params,
       userInfo: this,
     });
   }
