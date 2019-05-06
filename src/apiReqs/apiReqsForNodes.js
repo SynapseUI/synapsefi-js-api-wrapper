@@ -44,7 +44,7 @@ module.exports[POST_CREATE_NODE] = ({ bodyParams, userInfo }) => {
   );
 };
 
-module.exports[GET_ALL_CLIENT_NODES] = ({ mongoQuery, query, page, per_page, type, queryParams, userInfo }) => {
+module.exports[GET_ALL_CLIENT_NODES] = ({ mongoQuery, query, page, per_page, type, params, userInfo }) => {
   const { oauth_key, host, fingerprint, ip_address, client_id, client_secret } = userInfo;
 
   const queryAddedUrl = addQueryParams({
@@ -68,12 +68,12 @@ module.exports[GET_ALL_CLIENT_NODES] = ({ mongoQuery, query, page, per_page, typ
         client_id,
         client_secret,
       }),
-      ...(queryParams !== 'undefined' && {params: queryParams})
+      ...(params !== 'undefined' && { params })
     }
   );
 };
 
-module.exports[GET_ALL_USER_NODES] = ({ page, per_page, type, mongoQuery, userInfo }) => {
+module.exports[GET_ALL_USER_NODES] = ({ page, per_page, type, mongoQuery, params, userInfo }) => {
   const { oauth_key, host, user_id, fingerprint, ip_address } = userInfo;
 
   const queryAddedUrl = addQueryParams({
@@ -95,6 +95,7 @@ module.exports[GET_ALL_USER_NODES] = ({ page, per_page, type, mongoQuery, userIn
         ip_address,
         oauth_key,
       }),
+      ...(params !== 'undefined' && { params })
     }
   );
 };
